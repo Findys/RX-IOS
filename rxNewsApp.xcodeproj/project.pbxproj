@@ -36,7 +36,6 @@
 		D23DCFEE1BC27F8B00C32F94 /* TushuoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFED1BC27F8B00C32F94 /* TushuoViewController.swift */; };
 		D26734811BC3C5A500E63D15 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26734801BC3C5A500E63D15 /* WebViewController.swift */; };
 		D26734831BC3E35700E63D15 /* tsShowCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26734821BC3E35700E63D15 /* tsShowCardViewController.swift */; };
-		D29BAE221BC502CC00B07DCE /* rxTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BAE211BC502CC00B07DCE /* rxTabController.swift */; };
 		D2B1B37E1BC54FFE00AAA100 /* TouchImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B1B37D1BC54FFE00AAA100 /* TouchImageView.swift */; };
 		D2BADA391BCEB9DB0009CB77 /* rxNewsPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BADA371BCEB9DB0009CB77 /* rxNewsPageCell.swift */; settings = {ASSET_TAGS = (); }; };
 		D2BADA3A1BCEB9DB0009CB77 /* rxNewsPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2BADA381BCEB9DB0009CB77 /* rxNewsPageCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -136,7 +135,6 @@
 		D23DCFED1BC27F8B00C32F94 /* TushuoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TushuoViewController.swift; path = rxNewsApp/TushuoViewController.swift; sourceTree = "<group>"; };
 		D26734801BC3C5A500E63D15 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = rxNewsApp/WebViewController.swift; sourceTree = "<group>"; };
 		D26734821BC3E35700E63D15 /* tsShowCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = tsShowCardViewController.swift; path = rxNewsApp/tsShowCardViewController.swift; sourceTree = "<group>"; };
-		D29BAE211BC502CC00B07DCE /* rxTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = rxTabController.swift; path = rxNewsApp/rxTabController.swift; sourceTree = "<group>"; };
 		D2B1B37D1BC54FFE00AAA100 /* TouchImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TouchImageView.swift; path = rxNewsApp/TouchImageView.swift; sourceTree = "<group>"; };
 		D2BADA371BCEB9DB0009CB77 /* rxNewsPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = rxNewsPageCell.swift; path = rxNewsApp/rxNewsPageCell.swift; sourceTree = "<group>"; };
 		D2BADA381BCEB9DB0009CB77 /* rxNewsPageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = rxNewsPageCell.xib; path = rxNewsApp/rxNewsPageCell.xib; sourceTree = "<group>"; };
@@ -246,6 +244,9 @@
 		65BD11CB1CB9134FAF5CAB46 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14F8274F1BEB6F8A004AEA96 /* Vendor */,
+				143714BC1BEDA99900D2F5A9 /* RSKImageCropper */,
+				143714AC1BEDA94200D2F5A9 /* TopAlertView */,
 				143714D61BEDAABF00D2F5A9 /* Pods.xcodeproj */,
 				F4200A8D112B17FCC73B7358 /* libPods.a */,
 			);
@@ -265,9 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				D23DCFEA1BC27A9000C32F94 /* rxNewsApp-Bridging-Header.h */,
-				143714BC1BEDA99900D2F5A9 /* RSKImageCropper */,
-				143714AC1BEDA94200D2F5A9 /* TopAlertView */,
-				14F8274F1BEB6F8A004AEA96 /* Vendor */,
 				D2B1B37C1BC54FB600AAA100 /* widget */,
 				D23DCFE21BC2732F00C32F94 /* ViewController */,
 				D23DCFE11BC2730600C32F94 /* Base */,
@@ -290,7 +288,6 @@
 		D23DCFE21BC2732F00C32F94 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D29BAE211BC502CC00B07DCE /* rxTabController.swift */,
 				D26734801BC3C5A500E63D15 /* WebViewController.swift */,
 				D23DCFDB1BC272DD00C32F94 /* ViewController.swift */,
 				D23DCFED1BC27F8B00C32F94 /* TushuoViewController.swift */,
@@ -544,7 +541,6 @@
 				143714D41BEDA99900D2F5A9 /* UIApplication+RSKImageCropper.m in Sources */,
 				143714D31BEDA99900D2F5A9 /* RSKTouchView.m in Sources */,
 				D23DCFEE1BC27F8B00C32F94 /* TushuoViewController.swift in Sources */,
-				D29BAE221BC502CC00B07DCE /* rxTabController.swift in Sources */,
 				14F8275A1BEB6F8A004AEA96 /* DXAlertView.m in Sources */,
 				14F495E21BEA3A7D00117D29 /* SettingViewController.swift in Sources */,
 				D2FC4D991BD4C89D00F18240 /* UserViewController.swift in Sources */,
@@ -679,7 +675,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ecjtu.net.rxNewsAppIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Findys/Downloads/RX-IOS-master/rxNewsApp/rxNewsApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Findys/Documents/RX-IOS-master/rxNewsApp/rxNewsApp-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -698,7 +694,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ecjtu.net.rxNewsAppIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Findys/Downloads/RX-IOS-master/rxNewsApp/rxNewsApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Findys/Documents/RX-IOS-master/rxNewsApp/rxNewsApp-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -62,7 +62,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             }
         default:break
         }
-        
+        self.tableview.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
     
@@ -80,6 +80,18 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
     
     func imageCropViewController(controller: RSKImageCropViewController!, didCropImage croppedImage: UIImage!, usingCropRect cropRect: CGRect) {
         self.head.image=croppedImage
+        let imagedata=UIImagePNGRepresentation(croppedImage)
+        let params: Dictionary<String,String> = ["token": String(userDefault.objectForKey("token"))]
+        let afManager = AFHTTPRequestOperationManager()
+        let studentID=userDefault.objectForKey("account") as! String
+        let url="http://user.ecjtu.net/api/user/"+studentID+"/avatar"
+        afManager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
+            formdata.appendPartWithFileData(imagedata!, name: "avatar", fileName: "headimage"+studentID+".png", mimeType: "image/png")
+            }, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
+                print(resp)
+            }) { (AFHTTPRequestOperation, error:NSError) -> Void in
+                print(error)
+        }
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }
