@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "rxNewsApp/ViewController.swift"
+            timestampString = "466351016.422602"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "rxNewsApp/CollageViewController.swift"
+            timestampString = "466224009.387476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "rxNewsApp/ViewController.swift"
+            timestampString = "466317421.77996"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rxNewsApp.ViewController.__deallocating_deinit"
+                  moduleName = "rxNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hu/Downloads/rxNewsAppiOS1.0-master/rxNewsApp/ViewController.swift"
+                  timestampString = "466317421.78542"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rxNewsApp.ViewController.init (rxNewsApp.ViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; rxNewsApp.ViewController"
+                  moduleName = "rxNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hu/Downloads/rxNewsAppiOS1.0-master/rxNewsApp/ViewController.swift"
+                  timestampString = "466317421.785605"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "57">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rxNewsApp.ViewController.init (rxNewsApp.ViewController.Type)(coder : ObjectiveC.NSCoder) -&gt; Swift.Optional&lt;rxNewsApp.ViewController&gt;"
+                  moduleName = "rxNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hu/Downloads/rxNewsAppiOS1.0-master/rxNewsApp/ViewController.swift"
+                  timestampString = "466317421.785732"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "rxNewsApp/ViewController.swift"
+            timestampString = "466317816.455067"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rxNewsApp.ViewController.newsTable.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UITableView&gt;"
+                  moduleName = "rxNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hu/Downloads/rxNewsAppiOS1.0-master/rxNewsApp/ViewController.swift"
+                  timestampString = "466317562.931295"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rxNewsApp.ViewController.newsTable.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UITableView&gt;"
+                  moduleName = "rxNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hu/Downloads/rxNewsAppiOS1.0-master/rxNewsApp/ViewController.swift"
+                  timestampString = "466317562.931495"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rxNewsApp.ViewController.newsTable.materializeForSet : weak Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UITableView&gt;"
+                  moduleName = "rxNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hu/Downloads/rxNewsAppiOS1.0-master/rxNewsApp/ViewController.swift"
+                  timestampString = "466317562.931639"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rxNewsApp.ViewController.init (rxNewsApp.ViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; rxNewsApp.ViewController"
+                  moduleName = "rxNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hu/Downloads/rxNewsAppiOS1.0-master/rxNewsApp/ViewController.swift"
+                  timestampString = "466317562.931775"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "170">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rxNewsApp.ViewController.init (rxNewsApp.ViewController.Type)(coder : ObjectiveC.NSCoder) -&gt; Swift.Optional&lt;rxNewsApp.ViewController&gt;"
+                  moduleName = "rxNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hu/Downloads/rxNewsAppiOS1.0-master/rxNewsApp/ViewController.swift"
+                  timestampString = "466317562.931901"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "110">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
