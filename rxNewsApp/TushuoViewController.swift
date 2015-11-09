@@ -43,9 +43,6 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tushuoTable.dequeueReusableCellWithIdentifier("tushuoCell")
-//        cell.frame = CGRectMake(CGFloat(0),
-//            CGFloat(Int(tushuoTable.frame.width/CGFloat(320)*CGFloat(300))*indexPath.row),tushuoTable.frame.width,tushuoTable.frame.width/CGFloat(320)*CGFloat(400))
-//        let image = cell.viewWithTag(1) as! UIImageView
         let view = cell!.contentView.viewWithTag(1)
         let title = cell!.contentView.viewWithTag(2) as! UILabel
         let click = cell!.contentView.viewWithTag(3) as! UILabel
@@ -69,8 +66,6 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, cacheType:SDImageCacheType, nsurl:NSURL!) -> Void in
             image.frame = CGRectMake(CGFloat(0),
                 CGFloat(0),cell!.frame.width,cell!.frame.width/UIimage.size.width*UIimage.size.height)
-//            CGRectMake(cell.frame.width/CGFloat(320)*CGFloat(8),
-//                CGFloat(8),cell.frame.width-cell.frame.width/CGFloat(320)*CGFloat(16),(cell.frame.width-cell.frame.width/CGFloat(320)*CGFloat(16))/UIimage.size.width*UIimage.size.height)
         })
         return cell!
     }

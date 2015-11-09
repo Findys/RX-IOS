@@ -8,25 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		056C679E5169889877DEBDDA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4200A8D112B17FCC73B7358 /* libPods.a */; };
-		143714B71BEDA94200D2F5A9 /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714AF1BEDA94200D2F5A9 /* FAImageView.m */; settings = {ASSET_TAGS = (); }; };
-		143714B81BEDA94200D2F5A9 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 143714B01BEDA94200D2F5A9 /* FontAwesome.ttf */; settings = {ASSET_TAGS = (); }; };
-		143714B91BEDA94200D2F5A9 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714B21BEDA94200D2F5A9 /* NSString+FontAwesome.m */; settings = {ASSET_TAGS = (); }; };
-		143714BA1BEDA94200D2F5A9 /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714B41BEDA94200D2F5A9 /* UIFont+FontAwesome.m */; settings = {ASSET_TAGS = (); }; };
-		143714BB1BEDA94200D2F5A9 /* MozTopAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714B61BEDA94200D2F5A9 /* MozTopAlertView.m */; settings = {ASSET_TAGS = (); }; };
-		143714CE1BEDA99900D2F5A9 /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714BE1BEDA99900D2F5A9 /* CGGeometry+RSKImageCropper.m */; settings = {ASSET_TAGS = (); }; };
-		143714CF1BEDA99900D2F5A9 /* RSKImageCropperStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 143714C01BEDA99900D2F5A9 /* RSKImageCropperStrings.bundle */; settings = {ASSET_TAGS = (); }; };
-		143714D01BEDA99900D2F5A9 /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714C31BEDA99900D2F5A9 /* RSKImageCropViewController.m */; settings = {ASSET_TAGS = (); }; };
-		143714D11BEDA99900D2F5A9 /* RSKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714C51BEDA99900D2F5A9 /* RSKImageScrollView.m */; settings = {ASSET_TAGS = (); }; };
-		143714D21BEDA99900D2F5A9 /* RSKInternalUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714C71BEDA99900D2F5A9 /* RSKInternalUtility.m */; settings = {ASSET_TAGS = (); }; };
-		143714D31BEDA99900D2F5A9 /* RSKTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714C91BEDA99900D2F5A9 /* RSKTouchView.m */; settings = {ASSET_TAGS = (); }; };
-		143714D41BEDA99900D2F5A9 /* UIApplication+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714CB1BEDA99900D2F5A9 /* UIApplication+RSKImageCropper.m */; settings = {ASSET_TAGS = (); }; };
-		143714D51BEDA99900D2F5A9 /* UIImage+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714CD1BEDA99900D2F5A9 /* UIImage+RSKImageCropper.m */; settings = {ASSET_TAGS = (); }; };
-		14F495E21BEA3A7D00117D29 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F495E11BEA3A7D00117D29 /* SettingViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		14F827561BEB6F8A004AEA96 /* btn_close_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827501BEB6F8A004AEA96 /* btn_close_normal.png */; settings = {ASSET_TAGS = (); }; };
-		14F827571BEB6F8A004AEA96 /* btn_close_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827511BEB6F8A004AEA96 /* btn_close_normal@2x.png */; settings = {ASSET_TAGS = (); }; };
-		14F827581BEB6F8A004AEA96 /* btn_close_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827521BEB6F8A004AEA96 /* btn_close_selected.png */; settings = {ASSET_TAGS = (); }; };
-		14F827591BEB6F8A004AEA96 /* btn_close_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827531BEB6F8A004AEA96 /* btn_close_selected@2x.png */; settings = {ASSET_TAGS = (); }; };
-		14F8275A1BEB6F8A004AEA96 /* DXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F827551BEB6F8A004AEA96 /* DXAlertView.m */; settings = {ASSET_TAGS = (); }; };
+		143714B71BEDA94200D2F5A9 /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714AF1BEDA94200D2F5A9 /* FAImageView.m */; };
+		143714B81BEDA94200D2F5A9 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 143714B01BEDA94200D2F5A9 /* FontAwesome.ttf */; };
+		143714B91BEDA94200D2F5A9 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714B21BEDA94200D2F5A9 /* NSString+FontAwesome.m */; };
+		143714BA1BEDA94200D2F5A9 /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714B41BEDA94200D2F5A9 /* UIFont+FontAwesome.m */; };
+		143714BB1BEDA94200D2F5A9 /* MozTopAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714B61BEDA94200D2F5A9 /* MozTopAlertView.m */; };
+		143714CE1BEDA99900D2F5A9 /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714BE1BEDA99900D2F5A9 /* CGGeometry+RSKImageCropper.m */; };
+		143714CF1BEDA99900D2F5A9 /* RSKImageCropperStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 143714C01BEDA99900D2F5A9 /* RSKImageCropperStrings.bundle */; };
+		143714D01BEDA99900D2F5A9 /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714C31BEDA99900D2F5A9 /* RSKImageCropViewController.m */; };
+		143714D11BEDA99900D2F5A9 /* RSKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714C51BEDA99900D2F5A9 /* RSKImageScrollView.m */; };
+		143714D21BEDA99900D2F5A9 /* RSKInternalUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714C71BEDA99900D2F5A9 /* RSKInternalUtility.m */; };
+		143714D31BEDA99900D2F5A9 /* RSKTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714C91BEDA99900D2F5A9 /* RSKTouchView.m */; };
+		143714D41BEDA99900D2F5A9 /* UIApplication+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714CB1BEDA99900D2F5A9 /* UIApplication+RSKImageCropper.m */; };
+		143714D51BEDA99900D2F5A9 /* UIImage+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714CD1BEDA99900D2F5A9 /* UIImage+RSKImageCropper.m */; };
+		14F495E21BEA3A7D00117D29 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F495E11BEA3A7D00117D29 /* SettingViewController.swift */; };
+		14F827561BEB6F8A004AEA96 /* btn_close_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827501BEB6F8A004AEA96 /* btn_close_normal.png */; };
+		14F827571BEB6F8A004AEA96 /* btn_close_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827511BEB6F8A004AEA96 /* btn_close_normal@2x.png */; };
+		14F827581BEB6F8A004AEA96 /* btn_close_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827521BEB6F8A004AEA96 /* btn_close_selected.png */; };
+		14F827591BEB6F8A004AEA96 /* btn_close_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827531BEB6F8A004AEA96 /* btn_close_selected@2x.png */; };
+		14F8275A1BEB6F8A004AEA96 /* DXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F827551BEB6F8A004AEA96 /* DXAlertView.m */; };
 		D23DCFDC1BC272DD00C32F94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */; };
 		D23DCFDE1BC272DD00C32F94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D23DCFD91BC272DD00C32F94 /* Images.xcassets */; };
 		D23DCFE01BC272DD00C32F94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFDB1BC272DD00C32F94 /* ViewController.swift */; };
@@ -37,10 +37,10 @@
 		D26734811BC3C5A500E63D15 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26734801BC3C5A500E63D15 /* WebViewController.swift */; };
 		D26734831BC3E35700E63D15 /* tsShowCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26734821BC3E35700E63D15 /* tsShowCardViewController.swift */; };
 		D2B1B37E1BC54FFE00AAA100 /* TouchImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B1B37D1BC54FFE00AAA100 /* TouchImageView.swift */; };
-		D2BADA391BCEB9DB0009CB77 /* rxNewsPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BADA371BCEB9DB0009CB77 /* rxNewsPageCell.swift */; settings = {ASSET_TAGS = (); }; };
-		D2BADA3A1BCEB9DB0009CB77 /* rxNewsPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2BADA381BCEB9DB0009CB77 /* rxNewsPageCell.xib */; settings = {ASSET_TAGS = (); }; };
+		D2BADA391BCEB9DB0009CB77 /* rxNewsPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BADA371BCEB9DB0009CB77 /* rxNewsPageCell.swift */; };
+		D2BADA3A1BCEB9DB0009CB77 /* rxNewsPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2BADA381BCEB9DB0009CB77 /* rxNewsPageCell.xib */; };
 		D2C040601BBFC71A00791443 /* rxNewsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C0405F1BBFC71A00791443 /* rxNewsAppTests.swift */; };
-		D2FC4D991BD4C89D00F18240 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FC4D981BD4C89D00F18240 /* UserViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		D2FC4D991BD4C89D00F18240 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FC4D981BD4C89D00F18240 /* UserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
