@@ -8,28 +8,18 @@
 
 import UIKit
 
-class tsShowCardViewController: UIViewController{
+class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     @IBOutlet weak var scrollview: UIScrollView!
     var pid = Int()
     var ifheight=false
     var picheight=Int()
     var picArray = Array<AnyObject>()
-    var frame: CGRect = CGRectMake(0, 0, 0, 0)
-    var colors:[UIColor] = [UIColor.redColor(), UIColor.blueColor(), UIColor.greenColor(), UIColor.yellowColor()]
+    let text=UILabel()
+    let background=UIView()
+    var actualsize=CGSize()
     override func viewDidLoad() {
         super.viewDidLoad()
         requestData()
-        //        for index in 0..<colors.count {
-//            
-//            frame.origin.x = self.scrollview.frame.size.width * CGFloat(index)
-//            frame.size = self.scrollview.frame.size
-//            self.scrollview.pagingEnabled = true
-//            
-//            var subView = UIView(frame: frame)
-//            subView.backgroundColor = colors[index]
-//            self.scrollview .addSubview(subView)
-//        }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,10 +33,19 @@ class tsShowCardViewController: UIViewController{
         let height=self.view.frame.height
         for index in 0..<picArray.count {
             var url = picArray[index].objectForKey("url") as! String
+            let detail=picArray[0].objectForKey("detail") as! String
+            text.text="1/"+String(picArray.count)+"   "+detail
+            text.frame=CGRect(x: 10, y:0, width: width-20, height: 100)
+            text.lineBreakMode=NSLineBreakMode.ByWordWrapping
+            text.numberOfLines=0
+            text.textColor=UIColor.whiteColor()
+            text.font=UIFont.boldSystemFontOfSize(15)
+            background.frame=CGRect(x: 0, y: height-text.frame.height, width: width, height: text.frame.height)
+            background.backgroundColor=UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
             url = "http://pic.ecjtu.net/\(url)"
             let image = UIImageView()
             image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, cacheType:SDImageCacheType, nsurl:NSURL!) -> Void in
-                image.frame = CGRectMake(CGFloat(index)*width,0
+                image.frame = CGRectMake(CGFloat(index)*width,height/2-width/UIimage.size.width*UIimage.size.height/2-10
                     ,width,width/UIimage.size.width*UIimage.size.height)
                 if self.ifheight==false{
                     self.picheight=Int(image.frame.height)
@@ -57,13 +56,22 @@ class tsShowCardViewController: UIViewController{
                     }
                 }
             })
-            frame.origin.x = self.scrollview.frame.size.width * CGFloat(index)
-            frame.size = self.scrollview.frame.size
             scrollview.frame.origin.x = width * CGFloat(index)
             self.scrollview.addSubview(image)
+            self.view.addSubview(background)
+            background.addSubview(text)
         }
         self.scrollview.contentSize = CGSizeMake(self.scrollview.frame.size.width * CGFloat(picArray.count),CGFloat(picheight))
+        scrollview.delegate=self
 
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView){
+        let width=self.view.frame.width
+        let height=self.view.frame.height
+        let detail=picArray[Int(scrollview.contentOffset.x/width)].objectForKey("detail") as! String
+        text.text=String(Int(scrollview.contentOffset.x/width+1))+"/"+String(picArray.count)+"   "+detail
+        background.frame=CGRect(x: 0, y: height-text.frame.height, width: width, height: text.frame.height)
     }
     
     @IBAction func goBack(sender: AnyObject) {
@@ -80,13 +88,14 @@ class tsShowCardViewController: UIViewController{
                 responseObject: AnyObject) in
                 let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(responseObject as! NSData, options:NSJSONReadingOptions() )
                 self.picArray = json?.objectForKey("pictures") as! Array<AnyObject>
+                print(json)
                 dispatch_async(dispatch_get_main_queue()) { () -> Void in
                     self.loadscroll()
                 }
             },
             failure: {  (operation: AFHTTPRequestOperation,
                 error: NSError) in
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.scrollview)
                 
         })
         op!.responseSerializer = AFHTTPResponseSerializer()
