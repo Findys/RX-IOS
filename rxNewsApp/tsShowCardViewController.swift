@@ -70,9 +70,8 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
 
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView){
+    func scrollViewDidScroll(scrollView: UIScrollView){         /*页面滑动时重载UI*/
         let detail=picArray[Int(scrollview.contentOffset.x/width)].objectForKey("detail") as! NSString
-//        var dict=NSDictionary.dictionaryWithValuesForKeys(text.font)
         let size=detail.boundingRectWithSize(CGSize(width: width, height: 300), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:text.font], context: nil).size
         let current=String(Int(scrollview.contentOffset.x/width+1))
         let count=String(picArray.count)
@@ -87,7 +86,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         }
     }
     
-    func requestData() {
+    func requestData() {                        /*打开页面获取数据*/
         let afManager = AFHTTPRequestOperationManager()
         let op =  afManager.GET("http://pic.ecjtu.net/api.php/post/\(pid)",
             parameters:nil,

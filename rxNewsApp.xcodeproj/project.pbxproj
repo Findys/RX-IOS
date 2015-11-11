@@ -13,21 +13,20 @@
 		143714B91BEDA94200D2F5A9 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714B21BEDA94200D2F5A9 /* NSString+FontAwesome.m */; };
 		143714BA1BEDA94200D2F5A9 /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714B41BEDA94200D2F5A9 /* UIFont+FontAwesome.m */; };
 		143714BB1BEDA94200D2F5A9 /* MozTopAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714B61BEDA94200D2F5A9 /* MozTopAlertView.m */; };
-		143714CE1BEDA99900D2F5A9 /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714BE1BEDA99900D2F5A9 /* CGGeometry+RSKImageCropper.m */; };
-		143714CF1BEDA99900D2F5A9 /* RSKImageCropperStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 143714C01BEDA99900D2F5A9 /* RSKImageCropperStrings.bundle */; };
-		143714D01BEDA99900D2F5A9 /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714C31BEDA99900D2F5A9 /* RSKImageCropViewController.m */; };
-		143714D11BEDA99900D2F5A9 /* RSKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714C51BEDA99900D2F5A9 /* RSKImageScrollView.m */; };
-		143714D21BEDA99900D2F5A9 /* RSKInternalUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714C71BEDA99900D2F5A9 /* RSKInternalUtility.m */; };
-		143714D31BEDA99900D2F5A9 /* RSKTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714C91BEDA99900D2F5A9 /* RSKTouchView.m */; };
-		143714D41BEDA99900D2F5A9 /* UIApplication+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714CB1BEDA99900D2F5A9 /* UIApplication+RSKImageCropper.m */; };
-		143714D51BEDA99900D2F5A9 /* UIImage+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 143714CD1BEDA99900D2F5A9 /* UIImage+RSKImageCropper.m */; };
+		145B939B1BF37AB500A430EA /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B938B1BF37AB500A430EA /* CGGeometry+RSKImageCropper.m */; };
+		145B939C1BF37AB500A430EA /* RSKImageCropperStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 145B938D1BF37AB500A430EA /* RSKImageCropperStrings.bundle */; };
+		145B939D1BF37AB500A430EA /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B93901BF37AB500A430EA /* RSKImageCropViewController.m */; };
+		145B939E1BF37AB500A430EA /* RSKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B93921BF37AB500A430EA /* RSKImageScrollView.m */; };
+		145B939F1BF37AB500A430EA /* RSKInternalUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B93941BF37AB500A430EA /* RSKInternalUtility.m */; };
+		145B93A01BF37AB500A430EA /* RSKTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B93961BF37AB500A430EA /* RSKTouchView.m */; };
+		145B93A11BF37AB500A430EA /* UIApplication+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B93981BF37AB500A430EA /* UIApplication+RSKImageCropper.m */; };
+		145B93A21BF37AB500A430EA /* UIImage+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B939A1BF37AB500A430EA /* UIImage+RSKImageCropper.m */; };
 		14F495E21BEA3A7D00117D29 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F495E11BEA3A7D00117D29 /* SettingViewController.swift */; };
 		14F827561BEB6F8A004AEA96 /* btn_close_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827501BEB6F8A004AEA96 /* btn_close_normal.png */; };
 		14F827571BEB6F8A004AEA96 /* btn_close_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827511BEB6F8A004AEA96 /* btn_close_normal@2x.png */; };
 		14F827581BEB6F8A004AEA96 /* btn_close_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827521BEB6F8A004AEA96 /* btn_close_selected.png */; };
 		14F827591BEB6F8A004AEA96 /* btn_close_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827531BEB6F8A004AEA96 /* btn_close_selected@2x.png */; };
 		14F8275A1BEB6F8A004AEA96 /* DXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F827551BEB6F8A004AEA96 /* DXAlertView.m */; };
-		14F9C5EC1BF21B0600636D85 /* padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F9C5EB1BF21B0600636D85 /* padding.swift */; };
 		D23DCFDC1BC272DD00C32F94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */; };
 		D23DCFDE1BC272DD00C32F94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D23DCFD91BC272DD00C32F94 /* Images.xcassets */; };
 		D23DCFE01BC272DD00C32F94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFDB1BC272DD00C32F94 /* ViewController.swift */; };
@@ -37,9 +36,6 @@
 		D23DCFEE1BC27F8B00C32F94 /* TushuoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFED1BC27F8B00C32F94 /* TushuoViewController.swift */; };
 		D26734811BC3C5A500E63D15 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26734801BC3C5A500E63D15 /* WebViewController.swift */; };
 		D26734831BC3E35700E63D15 /* tsShowCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26734821BC3E35700E63D15 /* tsShowCardViewController.swift */; };
-		D2B1B37E1BC54FFE00AAA100 /* TouchImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B1B37D1BC54FFE00AAA100 /* TouchImageView.swift */; };
-		D2BADA391BCEB9DB0009CB77 /* rxNewsPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BADA371BCEB9DB0009CB77 /* rxNewsPageCell.swift */; };
-		D2BADA3A1BCEB9DB0009CB77 /* rxNewsPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2BADA381BCEB9DB0009CB77 /* rxNewsPageCell.xib */; };
 		D2C040601BBFC71A00791443 /* rxNewsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C0405F1BBFC71A00791443 /* rxNewsAppTests.swift */; };
 		D2FC4D991BD4C89D00F18240 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FC4D981BD4C89D00F18240 /* UserViewController.swift */; };
 /* End PBXBuildFile section */
@@ -99,24 +95,24 @@
 		143714B41BEDA94200D2F5A9 /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
 		143714B51BEDA94200D2F5A9 /* MozTopAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MozTopAlertView.h; sourceTree = "<group>"; };
 		143714B61BEDA94200D2F5A9 /* MozTopAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MozTopAlertView.m; sourceTree = "<group>"; };
-		143714BD1BEDA99900D2F5A9 /* CGGeometry+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+RSKImageCropper.h"; sourceTree = "<group>"; };
-		143714BE1BEDA99900D2F5A9 /* CGGeometry+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry+RSKImageCropper.m"; sourceTree = "<group>"; };
-		143714BF1BEDA99900D2F5A9 /* RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropper.h; sourceTree = "<group>"; };
-		143714C01BEDA99900D2F5A9 /* RSKImageCropperStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RSKImageCropperStrings.bundle; sourceTree = "<group>"; };
-		143714C11BEDA99900D2F5A9 /* RSKImageCropViewController+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSKImageCropViewController+Protected.h"; sourceTree = "<group>"; };
-		143714C21BEDA99900D2F5A9 /* RSKImageCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropViewController.h; sourceTree = "<group>"; };
-		143714C31BEDA99900D2F5A9 /* RSKImageCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKImageCropViewController.m; sourceTree = "<group>"; };
-		143714C41BEDA99900D2F5A9 /* RSKImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageScrollView.h; sourceTree = "<group>"; };
-		143714C51BEDA99900D2F5A9 /* RSKImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKImageScrollView.m; sourceTree = "<group>"; };
-		143714C61BEDA99900D2F5A9 /* RSKInternalUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKInternalUtility.h; sourceTree = "<group>"; };
-		143714C71BEDA99900D2F5A9 /* RSKInternalUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKInternalUtility.m; sourceTree = "<group>"; };
-		143714C81BEDA99900D2F5A9 /* RSKTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKTouchView.h; sourceTree = "<group>"; };
-		143714C91BEDA99900D2F5A9 /* RSKTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKTouchView.m; sourceTree = "<group>"; };
-		143714CA1BEDA99900D2F5A9 /* UIApplication+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+RSKImageCropper.h"; sourceTree = "<group>"; };
-		143714CB1BEDA99900D2F5A9 /* UIApplication+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+RSKImageCropper.m"; sourceTree = "<group>"; };
-		143714CC1BEDA99900D2F5A9 /* UIImage+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RSKImageCropper.h"; sourceTree = "<group>"; };
-		143714CD1BEDA99900D2F5A9 /* UIImage+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RSKImageCropper.m"; sourceTree = "<group>"; };
 		143714D61BEDAABF00D2F5A9 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
+		145B938A1BF37AB500A430EA /* CGGeometry+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+RSKImageCropper.h"; sourceTree = "<group>"; };
+		145B938B1BF37AB500A430EA /* CGGeometry+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry+RSKImageCropper.m"; sourceTree = "<group>"; };
+		145B938C1BF37AB500A430EA /* RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropper.h; sourceTree = "<group>"; };
+		145B938D1BF37AB500A430EA /* RSKImageCropperStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RSKImageCropperStrings.bundle; sourceTree = "<group>"; };
+		145B938E1BF37AB500A430EA /* RSKImageCropViewController+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSKImageCropViewController+Protected.h"; sourceTree = "<group>"; };
+		145B938F1BF37AB500A430EA /* RSKImageCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropViewController.h; sourceTree = "<group>"; };
+		145B93901BF37AB500A430EA /* RSKImageCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKImageCropViewController.m; sourceTree = "<group>"; };
+		145B93911BF37AB500A430EA /* RSKImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageScrollView.h; sourceTree = "<group>"; };
+		145B93921BF37AB500A430EA /* RSKImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKImageScrollView.m; sourceTree = "<group>"; };
+		145B93931BF37AB500A430EA /* RSKInternalUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKInternalUtility.h; sourceTree = "<group>"; };
+		145B93941BF37AB500A430EA /* RSKInternalUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKInternalUtility.m; sourceTree = "<group>"; };
+		145B93951BF37AB500A430EA /* RSKTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKTouchView.h; sourceTree = "<group>"; };
+		145B93961BF37AB500A430EA /* RSKTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKTouchView.m; sourceTree = "<group>"; };
+		145B93971BF37AB500A430EA /* UIApplication+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+RSKImageCropper.h"; sourceTree = "<group>"; };
+		145B93981BF37AB500A430EA /* UIApplication+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+RSKImageCropper.m"; sourceTree = "<group>"; };
+		145B93991BF37AB500A430EA /* UIImage+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RSKImageCropper.h"; sourceTree = "<group>"; };
+		145B939A1BF37AB500A430EA /* UIImage+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RSKImageCropper.m"; sourceTree = "<group>"; };
 		14F495E11BEA3A7D00117D29 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		14F827501BEB6F8A004AEA96 /* btn_close_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_close_normal.png; sourceTree = "<group>"; };
 		14F827511BEB6F8A004AEA96 /* btn_close_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_normal@2x.png"; sourceTree = "<group>"; };
@@ -124,7 +120,6 @@
 		14F827531BEB6F8A004AEA96 /* btn_close_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_selected@2x.png"; sourceTree = "<group>"; };
 		14F827541BEB6F8A004AEA96 /* DXAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXAlertView.h; sourceTree = "<group>"; };
 		14F827551BEB6F8A004AEA96 /* DXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXAlertView.m; sourceTree = "<group>"; };
-		14F9C5EB1BF21B0600636D85 /* padding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = padding.swift; sourceTree = "<group>"; };
 		197015E37310C125A909AEF2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = rxNewsApp/AppDelegate.swift; sourceTree = "<group>"; };
 		D23DCFD91BC272DD00C32F94 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = rxNewsApp/Images.xcassets; sourceTree = "<group>"; };
@@ -137,9 +132,6 @@
 		D23DCFED1BC27F8B00C32F94 /* TushuoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TushuoViewController.swift; path = rxNewsApp/TushuoViewController.swift; sourceTree = "<group>"; };
 		D26734801BC3C5A500E63D15 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = rxNewsApp/WebViewController.swift; sourceTree = "<group>"; };
 		D26734821BC3E35700E63D15 /* tsShowCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = tsShowCardViewController.swift; path = rxNewsApp/tsShowCardViewController.swift; sourceTree = "<group>"; };
-		D2B1B37D1BC54FFE00AAA100 /* TouchImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TouchImageView.swift; path = rxNewsApp/TouchImageView.swift; sourceTree = "<group>"; };
-		D2BADA371BCEB9DB0009CB77 /* rxNewsPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = rxNewsPageCell.swift; path = rxNewsApp/rxNewsPageCell.swift; sourceTree = "<group>"; };
-		D2BADA381BCEB9DB0009CB77 /* rxNewsPageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = rxNewsPageCell.xib; path = rxNewsApp/rxNewsPageCell.xib; sourceTree = "<group>"; };
 		D2C040441BBFC71A00791443 /* rxNewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rxNewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C040591BBFC71A00791443 /* rxNewsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rxNewsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C0405E1BBFC71A00791443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -193,30 +185,6 @@
 			path = fontawesome;
 			sourceTree = "<group>";
 		};
-		143714BC1BEDA99900D2F5A9 /* RSKImageCropper */ = {
-			isa = PBXGroup;
-			children = (
-				143714BD1BEDA99900D2F5A9 /* CGGeometry+RSKImageCropper.h */,
-				143714BE1BEDA99900D2F5A9 /* CGGeometry+RSKImageCropper.m */,
-				143714BF1BEDA99900D2F5A9 /* RSKImageCropper.h */,
-				143714C01BEDA99900D2F5A9 /* RSKImageCropperStrings.bundle */,
-				143714C11BEDA99900D2F5A9 /* RSKImageCropViewController+Protected.h */,
-				143714C21BEDA99900D2F5A9 /* RSKImageCropViewController.h */,
-				143714C31BEDA99900D2F5A9 /* RSKImageCropViewController.m */,
-				143714C41BEDA99900D2F5A9 /* RSKImageScrollView.h */,
-				143714C51BEDA99900D2F5A9 /* RSKImageScrollView.m */,
-				143714C61BEDA99900D2F5A9 /* RSKInternalUtility.h */,
-				143714C71BEDA99900D2F5A9 /* RSKInternalUtility.m */,
-				143714C81BEDA99900D2F5A9 /* RSKTouchView.h */,
-				143714C91BEDA99900D2F5A9 /* RSKTouchView.m */,
-				143714CA1BEDA99900D2F5A9 /* UIApplication+RSKImageCropper.h */,
-				143714CB1BEDA99900D2F5A9 /* UIApplication+RSKImageCropper.m */,
-				143714CC1BEDA99900D2F5A9 /* UIImage+RSKImageCropper.h */,
-				143714CD1BEDA99900D2F5A9 /* UIImage+RSKImageCropper.m */,
-			);
-			path = RSKImageCropper;
-			sourceTree = "<group>";
-		};
 		143714D71BEDAABF00D2F5A9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +195,31 @@
 				143714E71BEDAAC000D2F5A9 /* libXLPagerTabStrip.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		145B93891BF37AB500A430EA /* RSKImageCropper */ = {
+			isa = PBXGroup;
+			children = (
+				145B938A1BF37AB500A430EA /* CGGeometry+RSKImageCropper.h */,
+				145B938B1BF37AB500A430EA /* CGGeometry+RSKImageCropper.m */,
+				145B938C1BF37AB500A430EA /* RSKImageCropper.h */,
+				145B938D1BF37AB500A430EA /* RSKImageCropperStrings.bundle */,
+				145B938E1BF37AB500A430EA /* RSKImageCropViewController+Protected.h */,
+				145B938F1BF37AB500A430EA /* RSKImageCropViewController.h */,
+				145B93901BF37AB500A430EA /* RSKImageCropViewController.m */,
+				145B93911BF37AB500A430EA /* RSKImageScrollView.h */,
+				145B93921BF37AB500A430EA /* RSKImageScrollView.m */,
+				145B93931BF37AB500A430EA /* RSKInternalUtility.h */,
+				145B93941BF37AB500A430EA /* RSKInternalUtility.m */,
+				145B93951BF37AB500A430EA /* RSKTouchView.h */,
+				145B93961BF37AB500A430EA /* RSKTouchView.m */,
+				145B93971BF37AB500A430EA /* UIApplication+RSKImageCropper.h */,
+				145B93981BF37AB500A430EA /* UIApplication+RSKImageCropper.m */,
+				145B93991BF37AB500A430EA /* UIImage+RSKImageCropper.h */,
+				145B939A1BF37AB500A430EA /* UIImage+RSKImageCropper.m */,
+			);
+			name = RSKImageCropper;
+			path = rxNewsApp/RSKImageCropper;
 			sourceTree = "<group>";
 		};
 		14F8274F1BEB6F8A004AEA96 /* Vendor */ = {
@@ -246,8 +239,8 @@
 		65BD11CB1CB9134FAF5CAB46 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				145B93891BF37AB500A430EA /* RSKImageCropper */,
 				14F8274F1BEB6F8A004AEA96 /* Vendor */,
-				143714BC1BEDA99900D2F5A9 /* RSKImageCropper */,
 				143714AC1BEDA94200D2F5A9 /* TopAlertView */,
 				143714D61BEDAABF00D2F5A9 /* Pods.xcodeproj */,
 				F4200A8D112B17FCC73B7358 /* libPods.a */,
@@ -297,7 +290,6 @@
 				D23DCFEB1BC27ED400C32F94 /* CollageViewController.swift */,
 				D2FC4D981BD4C89D00F18240 /* UserViewController.swift */,
 				14F495E11BEA3A7D00117D29 /* SettingViewController.swift */,
-				14F9C5EB1BF21B0600636D85 /* padding.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -305,9 +297,6 @@
 		D2B1B37C1BC54FB600AAA100 /* widget */ = {
 			isa = PBXGroup;
 			children = (
-				D2B1B37D1BC54FFE00AAA100 /* TouchImageView.swift */,
-				D2BADA371BCEB9DB0009CB77 /* rxNewsPageCell.swift */,
-				D2BADA381BCEB9DB0009CB77 /* rxNewsPageCell.xib */,
 			);
 			name = widget;
 			sourceTree = "<group>";
@@ -481,11 +470,10 @@
 				14F827561BEB6F8A004AEA96 /* btn_close_normal.png in Resources */,
 				14F827571BEB6F8A004AEA96 /* btn_close_normal@2x.png in Resources */,
 				14F827581BEB6F8A004AEA96 /* btn_close_selected.png in Resources */,
-				D2BADA3A1BCEB9DB0009CB77 /* rxNewsPageCell.xib in Resources */,
+				145B939C1BF37AB500A430EA /* RSKImageCropperStrings.bundle in Resources */,
 				14F827591BEB6F8A004AEA96 /* btn_close_selected@2x.png in Resources */,
 				143714B81BEDA94200D2F5A9 /* FontAwesome.ttf in Resources */,
 				D23DCFE51BC2737200C32F94 /* LaunchScreen.xib in Resources */,
-				143714CF1BEDA99900D2F5A9 /* RSKImageCropperStrings.bundle in Resources */,
 				D23DCFE61BC2737200C32F94 /* Main.storyboard in Resources */,
 				D23DCFDE1BC272DD00C32F94 /* Images.xcassets in Resources */,
 			);
@@ -538,28 +526,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145B93A11BF37AB500A430EA /* UIApplication+RSKImageCropper.m in Sources */,
+				145B939D1BF37AB500A430EA /* RSKImageCropViewController.m in Sources */,
 				143714B91BEDA94200D2F5A9 /* NSString+FontAwesome.m in Sources */,
+				145B939F1BF37AB500A430EA /* RSKInternalUtility.m in Sources */,
 				143714B71BEDA94200D2F5A9 /* FAImageView.m in Sources */,
-				D2B1B37E1BC54FFE00AAA100 /* TouchImageView.swift in Sources */,
-				143714D41BEDA99900D2F5A9 /* UIApplication+RSKImageCropper.m in Sources */,
-				143714D31BEDA99900D2F5A9 /* RSKTouchView.m in Sources */,
 				D23DCFEE1BC27F8B00C32F94 /* TushuoViewController.swift in Sources */,
 				14F8275A1BEB6F8A004AEA96 /* DXAlertView.m in Sources */,
 				14F495E21BEA3A7D00117D29 /* SettingViewController.swift in Sources */,
 				D2FC4D991BD4C89D00F18240 /* UserViewController.swift in Sources */,
 				143714BB1BEDA94200D2F5A9 /* MozTopAlertView.m in Sources */,
-				143714D01BEDA99900D2F5A9 /* RSKImageCropViewController.m in Sources */,
-				143714D51BEDA99900D2F5A9 /* UIImage+RSKImageCropper.m in Sources */,
 				143714BA1BEDA94200D2F5A9 /* UIFont+FontAwesome.m in Sources */,
 				D23DCFEC1BC27ED400C32F94 /* CollageViewController.swift in Sources */,
-				143714CE1BEDA99900D2F5A9 /* CGGeometry+RSKImageCropper.m in Sources */,
 				D26734831BC3E35700E63D15 /* tsShowCardViewController.swift in Sources */,
 				D23DCFE01BC272DD00C32F94 /* ViewController.swift in Sources */,
+				145B939E1BF37AB500A430EA /* RSKImageScrollView.m in Sources */,
 				D26734811BC3C5A500E63D15 /* WebViewController.swift in Sources */,
-				143714D21BEDA99900D2F5A9 /* RSKInternalUtility.m in Sources */,
-				D2BADA391BCEB9DB0009CB77 /* rxNewsPageCell.swift in Sources */,
-				143714D11BEDA99900D2F5A9 /* RSKImageScrollView.m in Sources */,
-				14F9C5EC1BF21B0600636D85 /* padding.swift in Sources */,
+				145B93A01BF37AB500A430EA /* RSKTouchView.m in Sources */,
+				145B939B1BF37AB500A430EA /* CGGeometry+RSKImageCropper.m in Sources */,
+				145B93A21BF37AB500A430EA /* UIImage+RSKImageCropper.m in Sources */,
 				D23DCFDC1BC272DD00C32F94 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
