@@ -16,9 +16,12 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     var picArray = Array<AnyObject>()
     let text=UILabel()
     let background=UIView()
-    var actualsize=CGSize()
+    var width=CGFloat()
+    var height=CGFloat()
     override func viewDidLoad() {
         super.viewDidLoad()
+        width=self.view.frame.width
+        height=self.view.frame.height
         requestData()
     }
 
@@ -28,25 +31,26 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     }
     
     func loadscroll(){
-        print(self.picArray.count)
-        let width=self.view.frame.width
-        let height=self.view.frame.height
         for index in 0..<picArray.count {
             var url = picArray[index].objectForKey("url") as! String
             let detail=picArray[0].objectForKey("detail") as! String
+            
             text.text="1/"+String(picArray.count)+"   "+detail
-            text.frame=CGRect(x: 10, y:0, width: width-20, height: 100)
+            let size=detail.boundingRectWithSize(CGSize(width: width, height: 300), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:text.font], context: nil).size
+            text.frame=CGRect(x: 10, y:0, width: width-20, height: size.height+20)
             text.lineBreakMode=NSLineBreakMode.ByWordWrapping
             text.numberOfLines=0
             text.textColor=UIColor.whiteColor()
             text.font=UIFont.boldSystemFontOfSize(15)
-            background.frame=CGRect(x: 0, y: height-text.frame.height, width: width, height: text.frame.height)
+            
+            background.frame=CGRect(x: 0, y: height-size.height-20, width: width, height: size.height+20)
             background.backgroundColor=UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
+            
             url = "http://pic.ecjtu.net/\(url)"
             let image = UIImageView()
             image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, cacheType:SDImageCacheType, nsurl:NSURL!) -> Void in
-                image.frame = CGRectMake(CGFloat(index)*width,height/2-width/UIimage.size.width*UIimage.size.height/2-10
-                    ,width,width/UIimage.size.width*UIimage.size.height)
+                image.frame = CGRectMake(CGFloat(index)*self.width,self.height/2-self.width/UIimage.size.width*UIimage.size.height/2-10
+                    ,self.width,self.width/UIimage.size.width*UIimage.size.height)
                 if self.ifheight==false{
                     self.picheight=Int(image.frame.height)
                 }
@@ -67,11 +71,14 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView){
-        let width=self.view.frame.width
-        let height=self.view.frame.height
-        let detail=picArray[Int(scrollview.contentOffset.x/width)].objectForKey("detail") as! String
-        text.text=String(Int(scrollview.contentOffset.x/width+1))+"/"+String(picArray.count)+"   "+detail
-        background.frame=CGRect(x: 0, y: height-text.frame.height, width: width, height: text.frame.height)
+        let detail=picArray[Int(scrollview.contentOffset.x/width)].objectForKey("detail") as! NSString
+//        var dict=NSDictionary.dictionaryWithValuesForKeys(text.font)
+        let size=detail.boundingRectWithSize(CGSize(width: width, height: 300), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:text.font], context: nil).size
+        let current=String(Int(scrollview.contentOffset.x/width+1))
+        let count=String(picArray.count)
+        text.text = current+"/"+count+"   "+(detail as String)
+        background.frame=CGRect(x: 0, y: height-size.height-20, width: width, height: size.height+20)
+        text.frame=CGRect(x: 10, y:0, width: width-20, height: size.height+20)
     }
     
     @IBAction func goBack(sender: AnyObject) {
