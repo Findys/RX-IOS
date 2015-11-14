@@ -3,4 +3,5 @@ pod 'SDWebImage','~>3.7'
 pod 'MJRefresh'
 pod "AFNetworking", "~> 2.0"
 pod 'XLPagerTabStrip', '~> 2.0'
+pod 'VIPhotoView', '~> 0.1' 
 

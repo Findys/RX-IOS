@@ -15,8 +15,84 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        ShareSDK.registerApp("iosv1101",
+            activePlatforms :
+            [
+                SSDKPlatformType.TypeSinaWeibo.rawValue,
+                SSDKPlatformType.TypeDouBan.rawValue,
+                SSDKPlatformType.TypeCopy.rawValue,
+                SSDKPlatformType.TypeMail.rawValue,
+                SSDKPlatformType.TypeWechat.rawValue,
+                SSDKPlatformType.TypeQQ.rawValue,
+            ],
+            // onImport 里的代码,需要连接社交平台SDK时触发
+            onImport: {(platform : SSDKPlatformType) -> Void in
+                switch platform
+                {
+                case SSDKPlatformType.TypeSinaWeibo:
+                    ShareSDKConnector.connectWeibo(WeiboSDK.classForCoder())
+                case SSDKPlatformType.TypeWechat:
+                    ShareSDKConnector.connectWeChat(WXApi.classForCoder())
+                case SSDKPlatformType.TypeQQ:
+                    ShareSDKConnector.connectQQ(QQApiInterface.classForCoder(), tencentOAuthClass: TencentOAuth.classForCoder())
+                default:
+                    break
+                }
+            },
+            onConfiguration: {(platform : SSDKPlatformType,appInfo : NSMutableDictionary!) -> Void in
+                switch platform
+                {
+                case SSDKPlatformType.TypeSinaWeibo:
+                    //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+                    appInfo.SSDKSetupSinaWeiboByAppKey("568898243",
+                        appSecret : "38a4f8204cc784f81f9f0daaf31e02e3",
+                        redirectUri : "http://www.sharesdk.cn",
+                        authType : SSDKAuthTypeBoth)
+                    
+                case SSDKPlatformType.TypeWechat:
+                    //设置微信应用信息
+                    appInfo.SSDKSetupWeChatByAppId("wx4868b35061f87885", appSecret: "64020361b8ec4c99936c0e3999a9f249")
+                    
+                case SSDKPlatformType.TypeQQ:
+                    //设置QQ应用信息
+                    appInfo.SSDKSetupQQByAppId("100371282",
+                        appKey : "aed9b0303e3ed1e27bae87c33761161d",
+                        authType : SSDKAuthTypeWeb)
+                    
+                    
+                case SSDKPlatformType.TypeDouBan:
+                    //设置豆瓣应用信息
+                    appInfo.SSDKSetupDouBanByApiKey("02e2cbe5ca06de5908a863b15e149b0b", secret: "9f1e7b4f71304f2f", redirectUri: "http://www.sharesdk.cn")
+                    
+                    //设置印象笔记（中国版）应用信息
+                case SSDKPlatformType.TypeYinXiang:
+                    appInfo.SSDKSetupEvernoteByConsumerKey("sharesdk-7807", consumerSecret: "d05bf86993836004", sandbox: true)
+                    
+                    
+                default:
+                    break
+                }
+        })
+        
+        let userDefault=NSUserDefaults()
+        let apassword=userDefault.objectForKey("password")
+        let aaccount=userDefault.objectForKey("account")
+        let afManager = AFHTTPRequestOperationManager()
+        let params: Dictionary<String, String> = ["username": String(aaccount!), "password":String(apassword!)]
+        let op=afManager.POST("http://user.ecjtu.net/api/login", parameters:params , success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
+            let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
+            let token:AnyObject=(json?.objectForKey("token"))!
+            userDefault.setObject(token, forKey: "token")
+            }) { (AFHTTPRequestOperation, error:NSError) -> Void in
+        }
+        op!.responseSerializer = AFHTTPResponseSerializer()
+        op!.start()
+        
         return true
+        
+        
+        
+
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -40,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
 
 }
 

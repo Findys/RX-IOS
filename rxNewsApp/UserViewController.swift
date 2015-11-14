@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class UserViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate {
     var iflogin=Bool()
     var userDefault = NSUserDefaults.standardUserDefaults()
     var url="http://user.ecjtu.net/api/login"
@@ -26,7 +26,6 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         login.addTarget(self, action: "click", forControlEvents: UIControlEvents.TouchUpInside)
         rxServiceTable.dataSource=self
         rxServiceTable.delegate=self
-        print(userDefault.objectForKey("logout"))
         if (userDefault.objectForKey("password")==nil)||((userDefault.objectForKey("logout")!) as! NSObject==1){
             self.iflogin=false
         }
@@ -72,6 +71,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             username.hidden=true
             rxServiceTable.hidden=true
         }
+        password.delegate=self
 
     }
     
@@ -178,6 +178,16 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             }
         }
         viewDidLoad()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        if(password.text?.characters.count>=6){
+            postdata()
+        }
+        else{
+            password.resignFirstResponder()
+        }
+        return true
     }
 
 }

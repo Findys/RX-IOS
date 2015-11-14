@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Social
 
 class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
+    @IBOutlet weak var share: UIButton!
     @IBOutlet weak var scrollview: UIScrollView!
     var pid = Int()
     var ifheight=false
@@ -18,11 +20,16 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     let background=UIView()
     var width=CGFloat()
     var height=CGFloat()
+    var imagearray=Array<UIImageView>()
     override func viewDidLoad() {
         super.viewDidLoad()
+        share.addTarget(self, action: "sharefunc", forControlEvents: UIControlEvents.TouchUpInside)
         width=self.view.frame.width
         height=self.view.frame.height
         requestData()
+//        scrollview.delegate=self
+        scrollview.maximumZoomScale=2.0
+        scrollview.minimumZoomScale=0.5
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +55,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             
             url = "http://pic.ecjtu.net/\(url)"
             let image = UIImageView()
+            imagearray.append(image)
             image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, cacheType:SDImageCacheType, nsurl:NSURL!) -> Void in
                 image.frame = CGRectMake(CGFloat(index)*self.width,self.height/2-self.width/UIimage.size.width*UIimage.size.height/2-10
                     ,self.width,self.width/UIimage.size.width*UIimage.size.height)
@@ -66,11 +74,10 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             background.addSubview(text)
         }
         self.scrollview.contentSize = CGSizeMake(self.scrollview.frame.size.width * CGFloat(picArray.count),CGFloat(picheight))
-        scrollview.delegate=self
-
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView){         /*页面滑动时重载UI*/
+        print("`````````")
         let detail=picArray[Int(scrollview.contentOffset.x/width)].objectForKey("detail") as! NSString
         let size=detail.boundingRectWithSize(CGSize(width: width, height: 300), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:text.font], context: nil).size
         let current=String(Int(scrollview.contentOffset.x/width+1))
@@ -78,12 +85,6 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         text.text = current+"/"+count+"   "+(detail as String)
         background.frame=CGRect(x: 0, y: height-size.height-20, width: width, height: size.height+20)
         text.frame=CGRect(x: 10, y:0, width: width-20, height: size.height+20)
-    }
-    
-    @IBAction func goBack(sender: AnyObject) {
-        dismissViewControllerAnimated(true) { () -> Void in
-            
-        }
     }
     
     func requestData() {                        /*打开页面获取数据*/
@@ -94,7 +95,6 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
                 responseObject: AnyObject) in
                 let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(responseObject as! NSData, options:NSJSONReadingOptions() )
                 self.picArray = json?.objectForKey("pictures") as! Array<AnyObject>
-                print(json)
                 dispatch_async(dispatch_get_main_queue()) { () -> Void in
                     self.loadscroll()
                 }
@@ -107,4 +107,30 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         op!.responseSerializer = AFHTTPResponseSerializer()
         op!.start()
     }
+    
+    func sharefunc(){
+        let shareParames = NSMutableDictionary()
+        shareParames.SSDKSetupShareParamsByText("分享内容",
+            images : UIImage(named: "shareImg.png"),
+            url : NSURL(string:"http://mob.com"),
+            title : "分享标题",
+            type : SSDKContentType.Auto)
+        ShareSDK.showShareActionSheet(self.view, items: nil, shareParams: shareParames) { (state : SSDKResponseState, platformType : SSDKPlatformType, userdata : [NSObject : AnyObject]!, contentEnity : SSDKContentEntity!, error : NSError!, Bool end) -> Void in
+            
+            switch state{
+                
+            case SSDKResponseState.Success: print("分享成功")
+            case SSDKResponseState.Fail:    print("分享失败,错误描述:\(error)")
+            case SSDKResponseState.Cancel:  print("分享取消")
+                
+            default:
+                break
+            }
+        }
+    }
+    
+//    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView?{
+//        return imagearray[1]
+//    }
+
 }

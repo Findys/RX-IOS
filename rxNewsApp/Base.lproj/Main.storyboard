@@ -456,9 +456,21 @@
                             <constraint firstAttribute="trailing" secondItem="qV3-94-tfA" secondAttribute="trailing" id="nRt-oB-gAg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="图说" id="TMB-z5-O1A"/>
+                    <navigationItem key="navigationItem" title="图说" id="TMB-z5-O1A">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="n5c-fl-hwM">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AVf-RS-8B5">
+                                <rect key="frame" x="233" y="7" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="scrollview" destination="qV3-94-tfA" id="DBE-xx-iZF"/>
+                        <outlet property="share" destination="AVf-RS-8B5" id="WyL-uk-PZa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCF-KY-bES" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -638,7 +650,7 @@
                                         <rect key="frame" x="45" y="195" width="230" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入学号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6yO-Sj-DIU">
                                         <rect key="frame" x="45" y="139" width="230" height="30"/>
@@ -851,7 +863,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="11" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bSL-a4-U90">
-                                                    <rect key="frame" x="157" y="7" width="122" height="30"/>
+                                                    <rect key="frame" x="88" y="7" width="191" height="30"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
