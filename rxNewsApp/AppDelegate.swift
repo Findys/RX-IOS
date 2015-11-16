@@ -107,18 +107,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func getToken(){
         let userDefault=NSUserDefaults()
-        let apassword=userDefault.objectForKey("password")
-        let aaccount=userDefault.objectForKey("account")
+        let password=userDefault.objectForKey("password")
+        let account=userDefault.objectForKey("account")
         let afManager = AFHTTPRequestOperationManager()
-        let params: Dictionary<String, String> = ["username": String(aaccount!), "password":String(apassword!)]
+        if let _=password{
+        let params:[String:String] = ["username": String(account!), "password":String(password!)]
         let op=afManager.POST("http://user.ecjtu.net/api/login", parameters:params , success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
             let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
-            let token:AnyObject=(json?.objectForKey("token"))!
+            let token=(json?.objectForKey("token"))!
             userDefault.setObject(token, forKey: "token")
             }) { (AFHTTPRequestOperation, error:NSError) -> Void in
         }
-        op!.responseSerializer = AFHTTPResponseSerializer()
-        op!.start()
+            op!.responseSerializer = AFHTTPResponseSerializer()
+            op!.start()
+        }
     }
 
 }

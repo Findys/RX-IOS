@@ -19,7 +19,6 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         // Do any additional setup after loading the view, typically from a nib.
         tableview.delegate=self
         version.text=String(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")!)
-        password.text=String(userDefault.objectForKey("password")!)
     }
 
     
@@ -54,11 +53,16 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             switch indexPath.row{
             case 0:break
             
-            case 1:break
+            case 1:
+                break
             
             case 2:break
             
-            case 3:break
+            case 3:
+                let setting=UIStoryboard.init(name: "Main", bundle: nil)
+                let push=setting.instantiateViewControllerWithIdentifier("about")
+                self.navigationController?.pushViewController(push, animated: true)
+                break
             
             default:break
             }
@@ -92,10 +96,10 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
     func imageCropViewController(controller: RSKImageCropViewController!, didCropImage croppedImage: UIImage!, usingCropRect cropRect: CGRect) {
         self.head.image = croppedImage
         let imagedata = UIImagePNGRepresentation(croppedImage)
-        let params:[String:AnyObject] = ["token": String(userDefault.objectForKey("token")),"avatar":imagedata!]
+        let params:[String:AnyObject] = ["token":userDefault.stringForKey("token")!,"avatar":imagedata!]
         let afManager = AFHTTPRequestOperationManager()
-        let studentID = userDefault.objectForKey("account") as! String
-        let url = "http://user.ecjtu.net/api/user/"+studentID+"/avatar"
+        let studentID = userDefault.stringForKey("account")!
+        let url = "http://user.ecjtu.net/api/user/\(studentID)/avatar"
         let op = afManager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
 //            formdata.appendPartWithFileData(imagedata!, name: "avatar", fileName: "headimage"+studentID+".png", mimeType: "image/png")
             }, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in

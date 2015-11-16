@@ -21,6 +21,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSThread.sleepForTimeInterval(3.0)
         let version = UIDevice.currentDevice().systemVersion
         let flag = version.compare("8.0.0", options: NSStringCompareOptions.NumericSearch)
         if flag == .OrderedAscending {
@@ -153,11 +154,17 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 self.slideArray = slide?.objectForKey("articles") as! Array<AnyObject>
                 self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
                 self.newsTable.reloadData()
+                self.newsTable.hidden=false
                 self.newsTable.header.endRefreshing()
             },
             failure: {  (operation: AFHTTPRequestOperation,
                 error: NSError) in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
+//                self.newsTable.hidden=true
+//                let backimage=UIImageView()
+//                backimage.image=UIImage(named: "IMG_0034")
+//                backimage.frame=CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+//                self.view.addSubview(backimage)
                 self.newsTable.header.endRefreshing()
         })
         op!.responseSerializer = AFHTTPResponseSerializer()

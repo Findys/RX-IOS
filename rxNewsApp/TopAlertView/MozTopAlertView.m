@@ -18,7 +18,7 @@ sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero;
 #define FlatSkyBlue hsb(204, 76, 86)
 #define FlatGreen hsb(145, 77, 80)
 #define FlatOrange hsb(28, 85, 90)
-#define FlatRed hsb(6, 74, 91)
+#define FlatRed hsb(7, 63, 89)
 #define FlatSkyBlueDark hsb(204, 78, 73)
 #define FlatGreenDark hsb(145, 78, 68)
 #define FlatOrangeDark hsb(24, 100, 83)
