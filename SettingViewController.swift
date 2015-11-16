@@ -22,23 +22,30 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         password.text=String(userDefault.objectForKey("password")!)
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         switch indexPath.section{
         case 0:
             switch indexPath.row{
+            
             case 0:
                 let imagepicker=UIImagePickerController()
                 imagepicker.delegate=self
                 imagepicker.sourceType=UIImagePickerControllerSourceType.PhotoLibrary
                 self.presentViewController(imagepicker, animated: true, completion: nil)
                 break
+            
             case 1:
                 break
+            
             case 2: break
+            
             default:break
                 
             }
@@ -46,18 +53,22 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         case 1:
             switch indexPath.row{
             case 0:break
+            
             case 1:break
+            
             case 2:break
+            
             case 3:break
+            
             default:break
             }
             break
         case 2:
-            let alert = DXAlertView.init(title: "提示", contentText: "真的要注销吗？", leftButtonTitle: "是的", rightButtonTitle: "不，点错了")
+            let alert = DXAlertView.init(title: "提示", contentText: "真的要注销吗？", leftButtonTitle: "是的", rightButtonTitle: "点错了")
             alert.show()
             alert.leftBlock={
-                let logout=true
-                self.userDefault.setObject(logout, forKey: "logout")
+                let iflogin=false
+                self.userDefault.setBool(iflogin, forKey: "iflogin")
                 self.navigationController?.popViewControllerAnimated(true)
             }
         default:break
@@ -79,13 +90,13 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
     }
     
     func imageCropViewController(controller: RSKImageCropViewController!, didCropImage croppedImage: UIImage!, usingCropRect cropRect: CGRect) {
-        self.head.image=croppedImage
-        let imagedata=UIImagePNGRepresentation(croppedImage)
-        let params: Dictionary<String,AnyObject> = ["token": String(userDefault.objectForKey("token")),"avatar":imagedata!]
+        self.head.image = croppedImage
+        let imagedata = UIImagePNGRepresentation(croppedImage)
+        let params:[String:AnyObject] = ["token": String(userDefault.objectForKey("token")),"avatar":imagedata!]
         let afManager = AFHTTPRequestOperationManager()
-        let studentID=userDefault.objectForKey("account") as! String
-        let url="http://user.ecjtu.net/api/user/"+studentID+"/avatar"
-        let op=afManager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
+        let studentID = userDefault.objectForKey("account") as! String
+        let url = "http://user.ecjtu.net/api/user/"+studentID+"/avatar"
+        let op = afManager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
 //            formdata.appendPartWithFileData(imagedata!, name: "avatar", fileName: "headimage"+studentID+".png", mimeType: "image/png")
             }, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
                 let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )

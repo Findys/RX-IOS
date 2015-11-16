@@ -23,7 +23,6 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         })
         self.tushuoTable.header.beginRefreshing()
         tushuoTable.delegate=self
-//        self.hidesBottomBarWhenPushed=true
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,10 +76,6 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(response as! NSData , options:NSJSONReadingOptions() )
                 self.newsArray = json?.objectForKey("list") as! Array<AnyObject>
                 self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("pubdate") as! String
-                for index in 0...self.newsArray.count-1 {
-                    let id:AnyObject! = self.newsArray[index].objectForKey("pid")
-                    print(id)
-                }
                 self.tushuoTable.reloadData()
                 self.tushuoTable.header.endRefreshing()
             },
@@ -107,10 +102,6 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     self.newsArray.append(array[index])
                 }
                 self.articleID = array[array.count-1].objectForKey("pubdate") as! String
-                for index in 0...self.newsArray.count-1 {
-                    let id:AnyObject! = self.newsArray[index].objectForKey("pid")
-                    print(id)
-                }
                 self.tushuoTable.reloadData()
                 self.tushuoTable.footer.endRefreshing()
             },

@@ -43,9 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 switch platform
                 {
                 case SSDKPlatformType.TypeSinaWeibo:
-                    //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                    appInfo.SSDKSetupSinaWeiboByAppKey("568898243",
-                        appSecret : "38a4f8204cc784f81f9f0daaf31e02e3",
+                    //已设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+                    appInfo.SSDKSetupSinaWeiboByAppKey("512695859",
+                        appSecret : "6723a7a263f99558ba086895654f39a2",
                         redirectUri : "http://www.sharesdk.cn",
                         authType : SSDKAuthTypeBoth)
                     
@@ -74,19 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
         })
         
-        let userDefault=NSUserDefaults()
-        let apassword=userDefault.objectForKey("password")
-        let aaccount=userDefault.objectForKey("account")
-        let afManager = AFHTTPRequestOperationManager()
-        let params: Dictionary<String, String> = ["username": String(aaccount!), "password":String(apassword!)]
-        let op=afManager.POST("http://user.ecjtu.net/api/login", parameters:params , success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
-            let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
-            let token:AnyObject=(json?.objectForKey("token"))!
-            userDefault.setObject(token, forKey: "token")
-            }) { (AFHTTPRequestOperation, error:NSError) -> Void in
-        }
-        op!.responseSerializer = AFHTTPResponseSerializer()
-        op!.start()
+        getToken()
         
         return true
         
@@ -117,6 +105,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func getToken(){
+        let userDefault=NSUserDefaults()
+        let apassword=userDefault.objectForKey("password")
+        let aaccount=userDefault.objectForKey("account")
+        let afManager = AFHTTPRequestOperationManager()
+        let params: Dictionary<String, String> = ["username": String(aaccount!), "password":String(apassword!)]
+        let op=afManager.POST("http://user.ecjtu.net/api/login", parameters:params , success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
+            let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
+            let token:AnyObject=(json?.objectForKey("token"))!
+            userDefault.setObject(token, forKey: "token")
+            }) { (AFHTTPRequestOperation, error:NSError) -> Void in
+        }
+        op!.responseSerializer = AFHTTPResponseSerializer()
+        op!.start()
+    }
 
 }
 

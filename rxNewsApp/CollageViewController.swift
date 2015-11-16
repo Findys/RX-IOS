@@ -49,6 +49,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         let click = cell!.contentView.viewWithTag(2) as! UILabel
         let info = cell!.contentView.viewWithTag(3) as! UILabel
         let time = cell!.contentView.viewWithTag(4) as! UILabel
+        
         title.text = newsArray[indexPath.row].objectForKey("title") as? String
         click.text = String(stringInterpolationSegment: newsArray[indexPath.row].objectForKey("click") as! Int)
         info.text = newsArray[indexPath.row].objectForKey("info") as? String
@@ -64,10 +65,6 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
                 self.newsArray = json?.objectForKey("articles") as! Array<AnyObject>
                 self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
                 print(self.newsArray)
-                for index in 0...self.newsArray.count-1 {
-                    let id:AnyObject! = self.newsArray[index].objectForKey("id")
-                    print(id)
-                }
                 self.collageTable.reloadData()
                 self.collageTable.header.endRefreshing()
             },
@@ -85,7 +82,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
             success: { (operation:AFHTTPRequestOperation, response:AnyObject) -> Void in
                 let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(response as! NSData , options:NSJSONReadingOptions() )
                 let count = json?.objectForKey("count") as! Int
-                if count==0 {
+                if count == 0 {
                     self.collageTable.footer.noticeNoMoreData()
                     return
                 }
@@ -94,10 +91,6 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
                     self.newsArray.append(array[index])
                 }
                 self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
-                for index in 0...self.newsArray.count-1 {
-                    let id:AnyObject! = self.newsArray[index].objectForKey("id")
-                    print(id)
-                }
                 self.collageTable.reloadData()
                 self.collageTable.footer.endRefreshing()
             },

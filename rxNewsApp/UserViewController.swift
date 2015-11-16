@@ -20,27 +20,30 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var login: UIButton!
-    var logout=Bool()
     override func viewDidLoad() {
         super.viewDidLoad()
         login.addTarget(self, action: "click", forControlEvents: UIControlEvents.TouchUpInside)
         rxServiceTable.dataSource=self
         rxServiceTable.delegate=self
-        if (userDefault.objectForKey("password")==nil)||((userDefault.objectForKey("logout")!) as! NSObject==1){
-            self.iflogin=false
+        if (userDefault.objectForKey("password") == nil){
+            iflogin=false
+            userDefault.setBool(iflogin, forKey: "iflogin")
         }
-        else{
-            self.iflogin=true
-            self.getdata()
-        }
-        if iflogin {
+//        判断本地是否已缓存密码以判断是否登录
+//        if (userDefault.objectForKey("password") == nil)||((userDefault.objectForKey("logout")!) as! NSObject == 1){
+//            self.iflogin=false
+//        }else{
+//            self.iflogin=true
+//            self.getdata()
+//        }
+//        判断是否登录
+        if (userDefault.objectForKey("iflogin") != nil) as Bool {
             login.hidden=true
             password.hidden=true
             account.hidden=true
             username.hidden=false
             rxServiceTable.hidden=false
-        }
-        else{
+        }else{
             login.hidden=false
             password.hidden=false
             account.hidden=false
@@ -50,27 +53,21 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     override func viewDidAppear(animated: Bool) {
-        if (userDefault.objectForKey("password")==nil)||((userDefault.objectForKey("logout")!) as! NSObject==1){
-            self.iflogin=false
-        }
-        else{
-            self.iflogin=true
-            self.getdata()
-        }
-        if iflogin {
+        print(userDefault.boolForKey("iflogin"))
+        if (userDefault.boolForKey("iflogin")){
             login.hidden=true
             password.hidden=true
             account.hidden=true
             username.hidden=false
             rxServiceTable.hidden=false
-        }
-        else{
+        }else{
             login.hidden=false
             password.hidden=false
             account.hidden=false
             username.hidden=true
             rxServiceTable.hidden=true
         }
+        
         password.delegate=self
 
     }
@@ -97,14 +94,19 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         switch indexPath.row{
         case 0:break
+        
         case 1:break
+        
         case 2:break
+        
         case 3:break
+        
         case 4:
             let setting=UIStoryboard.init(name: "Main", bundle: nil)
             let push=setting.instantiateViewControllerWithIdentifier("setting")
             self.navigationController?.pushViewController(push, animated: true)
             break
+        
         default:break
         }
         self.rxServiceTable.deselectRowAtIndexPath(indexPath, animated: true)
@@ -112,8 +114,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     func postdata(){
         let afManager = AFHTTPRequestOperationManager()
-        print(account.text)
-        let params: Dictionary<String, String> = ["username": String(account.text!), "password":String(password.text!)]
+        let params:[String:String] = ["username": String(account.text!), "password":String(password.text!)]
         let op=afManager.POST(url, parameters:params , success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
             let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
             let result:AnyObject=(json?.objectForKey("result"))!
@@ -121,18 +122,16 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 let token:AnyObject=(json?.objectForKey("token"))!
                 let bpassword=String(self.password.text!)
                 let baccount=String(self.account.text!)
-                let logout=false
-                self.userDefault.setObject(logout, forKey: "logout")
+                self.iflogin=true
+                self.userDefault.setBool(self.iflogin, forKey: "iflogin")
                 self.userDefault.setObject(bpassword, forKey: "password")
                 self.userDefault.setObject(token, forKey: "token")
                 self.userDefault.setObject(baccount, forKey: "account")
                 MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "登录成功", parentView:self.view.viewWithTag(1))
-            }
-            else{
+                self.viewDidLoad()
+            }else{
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "登录错误", parentView:self.view.viewWithTag(1))
             }
-            print(json)
-            self.click()
             }) { (AFHTTPRequestOperation, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "登录超时", parentView:self.view.viewWithTag(1))
         }
@@ -143,13 +142,11 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func getdata(){
         let apassword=userDefault.objectForKey("password")
         let aaccount=userDefault.objectForKey("account")
-        print(aaccount!)
         let afManager = AFHTTPRequestOperationManager()
-        let params: Dictionary<String, String> = ["username": String(aaccount!), "password":String(apassword!)]
+        let params: [String:String] = ["username": String(aaccount!), "password":String(apassword!)]
         let op=afManager.POST(url, parameters:params , success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
             let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
                 let token:AnyObject=(json?.objectForKey("token"))!
-                print(json)
                 self.userDefault.setObject(token, forKey: "token")
             }) { (AFHTTPRequestOperation, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "登录超时", parentView:self.view.viewWithTag(1))
@@ -159,6 +156,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        判断是否登录以使输入框失去焦点
         if iflogin==false{
         password.resignFirstResponder()
         account.resignFirstResponder()
@@ -169,22 +167,17 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     {
         password.resignFirstResponder()
         account.resignFirstResponder()
-        if iflogin==false{
-            if (account.text?.characters.count==14)&&(password.text?.characters.count>=6){
-                    postdata()
-            }
-            else{
-                MozTopAlertView.showWithType(MozAlertTypeWarning, text: "输入错误", parentView:self.view.viewWithTag(1))
-            }
+        if (account.text?.characters.count==14)&&(password.text?.characters.count>=6){
+            postdata()
+        }else{
+            MozTopAlertView.showWithType(MozAlertTypeWarning, text: "输入错误", parentView:self.view.viewWithTag(1))
         }
-        viewDidLoad()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool{
         if(password.text?.characters.count>=6){
             postdata()
-        }
-        else{
+        }else{
             password.resignFirstResponder()
         }
         return true

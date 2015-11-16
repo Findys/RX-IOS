@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SettingViewController.swift"
-            timestampString = "468590788.461768"
+            timestampString = "469357401.567199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "imageCropViewController(_:didCropImage:usingCropRect:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SettingViewController.swift"
-            timestampString = "468590788.461768"
+            timestampString = "469357401.567199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "imageCropViewController(_:didCropImage:usingCropRect:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -182,110 +182,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "rxNewsApp/AppDelegate.swift"
-            timestampString = "469200930.806845"
+            filePath = "rxNewsApp/UserViewController.swift"
+            timestampString = "469359542.213289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "viewDidAppear(_:)"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "rxNewsApp/AppDelegate.swift"
-            timestampString = "469201156.375831"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "rxNewsApp.AppDelegate.(application (rxNewsApp.AppDelegate) -&gt; (__ObjC.UIApplication, didFinishLaunchingWithOptions : Swift.Optional&lt;Swift.Dictionary&lt;__ObjC.NSObject, Swift.AnyObject&gt;&gt;) -&gt; Swift.Bool).(closure #3)"
-                  moduleName = "rxNewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Findys/Desktop/rxNewsAppIOS/rxNewsApp/AppDelegate.swift"
-                  timestampString = "469201083.692889"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "1017">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "rxNewsApp.AppDelegate.(application (rxNewsApp.AppDelegate) -&gt; (__ObjC.UIApplication, didFinishLaunchingWithOptions : Swift.Optional&lt;Swift.Dictionary&lt;__ObjC.NSObject, Swift.AnyObject&gt;&gt;) -&gt; Swift.Bool).(closure #4)"
-                  moduleName = "rxNewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Findys/Desktop/rxNewsAppIOS/rxNewsApp/AppDelegate.swift"
-                  timestampString = "469201083.693388"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "89"
-                  endingLineNumber = "89"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "rxNewsApp/AppDelegate.swift"
-            timestampString = "469201156.375831"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "rxNewsApp.AppDelegate.application (rxNewsApp.AppDelegate)(__ObjC.UIApplication, didFinishLaunchingWithOptions : Swift.Optional&lt;Swift.Dictionary&lt;__ObjC.NSObject, Swift.AnyObject&gt;&gt;) -&gt; Swift.Bool"
-                  moduleName = "rxNewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Findys/Desktop/rxNewsAppIOS/rxNewsApp/AppDelegate.swift"
-                  timestampString = "469201127.544115"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
-                  offsetFromSymbolStart = "2388">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "rxNewsApp.AppDelegate.(application (rxNewsApp.AppDelegate) -&gt; (__ObjC.UIApplication, didFinishLaunchingWithOptions : Swift.Optional&lt;Swift.Dictionary&lt;__ObjC.NSObject, Swift.AnyObject&gt;&gt;) -&gt; Swift.Bool).(closure #3)"
-                  moduleName = "rxNewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Findys/Desktop/rxNewsAppIOS/rxNewsApp/AppDelegate.swift"
-                  timestampString = "469201127.544409"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "84"
-                  endingLineNumber = "84"
-                  offsetFromSymbolStart = "23">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

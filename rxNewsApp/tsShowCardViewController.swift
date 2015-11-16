@@ -40,7 +40,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     func loadscroll(){
         for index in 0..<picArray.count {
             var url = picArray[index].objectForKey("url") as! String
-            let detail=picArray[0].objectForKey("detail") as! String
+            let detail = picArray[0].objectForKey("detail") as! String
             
             text.text="1/"+String(picArray.count)+"   "+detail
             let size=detail.boundingRectWithSize(CGSize(width: width, height: 300), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:text.font], context: nil).size
@@ -59,12 +59,12 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, cacheType:SDImageCacheType, nsurl:NSURL!) -> Void in
                 image.frame = CGRectMake(CGFloat(index)*self.width,self.height/2-self.width/UIimage.size.width*UIimage.size.height/2-10
                     ,self.width,self.width/UIimage.size.width*UIimage.size.height)
-                if self.ifheight==false{
-                    self.picheight=Int(image.frame.height)
+                if self.ifheight == false{
+                    self.picheight = Int(image.frame.height)
                 }
                 else{
                     if Int(image.frame.width)>self.picheight{
-                        self.picheight=Int(image.frame.width)
+                        self.picheight = Int(image.frame.width)
                     }
                 }
             })
@@ -80,7 +80,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         print("`````````")
         let detail=picArray[Int(scrollview.contentOffset.x/width)].objectForKey("detail") as! NSString
         let size=detail.boundingRectWithSize(CGSize(width: width, height: 300), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:text.font], context: nil).size
-        let current=String(Int(scrollview.contentOffset.x/width+1))
+        let current = String(Int(scrollview.contentOffset.x/width+1))
         let count=String(picArray.count)
         text.text = current+"/"+count+"   "+(detail as String)
         background.frame=CGRect(x: 0, y: height-size.height-20, width: width, height: size.height+20)

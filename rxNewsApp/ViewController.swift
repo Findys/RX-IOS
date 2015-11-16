@@ -75,13 +75,15 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = newsTable.dequeueReusableCellWithIdentifier("pageCell")!
+            
             self.scrollview = cell.viewWithTag(1) as! UIScrollView
-            scrollview.scrollEnabled=true
-            scrollview.pagingEnabled=true
+            scrollview.scrollEnabled = true
+            scrollview.pagingEnabled = true
             scrollview.scrollsToTop = false
             scrollview.delegate=self
+            
             if cell.viewWithTag(112) == nil {
-                pageControl=UIPageControl(frame: CGRectMake(0,0,70,(cell.viewWithTag(111)!.frame.height)))
+                pageControl = UIPageControl(frame: CGRectMake(0,0,70,(cell.viewWithTag(111)!.frame.height)))
                 let leftConstraint = NSLayoutConstraint(item: pageControl,
                     attribute: NSLayoutAttribute.Trailing,
                     relatedBy: NSLayoutRelation.Equal,
@@ -89,8 +91,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                     attribute: NSLayoutAttribute.Trailing,
                     multiplier: 1, 
                     constant: 0)
-                pageControl.numberOfPages=3
-                pageControl.tag=112
+                pageControl.numberOfPages = 3
+                pageControl.tag = 112
                 cell.viewWithTag(111)?.addSubview(pageControl)
                 pageControl.addConstraint(leftConstraint)
             }
@@ -150,10 +152,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 self.newsArray = normal?.objectForKey("articles") as! Array<AnyObject>
                 self.slideArray = slide?.objectForKey("articles") as! Array<AnyObject>
                 self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
-                for index in 0...self.newsArray.count-1 {
-                    let id:AnyObject! = self.newsArray[index].objectForKey("id")
-                    print(id)
-                }
                 self.newsTable.reloadData()
                 self.newsTable.header.endRefreshing()
             },
@@ -182,10 +180,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                     self.newsArray.append(array[index])
                 }
                 self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
-                for index in 0...self.newsArray.count-1 {
-                    let id:AnyObject! = self.newsArray[index].objectForKey("id")
-                    print(id)
-                }
                 self.newsTable.reloadData()
                 self.newsTable.footer.endRefreshing()
             },
@@ -203,7 +197,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             let page = Int(floor((scrollview.contentOffset.x * 2.0 + pageWidth) / (pageWidth * 2.0)))
             pageControl.currentPage=page
             self.slidetitle.text = slideArray[page].objectForKey("title") as? String
-            print(page)
         }
     }
     
