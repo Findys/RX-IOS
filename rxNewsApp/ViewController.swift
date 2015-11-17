@@ -21,7 +21,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSThread.sleepForTimeInterval(3.0)
         let version = UIDevice.currentDevice().systemVersion
         let flag = version.compare("8.0.0", options: NSStringCompareOptions.NumericSearch)
         if flag == .OrderedAscending {

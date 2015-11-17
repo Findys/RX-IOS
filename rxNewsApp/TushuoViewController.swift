@@ -87,6 +87,10 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         op!.start()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor=UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1.0)
+    }
+    
     func loadMoreData(id:String) {
         let afManager = AFHTTPRequestOperationManager()
         let op = afManager.GET("http://pic.ecjtu.net/api.php/list?before=\(id)", parameters: nil,

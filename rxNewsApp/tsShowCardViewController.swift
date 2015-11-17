@@ -13,23 +13,22 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     @IBOutlet weak var share: UIButton!
     @IBOutlet weak var scrollview: UIScrollView!
     var pid = Int()
-    var ifheight=false
-    var picheight=Int()
+    var ifloading = Bool()
+    var ifheight = false
+    var picheight = Int()
     var picArray = Array<AnyObject>()
-    let text=UILabel()
-    let background=UIView()
-    var width=CGFloat()
-    var height=CGFloat()
-    var imagearray=Array<UIImageView>()
+    let text = UILabel()
+    let background = UIView()
+    var width = CGFloat()
+    var height = CGFloat()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.barTintColor=UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         share.addTarget(self, action: "sharefunc", forControlEvents: UIControlEvents.TouchUpInside)
-        width=self.view.frame.width
-        height=self.view.frame.height
+        width = self.view.frame.width
+        height = self.view.frame.height
         requestData()
-//        scrollview.delegate=self
-        scrollview.maximumZoomScale=2.0
-        scrollview.minimumZoomScale=0.5
+        scrollview.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,10 +54,11 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             
             url = "http://pic.ecjtu.net/\(url)"
             let image = UIImageView()
-            imagearray.append(image)
             image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, cacheType:SDImageCacheType, nsurl:NSURL!) -> Void in
                 image.frame = CGRectMake(CGFloat(index)*self.width,self.height/2-self.width/UIimage.size.width*UIimage.size.height/2-10
                     ,self.width,self.width/UIimage.size.width*UIimage.size.height)
+                let photoview = VIPhotoView.init(frame:CGRect(x: CGFloat(index)*self.width,y: self.view.bounds.origin.y-40
+                    ,width: self.view.bounds.size.width,height: self.view.bounds.size.height), andImage: image.image)
                 if self.ifheight == false{
                     self.picheight = Int(image.frame.height)
                 }
@@ -67,9 +67,9 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
                         self.picheight = Int(image.frame.width)
                     }
                 }
+                self.scrollview.addSubview(photoview)
             })
             scrollview.frame.origin.x = width * CGFloat(index)
-            self.scrollview.addSubview(image)
             self.view.addSubview(background)
             background.addSubview(text)
         }
@@ -77,14 +77,15 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView){         /*页面滑动时重载UI*/
-        print("`````````")
-        let detail=picArray[Int(scrollview.contentOffset.x/width)].objectForKey("detail") as! NSString
-        let size=detail.boundingRectWithSize(CGSize(width: width, height: 300), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:text.font], context: nil).size
+        if ifloading{
+        let detail = picArray[Int(scrollview.contentOffset.x/width)].objectForKey("detail") as! NSString
+        let size = detail.boundingRectWithSize(CGSize(width: width, height: 300), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:text.font], context: nil).size
         let current = String(Int(scrollview.contentOffset.x/width+1))
-        let count=String(picArray.count)
+        let count = String(picArray.count)
         text.text = current+"/"+count+"   "+(detail as String)
-        background.frame=CGRect(x: 0, y: height-size.height-20, width: width, height: size.height+20)
-        text.frame=CGRect(x: 10, y:0, width: width-20, height: size.height+20)
+        background.frame = CGRect(x: 0, y: height-size.height-20, width: width, height: size.height+20)
+        text.frame = CGRect(x: 10, y:0, width: width-20, height: size.height+20)
+        }
     }
     
     func requestData() {                        /*打开页面获取数据*/
@@ -94,9 +95,10 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             success: {  (operation: AFHTTPRequestOperation,
                 responseObject: AnyObject) in
                 let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(responseObject as! NSData, options:NSJSONReadingOptions() )
-                self.picArray = json?.objectForKey("pictures") as! Array<AnyObject>
+                self.picArray = (json?.objectForKey("pictures"))! as! Array<AnyObject>
                 dispatch_async(dispatch_get_main_queue()) { () -> Void in
                     self.loadscroll()
+                    self.ifloading=true
                 }
             },
             failure: {  (operation: AFHTTPRequestOperation,
@@ -129,8 +131,8 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         }
     }
     
-//    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView?{
-//        return imagearray[1]
-//    }
+    func back(){
+        self.navigationController?.navigationBar.barTintColor=UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1.0)
+    }
 
 }

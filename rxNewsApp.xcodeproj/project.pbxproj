@@ -19,7 +19,6 @@
 		143BA86D1BF4D52B007697E2 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143BA86C1BF4D52B007697E2 /* JavaScriptCore.framework */; };
 		143BA86F1BF4D5D4007697E2 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143BA86E1BF4D5D4007697E2 /* AdSupport.framework */; };
 		1449478C1BF9F80E00B11430 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1449478B1BF9F80E00B11430 /* Images.xcassets */; };
-		1449479C1BFA00C200B11430 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1449479A1BFA00C200B11430 /* LaunchScreen.xib */; };
 		145B939B1BF37AB500A430EA /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B938B1BF37AB500A430EA /* CGGeometry+RSKImageCropper.m */; };
 		145B939C1BF37AB500A430EA /* RSKImageCropperStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 145B938D1BF37AB500A430EA /* RSKImageCropperStrings.bundle */; };
 		145B939D1BF37AB500A430EA /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B93901BF37AB500A430EA /* RSKImageCropViewController.m */; };
@@ -136,7 +135,6 @@
 		143BA86C1BF4D52B007697E2 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		143BA86E1BF4D5D4007697E2 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		1449478B1BF9F80E00B11430 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = rxNewsApp/Images.xcassets; sourceTree = "<group>"; };
-		1449479B1BFA00C200B11430 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = rxNewsApp/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		145B938A1BF37AB500A430EA /* CGGeometry+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+RSKImageCropper.h"; sourceTree = "<group>"; };
 		145B938B1BF37AB500A430EA /* CGGeometry+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry+RSKImageCropper.m"; sourceTree = "<group>"; };
 		145B938C1BF37AB500A430EA /* RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropper.h; sourceTree = "<group>"; };
@@ -459,7 +457,6 @@
 			children = (
 				143A93E41BF43E62001A36C8 /* Main.storyboard */,
 				D23DCFDA1BC272DD00C32F94 /* Info.plist */,
-				1449479A1BFA00C200B11430 /* LaunchScreen.xib */,
 				D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */,
 				1449478B1BF9F80E00B11430 /* Images.xcassets */,
 			);
@@ -671,7 +668,6 @@
 				143714B81BEDA94200D2F5A9 /* FontAwesome.ttf in Resources */,
 				143A93E61BF43E62001A36C8 /* Main.storyboard in Resources */,
 				14E996591BF4C678009F8184 /* WeiboSDK.bundle in Resources */,
-				1449479C1BFA00C200B11430 /* LaunchScreen.xib in Resources */,
 				14E996571BF4C678009F8184 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				14E9965D1BF4C678009F8184 /* ShareSDK.bundle in Resources */,
 				14E9965B1BF4C678009F8184 /* read_me.txt in Resources */,
@@ -788,14 +784,6 @@
 				143A93E51BF43E62001A36C8 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		1449479A1BFA00C200B11430 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1449479B1BFA00C200B11430 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
