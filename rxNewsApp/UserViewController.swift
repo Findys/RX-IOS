@@ -25,10 +25,11 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         login.addTarget(self, action: "click", forControlEvents: UIControlEvents.TouchUpInside)
         rxServiceTable.dataSource=self
         rxServiceTable.delegate=self
-        if let img = userDefault.objectForKey("headimage"){
-        var himage=userDefault.objectForKey("headimage") as! UIImage
-        headimage.image=himage as! UIImage
-        }
+        let himage = userDefault.objectForKey("headimage") as! NSData
+        let h2image = UIImage.init(data: himage)! as UIImage
+        headimage.image = h2image
+        headimage.layer.cornerRadius = 50
+        headimage.clipsToBounds = true
         if (userDefault.objectForKey("password") == nil){
             iflogin=false
             userDefault.setBool(iflogin, forKey: "iflogin")
@@ -81,6 +82,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.rxServiceTable.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
+//    发送用户信息
     func postdata(){
         let afManager = AFHTTPRequestOperationManager()
         let mypassword=password.text! as String
@@ -127,6 +129,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
+//    监听键盘的return的事件
     func textFieldShouldReturn(textField: UITextField) -> Bool{
         if(password.text?.characters.count>=6){
             postdata()
@@ -140,18 +143,24 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //    判断是否已登录并且刷新界面
     func reload(){
         if (userDefault.boolForKey("iflogin")){
-            login.hidden=true
-            password.hidden=true
-            account.hidden=true
-            username.hidden=false
-            rxServiceTable.hidden=false
+            login.hidden = true
+            password.hidden = true
+            account.hidden = true
+            username.hidden = false
+            rxServiceTable.hidden = false
+            headimage.hidden = false
         }else{
-            login.hidden=false
-            password.hidden=false
-            account.hidden=false
-            username.hidden=true
-            rxServiceTable.hidden=true
+            login.hidden = false
+            password.hidden = false
+            account.hidden = false
+            username.hidden = true
+            rxServiceTable.hidden = true
+            headimage.hidden = true
         }
+        let himage = userDefault.objectForKey("headimage") as! NSData
+        let h2image = UIImage.init(data: himage)! as UIImage
+        headimage.image = h2image
+
         
     }
 

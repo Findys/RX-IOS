@@ -19,6 +19,12 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         // Do any additional setup after loading the view, typically from a nib.
         tableview.delegate=self
         version.text=String(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")!)
+        let himage = userDefault.objectForKey("headimage") as! NSData
+        let h2image = UIImage.init(data: himage)! as UIImage
+        head.image = h2image
+        head.layer.cornerRadius = 15
+        head.clipsToBounds = true
+
     }
 
     
@@ -51,7 +57,11 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             break
         case 1:
             switch indexPath.row{
-            case 0:break
+            case 0:
+                let feedback = UIStoryboard.init(name: "Main", bundle: nil)
+                let push = feedback.instantiateViewControllerWithIdentifier("feedback")
+                self.navigationController?.pushViewController(push, animated: true)
+                break
             
             case 1:
                 break
@@ -95,8 +105,8 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
     
     func imageCropViewController(controller: RSKImageCropViewController!, didCropImage croppedImage: UIImage!, usingCropRect cropRect: CGRect) {
         self.head.image=croppedImage
-//        userDefault.setObject(croppedImage, forKey: "headimage")
         let imagedata = UIImagePNGRepresentation(croppedImage)
+        userDefault.setObject(imagedata, forKey: "headimage")
         let params:[String:AnyObject] = ["token":userDefault.stringForKey("token")!,"avatar":imagedata!]
         let afManager = AFHTTPRequestOperationManager()
         let studentID = userDefault.stringForKey("account")!

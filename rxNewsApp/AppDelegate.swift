@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         ShareSDK.registerApp("iosv1101",
             activePlatforms :
@@ -75,6 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         
         getToken()
+        getheadimage()
         
         return true
         
@@ -106,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func getToken(){
-        let userDefault=NSUserDefaults()
+            let userDefault=NSUserDefaults()
         let password=userDefault.objectForKey("password")
         let account=userDefault.objectForKey("account")
         let afManager = AFHTTPRequestOperationManager()
@@ -120,6 +120,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
             op!.responseSerializer = AFHTTPResponseSerializer()
             op!.start()
+        }
+    }
+    
+    func getheadimage(){
+        let userDefault=NSUserDefaults()
+        if let _ = userDefault.objectForKey("headimage"){
+        }
+        else{
+            let image = UIImage(named: "IMG_0034.jpg")
+            let imagedata = UIImageJPEGRepresentation(image!, CGFloat(100))
+            userDefault.setObject(imagedata, forKey: "headimage")
         }
     }
 

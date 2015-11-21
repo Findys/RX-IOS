@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/Findys/Documents/rxNewsAppiOS/rxNewsApp.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:rxNewsApp.xcodeproj">
    </FileRef>
 </Workspace>

@@ -18,9 +18,11 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.tushuoTable.header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
             self.initData()
         })
+        
         self.tushuoTable.footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
             self.loadMoreData(self.articleID)
         })
+        
         self.tushuoTable.header.beginRefreshing()
         tushuoTable.delegate=self
     }
@@ -53,8 +55,8 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         click.text = newsArray[indexPath.row].objectForKey("click") as? String
         info.text = newsArray[indexPath.row].objectForKey("count") as? String
         time.text = timeStampToString((newsArray[indexPath.row].objectForKey("pubdate") as? String)!)
-        let surl = newsArray[indexPath.row].objectForKey("thumb") as! String
-        let url = "http://\(surl)"
+        var url = newsArray[indexPath.row].objectForKey("thumb") as! String
+        url = "http://\(url)"
         var image = UIImageView()
         if view?.viewWithTag(6) == nil {
             view?.addSubview(image)
@@ -69,6 +71,8 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         return cell!
     }
     
+    
+//    获取数据
     func initData() {
         let afManager = AFHTTPRequestOperationManager()
         let op = afManager.GET("http://pic.ecjtu.net/api.php/list", parameters: nil,
@@ -87,10 +91,12 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         op!.start()
     }
     
+//    从tsCardFJ返回时回复navigationbar颜色
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.navigationBar.barTintColor=UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1.0)
     }
     
+//    获取更多数据
     func loadMoreData(id:String) {
         let afManager = AFHTTPRequestOperationManager()
         let op = afManager.GET("http://pic.ecjtu.net/api.php/list?before=\(id)", parameters: nil,
@@ -117,6 +123,7 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         op!.start()
     }
     
+//    设置时间显示
     func timeStampToString(timeStamp:String)->String {
         
         let string = NSString(string: timeStamp)
@@ -130,6 +137,7 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         return dfmatter.stringFromDate(date)
     }
     
+//    使cell取消选中状态
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         self.tushuoTable.deselectRowAtIndexPath(indexPath, animated: true)
     }

@@ -60,10 +60,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if 0 == indexPath.row {
-            print("----\(indexPath.row)")
             return 204
         } else {
-            print("----\(indexPath.row)")
             return 114
         }
     }
@@ -140,6 +138,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         }
     }
 
+//    请求数据
     func requestData() {
         let afManager = AFHTTPRequestOperationManager()
         let op =  afManager.GET("http://app.ecjtu.net/api/v1/index",
@@ -170,6 +169,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         op!.start()
     }
     
+//    获取更多数据
     func loadMoreData(id:Int) {
         let afManager = AFHTTPRequestOperationManager()
         let op = afManager.GET("http://app.ecjtu.net/api/v1/index?until=\(id)", parameters: nil,
@@ -197,6 +197,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         op!.start()
     }
     
+//    横幅滚动更新pagecontroller
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if pageInited {
             let pageWidth = scrollview.frame.width
@@ -205,7 +206,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             self.slidetitle.text = slideArray[page].objectForKey("title") as? String
         }
     }
-    
+//    横幅点击事件
     func click() {
         let wv=UIStoryboard.init(name:"Main", bundle: nil)
         let push = wv.instantiateViewControllerWithIdentifier("webview") as! WebViewController
@@ -213,6 +214,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         self.navigationController?.pushViewController(push, animated: true)
     }
     
+//    使cell取消选中状态
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         self.newsTable.deselectRowAtIndexPath(indexPath, animated: true)
     }
