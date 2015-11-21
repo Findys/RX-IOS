@@ -10,9 +10,9 @@ import UIKit
 
 class UserViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate {
     var iflogin=Bool()
+    @IBOutlet weak var headimage: UIImageView!
     var userDefault = NSUserDefaults.standardUserDefaults()
     var url="http://user.ecjtu.net/api/login"
-    @IBOutlet weak var headimage: UIImageView!
     let array = ["成绩查询","课表查询","一卡通查询","图书馆查询","个人设置"]
     let iconArray = ["score","classquery","ecard","book","book"]
     @IBOutlet weak var rxServiceTable: UITableView!
@@ -25,6 +25,10 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         login.addTarget(self, action: "click", forControlEvents: UIControlEvents.TouchUpInside)
         rxServiceTable.dataSource=self
         rxServiceTable.delegate=self
+        if let img = userDefault.objectForKey("headimage"){
+        var himage=userDefault.objectForKey("headimage") as! UIImage
+        headimage.image=himage as! UIImage
+        }
         if (userDefault.objectForKey("password") == nil){
             iflogin=false
             userDefault.setBool(iflogin, forKey: "iflogin")

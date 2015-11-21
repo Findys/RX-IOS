@@ -27,6 +27,11 @@
 		145B93A01BF37AB500A430EA /* RSKTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B93961BF37AB500A430EA /* RSKTouchView.m */; };
 		145B93A11BF37AB500A430EA /* UIApplication+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B93981BF37AB500A430EA /* UIApplication+RSKImageCropper.m */; };
 		145B93A21BF37AB500A430EA /* UIImage+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 145B939A1BF37AB500A430EA /* UIImage+RSKImageCropper.m */; };
+		14D3E4FB1BFC9BE300640C29 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E4FA1BFC9BE300640C29 /* CFNetwork.framework */; };
+		14D3E4FD1BFC9BF300640C29 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E4FC1BFC9BF300640C29 /* CoreFoundation.framework */; };
+		14D3E4FF1BFC9C0700640C29 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E4FE1BFC9C0700640C29 /* CoreGraphics.framework */; };
+		14D3E5011BFC9C1D00640C29 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E5001BFC9C1D00640C29 /* libz.tbd */; };
+		14D3E5031BFC9C5500640C29 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14D3E5021BFC9C5500640C29 /* PushConfig.plist */; };
 		14E996561BF4C678009F8184 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E9963A1BF4C678009F8184 /* TencentOpenAPI.framework */; };
 		14E996571BF4C678009F8184 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 14E9963B1BF4C678009F8184 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		14E996581BF4C678009F8184 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E9963D1BF4C678009F8184 /* libWeiboSDK.a */; };
@@ -152,6 +157,11 @@
 		145B93981BF37AB500A430EA /* UIApplication+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+RSKImageCropper.m"; sourceTree = "<group>"; };
 		145B93991BF37AB500A430EA /* UIImage+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RSKImageCropper.h"; sourceTree = "<group>"; };
 		145B939A1BF37AB500A430EA /* UIImage+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RSKImageCropper.m"; sourceTree = "<group>"; };
+		14D3E4FA1BFC9BE300640C29 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		14D3E4FC1BFC9BF300640C29 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		14D3E4FE1BFC9C0700640C29 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		14D3E5001BFC9C1D00640C29 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		14D3E5021BFC9C5500640C29 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		14E9963A1BF4C678009F8184 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		14E9963B1BF4C678009F8184 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		14E9963D1BF4C678009F8184 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
@@ -218,6 +228,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14D3E5011BFC9C1D00640C29 /* libz.tbd in Frameworks */,
+				14D3E4FF1BFC9C0700640C29 /* CoreGraphics.framework in Frameworks */,
+				14D3E4FD1BFC9BF300640C29 /* CoreFoundation.framework in Frameworks */,
+				14D3E4FB1BFC9BE300640C29 /* CFNetwork.framework in Frameworks */,
 				143BA86F1BF4D5D4007697E2 /* AdSupport.framework in Frameworks */,
 				143BA86D1BF4D52B007697E2 /* JavaScriptCore.framework in Frameworks */,
 				143BA86A1BF4D3B9007697E2 /* ImageIO.framework in Frameworks */,
@@ -421,6 +435,10 @@
 		65BD11CB1CB9134FAF5CAB46 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14D3E5001BFC9C1D00640C29 /* libz.tbd */,
+				14D3E4FE1BFC9C0700640C29 /* CoreGraphics.framework */,
+				14D3E4FC1BFC9BF300640C29 /* CoreFoundation.framework */,
+				14D3E4FA1BFC9BE300640C29 /* CFNetwork.framework */,
 				143BA8701BF4D5EA007697E2 /* ShareSDKBinary */,
 				14E996371BF4C678009F8184 /* libraries */,
 				145B93891BF37AB500A430EA /* RSKImageCropper */,
@@ -445,9 +463,9 @@
 			isa = PBXGroup;
 			children = (
 				D23DCFEA1BC27A9000C32F94 /* rxNewsApp-Bridging-Header.h */,
-				D2B1B37C1BC54FB600AAA100 /* widget */,
 				D23DCFE21BC2732F00C32F94 /* ViewController */,
 				D23DCFE11BC2730600C32F94 /* Base */,
+				14D3E5021BFC9C5500640C29 /* PushConfig.plist */,
 			);
 			name = rxNewsApp;
 			sourceTree = "<group>";
@@ -475,13 +493,6 @@
 				14F495E11BEA3A7D00117D29 /* SettingViewController.swift */,
 			);
 			name = ViewController;
-			sourceTree = "<group>";
-		};
-		D2B1B37C1BC54FB600AAA100 /* widget */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = widget;
 			sourceTree = "<group>";
 		};
 		D2C0403B1BBFC71A00791443 = {
@@ -660,6 +671,7 @@
 			files = (
 				14F827561BEB6F8A004AEA96 /* btn_close_normal.png in Resources */,
 				14F827571BEB6F8A004AEA96 /* btn_close_normal@2x.png in Resources */,
+				14D3E5031BFC9C5500640C29 /* PushConfig.plist in Resources */,
 				14E996611BF4C678009F8184 /* ShareSDKUI.bundle in Resources */,
 				1449478C1BF9F80E00B11430 /* Images.xcassets in Resources */,
 				14F827581BEB6F8A004AEA96 /* btn_close_selected.png in Resources */,

@@ -1,32 +1,32 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "1338AA12510A06A9613E05B8ABCC4706FA8C4AB3",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6BFCAED57749C393D25FFFD9C080547A3951B07C",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "230536E7ED78E0E287D5AE48400F2D9F322C2AAF" : 0,
-    "850395E337F2B66F1FDB40F28DFCAE4B8B345C2A" : 0,
-    "1338AA12510A06A9613E05B8ABCC4706FA8C4AB3" : 0
+    "6BFCAED57749C393D25FFFD9C080547A3951B07C" : 0,
+    "850395E337F2B66F1FDB40F28DFCAE4B8B345C2A" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E0E608CD-E26C-4F31-A96C-C886BDEC8E63",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "230536E7ED78E0E287D5AE48400F2D9F322C2AAF" : "rxNewsAppiOS1.0-master\/",
-    "850395E337F2B66F1FDB40F28DFCAE4B8B345C2A" : "rxNewsApp",
-    "1338AA12510A06A9613E05B8ABCC4706FA8C4AB3" : "rxNewsAppiOS\/"
+    "6BFCAED57749C393D25FFFD9C080547A3951B07C" : "rxNewsAppiOS\/",
+    "850395E337F2B66F1FDB40F28DFCAE4B8B345C2A" : "rxNewsApp"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "rxNewsApp",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "rxNewsApp.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Findys\/RX-IOS.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1338AA12510A06A9613E05B8ABCC4706FA8C4AB3"
-    },
-    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/NOReader\/RXIOS.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "230536E7ED78E0E287D5AE48400F2D9F322C2AAF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Findys\/RX-IOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6BFCAED57749C393D25FFFD9C080547A3951B07C"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:shakuganns\/rxNewsAppiOS1.0.git",

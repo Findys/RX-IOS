@@ -94,7 +94,8 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
     }
     
     func imageCropViewController(controller: RSKImageCropViewController!, didCropImage croppedImage: UIImage!, usingCropRect cropRect: CGRect) {
-        self.head.image = croppedImage
+        self.head.image=croppedImage
+//        userDefault.setObject(croppedImage, forKey: "headimage")
         let imagedata = UIImagePNGRepresentation(croppedImage)
         let params:[String:AnyObject] = ["token":userDefault.stringForKey("token")!,"avatar":imagedata!]
         let afManager = AFHTTPRequestOperationManager()

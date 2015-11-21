@@ -5,9 +5,6 @@
       location = "group:/Users/Findys/Documents/rxNewsAppiOS/rxNewsApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:rxNewsApp.xcodeproj">
    </FileRef>
 </Workspace>
