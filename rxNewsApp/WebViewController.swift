@@ -7,16 +7,50 @@
 //
 
 import UIKit
+import WebKit
 
-class WebViewController: UIViewController {
+@available(iOS 8.0, *)
+class WebViewController: UIViewController,WKNavigationDelegate {
     
+    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var backView: UIView!
+    var path = String()
     var id = Int()
-    @IBOutlet weak var webView: UIWebView!
+    var ifJs = Bool()
+   var webView: WKWebView!
+    override func loadView() {
+        
+        super.loadView()
+            let config = WKWebViewConfiguration()
+            let contentController = WKUserContentController()
+        
+            let userScript = WKUserScript(
+                source: "bootstrap()",
+                injectionTime: WKUserScriptInjectionTime.AtDocumentEnd,
+                forMainFrameOnly: true)
+        
+        contentController.addUserScript(userScript)
+        config.userContentController = contentController;
+        self.webView = WKWebView(frame:self.view.frame, configuration: config)
+        self.webView.navigationDelegate = self;
+//        progressBar.setProgress(Float(webView.estimatedProgress), animated: true)
+        self.view = webView
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)
-        webView.loadRequest(request)
+        if ifJs{
+//            let newpath = NSBundle.mainBundle().pathForResource(path, ofType: "html")
+            let jsrequest=NSURLRequest(URL: NSURL(fileURLWithPath: path))
+            webView.loadRequest(jsrequest)
+        }
+        else{
+            let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)
+            webView.loadRequest(request)
+            
+        }
+        
         // Do any additional setup after loading the view.
     }
 

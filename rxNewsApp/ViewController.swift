@@ -51,10 +51,12 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             let cell = sender as! UITableViewCell
             let vc = segue.destinationViewController as! WebViewController
             vc.id = cell.tag
+            vc.ifJs = false
         }
         if segue.identifier == "rxPageNews" {
             let vc = segue.destinationViewController as! WebViewController
             vc.id = (slideArray[pageControl.currentPage].objectForKey("id") as? Int)!
+            vc.ifJs = false
         }
     }
     
@@ -206,11 +208,12 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             self.slidetitle.text = slideArray[page].objectForKey("title") as? String
         }
     }
+    
 //    横幅点击事件
     func click() {
         let wv=UIStoryboard.init(name:"Main", bundle: nil)
         let push = wv.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-        push.id=(slideArray[pageControl.currentPage].objectForKey("id") as? Int)!
+        push.ifJs = false
         self.navigationController?.pushViewController(push, animated: true)
     }
     

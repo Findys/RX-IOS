@@ -69,8 +69,8 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             case 2:break
             
             case 3:
-                let setting=UIStoryboard.init(name: "Main", bundle: nil)
-                let push=setting.instantiateViewControllerWithIdentifier("about")
+                let setting = UIStoryboard.init(name: "Main", bundle: nil)
+                let push = setting.instantiateViewControllerWithIdentifier("about")
                 self.navigationController?.pushViewController(push, animated: true)
                 break
             

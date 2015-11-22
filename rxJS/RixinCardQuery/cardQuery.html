@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>日新一卡通查询</title>
+    <link rel="stylesheet" href="scss/style.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+</head>
+<body>
+    <div class="card teal lighten-1" style="overflow: visible;">
+        <div class="card-content white-text" style="position: relative;">
+            <h2 class="card-cash"><i class="small cny">￥</i>2333.33</h2>
+            <a class="btn-floating btn-large waves-effect waves-light teal lighten-3" style="position: absolute; bottom: -28px; right: 24px;"><i class="material-icons">send</i></a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row" style="padding-top: 28px;">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">credit_card</i>
+                <input id="student_name" type="text" class="validate" value="72807">
+                <label for="student_name">卡號</label>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">style</i>
+                <input id="student_id" type="text" class="validate" value="20132110010408">
+                <label for="student_id">學號</label>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/cardQuery.js"></script>
+</body>
+</html>

@@ -128,7 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let _ = userDefault.objectForKey("headimage"){
         }
         else{
-            let image = UIImage(named: "IMG_0034.jpg")
+            let image = UIImage(named: "userimage.jpg")
             let imagedata = UIImageJPEGRepresentation(image!, CGFloat(100))
             userDefault.setObject(imagedata, forKey: "headimage")
         }

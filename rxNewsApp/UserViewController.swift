@@ -63,13 +63,37 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         switch indexPath.row{
-        case 0:break
+        case 0:
+            let webview = UIStoryboard.init(name: "Main", bundle: nil)
+            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+            push.path = NSBundle.mainBundle().pathForResource("scoreQuery", ofType: "html")!
+            push.ifJs = true
+            self.navigationController?.pushViewController(push, animated: true)
+            break
         
-        case 1:break
+        case 1:
+            let webview = UIStoryboard.init(name: "Main", bundle: nil)
+            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+            push.path = NSBundle.mainBundle().pathForResource("classQuery", ofType: "html")!
+            push.ifJs = true
+            self.navigationController?.pushViewController(push, animated: true)
+            break
         
-        case 2:break
+        case 2:
+            let webview = UIStoryboard.init(name: "Main", bundle: nil)
+            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+            push.path = NSBundle.mainBundle().pathForResource("cardQuery", ofType: "html")!
+            push.ifJs = true
+            self.navigationController?.pushViewController(push, animated: true)
+            break
         
-        case 3:break
+        case 3:
+            let webview = UIStoryboard.init(name: "Main", bundle: nil)
+            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+            push.path = NSBundle.mainBundle().pathForResource("review", ofType: "html")!
+            push.ifJs = true
+            self.navigationController?.pushViewController(push, animated: true)
+            break
         
         case 4:
             let setting=UIStoryboard.init(name: "Main", bundle: nil)
