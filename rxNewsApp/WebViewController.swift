@@ -41,9 +41,10 @@ class WebViewController: UIViewController,WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         if ifJs{
-//            let newpath = NSBundle.mainBundle().pathForResource(path, ofType: "html")
-            let jsrequest=NSURLRequest(URL: NSURL(fileURLWithPath: path))
-            webView.loadRequest(jsrequest)
+            let apphtml = try! NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
+            let bath = NSURL(fileURLWithPath: path)
+            webView.loadHTMLString(apphtml as String, baseURL: bath)
+//            webView.loadRequest(jsrequest)
         }
         else{
             let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)

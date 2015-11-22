@@ -43,6 +43,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         // Dispose of any resources that can be recreated.
     }
     
+//    加载数据
     func loadscroll(){
         
         for index in 0..<picArray.count {

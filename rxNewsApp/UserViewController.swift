@@ -22,14 +22,17 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     @IBOutlet weak var login: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        login.addTarget(self, action: "click", forControlEvents: UIControlEvents.TouchUpInside)
+        login.addTarget(self, action: "loginClick", forControlEvents: UIControlEvents.TouchUpInside)
         rxServiceTable.dataSource=self
         rxServiceTable.delegate=self
-        let himage = userDefault.objectForKey("headimage") as! NSData
-        let h2image = UIImage.init(data: himage)! as UIImage
+        if let himage = userDefault.objectForKey("headimage"){
+        let h2image = UIImage.init(data: himage as! NSData)! as UIImage
         headimage.image = h2image
+        }
+        
         headimage.layer.cornerRadius = 50
         headimage.clipsToBounds = true
+        
         if (userDefault.objectForKey("password") == nil){
             iflogin=false
             userDefault.setBool(iflogin, forKey: "iflogin")
@@ -63,6 +66,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         switch indexPath.row{
+//            成绩查询
         case 0:
             let webview = UIStoryboard.init(name: "Main", bundle: nil)
             let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
@@ -71,6 +75,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             self.navigationController?.pushViewController(push, animated: true)
             break
         
+//            课表查询
         case 1:
             let webview = UIStoryboard.init(name: "Main", bundle: nil)
             let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
@@ -79,6 +84,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             self.navigationController?.pushViewController(push, animated: true)
             break
         
+//            一卡通查询
         case 2:
             let webview = UIStoryboard.init(name: "Main", bundle: nil)
             let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
@@ -87,6 +93,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             self.navigationController?.pushViewController(push, animated: true)
             break
         
+//            图书馆查询
         case 3:
             let webview = UIStoryboard.init(name: "Main", bundle: nil)
             let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
@@ -95,6 +102,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             self.navigationController?.pushViewController(push, animated: true)
             break
         
+//            个人设置
         case 4:
             let setting=UIStoryboard.init(name: "Main", bundle: nil)
             let push=setting.instantiateViewControllerWithIdentifier("setting")
@@ -123,6 +131,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.userDefault.setObject(mypassword, forKey: "password")
                 self.userDefault.setObject(token, forKey: "token")
                 self.userDefault.setObject(myaccount, forKey: "account")
+                self.headImageGet()
                 MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "登录成功", parentView:self.view.viewWithTag(1))
                 self.reload()
             }else{
@@ -143,7 +152,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-    func click()
+    func loginClick()
     {
         password.resignFirstResponder()
         account.resignFirstResponder()
@@ -165,8 +174,29 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return true
     }
     
+    func headImageGet(){
+        let afManager = AFHTTPRequestOperationManager()
+        let url = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
+        let op = afManager.GET(url, parameters: nil, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
+            let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
+            let avatar = "http://"+((json?.objectForKey("user")?.objectForKey("avatar"))! as! String)
+            let name = (json?.objectForKey("user")?.objectForKey("name")!) as! String
+            self.username.text = name
+            self.headimage.sd_setImageWithURL(NSURL(string: avatar), completed: { (image:UIImage!, error:NSError!, catchType:SDImageCacheType, nsurl:NSURL!) -> Void in
+                let imagedata = UIImageJPEGRepresentation(self.headimage.image!, CGFloat(1))
+                self.userDefault.setObject(imagedata, forKey: "headimage")
+            })
+            }) { (AFHTTPRequestOperation, error:NSError) -> Void in
+                print(error)
+        }
+        op?.responseSerializer = AFHTTPResponseSerializer()
+        op?.start()
+        
+    }
+    
 //    判断是否已登录并且刷新界面
     func reload(){
+        
         if (userDefault.boolForKey("iflogin")){
             login.hidden = true
             password.hidden = true
@@ -175,6 +205,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             rxServiceTable.hidden = false
             headimage.hidden = false
             self.view.viewWithTag(1)!.backgroundColor = UIColor(red: 38/255.0, green: 165/255.0, blue: 153/255.0, alpha: 1.0)
+            
         }else{
             login.hidden = false
             password.hidden = false
@@ -184,9 +215,11 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             headimage.hidden = true
             self.view.viewWithTag(1)!.backgroundColor = UIColor.whiteColor()
         }
-        let himage = userDefault.objectForKey("headimage") as! NSData
-        let h2image = UIImage.init(data: himage)! as UIImage
-        headimage.image = h2image
+        
+        if let himage = userDefault.objectForKey("headimage"){
+            let h2image = UIImage.init(data: himage as! NSData)! as UIImage
+            headimage.image = h2image
+        }
 
         
     }

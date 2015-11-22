@@ -19,6 +19,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         // Do any additional setup after loading the view, typically from a nib.
         tableview.delegate=self
         version.text=String(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")!)
+        
         let himage = userDefault.objectForKey("headimage") as! NSData
         let h2image = UIImage.init(data: himage)! as UIImage
         head.image = h2image
@@ -39,16 +40,19 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         case 0:
             switch indexPath.row{
             
+//            修改头像
             case 0:
                 let imagepicker=UIImagePickerController()
                 imagepicker.delegate=self
                 imagepicker.sourceType=UIImagePickerControllerSourceType.PhotoLibrary
                 self.presentViewController(imagepicker, animated: true, completion: nil)
                 break
-            
+                
+//            修改用户名
             case 1:
                 break
             
+//            修改密码
             case 2: break
             
             default:break
@@ -57,17 +61,18 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             break
         case 1:
             switch indexPath.row{
+//                反馈建议
             case 0:
                 let feedback = UIStoryboard.init(name: "Main", bundle: nil)
                 let push = feedback.instantiateViewControllerWithIdentifier("feedback")
                 self.navigationController?.pushViewController(push, animated: true)
                 break
-            
+                
+//            好评
             case 1:
                 break
             
-            case 2:break
-            
+//            关于我们
             case 3:
                 let setting = UIStoryboard.init(name: "Main", bundle: nil)
                 let push = setting.instantiateViewControllerWithIdentifier("about")
@@ -78,6 +83,8 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             default:break
             }
             break
+            
+//        注销账户
         case 2:
             let alert = DXAlertView.init(title: "提示", contentText: "真的要注销吗？", leftButtonTitle: "是的", rightButtonTitle: "点错了")
             alert.show()
