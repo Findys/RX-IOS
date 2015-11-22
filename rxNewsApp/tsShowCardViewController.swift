@@ -26,7 +26,8 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.barTintColor=UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        self.navigationController?.navigationBar.barTintColor=UIColor.clearColor()
+        self.navigationController?.navigationBar.shadowImage = UIImage.init()
         requestData()
         share.addTarget(self, action: "sharefunc", forControlEvents: UIControlEvents.TouchUpInside)
         

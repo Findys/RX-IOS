@@ -250,6 +250,7 @@
 		14D7474F1C015F5D0094F7B6 /* _font.scss in Resources */ = {isa = PBXBuildFile; fileRef = 14D746851C015F5D0094F7B6 /* _font.scss */; };
 		14D747501C015F5D0094F7B6 /* _mixin.scss in Resources */ = {isa = PBXBuildFile; fileRef = 14D746861C015F5D0094F7B6 /* _mixin.scss */; };
 		14D747511C015F5D0094F7B6 /* style.scss in Resources */ = {isa = PBXBuildFile; fileRef = 14D746871C015F5D0094F7B6 /* style.scss */; };
+		14E068A11C01B25000BA8465 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E068A01C01B25000BA8465 /* AboutViewController.swift */; };
 		14E996691BF4C72E009F8184 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E996681BF4C72E009F8184 /* SystemConfiguration.framework */; };
 		14E9966B1BF4C73A009F8184 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E9966A1BF4C73A009F8184 /* QuartzCore.framework */; };
 		14E9966D1BF4C744009F8184 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E9966C1BF4C744009F8184 /* CoreTelephony.framework */; };
@@ -602,6 +603,7 @@
 		14D746851C015F5D0094F7B6 /* _font.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _font.scss; sourceTree = "<group>"; };
 		14D746861C015F5D0094F7B6 /* _mixin.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _mixin.scss; sourceTree = "<group>"; };
 		14D746871C015F5D0094F7B6 /* style.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = style.scss; sourceTree = "<group>"; };
+		14E068A01C01B25000BA8465 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		14E996681BF4C72E009F8184 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		14E9966A1BF4C73A009F8184 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		14E9966C1BF4C744009F8184 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -1524,6 +1526,7 @@
 				14F495E11BEA3A7D00117D29 /* SettingViewController.swift */,
 				14A6B3571C0057B900A0A8EA /* FBViewController.swift */,
 				14A6B35F1C00804E00A0A8EA /* TuShuoNewsItem.swift */,
+				14E068A01C01B25000BA8465 /* AboutViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -1988,6 +1991,7 @@
 				145B939F1BF37AB500A430EA /* RSKInternalUtility.m in Sources */,
 				143714B71BEDA94200D2F5A9 /* FAImageView.m in Sources */,
 				D23DCFEE1BC27F8B00C32F94 /* TushuoViewController.swift in Sources */,
+				14E068A11C01B25000BA8465 /* AboutViewController.swift in Sources */,
 				14F8275A1BEB6F8A004AEA96 /* DXAlertView.m in Sources */,
 				14F495E21BEA3A7D00117D29 /* SettingViewController.swift in Sources */,
 				14D746891C015F5D0094F7B6 /* README.md in Sources */,

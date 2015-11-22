@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         shareSDKset()
         getToken()
-//        getheadimage()
         
         return true
         
@@ -65,16 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func getheadimage(){
-        let userDefault=NSUserDefaults()
-        if let _ = userDefault.objectForKey("headimage"){
-        }
-        else{
-            let image = UIImage(named: "userimage.jpg")
-            let imagedata = UIImageJPEGRepresentation(image!, CGFloat(100))
-            userDefault.setObject(imagedata, forKey: "headimage")
-        }
-    }
     
     func shareSDKset(){
         ShareSDK.registerApp("iosv1101",
