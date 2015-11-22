@@ -98,6 +98,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         case 4:
             let setting=UIStoryboard.init(name: "Main", bundle: nil)
             let push=setting.instantiateViewControllerWithIdentifier("setting")
+            push.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(push, animated: true)
             break
         
@@ -173,6 +174,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             username.hidden = false
             rxServiceTable.hidden = false
             headimage.hidden = false
+            self.view.viewWithTag(1)!.backgroundColor = UIColor(red: 38/255.0, green: 165/255.0, blue: 153/255.0, alpha: 1.0)
         }else{
             login.hidden = false
             password.hidden = false
@@ -180,6 +182,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             username.hidden = true
             rxServiceTable.hidden = true
             headimage.hidden = true
+            self.view.viewWithTag(1)!.backgroundColor = UIColor.whiteColor()
         }
         let himage = userDefault.objectForKey("headimage") as! NSData
         let h2image = UIImage.init(data: himage)! as UIImage

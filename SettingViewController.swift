@@ -71,6 +71,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             case 3:
                 let setting = UIStoryboard.init(name: "Main", bundle: nil)
                 let push = setting.instantiateViewControllerWithIdentifier("about")
+                push.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(push, animated: true)
                 break
             

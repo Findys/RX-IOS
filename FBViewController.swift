@@ -27,18 +27,25 @@ class FBViewController: UIViewController {
     func feedback(){
         if let _ = content.text {
             if let _ = nickname.text{
-//                let params:[String:String] = ["content":content.text!,"nickname":nickname.text!]
-//                let afManager = AFHTTPRequestOperationManager()
-//                let url = "http://user.ecjtu.net/api/v1/feedback"
-//                let op = afManager.POST(url, parameters: params, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
-//                    print(resp)
-//                    }, failure: { (AFHTTPRequestOperation, error:NSError) -> Void in
-//                        print(error)
-//                })
-//                op!.responseSerializer = AFHTTPResponseSerializer()
-//                op!.start()
+                let params:[String:String] = ["content":content.text!,"nickname":nickname.text!]
+                let afManager = AFHTTPRequestOperationManager()
+                let url = "http://user.ecjtu.net/api/v1/feedback"
+                let op = afManager.POST(url, parameters: params, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
+                    print(resp)
+                    }, failure: { (AFHTTPRequestOperation, error:NSError) -> Void in
+                        print(error)
+                })
+                op!.responseSerializer = AFHTTPResponseSerializer()
+                op!.start()
+                MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "感谢您的支持", parentView: self.view.viewWithTag(1))
             }
         }
+    
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        content.resignFirstResponder()
+        nickname.resignFirstResponder()
     }
 
 
