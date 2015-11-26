@@ -52,14 +52,14 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             let detail = picArray[0].objectForKey("detail") as! String
             
             text.text="1/"+String(picArray.count)+"   "+detail
-            let size=detail.boundingRectWithSize(CGSize(width: width, height: 300), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:text.font], context: nil).size
+            let size = detail.boundingRectWithSize(CGSize(width: width, height: 300), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:text.font], context: nil).size
             text.frame=CGRect(x: 10, y:0, width: width-20, height: size.height+20)
             text.lineBreakMode=NSLineBreakMode.ByWordWrapping
             text.numberOfLines=0
             text.textColor=UIColor.whiteColor()
             text.font=UIFont.boldSystemFontOfSize(15)
             
-            background.frame=CGRect(x: 0, y: height-size.height-20, width: width, height: size.height+20)
+            background.frame=CGRectMake(0, height-size.height-60, width, size.height+60)
             background.backgroundColor=UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
             
             url = "http://pic.ecjtu.net/\(url)"
@@ -101,7 +101,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         let current = String(Int(scrollview.contentOffset.x/width+1))
         let count = String(picArray.count)
         text.text = current+"/"+count+"   "+(detail as String)
-        background.frame = CGRect(x: 0, y: height-size.height-20, width: width, height: size.height+20)
+        background.frame = CGRect(x: 0, y: height-size.height-60, width: width, height: size.height+60)
         text.frame = CGRect(x: 10, y:0, width: width-20, height: size.height+20)
         }
     }

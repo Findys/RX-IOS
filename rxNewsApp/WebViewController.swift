@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 
 @available(iOS 8.0, *)
-class WebViewController: UIViewController,WKNavigationDelegate {
+class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate {
     
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var backView: UIView!
@@ -33,7 +33,6 @@ class WebViewController: UIViewController,WKNavigationDelegate {
         config.userContentController = contentController;
         self.webView = WKWebView(frame:self.view.frame, configuration: config)
         self.webView.navigationDelegate = self;
-//        progressBar.setProgress(Float(webView.estimatedProgress), animated: true)
         self.view = webView
         
     }
@@ -44,7 +43,6 @@ class WebViewController: UIViewController,WKNavigationDelegate {
             let apphtml = try! NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
             let bath = NSURL(fileURLWithPath: path)
             webView.loadHTMLString(apphtml as String, baseURL: bath)
-//            webView.loadRequest(jsrequest)
         }
         else{
             let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)
@@ -58,6 +56,10 @@ class WebViewController: UIViewController,WKNavigationDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView){
+        
     }
     
 

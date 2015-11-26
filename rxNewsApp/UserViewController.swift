@@ -14,7 +14,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var userDefault = NSUserDefaults.standardUserDefaults()
     var url="http://user.ecjtu.net/api/login"
     let array = ["成绩查询","课表查询","一卡通查询","图书馆查询","个人设置"]
-    let iconArray = ["score","classquery","ecard","book","book"]
+    let iconArray = ["score","classquery","ecard","book","Untitled"]
     @IBOutlet weak var rxServiceTable: UITableView!
     @IBOutlet weak var account: UITextField!
     @IBOutlet weak var username: UILabel!
@@ -27,6 +27,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         rxServiceTable.delegate=self
         if let himage = userDefault.objectForKey("headimage"){
         let h2image = UIImage.init(data: himage as! NSData)! as UIImage
+        username.text = userDefault.objectForKey("name") as? String
         headimage.image = h2image
         }
         
@@ -41,8 +42,13 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         reload()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         reload()
+        if let himage = userDefault.objectForKey("headimage"){
+            let h2image = UIImage.init(data: himage as! NSData)! as UIImage
+            username.text = userDefault.objectForKey("name") as? String
+            headimage.image = h2image
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,38 +74,40 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         switch indexPath.row{
 //            成绩查询
         case 0:
-            let webview = UIStoryboard.init(name: "Main", bundle: nil)
-            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-            push.path = NSBundle.mainBundle().pathForResource("scoreQuery", ofType: "html")!
-            push.ifJs = true
-            self.navigationController?.pushViewController(push, animated: true)
+//            let webview = UIStoryboard.init(name: "Main", bundle: nil)
+//            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+//            push.path = NSBundle.mainBundle().pathForResource("scoreQuery", ofType: "html")!
+//            push.ifJs = true
+//            self.navigationController?.pushViewController(push, animated: true)
             break
         
 //            课表查询
         case 1:
-            let webview = UIStoryboard.init(name: "Main", bundle: nil)
-            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-            push.path = NSBundle.mainBundle().pathForResource("classQuery", ofType: "html")!
-            push.ifJs = true
-            self.navigationController?.pushViewController(push, animated: true)
+//            let webview = UIStoryboard.init(name: "Main", bundle: nil)
+//            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+//            push.path = NSBundle.mainBundle().pathForResource("classQuery", ofType: "html")!
+//            push.ifJs = true
+//            self.navigationController?.pushViewController(push, animated: true)
             break
         
 //            一卡通查询
         case 2:
-            let webview = UIStoryboard.init(name: "Main", bundle: nil)
-            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-            push.path = NSBundle.mainBundle().pathForResource("cardQuery", ofType: "html")!
-            push.ifJs = true
-            self.navigationController?.pushViewController(push, animated: true)
+//            let webview = UIStoryboard.init(name: "Main", bundle: nil)
+//            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+//            push.path = NSBundle.mainBundle().pathForResource("cardQuery", ofType: "html")!
+//            push.ifJs = true
+//            self.navigationController?.pushViewController(push, animated: true)
+            MozTopAlertView.showWithType(MozAlertTypeInfo, text: "开发中..", parentView: self.view.viewWithTag(1))
             break
         
 //            图书馆查询
         case 3:
-            let webview = UIStoryboard.init(name: "Main", bundle: nil)
-            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-            push.path = NSBundle.mainBundle().pathForResource("review", ofType: "html")!
-            push.ifJs = true
-            self.navigationController?.pushViewController(push, animated: true)
+//            let webview = UIStoryboard.init(name: "Main", bundle: nil)
+//            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+//            push.path = NSBundle.mainBundle().pathForResource("review", ofType: "html")!
+//            push.ifJs = true
+//            self.navigationController?.pushViewController(push, animated: true)
+            MozTopAlertView.showWithType(MozAlertTypeInfo, text: "开发中..", parentView: self.view.viewWithTag(1))
             break
         
 //            个人设置
@@ -182,8 +190,9 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             let avatar = "http://"+((json?.objectForKey("user")?.objectForKey("avatar"))! as! String)
             let name = (json?.objectForKey("user")?.objectForKey("name")!) as! String
             self.username.text = name
+            self.userDefault.setObject(name, forKey: "name")
             self.headimage.sd_setImageWithURL(NSURL(string: avatar), completed: { (image:UIImage!, error:NSError!, catchType:SDImageCacheType, nsurl:NSURL!) -> Void in
-                let imagedata = UIImageJPEGRepresentation(self.headimage.image!, CGFloat(1))
+                let imagedata = UIImageJPEGRepresentation(self.headimage.image!, CGFloat(100))
                 self.userDefault.setObject(imagedata, forKey: "headimage")
             })
             }) { (AFHTTPRequestOperation, error:NSError) -> Void in

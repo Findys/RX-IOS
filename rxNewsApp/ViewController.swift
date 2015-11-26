@@ -52,11 +52,13 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             let vc = segue.destinationViewController as! WebViewController
             vc.id = cell.tag
             vc.ifJs = false
+            vc.hidesBottomBarWhenPushed = true
         }
         if segue.identifier == "rxPageNews" {
             let vc = segue.destinationViewController as! WebViewController
             vc.id = (slideArray[pageControl.currentPage].objectForKey("id") as? Int)!
             vc.ifJs = false
+            vc.hidesBottomBarWhenPushed = true
         }
     }
     

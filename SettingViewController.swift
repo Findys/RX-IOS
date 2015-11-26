@@ -9,7 +9,7 @@
 import UIKit
 
 class SettingViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate{
-    @IBOutlet weak var head: UIImageView!
+    @IBOutlet weak var headImg: UIImageView!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var version: UILabel!
     @IBOutlet var tableview: UITableView!
@@ -22,9 +22,9 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         
         let himage = userDefault.objectForKey("headimage") as! NSData
         let h2image = UIImage.init(data: himage)! as UIImage
-        head.image = h2image
-        head.layer.cornerRadius = 15
-        head.clipsToBounds = true
+        headImg.image = h2image
+        headImg.layer.cornerRadius = 15
+        headImg.clipsToBounds = true
 
     }
 
@@ -89,11 +89,10 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             
 //        注销账户
         case 2:
-            let alert = DXAlertView.init(title: "提示", contentText: "真的要注销吗？", leftButtonTitle: "是的", rightButtonTitle: "点错了")
-            alert.show()
-            alert.leftBlock={
-                let iflogin=false
-                self.userDefault.setBool(iflogin, forKey: "iflogin")
+            let ALERT = DXAlertView.init(title: "提示", contentText: "真的要注销吗？", leftButtonTitle: "是的", rightButtonTitle: "点错了")
+            ALERT.show()
+            ALERT.leftBlock={
+                self.userDefault.setBool(false, forKey: "iflogin")
                 self.navigationController?.popViewControllerAnimated(true)
             }
         default:break
@@ -115,23 +114,43 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
     }
     
     func imageCropViewController(controller: RSKImageCropViewController!, didCropImage croppedImage: UIImage!, usingCropRect cropRect: CGRect) {
-        self.head.image=croppedImage
-        let imagedata = UIImagePNGRepresentation(croppedImage)
-        userDefault.setObject(imagedata, forKey: "headimage")
-        let params:[String:AnyObject] = ["token":userDefault.stringForKey("token")!,"avatar":imagedata!]
-        let afManager = AFHTTPRequestOperationManager()
+        let IMGDATA = UIImageJPEGRepresentation(croppedImage, CGFloat(1))
+        userDefault.setObject(IMGDATA, forKey: "headimage")
+        let PARAMS:[String:AnyObject] = ["token":userDefault.stringForKey("token")!]
+        let AFMANAGER = AFHTTPRequestOperationManager()
         let studentID = userDefault.stringForKey("account")!
         let url = "http://user.ecjtu.net/api/user/\(studentID)/avatar"
-        let op = afManager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
-//            formdata.appendPartWithFileData(imagedata!, name: "avatar", fileName: "headimage"+studentID+".png", mimeType: "image/png")
+        AFMANAGER.POST(url, parameters: PARAMS, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
+            formdata.appendPartWithFileData(IMGDATA!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
             }, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
-                let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
-                print(json)
+                if( resp.objectForKey("result")! as! Int == 1){
+                    MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "头像上传成功",parentView: self.view)
+                    self.headImageGet()
+                }
+            }) { (AFHTTPRequestOperation, error:NSError) -> Void in
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView: self.view)
+        }
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        MozTopAlertView.showWithType(MozAlertTypeInfo, text: "头像上传中", parentView: self.view)
+        AFMANAGER.requestSerializer = AFHTTPRequestSerializer()
+        AFMANAGER.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as Set<NSObject>
+    }
+    
+    func headImageGet(){
+        let AFMANAGER = AFHTTPRequestOperationManager()
+        let URL = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
+        let GET = AFMANAGER.GET(URL, parameters: nil, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
+            let JSON: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
+            let AVATAR_URL = "http://"+((JSON?.objectForKey("user")?.objectForKey("avatar"))! as! String)
+            self.headImg.sd_setImageWithURL(NSURL(string: AVATAR_URL), completed: { (image:UIImage!, error:NSError!, catchType:SDImageCacheType, nsurl:NSURL!) -> Void in
+                let IMGDATA = UIImageJPEGRepresentation(self.headImg.image!, CGFloat(1))
+                self.userDefault.setObject(IMGDATA, forKey: "headimage")
+            })
             }) { (AFHTTPRequestOperation, error:NSError) -> Void in
                 print(error)
         }
-        controller.dismissViewControllerAnimated(true, completion: nil)
-        op!.responseSerializer = AFHTTPResponseSerializer()
-        op!.start()
+        GET?.responseSerializer = AFHTTPResponseSerializer()
+        GET?.start()
+        
     }
 }

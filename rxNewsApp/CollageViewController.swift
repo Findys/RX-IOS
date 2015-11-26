@@ -37,6 +37,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         let vc = segue.destinationViewController as! WebViewController
         vc.id = cell.tag
         vc.ifJs = false
+        vc.hidesBottomBarWhenPushed = true
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,7 +66,6 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
                 let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(response as! NSData , options:NSJSONReadingOptions() )
                 self.newsArray = json?.objectForKey("articles") as! Array<AnyObject>
                 self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
-                print(self.newsArray)
                 self.collageTable.reloadData()
                 self.collageTable.header.endRefreshing()
             },

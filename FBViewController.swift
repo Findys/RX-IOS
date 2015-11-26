@@ -9,13 +9,18 @@
 import UIKit
 
 class FBViewController: UIViewController {
-    @IBOutlet weak var content: UITextField!
+    @IBOutlet weak var content: UITextView!
     @IBOutlet weak var nickname: UITextField!
     @IBOutlet weak var commit: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         commit.addTarget(self, action: "feedback", forControlEvents: UIControlEvents.TouchUpInside)
+        content.layer.borderWidth = 1
+        content.layer.cornerRadius = 5
+        content.clipsToBounds = true
+        content.text="请输入内容"
+        content.layer.borderColor = UIColor.lightGrayColor().CGColor
 
     }
 
@@ -27,16 +32,16 @@ class FBViewController: UIViewController {
     func feedback(){
         if let _ = content.text {
             if let _ = nickname.text{
-                let params:[String:String] = ["content":content.text!,"nickname":nickname.text!]
-                let afManager = AFHTTPRequestOperationManager()
+                let PARAM = ["content":content.text!,"nickname":nickname.text!]
+                let AFMANAGER = AFHTTPRequestOperationManager()
                 let url = "http://user.ecjtu.net/api/v1/feedback"
-                let op = afManager.POST(url, parameters: params, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
+                let POST = AFMANAGER.POST(url, parameters: PARAM, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
                     print(resp)
                     }, failure: { (AFHTTPRequestOperation, error:NSError) -> Void in
                         print(error)
                 })
-                op!.responseSerializer = AFHTTPResponseSerializer()
-                op!.start()
+                POST!.responseSerializer = AFHTTPResponseSerializer()
+                POST!.start()
                 MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "感谢您的支持", parentView: self.view.viewWithTag(1))
             }
         }
@@ -46,6 +51,10 @@ class FBViewController: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         content.resignFirstResponder()
         nickname.resignFirstResponder()
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView){
+        content.text=""
     }
 
 
