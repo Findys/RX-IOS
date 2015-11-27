@@ -216,6 +216,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         let wv=UIStoryboard.init(name:"Main", bundle: nil)
         let push = wv.instantiateViewControllerWithIdentifier("webview") as! WebViewController
         push.ifJs = false
+        push.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(push, animated: true)
     }
     
