@@ -89,7 +89,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     
     func textViewDidBeginEditing(textView: UITextView){
         let frame = textView.frame
-        var offset = frame.origin.y+67-(self.view.frame.size.height-216)
+        let offset = frame.origin.y+67-(self.view.frame.size.height-216)
         UIView.beginAnimations("ResizeForKeyboard", context: nil)
         UIView.setAnimationDuration(0.5)
         self.view.frame = CGRectMake(0, -offset, self.view.frame.size.width, self.view.frame.size.height)
@@ -113,8 +113,8 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
             }) { (AFHTTPRequestOperation, error:NSError) -> Void in
                 print(error)
         }
-        op?.responseSerializer = AFHTTPResponseSerializer()
-        AFMANAGER.requestSerializer = AFHTTPRequestSerializer()
+//        AFMANAGER.requestSerializer = AFHTTPRequestSerializer()
+//        AFMANAGER.responseSerializer.acceptableContentTypes = NSSet(object: "application/json") as Set<NSObject>
     }
 
     /*

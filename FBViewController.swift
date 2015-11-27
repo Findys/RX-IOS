@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FBViewController: UIViewController {
+class FBViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var content: UITextView!
     @IBOutlet weak var nickname: UITextField!
     @IBOutlet weak var commit: UIButton!
@@ -21,6 +21,7 @@ class FBViewController: UIViewController {
         content.clipsToBounds = true
         content.text="请输入内容"
         content.layer.borderColor = UIColor.lightGrayColor().CGColor
+        content.delegate = self
 
     }
 
@@ -34,15 +35,12 @@ class FBViewController: UIViewController {
             if let _ = nickname.text{
                 let PARAM = ["content":content.text!,"nickname":nickname.text!]
                 let AFMANAGER = AFHTTPRequestOperationManager()
-                let url = "http://user.ecjtu.net/api/v1/feedback"
-                let POST = AFMANAGER.POST(url, parameters: PARAM, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
-                    print(resp)
+                let url = "http://app.ecjtu.net/api/v1/feedback"
+                AFMANAGER.POST(url, parameters: PARAM, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
+                        MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "感谢您的支持", parentView: self.view.viewWithTag(1))
                     }, failure: { (AFHTTPRequestOperation, error:NSError) -> Void in
-                        print(error)
+                        MozTopAlertView.showWithType(MozAlertTypeError, text: "请检查网络", parentView: self.view.viewWithTag(1))
                 })
-                POST!.responseSerializer = AFHTTPResponseSerializer()
-                POST!.start()
-                MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "感谢您的支持", parentView: self.view.viewWithTag(1))
             }
         }
     
