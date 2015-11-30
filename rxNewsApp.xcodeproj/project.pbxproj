@@ -65,9 +65,62 @@
 		14F827581BEB6F8A004AEA96 /* btn_close_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827521BEB6F8A004AEA96 /* btn_close_selected.png */; };
 		14F827591BEB6F8A004AEA96 /* btn_close_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827531BEB6F8A004AEA96 /* btn_close_selected@2x.png */; };
 		14F8275A1BEB6F8A004AEA96 /* DXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F827551BEB6F8A004AEA96 /* DXAlertView.m */; };
+		939664DD1C0C3CF400539CE0 /* _csshake.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 939664A01C0C3CF400539CE0 /* _csshake.scssc */; };
+		939664DE1C0C3CF400539CE0 /* _reset.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 939664A11C0C3CF400539CE0 /* _reset.scssc */; };
+		939664DF1C0C3CF400539CE0 /* daily-class-style.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 939664A21C0C3CF400539CE0 /* daily-class-style.scssc */; };
+		939664E01C0C3CF400539CE0 /* dayly-class-style.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 939664A31C0C3CF400539CE0 /* dayly-class-style.scssc */; };
+		939664E11C0C3CF400539CE0 /* dayly-style.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 939664A41C0C3CF400539CE0 /* dayly-style.scssc */; };
+		939664E21C0C3CF400539CE0 /* dayly.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 939664A51C0C3CF400539CE0 /* dayly.scssc */; };
+		939664E31C0C3CF400539CE0 /* style.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 939664A61C0C3CF400539CE0 /* style.scssc */; };
+		939664E41C0C3CF400539CE0 /* weekly-class-style.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 939664A71C0C3CF400539CE0 /* weekly-class-style.scssc */; };
+		939664E51C0C3CF400539CE0 /* weekly-style.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 939664A81C0C3CF400539CE0 /* weekly-style.scssc */; };
+		939664E61C0C3CF400539CE0 /* _animation.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 939664AA1C0C3CF400539CE0 /* _animation.scssc */; };
+		939664E71C0C3CF400539CE0 /* _data.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 939664AB1C0C3CF400539CE0 /* _data.scssc */; };
+		939664E81C0C3CF400539CE0 /* _font.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 939664AC1C0C3CF400539CE0 /* _font.scssc */; };
+		939664E91C0C3CF400539CE0 /* _mixin.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 939664AD1C0C3CF400539CE0 /* _mixin.scssc */; };
+		939664EA1C0C3CF400539CE0 /* classQuery.html in Resources */ = {isa = PBXBuildFile; fileRef = 939664AE1C0C3CF400539CE0 /* classQuery.html */; };
+		939664EB1C0C3CF400539CE0 /* classQuery.js in Resources */ = {isa = PBXBuildFile; fileRef = 939664AF1C0C3CF400539CE0 /* classQuery.js */; };
+		939664EC1C0C3CF400539CE0 /* materialize.css in Resources */ = {isa = PBXBuildFile; fileRef = 939664B11C0C3CF400539CE0 /* materialize.css */; };
+		939664ED1C0C3CF400539CE0 /* materialize.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 939664B21C0C3CF400539CE0 /* materialize.min.css */; };
+		939664EE1C0C3CF400539CE0 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 939664B31C0C3CF400539CE0 /* style.css */; };
+		939664EF1C0C3CF400539CE0 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 939664B71C0C3CF400539CE0 /* LICENSE.txt */; };
+		939664F01C0C3CF400539CE0 /* Material-Design-Icons.eot in Resources */ = {isa = PBXBuildFile; fileRef = 939664B81C0C3CF400539CE0 /* Material-Design-Icons.eot */; };
+		939664F11C0C3CF400539CE0 /* Material-Design-Icons.svg in Resources */ = {isa = PBXBuildFile; fileRef = 939664B91C0C3CF400539CE0 /* Material-Design-Icons.svg */; };
+		939664F21C0C3CF400539CE0 /* Material-Design-Icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939664BA1C0C3CF400539CE0 /* Material-Design-Icons.ttf */; };
+		939664F31C0C3CF400539CE0 /* Material-Design-Icons.woff in Resources */ = {isa = PBXBuildFile; fileRef = 939664BB1C0C3CF400539CE0 /* Material-Design-Icons.woff */; };
+		939664F41C0C3CF400539CE0 /* Material-Design-Icons.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 939664BC1C0C3CF400539CE0 /* Material-Design-Icons.woff2 */; };
+		939664F51C0C3CF400539CE0 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939664BE1C0C3CF400539CE0 /* Roboto-Bold.ttf */; };
+		939664F61C0C3CF400539CE0 /* Roboto-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 939664BF1C0C3CF400539CE0 /* Roboto-Bold.woff */; };
+		939664F71C0C3CF400539CE0 /* Roboto-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 939664C01C0C3CF400539CE0 /* Roboto-Bold.woff2 */; };
+		939664F81C0C3CF400539CE0 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939664C11C0C3CF400539CE0 /* Roboto-Light.ttf */; };
+		939664F91C0C3CF400539CE0 /* Roboto-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 939664C21C0C3CF400539CE0 /* Roboto-Light.woff */; };
+		939664FA1C0C3CF400539CE0 /* Roboto-Light.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 939664C31C0C3CF400539CE0 /* Roboto-Light.woff2 */; };
+		939664FB1C0C3CF400539CE0 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939664C41C0C3CF400539CE0 /* Roboto-Medium.ttf */; };
+		939664FC1C0C3CF400539CE0 /* Roboto-Medium.woff in Resources */ = {isa = PBXBuildFile; fileRef = 939664C51C0C3CF400539CE0 /* Roboto-Medium.woff */; };
+		939664FD1C0C3CF400539CE0 /* Roboto-Medium.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 939664C61C0C3CF400539CE0 /* Roboto-Medium.woff2 */; };
+		939664FE1C0C3CF400539CE0 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939664C71C0C3CF400539CE0 /* Roboto-Regular.ttf */; };
+		939664FF1C0C3CF400539CE0 /* Roboto-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 939664C81C0C3CF400539CE0 /* Roboto-Regular.woff */; };
+		939665001C0C3CF400539CE0 /* Roboto-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 939664C91C0C3CF400539CE0 /* Roboto-Regular.woff2 */; };
+		939665011C0C3CF400539CE0 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939664CA1C0C3CF400539CE0 /* Roboto-Thin.ttf */; };
+		939665021C0C3CF400539CE0 /* Roboto-Thin.woff in Resources */ = {isa = PBXBuildFile; fileRef = 939664CB1C0C3CF400539CE0 /* Roboto-Thin.woff */; };
+		939665031C0C3CF400539CE0 /* Roboto-Thin.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 939664CC1C0C3CF400539CE0 /* Roboto-Thin.woff2 */; };
+		939665041C0C3CF400539CE0 /* jquery-1.11.3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 939664CD1C0C3CF400539CE0 /* jquery-1.11.3.min.js */; };
+		939665051C0C3CF400539CE0 /* materialize.css in Resources */ = {isa = PBXBuildFile; fileRef = 939664CE1C0C3CF400539CE0 /* materialize.css */; };
+		939665061C0C3CF400539CE0 /* materialize.js in Resources */ = {isa = PBXBuildFile; fileRef = 939664CF1C0C3CF400539CE0 /* materialize.js */; };
+		939665071C0C3CF400539CE0 /* materialize.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 939664D01C0C3CF400539CE0 /* materialize.min.css */; };
+		939665081C0C3CF400539CE0 /* materialize.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 939664D11C0C3CF400539CE0 /* materialize.min.js */; };
+		939665091C0C3CF400539CE0 /* _csshake.scss in Resources */ = {isa = PBXBuildFile; fileRef = 939664D31C0C3CF400539CE0 /* _csshake.scss */; };
+		9396650A1C0C3CF400539CE0 /* _reset.scss in Resources */ = {isa = PBXBuildFile; fileRef = 939664D41C0C3CF400539CE0 /* _reset.scss */; };
+		9396650B1C0C3CF400539CE0 /* _animation.scss in Resources */ = {isa = PBXBuildFile; fileRef = 939664D61C0C3CF400539CE0 /* _animation.scss */; };
+		9396650C1C0C3CF400539CE0 /* _data.scss in Resources */ = {isa = PBXBuildFile; fileRef = 939664D71C0C3CF400539CE0 /* _data.scss */; };
+		9396650D1C0C3CF400539CE0 /* _font.scss in Resources */ = {isa = PBXBuildFile; fileRef = 939664D81C0C3CF400539CE0 /* _font.scss */; };
+		9396650E1C0C3CF400539CE0 /* _mixin.scss in Resources */ = {isa = PBXBuildFile; fileRef = 939664D91C0C3CF400539CE0 /* _mixin.scss */; };
+		9396650F1C0C3CF400539CE0 /* style.scss in Resources */ = {isa = PBXBuildFile; fileRef = 939664DA1C0C3CF400539CE0 /* style.scss */; };
+		939665101C0C3CF400539CE0 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 939664DB1C0C3CF400539CE0 /* style.css */; };
+		939665181C0C59CD00539CE0 /* LocalWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939665171C0C59CD00539CE0 /* LocalWebViewController.swift */; };
 		93F302911C0BF56E00E7D2A3 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F302901C0BF56E00E7D2A3 /* CommentViewController.swift */; };
 		D23DCFDC1BC272DD00C32F94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */; };
-		D23DCFE01BC272DD00C32F94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFDB1BC272DD00C32F94 /* ViewController.swift */; };
+		D23DCFE01BC272DD00C32F94 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */; };
 		D23DCFEC1BC27ED400C32F94 /* CollageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFEB1BC27ED400C32F94 /* CollageViewController.swift */; };
 		D23DCFEE1BC27F8B00C32F94 /* TushuoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFED1BC27F8B00C32F94 /* TushuoViewController.swift */; };
 		D26734811BC3C5A500E63D15 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26734801BC3C5A500E63D15 /* WebViewController.swift */; };
@@ -215,10 +268,65 @@
 		14F827541BEB6F8A004AEA96 /* DXAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXAlertView.h; sourceTree = "<group>"; };
 		14F827551BEB6F8A004AEA96 /* DXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXAlertView.m; sourceTree = "<group>"; };
 		197015E37310C125A909AEF2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		939664A01C0C3CF400539CE0 /* _csshake.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = _csshake.scssc; sourceTree = "<group>"; };
+		939664A11C0C3CF400539CE0 /* _reset.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = _reset.scssc; sourceTree = "<group>"; };
+		939664A21C0C3CF400539CE0 /* daily-class-style.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "daily-class-style.scssc"; sourceTree = "<group>"; };
+		939664A31C0C3CF400539CE0 /* dayly-class-style.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dayly-class-style.scssc"; sourceTree = "<group>"; };
+		939664A41C0C3CF400539CE0 /* dayly-style.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dayly-style.scssc"; sourceTree = "<group>"; };
+		939664A51C0C3CF400539CE0 /* dayly.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = dayly.scssc; sourceTree = "<group>"; };
+		939664A61C0C3CF400539CE0 /* style.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = style.scssc; sourceTree = "<group>"; };
+		939664A71C0C3CF400539CE0 /* weekly-class-style.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "weekly-class-style.scssc"; sourceTree = "<group>"; };
+		939664A81C0C3CF400539CE0 /* weekly-style.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "weekly-style.scssc"; sourceTree = "<group>"; };
+		939664AA1C0C3CF400539CE0 /* _animation.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = _animation.scssc; sourceTree = "<group>"; };
+		939664AB1C0C3CF400539CE0 /* _data.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = _data.scssc; sourceTree = "<group>"; };
+		939664AC1C0C3CF400539CE0 /* _font.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = _font.scssc; sourceTree = "<group>"; };
+		939664AD1C0C3CF400539CE0 /* _mixin.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = _mixin.scssc; sourceTree = "<group>"; };
+		939664AE1C0C3CF400539CE0 /* classQuery.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = classQuery.html; sourceTree = "<group>"; };
+		939664AF1C0C3CF400539CE0 /* classQuery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = classQuery.js; sourceTree = "<group>"; };
+		939664B11C0C3CF400539CE0 /* materialize.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = materialize.css; sourceTree = "<group>"; };
+		939664B21C0C3CF400539CE0 /* materialize.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = materialize.min.css; sourceTree = "<group>"; };
+		939664B31C0C3CF400539CE0 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		939664B41C0C3CF400539CE0 /* style.css.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = style.css.map; sourceTree = "<group>"; };
+		939664B71C0C3CF400539CE0 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		939664B81C0C3CF400539CE0 /* Material-Design-Icons.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Material-Design-Icons.eot"; sourceTree = "<group>"; };
+		939664B91C0C3CF400539CE0 /* Material-Design-Icons.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Material-Design-Icons.svg"; sourceTree = "<group>"; };
+		939664BA1C0C3CF400539CE0 /* Material-Design-Icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Material-Design-Icons.ttf"; sourceTree = "<group>"; };
+		939664BB1C0C3CF400539CE0 /* Material-Design-Icons.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Material-Design-Icons.woff"; sourceTree = "<group>"; };
+		939664BC1C0C3CF400539CE0 /* Material-Design-Icons.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Material-Design-Icons.woff2"; sourceTree = "<group>"; };
+		939664BE1C0C3CF400539CE0 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		939664BF1C0C3CF400539CE0 /* Roboto-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.woff"; sourceTree = "<group>"; };
+		939664C01C0C3CF400539CE0 /* Roboto-Bold.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.woff2"; sourceTree = "<group>"; };
+		939664C11C0C3CF400539CE0 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		939664C21C0C3CF400539CE0 /* Roboto-Light.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.woff"; sourceTree = "<group>"; };
+		939664C31C0C3CF400539CE0 /* Roboto-Light.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.woff2"; sourceTree = "<group>"; };
+		939664C41C0C3CF400539CE0 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		939664C51C0C3CF400539CE0 /* Roboto-Medium.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.woff"; sourceTree = "<group>"; };
+		939664C61C0C3CF400539CE0 /* Roboto-Medium.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.woff2"; sourceTree = "<group>"; };
+		939664C71C0C3CF400539CE0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		939664C81C0C3CF400539CE0 /* Roboto-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.woff"; sourceTree = "<group>"; };
+		939664C91C0C3CF400539CE0 /* Roboto-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.woff2"; sourceTree = "<group>"; };
+		939664CA1C0C3CF400539CE0 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		939664CB1C0C3CF400539CE0 /* Roboto-Thin.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.woff"; sourceTree = "<group>"; };
+		939664CC1C0C3CF400539CE0 /* Roboto-Thin.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.woff2"; sourceTree = "<group>"; };
+		939664CD1C0C3CF400539CE0 /* jquery-1.11.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.11.3.min.js"; sourceTree = "<group>"; };
+		939664CE1C0C3CF400539CE0 /* materialize.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = materialize.css; sourceTree = "<group>"; };
+		939664CF1C0C3CF400539CE0 /* materialize.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = materialize.js; sourceTree = "<group>"; };
+		939664D01C0C3CF400539CE0 /* materialize.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = materialize.min.css; sourceTree = "<group>"; };
+		939664D11C0C3CF400539CE0 /* materialize.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = materialize.min.js; sourceTree = "<group>"; };
+		939664D31C0C3CF400539CE0 /* _csshake.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _csshake.scss; sourceTree = "<group>"; };
+		939664D41C0C3CF400539CE0 /* _reset.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _reset.scss; sourceTree = "<group>"; };
+		939664D61C0C3CF400539CE0 /* _animation.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _animation.scss; sourceTree = "<group>"; };
+		939664D71C0C3CF400539CE0 /* _data.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _data.scss; sourceTree = "<group>"; };
+		939664D81C0C3CF400539CE0 /* _font.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _font.scss; sourceTree = "<group>"; };
+		939664D91C0C3CF400539CE0 /* _mixin.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _mixin.scss; sourceTree = "<group>"; };
+		939664DA1C0C3CF400539CE0 /* style.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = style.scss; sourceTree = "<group>"; };
+		939664DB1C0C3CF400539CE0 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		939664DC1C0C3CF400539CE0 /* style.css.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = style.css.map; sourceTree = "<group>"; };
+		939665171C0C59CD00539CE0 /* LocalWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalWebViewController.swift; path = "../../Downloads/EcjtuAppService-master/RixinClassQuery/LocalWebViewController.swift"; sourceTree = "<group>"; };
 		93F302901C0BF56E00E7D2A3 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = rxNewsApp/AppDelegate.swift; sourceTree = "<group>"; };
 		D23DCFDA1BC272DD00C32F94 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = rxNewsApp/Info.plist; sourceTree = "<group>"; };
-		D23DCFDB1BC272DD00C32F94 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = rxNewsApp/ViewController.swift; sourceTree = "<group>"; };
+		D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = rxNewsApp/MainViewController.swift; sourceTree = "<group>"; };
 		D23DCFEA1BC27A9000C32F94 /* rxNewsApp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "rxNewsApp-Bridging-Header.h"; path = "rxNewsApp/rxNewsApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		D23DCFEB1BC27ED400C32F94 /* CollageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollageViewController.swift; path = rxNewsApp/CollageViewController.swift; sourceTree = "<group>"; };
 		D23DCFED1BC27F8B00C32F94 /* TushuoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TushuoViewController.swift; path = rxNewsApp/TushuoViewController.swift; sourceTree = "<group>"; };
@@ -471,11 +579,184 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9396649D1C0C3CF400539CE0 /* RixinClassQuery */ = {
+			isa = PBXGroup;
+			children = (
+				9396649E1C0C3CF400539CE0 /* .sass-cache */,
+				939664AE1C0C3CF400539CE0 /* classQuery.html */,
+				939664AF1C0C3CF400539CE0 /* classQuery.js */,
+				939664B01C0C3CF400539CE0 /* css */,
+				939664B51C0C3CF400539CE0 /* font */,
+				939664CD1C0C3CF400539CE0 /* jquery-1.11.3.min.js */,
+				939664CE1C0C3CF400539CE0 /* materialize.css */,
+				939664CF1C0C3CF400539CE0 /* materialize.js */,
+				939664D01C0C3CF400539CE0 /* materialize.min.css */,
+				939664D11C0C3CF400539CE0 /* materialize.min.js */,
+				939664D21C0C3CF400539CE0 /* scss */,
+				939664DB1C0C3CF400539CE0 /* style.css */,
+				939664DC1C0C3CF400539CE0 /* style.css.map */,
+			);
+			name = RixinClassQuery;
+			path = "../../Downloads/EcjtuAppService-master/RixinClassQuery";
+			sourceTree = "<group>";
+		};
+		9396649E1C0C3CF400539CE0 /* .sass-cache */ = {
+			isa = PBXGroup;
+			children = (
+				9396649F1C0C3CF400539CE0 /* 85baad6e4c888923e30bc40f1521ea6b60d0565d */,
+				939664A91C0C3CF400539CE0 /* ebf5194e9056f9968d4bb662c6048c9a42df4864 */,
+			);
+			path = ".sass-cache";
+			sourceTree = "<group>";
+		};
+		9396649F1C0C3CF400539CE0 /* 85baad6e4c888923e30bc40f1521ea6b60d0565d */ = {
+			isa = PBXGroup;
+			children = (
+				939664A01C0C3CF400539CE0 /* _csshake.scssc */,
+				939664A11C0C3CF400539CE0 /* _reset.scssc */,
+				939664A21C0C3CF400539CE0 /* daily-class-style.scssc */,
+				939664A31C0C3CF400539CE0 /* dayly-class-style.scssc */,
+				939664A41C0C3CF400539CE0 /* dayly-style.scssc */,
+				939664A51C0C3CF400539CE0 /* dayly.scssc */,
+				939664A61C0C3CF400539CE0 /* style.scssc */,
+				939664A71C0C3CF400539CE0 /* weekly-class-style.scssc */,
+				939664A81C0C3CF400539CE0 /* weekly-style.scssc */,
+			);
+			path = 85baad6e4c888923e30bc40f1521ea6b60d0565d;
+			sourceTree = "<group>";
+		};
+		939664A91C0C3CF400539CE0 /* ebf5194e9056f9968d4bb662c6048c9a42df4864 */ = {
+			isa = PBXGroup;
+			children = (
+				939664AA1C0C3CF400539CE0 /* _animation.scssc */,
+				939664AB1C0C3CF400539CE0 /* _data.scssc */,
+				939664AC1C0C3CF400539CE0 /* _font.scssc */,
+				939664AD1C0C3CF400539CE0 /* _mixin.scssc */,
+			);
+			path = ebf5194e9056f9968d4bb662c6048c9a42df4864;
+			sourceTree = "<group>";
+		};
+		939664B01C0C3CF400539CE0 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				939664B11C0C3CF400539CE0 /* materialize.css */,
+				939664B21C0C3CF400539CE0 /* materialize.min.css */,
+				939664B31C0C3CF400539CE0 /* style.css */,
+				939664B41C0C3CF400539CE0 /* style.css.map */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		939664B51C0C3CF400539CE0 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				939664B61C0C3CF400539CE0 /* material-design-icons */,
+				939664BD1C0C3CF400539CE0 /* roboto */,
+			);
+			path = font;
+			sourceTree = "<group>";
+		};
+		939664B61C0C3CF400539CE0 /* material-design-icons */ = {
+			isa = PBXGroup;
+			children = (
+				939664B71C0C3CF400539CE0 /* LICENSE.txt */,
+				939664B81C0C3CF400539CE0 /* Material-Design-Icons.eot */,
+				939664B91C0C3CF400539CE0 /* Material-Design-Icons.svg */,
+				939664BA1C0C3CF400539CE0 /* Material-Design-Icons.ttf */,
+				939664BB1C0C3CF400539CE0 /* Material-Design-Icons.woff */,
+				939664BC1C0C3CF400539CE0 /* Material-Design-Icons.woff2 */,
+			);
+			path = "material-design-icons";
+			sourceTree = "<group>";
+		};
+		939664BD1C0C3CF400539CE0 /* roboto */ = {
+			isa = PBXGroup;
+			children = (
+				939664BE1C0C3CF400539CE0 /* Roboto-Bold.ttf */,
+				939664BF1C0C3CF400539CE0 /* Roboto-Bold.woff */,
+				939664C01C0C3CF400539CE0 /* Roboto-Bold.woff2 */,
+				939664C11C0C3CF400539CE0 /* Roboto-Light.ttf */,
+				939664C21C0C3CF400539CE0 /* Roboto-Light.woff */,
+				939664C31C0C3CF400539CE0 /* Roboto-Light.woff2 */,
+				939664C41C0C3CF400539CE0 /* Roboto-Medium.ttf */,
+				939664C51C0C3CF400539CE0 /* Roboto-Medium.woff */,
+				939664C61C0C3CF400539CE0 /* Roboto-Medium.woff2 */,
+				939664C71C0C3CF400539CE0 /* Roboto-Regular.ttf */,
+				939664C81C0C3CF400539CE0 /* Roboto-Regular.woff */,
+				939664C91C0C3CF400539CE0 /* Roboto-Regular.woff2 */,
+				939664CA1C0C3CF400539CE0 /* Roboto-Thin.ttf */,
+				939664CB1C0C3CF400539CE0 /* Roboto-Thin.woff */,
+				939664CC1C0C3CF400539CE0 /* Roboto-Thin.woff2 */,
+			);
+			path = roboto;
+			sourceTree = "<group>";
+		};
+		939664D21C0C3CF400539CE0 /* scss */ = {
+			isa = PBXGroup;
+			children = (
+				939664D31C0C3CF400539CE0 /* _csshake.scss */,
+				939664D41C0C3CF400539CE0 /* _reset.scss */,
+				939664D51C0C3CF400539CE0 /* style */,
+				939664DA1C0C3CF400539CE0 /* style.scss */,
+			);
+			path = scss;
+			sourceTree = "<group>";
+		};
+		939664D51C0C3CF400539CE0 /* style */ = {
+			isa = PBXGroup;
+			children = (
+				939664D61C0C3CF400539CE0 /* _animation.scss */,
+				939664D71C0C3CF400539CE0 /* _data.scss */,
+				939664D81C0C3CF400539CE0 /* _font.scss */,
+				939664D91C0C3CF400539CE0 /* _mixin.scss */,
+			);
+			path = style;
+			sourceTree = "<group>";
+		};
+		9396651A1C0C5A2E00539CE0 /* MainController */ = {
+			isa = PBXGroup;
+			children = (
+				93F302901C0BF56E00E7D2A3 /* CommentViewController.swift */,
+				D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */,
+			);
+			name = MainController;
+			sourceTree = "<group>";
+		};
+		9396651B1C0C5A7C00539CE0 /* UserController */ = {
+			isa = PBXGroup;
+			children = (
+				D2FC4D981BD4C89D00F18240 /* UserViewController.swift */,
+				14A6B3571C0057B900A0A8EA /* FBViewController.swift */,
+				14F495E11BEA3A7D00117D29 /* SettingViewController.swift */,
+				14E068A01C01B25000BA8465 /* AboutViewController.swift */,
+			);
+			name = UserController;
+			sourceTree = "<group>";
+		};
+		9396651C1C0C5B9500539CE0 /* CollageController */ = {
+			isa = PBXGroup;
+			children = (
+				D23DCFEB1BC27ED400C32F94 /* CollageViewController.swift */,
+			);
+			name = CollageController;
+			sourceTree = "<group>";
+		};
+		9396651D1C0C5BAC00539CE0 /* PictureController */ = {
+			isa = PBXGroup;
+			children = (
+				D23DCFED1BC27F8B00C32F94 /* TushuoViewController.swift */,
+				D26734821BC3E35700E63D15 /* tsShowCardViewController.swift */,
+			);
+			name = PictureController;
+			sourceTree = "<group>";
+		};
 		D23DCFD61BC272BF00C32F94 /* rxNewsApp */ = {
 			isa = PBXGroup;
 			children = (
 				D23DCFEA1BC27A9000C32F94 /* rxNewsApp-Bridging-Header.h */,
+				14A6B35F1C00804E00A0A8EA /* TuShuoNewsItem.swift */,
 				D23DCFE21BC2732F00C32F94 /* ViewController */,
+				9396649D1C0C3CF400539CE0 /* RixinClassQuery */,
 				D23DCFE11BC2730600C32F94 /* Base */,
 				14D3E5021BFC9C5500640C29 /* PushConfig.plist */,
 			);
@@ -497,16 +778,11 @@
 			isa = PBXGroup;
 			children = (
 				D26734801BC3C5A500E63D15 /* WebViewController.swift */,
-				93F302901C0BF56E00E7D2A3 /* CommentViewController.swift */,
-				D23DCFDB1BC272DD00C32F94 /* ViewController.swift */,
-				D23DCFED1BC27F8B00C32F94 /* TushuoViewController.swift */,
-				D26734821BC3E35700E63D15 /* tsShowCardViewController.swift */,
-				D23DCFEB1BC27ED400C32F94 /* CollageViewController.swift */,
-				D2FC4D981BD4C89D00F18240 /* UserViewController.swift */,
-				14F495E11BEA3A7D00117D29 /* SettingViewController.swift */,
-				14A6B3571C0057B900A0A8EA /* FBViewController.swift */,
-				14A6B35F1C00804E00A0A8EA /* TuShuoNewsItem.swift */,
-				14E068A01C01B25000BA8465 /* AboutViewController.swift */,
+				939665171C0C59CD00539CE0 /* LocalWebViewController.swift */,
+				9396651D1C0C5BAC00539CE0 /* PictureController */,
+				9396651C1C0C5B9500539CE0 /* CollageController */,
+				9396651B1C0C5A7C00539CE0 /* UserController */,
+				9396651A1C0C5A2E00539CE0 /* MainController */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -685,20 +961,72 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				939665001C0C3CF400539CE0 /* Roboto-Regular.woff2 in Resources */,
+				939664EF1C0C3CF400539CE0 /* LICENSE.txt in Resources */,
+				939665011C0C3CF400539CE0 /* Roboto-Thin.ttf in Resources */,
+				9396650C1C0C3CF400539CE0 /* _data.scss in Resources */,
 				14F827561BEB6F8A004AEA96 /* btn_close_normal.png in Resources */,
 				14F827571BEB6F8A004AEA96 /* btn_close_normal@2x.png in Resources */,
+				939664E51C0C3CF400539CE0 /* weekly-style.scssc in Resources */,
+				939664E01C0C3CF400539CE0 /* dayly-class-style.scssc in Resources */,
+				939664ED1C0C3CF400539CE0 /* materialize.min.css in Resources */,
+				939664E61C0C3CF400539CE0 /* _animation.scssc in Resources */,
+				939665051C0C3CF400539CE0 /* materialize.css in Resources */,
+				939664E21C0C3CF400539CE0 /* dayly.scssc in Resources */,
 				14BF77851C00A0CC00251561 /* ShareSDKUI.bundle in Resources */,
+				939664DF1C0C3CF400539CE0 /* daily-class-style.scssc in Resources */,
+				939664F41C0C3CF400539CE0 /* Material-Design-Icons.woff2 in Resources */,
+				939664FC1C0C3CF400539CE0 /* Roboto-Medium.woff in Resources */,
 				14D3E5031BFC9C5500640C29 /* PushConfig.plist in Resources */,
 				14F827581BEB6F8A004AEA96 /* btn_close_selected.png in Resources */,
+				939665071C0C3CF400539CE0 /* materialize.min.css in Resources */,
+				939665041C0C3CF400539CE0 /* jquery-1.11.3.min.js in Resources */,
+				939664EA1C0C3CF400539CE0 /* classQuery.html in Resources */,
+				939664F51C0C3CF400539CE0 /* Roboto-Bold.ttf in Resources */,
 				145B939C1BF37AB500A430EA /* RSKImageCropperStrings.bundle in Resources */,
+				9396650F1C0C3CF400539CE0 /* style.scss in Resources */,
+				939664EB1C0C3CF400539CE0 /* classQuery.js in Resources */,
+				939664FE1C0C3CF400539CE0 /* Roboto-Regular.ttf in Resources */,
 				14F827591BEB6F8A004AEA96 /* btn_close_selected@2x.png in Resources */,
+				939665061C0C3CF400539CE0 /* materialize.js in Resources */,
+				939664F71C0C3CF400539CE0 /* Roboto-Bold.woff2 in Resources */,
+				939664E71C0C3CF400539CE0 /* _data.scssc in Resources */,
+				939664F31C0C3CF400539CE0 /* Material-Design-Icons.woff in Resources */,
+				939664FD1C0C3CF400539CE0 /* Roboto-Medium.woff2 in Resources */,
+				939664E11C0C3CF400539CE0 /* dayly-style.scssc in Resources */,
+				939664F11C0C3CF400539CE0 /* Material-Design-Icons.svg in Resources */,
+				939664EE1C0C3CF400539CE0 /* style.css in Resources */,
+				939665031C0C3CF400539CE0 /* Roboto-Thin.woff2 in Resources */,
+				939664FF1C0C3CF400539CE0 /* Roboto-Regular.woff in Resources */,
+				939664DD1C0C3CF400539CE0 /* _csshake.scssc in Resources */,
 				143714B81BEDA94200D2F5A9 /* FontAwesome.ttf in Resources */,
+				939664E41C0C3CF400539CE0 /* weekly-class-style.scssc in Resources */,
+				9396650B1C0C3CF400539CE0 /* _animation.scss in Resources */,
+				939664F01C0C3CF400539CE0 /* Material-Design-Icons.eot in Resources */,
+				939664F61C0C3CF400539CE0 /* Roboto-Bold.woff in Resources */,
 				14BF777C1C00A0CC00251561 /* WeiboSDK.bundle in Resources */,
+				939664E81C0C3CF400539CE0 /* _font.scssc in Resources */,
+				939665091C0C3CF400539CE0 /* _csshake.scss in Resources */,
 				14BF777A1C00A0CC00251561 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				939664F91C0C3CF400539CE0 /* Roboto-Light.woff in Resources */,
+				939664F81C0C3CF400539CE0 /* Roboto-Light.ttf in Resources */,
+				939664FA1C0C3CF400539CE0 /* Roboto-Light.woff2 in Resources */,
+				939664FB1C0C3CF400539CE0 /* Roboto-Medium.ttf in Resources */,
+				9396650D1C0C3CF400539CE0 /* _font.scss in Resources */,
+				939664DE1C0C3CF400539CE0 /* _reset.scssc in Resources */,
+				939664F21C0C3CF400539CE0 /* Material-Design-Icons.ttf in Resources */,
+				939664E31C0C3CF400539CE0 /* style.scssc in Resources */,
+				939665021C0C3CF400539CE0 /* Roboto-Thin.woff in Resources */,
 				14BF77801C00A0CC00251561 /* ShareSDK.bundle in Resources */,
+				939665081C0C3CF400539CE0 /* materialize.min.js in Resources */,
+				9396650E1C0C3CF400539CE0 /* _mixin.scss in Resources */,
+				939664E91C0C3CF400539CE0 /* _mixin.scssc in Resources */,
+				9396650A1C0C3CF400539CE0 /* _reset.scss in Resources */,
+				939665101C0C3CF400539CE0 /* style.css in Resources */,
 				14BF777E1C00A0CC00251561 /* read_me.txt in Resources */,
 				143A93E61BF43E62001A36C8 /* Main.storyboard in Resources */,
 				14BF78C41C00A36F00251561 /* Images.xcassets in Resources */,
+				939664EC1C0C3CF400539CE0 /* materialize.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,12 +1103,13 @@
 				93F302911C0BF56E00E7D2A3 /* CommentViewController.swift in Sources */,
 				14F495E21BEA3A7D00117D29 /* SettingViewController.swift in Sources */,
 				D2FC4D991BD4C89D00F18240 /* UserViewController.swift in Sources */,
+				939665181C0C59CD00539CE0 /* LocalWebViewController.swift in Sources */,
 				143714BB1BEDA94200D2F5A9 /* MozTopAlertView.m in Sources */,
 				143714BA1BEDA94200D2F5A9 /* UIFont+FontAwesome.m in Sources */,
 				14A6B3601C00804E00A0A8EA /* TuShuoNewsItem.swift in Sources */,
 				D23DCFEC1BC27ED400C32F94 /* CollageViewController.swift in Sources */,
 				D26734831BC3E35700E63D15 /* tsShowCardViewController.swift in Sources */,
-				D23DCFE01BC272DD00C32F94 /* ViewController.swift in Sources */,
+				D23DCFE01BC272DD00C32F94 /* MainViewController.swift in Sources */,
 				14A6B3581C0057B900A0A8EA /* FBViewController.swift in Sources */,
 				145B939E1BF37AB500A430EA /* RSKImageScrollView.m in Sources */,
 				D26734811BC3C5A500E63D15 /* WebViewController.swift in Sources */,

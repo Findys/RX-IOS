@@ -10,7 +10,7 @@
         <!--日小新-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="rxNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="MainViewController" customModule="rxNewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -1454,6 +1454,6 @@
         <image name="zaozhe" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yQ2-KQ-zjh"/>
+        <segue reference="XSj-wH-IVb"/>
     </inferredMetricsTieBreakers>
 </document>

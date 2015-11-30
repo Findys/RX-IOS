@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
+class MainViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
 
     var newsArray = Array<AnyObject>()
     var slideArray = Array<AnyObject>()

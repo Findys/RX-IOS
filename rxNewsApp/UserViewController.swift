@@ -83,11 +83,9 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
 //            课表查询
         case 1:
-//            let webview = UIStoryboard.init(name: "Main", bundle: nil)
-//            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-//            push.path = NSBundle.mainBundle().pathForResource("classQuery", ofType: "html")!
-//            push.ifJs = true
-//            self.navigationController?.pushViewController(push, animated: true)
+            let local = LocalWebViewController()
+            local.path = NSBundle.mainBundle().pathForResource("classQuery", ofType: "html")!
+            self.navigationController?.pushViewController(local, animated: true)
             break
         
 //            一卡通查询
@@ -182,6 +180,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return true
     }
     
+//    获取头像
     func headImageGet(){
         let afManager = AFHTTPRequestOperationManager()
         let url = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
@@ -207,6 +206,14 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func reload(){
         
         if (userDefault.boolForKey("iflogin")){
+            UIView.animateWithDuration(1, animations: { () -> Void in
+                self.login.alpha = 0
+                self.password.alpha = 0
+                self.account.alpha = 0
+                self.username.alpha = 1
+                self.rxServiceTable.alpha = 1
+                self.headimage.alpha = 1
+            })
             login.hidden = true
             password.hidden = true
             account.hidden = true
@@ -216,6 +223,14 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             self.view.viewWithTag(1)!.backgroundColor = UIColor(red: 38/255.0, green: 165/255.0, blue: 153/255.0, alpha: 1.0)
             
         }else{
+            UIView.animateWithDuration(1, animations: { () -> Void in
+                self.login.alpha = 1
+                self.password.alpha = 1
+                self.account.alpha = 1
+                self.username.alpha = 0
+                self.rxServiceTable.alpha = 0
+                self.headimage.alpha = 0
+            })
             login.hidden = false
             password.hidden = false
             account.hidden = false

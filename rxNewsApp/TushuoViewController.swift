@@ -92,8 +92,10 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
 //    从tsCardFJ返回时回复navigationbar颜色
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBar.barTintColor=UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1.0)
+    override func viewDidAppear(animated: Bool) {
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.navigationController?.navigationBar.barTintColor=UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1.0)
+        }
     }
     
 //    获取更多数据

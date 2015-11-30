@@ -21,21 +21,20 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     var ifJs = Bool()
     var webView: WKWebView!
     override func loadView() {
-        
         super.loadView()
             let config = WKWebViewConfiguration()
             let contentController = WKUserContentController()
-        
-            let userScript = WKUserScript(
-                source: "bootstrap()",
-                injectionTime: WKUserScriptInjectionTime.AtDocumentEnd,
-                forMainFrameOnly: true)
-        
-        contentController.addUserScript(userScript)
+//
+//            let userScript = WKUserScript(
+//                source: "bootstrap()",
+//                injectionTime: WKUserScriptInjectionTime.AtDocumentEnd,
+//                forMainFrameOnly: true)
+//        
+//        contentController.addUserScript(userScript)
         config.userContentController = contentController
         self.webView = WKWebView(frame:self.view.frame, configuration: config)
-        self.webView.navigationDelegate = self;
-        self.view = webView
+        webView.frame = self.view.frame
+        self.view.addSubview(webView)
         
         comment.addTarget(self, action: "commentButton", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -43,19 +42,8 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        
-        if ifJs{
-            let apphtml = try! NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
-            let bath = NSURL(fileURLWithPath: path)
-            webView.loadHTMLString(apphtml as String, baseURL: bath)
-        }
-        else{
-            let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)
-            webView.loadRequest(request)
-            
-        }
+        let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)
+        webView.loadRequest(request)
         
         // Do any additional setup after loading the view.
     }
