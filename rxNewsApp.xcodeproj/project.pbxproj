@@ -65,6 +65,7 @@
 		14F827581BEB6F8A004AEA96 /* btn_close_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827521BEB6F8A004AEA96 /* btn_close_selected.png */; };
 		14F827591BEB6F8A004AEA96 /* btn_close_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827531BEB6F8A004AEA96 /* btn_close_selected@2x.png */; };
 		14F8275A1BEB6F8A004AEA96 /* DXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F827551BEB6F8A004AEA96 /* DXAlertView.m */; };
+		93F302911C0BF56E00E7D2A3 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F302901C0BF56E00E7D2A3 /* CommentViewController.swift */; };
 		D23DCFDC1BC272DD00C32F94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */; };
 		D23DCFE01BC272DD00C32F94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFDB1BC272DD00C32F94 /* ViewController.swift */; };
 		D23DCFEC1BC27ED400C32F94 /* CollageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFEB1BC27ED400C32F94 /* CollageViewController.swift */; };
@@ -214,6 +215,7 @@
 		14F827541BEB6F8A004AEA96 /* DXAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXAlertView.h; sourceTree = "<group>"; };
 		14F827551BEB6F8A004AEA96 /* DXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXAlertView.m; sourceTree = "<group>"; };
 		197015E37310C125A909AEF2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		93F302901C0BF56E00E7D2A3 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = rxNewsApp/AppDelegate.swift; sourceTree = "<group>"; };
 		D23DCFDA1BC272DD00C32F94 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = rxNewsApp/Info.plist; sourceTree = "<group>"; };
 		D23DCFDB1BC272DD00C32F94 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = rxNewsApp/ViewController.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 			isa = PBXGroup;
 			children = (
 				D26734801BC3C5A500E63D15 /* WebViewController.swift */,
+				93F302901C0BF56E00E7D2A3 /* CommentViewController.swift */,
 				D23DCFDB1BC272DD00C32F94 /* ViewController.swift */,
 				D23DCFED1BC27F8B00C32F94 /* TushuoViewController.swift */,
 				D26734821BC3E35700E63D15 /* tsShowCardViewController.swift */,
@@ -769,6 +772,7 @@
 				D23DCFEE1BC27F8B00C32F94 /* TushuoViewController.swift in Sources */,
 				14E068A11C01B25000BA8465 /* AboutViewController.swift in Sources */,
 				14F8275A1BEB6F8A004AEA96 /* DXAlertView.m in Sources */,
+				93F302911C0BF56E00E7D2A3 /* CommentViewController.swift in Sources */,
 				14F495E21BEA3A7D00117D29 /* SettingViewController.swift in Sources */,
 				D2FC4D991BD4C89D00F18240 /* UserViewController.swift in Sources */,
 				143714BB1BEDA94200D2F5A9 /* MozTopAlertView.m in Sources */,

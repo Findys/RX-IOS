@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "rxNewsApp/WebViewController.swift"
+            timestampString = "470546040.565488"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "loadView()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rxNewsApp.WebViewController.webView.getter : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.WKWebView&gt;"
+                  moduleName = "rxNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Geek/Documents/rxNewsAppIOS/rxNewsApp/WebViewController.swift"
+                  timestampString = "470546040.612609"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rxNewsApp.WebViewController.webView.setter : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.WKWebView&gt;"
+                  moduleName = "rxNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Geek/Documents/rxNewsAppIOS/rxNewsApp/WebViewController.swift"
+                  timestampString = "470546040.614888"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rxNewsApp.WebViewController.webView.materializeForSet : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.WKWebView&gt;"
+                  moduleName = "rxNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Geek/Documents/rxNewsAppIOS/rxNewsApp/WebViewController.swift"
+                  timestampString = "470546040.615058"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rxNewsApp.WebViewController.init (rxNewsApp.WebViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; rxNewsApp.WebViewController"
+                  moduleName = "rxNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Geek/Documents/rxNewsAppIOS/rxNewsApp/WebViewController.swift"
+                  timestampString = "470546040.615175"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "429">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rxNewsApp.WebViewController.init (rxNewsApp.WebViewController.Type)(coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;rxNewsApp.WebViewController&gt;"
+                  moduleName = "rxNewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Geek/Documents/rxNewsAppIOS/rxNewsApp/WebViewController.swift"
+                  timestampString = "470546040.615295"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "328">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

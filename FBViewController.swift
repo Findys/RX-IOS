@@ -15,7 +15,7 @@ class FBViewController: UIViewController,UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        commit.addTarget(self, action: "feedback", forControlEvents: UIControlEvents.TouchUpInside)
+        commit.addTarget(self, action: "feedBack", forControlEvents: UIControlEvents.TouchUpInside)
         content.layer.borderWidth = 1
         content.layer.cornerRadius = 5
         content.clipsToBounds = true
@@ -30,7 +30,7 @@ class FBViewController: UIViewController,UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func feedback(){
+    func feedBack(){
         if let _ = content.text {
             if let _ = nickname.text{
                 let PARAM = ["content":content.text!,"nickname":nickname.text!]

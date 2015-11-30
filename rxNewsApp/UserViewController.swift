@@ -124,7 +124,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
 //    发送用户信息
-    func postdata(){
+    func postData(){
         let afManager = AFHTTPRequestOperationManager()
         let mypassword=password.text! as String
         let myaccount=account.text! as String
@@ -165,7 +165,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         password.resignFirstResponder()
         account.resignFirstResponder()
         if (account.text?.characters.count==14)&&(password.text?.characters.count>=6){
-            postdata()
+            postData()
         }else{
             MozTopAlertView.showWithType(MozAlertTypeWarning, text: "输入错误", parentView:self.view.viewWithTag(1))
         }
@@ -174,7 +174,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //    监听键盘的return的事件
     func textFieldShouldReturn(textField: UITextField) -> Bool{
         if(password.text?.characters.count>=6){
-            postdata()
+            postData()
         }else{
             MozTopAlertView.showWithType(MozAlertTypeWarning, text: "输入错误", parentView:self.view.viewWithTag(1))
             password.resignFirstResponder()
