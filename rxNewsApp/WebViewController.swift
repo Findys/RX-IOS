@@ -10,31 +10,27 @@ import UIKit
 import WebKit
 
 @available(iOS 8.0, *)
-class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate {
+class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate{
     
     @IBOutlet weak var comment: UIButton!
-    @IBOutlet weak var progressBar: UIProgressView!
-    @IBOutlet weak var backView: UIView!
+    var progressBar = UIProgressView()
     var userDefault = NSUserDefaults()
     var path = String()
     var id = Int()
-    var ifJs = Bool()
     var webView: WKWebView!
     override func loadView() {
         super.loadView()
-            let config = WKWebViewConfiguration()
-            let contentController = WKUserContentController()
-//
-//            let userScript = WKUserScript(
-//                source: "bootstrap()",
-//                injectionTime: WKUserScriptInjectionTime.AtDocumentEnd,
-//                forMainFrameOnly: true)
-//        
-//        contentController.addUserScript(userScript)
+        let config = WKWebViewConfiguration()
+        let contentController = WKUserContentController()
         config.userContentController = contentController
-        self.webView = WKWebView(frame:self.view.frame, configuration: config)
-        webView.frame = self.view.frame
+        self.webView = WKWebView(frame:self.view.viewWithTag(1)!.frame, configuration: config)
+        webView.navigationDelegate = self
+        progressBar.progress = 0
+        progressBar.frame = CGRect(x: 0, y: (self.view.viewWithTag(1)?.frame.origin.y)!, width: self.view.frame.width, height: 20)
+        progressBar.backgroundColor = UIColor.lightGrayColor()
+        progressBar.progressTintColor = UIColor.greenColor()
         self.view.addSubview(webView)
+        self.view.addSubview(progressBar)
         
         comment.addTarget(self, action: "commentButton", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -42,10 +38,15 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)
-        webView.loadRequest(request)
+
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)
+        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
+        webView.loadRequest(request)
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,10 +56,23 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     
     func commentButton(){
         let myStoryBoard = UIStoryboard.init(name: "Main", bundle: nil)
-        let push = myStoryBoard.instantiateViewControllerWithIdentifier("comment") as! CommentViewController
+        let push = myStoryBoard.instantiateViewControllerWithIdentifier("comment")
         self.navigationController?.pushViewController(push, animated: true)
     }
+    
+    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+        progressBar.setProgress(0.0, animated: false)
+        webView.removeObserver(self, forKeyPath: "estimatedProgress")
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if (keyPath == "estimatedProgress") {
+            progressBar.hidden = webView.estimatedProgress == 1
+            progressBar.setProgress(Float(webView.estimatedProgress), animated: true)
+        }
+    }
 
+    
 
     /*
     // MARK: - Navigation
@@ -71,3 +85,4 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     */
 
 }
+

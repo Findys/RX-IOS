@@ -36,7 +36,6 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         let cell = sender as! UITableViewCell
         let vc = segue.destinationViewController as! WebViewController
         vc.id = cell.tag
-        vc.ifJs = false
         vc.hidesBottomBarWhenPushed = true
     }
     

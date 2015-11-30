@@ -51,13 +51,11 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             let cell = sender as! UITableViewCell
             let vc = segue.destinationViewController as! WebViewController
             vc.id = cell.tag
-            vc.ifJs = false
             vc.hidesBottomBarWhenPushed = true
         }
         if segue.identifier == "rxPageNews" {
             let vc = segue.destinationViewController as! WebViewController
             vc.id = (slideArray[pageControl.currentPage].objectForKey("id") as? Int)!
-            vc.ifJs = false
             vc.hidesBottomBarWhenPushed = true
         }
     }
@@ -215,7 +213,6 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func click() {
         let wv=UIStoryboard.init(name:"Main", bundle: nil)
         let push = wv.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-        push.ifJs = false
         push.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(push, animated: true)
     }
