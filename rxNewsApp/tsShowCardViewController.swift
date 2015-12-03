@@ -9,10 +9,10 @@
 import UIKit
 import Social
 
-let WINDOW_WIDTH = UIScreen.mainScreen().bounds.width
-let WINDOW_HEIGHT = UIScreen.mainScreen().bounds.height
 class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     @IBOutlet weak var share: UIButton!
+    let WINDOW_WIDTH = UIScreen.mainScreen().bounds.width
+    let WINDOW_HEIGHT = UIScreen.mainScreen().bounds.height
     var scrollview = UIScrollView()
     var pid = Int()
     var ifloading = Bool()
@@ -23,13 +23,14 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     let text = UILabel()
     let background = UIView()
     var imagearray=Array<UIImage>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.barTintColor=UIColor.clearColor()
         self.navigationController?.navigationBar.shadowImage = UIImage.init()
         requestData()
-        share.addTarget(self, action: "sharefunc", forControlEvents: UIControlEvents.TouchUpInside)
+        share.addTarget(self, action: "shareFunc", forControlEvents: UIControlEvents.TouchUpInside)
         
         scrollview.delegate = self
         scrollview.frame = CGRectMake(0, 0, backview.frame.width, backview.frame.height)
@@ -65,14 +66,14 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             url = "http://pic.ecjtu.net/\(url)"
             let image = UIImageView()
             image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, cacheType:SDImageCacheType, nsurl:NSURL!) -> Void in
-                image.frame = CGRectMake(CGFloat(index)*WINDOW_WIDTH,WINDOW_HEIGHT/2-WINDOW_WIDTH/UIimage.size.width*UIimage.size.height/2-10
-                    ,WINDOW_WIDTH,WINDOW_WIDTH/UIimage.size.width*UIimage.size.height)
+                image.frame = CGRectMake(CGFloat(index)*self.WINDOW_WIDTH,self.WINDOW_HEIGHT/2-self.WINDOW_WIDTH/UIimage.size.width*UIimage.size.height/2-10
+                    ,self.WINDOW_WIDTH,self.WINDOW_WIDTH/UIimage.size.width*UIimage.size.height)
                 self.imagearray.append(UIimage)
                 let longpress = UILongPressGestureRecognizer.init(target: self, action: "longPress")
                 longpress.allowableMovement = 10
                 longpress.minimumPressDuration = 1
                 longpress.numberOfTouchesRequired = 1
-                let photoview = VIPhotoView.init(frame:CGRect(x: CGFloat(index)*WINDOW_WIDTH,y:-70
+                let photoview = VIPhotoView.init(frame:CGRect(x: CGFloat(index)*self.WINDOW_WIDTH,y:-70
                     ,width: self.backview.frame.width,height: self.backview.frame.height), andImage: UIimage)
                 photoview.userInteractionEnabled = true
                 photoview.addGestureRecognizer(longpress)
@@ -161,7 +162,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     func longPress(){
 //        if gestureRec.state == UIGestureRecognizerState.Began {
             MozTopAlertView.showWithType(MozAlertTypeInfo, text: "保存到图库", doText: "是的", doBlock: { () -> Void in
-            let img = self.imagearray[Int(self.scrollview.contentOffset.x/WINDOW_WIDTH)] as UIImage
+            let img = self.imagearray[Int(self.scrollview.contentOffset.x/self.WINDOW_WIDTH)] as UIImage
             UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
                 }, parentView: self.backview)
 //        }

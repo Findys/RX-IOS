@@ -32,16 +32,19 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
+//    segue跳转页面
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let cell = sender as! UITableViewCell
         let vc = segue.destinationViewController as! tsShowCardViewController
         vc.pid = cell.tag
     }
     
+//    返回Section数量
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsArray.count
     }
     
+//    获取每个Cell数据
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tushuoTable.dequeueReusableCellWithIdentifier("tushuoCell")
         let view = cell!.contentView.viewWithTag(1)

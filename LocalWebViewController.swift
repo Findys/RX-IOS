@@ -19,7 +19,6 @@ class LocalWebViewController: UIViewController,WKNavigationDelegate {
         let config = WKWebViewConfiguration()
         let contentController = WKUserContentController()
         config.userContentController = contentController
-        print(id)
         let js = "window.id = '"+id+"';"
 //        let js = "getid(" + id + ");"
         let script = WKUserScript.init(source: js, injectionTime: .AtDocumentStart,forMainFrameOnly: true)

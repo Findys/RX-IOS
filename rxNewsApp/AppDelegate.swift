@@ -16,7 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         shareSDKset()
         getToken()
-        
+        let name = "用户名"
+        let userDefault = NSUserDefaults()
+        userDefault.setObject(name, forKey: "name")
         return true
         
         

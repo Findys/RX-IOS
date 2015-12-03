@@ -12,6 +12,7 @@ class CommentViewController: UIViewController,UITextViewDelegate {
     var content = UITextView()
     var commit = UIButton()
     var id = NSNumber()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         content.frame = CGRect(x: 10, y: self.view.frame.height-30, width: self.view.frame.width-90, height: 30)
@@ -41,10 +42,7 @@ class CommentViewController: UIViewController,UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func webViewDidFinishLoad(webView: UIWebView){
-        
-    }
-    
+//    开始编辑textview时调用
     func textViewDidBeginEditing(textView: UITextView){
         let frame = textView.frame
         let offset = frame.origin.y+67-(self.view.frame.size.height-216)
@@ -54,19 +52,22 @@ class CommentViewController: UIViewController,UITextViewDelegate {
         UIView.commitAnimations()
     }
     
+//    点击页面调用
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         content.resignFirstResponder()
     }
     
+//    结束编辑时调用
     func textViewDidEndEditing(textView: UITextView){
         self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
     }
     
+//    提交评论
     func commitComment(){
         let afmanager = AFHTTPRequestOperationManager()
         let URL = "http://app.ecjtu.net/api/v1/article/\(id)/comment"
-        let PARAM = ["id":id,"content":content.text!]
-        afmanager.POST(URL, parameters: PARAM, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
+        let param = ["id":id,"content":content.text!]
+        afmanager.POST(URL, parameters: param, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
             print(resp)
             }) { (AFHTTPRequestOperation, error:NSError) -> Void in
                 print(error)

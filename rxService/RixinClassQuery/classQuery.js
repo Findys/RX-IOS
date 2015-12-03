@@ -152,7 +152,6 @@ $(document).ready(function(){
                          success: function(json){
                          },
                          });
-                  alert('WTF');
                   }
 })
 //var jsonp = function(json){console.log(json);}

@@ -20,19 +20,13 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var login: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         login.addTarget(self, action: "loginClick", forControlEvents: UIControlEvents.TouchUpInside)
         rxServiceTable.dataSource=self
         rxServiceTable.delegate=self
-        if let himage = userDefault.objectForKey("headimage"){
-        let h2image = UIImage.init(data: himage as! NSData)! as UIImage
-        username.text = userDefault.objectForKey("name") as? String
-        headimage.image = h2image
-        }
         
-        headimage.layer.cornerRadius = 50
-        headimage.clipsToBounds = true
         
         if (userDefault.objectForKey("password") == nil){
             iflogin=false
@@ -42,13 +36,9 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         reload()
     }
     
+//    view将要出现时调用
     override func viewWillAppear(animated: Bool) {
         reload()
-        if let himage = userDefault.objectForKey("headimage"){
-            let h2image = UIImage.init(data: himage as! NSData)! as UIImage
-            username.text = userDefault.objectForKey("name") as? String
-            headimage.image = h2image
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,11 +46,12 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         // Dispose of any resources that can be recreated.
     }
     
+//    返回Section数量
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return array.count
     }
     
-    
+//    获取每个Cell的数据
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = rxServiceTable.dequeueReusableCellWithIdentifier("rxServiceCell")!
         let label=cell.viewWithTag(1) as! UILabel
@@ -69,7 +60,8 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         label.text=array[indexPath.row]
         return cell
     }
-    
+
+//    每个cell的点击事件
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         switch indexPath.row{
 //            成绩查询
@@ -210,14 +202,20 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.account.alpha = 0
                 self.username.alpha = 1
                 self.rxServiceTable.alpha = 1
-                self.headimage.alpha = 1
+//                self.headimage.alpha = 1
+                self.headimage.layer.cornerRadius = 50
+                self.headimage.clipsToBounds = true
             })
             login.hidden = true
             password.hidden = true
             account.hidden = true
             username.hidden = false
             rxServiceTable.hidden = false
-            headimage.hidden = false
+//            headimage.hidden = false
+            if let himage = userDefault.objectForKey("headimage"){
+                let h2image = UIImage.init(data: himage as! NSData)! as UIImage
+                headimage.image = h2image
+            }
             self.view.viewWithTag(1)!.backgroundColor = UIColor(red: 38/255.0, green: 165/255.0, blue: 153/255.0, alpha: 1.0)
             
         }else{
@@ -227,22 +225,21 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.account.alpha = 1
                 self.username.alpha = 0
                 self.rxServiceTable.alpha = 0
-                self.headimage.alpha = 0
+//                self.headimage.alpha = 0
             })
+            self.headimage.clipsToBounds = false
+            self.headimage.image = UIImage(named: "welcome_logo")
             login.hidden = false
             password.hidden = false
             account.hidden = false
             username.hidden = true
             rxServiceTable.hidden = true
-            headimage.hidden = true
+//            headimage.hidden = true
             self.view.viewWithTag(1)!.backgroundColor = UIColor.whiteColor()
         }
+        let name = userDefault.objectForKey("name") as! String
+        self.username.text = name
         
-        if let himage = userDefault.objectForKey("headimage"){
-            let h2image = UIImage.init(data: himage as! NSData)! as UIImage
-            headimage.image = h2image
-        }
-
         
     }
 

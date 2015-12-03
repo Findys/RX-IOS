@@ -8,7 +8,7 @@
 import UIKit
 
 class MainViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate, UIPageViewControllerDelegate{
-
+    let WINDOW_WIDTH = UIScreen.mainScreen().bounds.width
     var newsArray = Array<AnyObject>()
     var slideArray = Array<AnyObject>()
     var articleID = Int()
@@ -46,6 +46,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         // Dispose of any resources that can be recreated.
     }
     
+//    segue页面跳转
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "rxNews" {
             let cell = sender as! UITableViewCell
@@ -60,6 +61,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
+//    返回cell的高度
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if 0 == indexPath.row {
             return 204
@@ -68,10 +70,12 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
+//    返回section数量
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsArray.count
     }
     
+//    获取每个cell的值
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = newsTable.dequeueReusableCellWithIdentifier("pageCell")!
@@ -100,7 +104,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             pageInited = true
             for i in 0...2 {
                 var view = UIImageView()
-                view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "click"))
+                view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "scrollViewClick"))
                 view.userInteractionEnabled=true
                 if scrollview.viewWithTag(i+20) == nil {
                     self.slidetitle = cell.viewWithTag(11) as! UILabel
@@ -117,9 +121,9 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                     }
                     else{
                         view.frame = CGRectMake(CGFloat(Int(cell.frame.width)*i),
-                            CGFloat(0),cell.frame.width,cell.frame.width/uiImage.size.width*uiImage.size.height)
-                        self.scrollview.contentSize = CGSizeMake(CGFloat(Int(cell.frame.width)*3),0)
-                    }
+                            CGFloat(0),self.WINDOW_WIDTH,self.WINDOW_WIDTH/uiImage.size.width*uiImage.size.height)
+                        self.scrollview.contentSize = CGSizeMake(CGFloat(Int(self.WINDOW_WIDTH)*3),0)
+                    }	
                 })
             }
             return cell
@@ -210,7 +214,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
 //    横幅点击事件
-    func click() {
+    func scrollViewClick() {
         let wv=UIStoryboard.init(name:"Main", bundle: nil)
         let push = wv.instantiateViewControllerWithIdentifier("webview") as! WebViewController
         push.hidesBottomBarWhenPushed = true

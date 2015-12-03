@@ -30,6 +30,7 @@ $(document).ready(function() {
     
                   if(window.id){
                   selfId = window.id;
+                
                   }
                   
                   

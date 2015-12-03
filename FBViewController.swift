@@ -12,6 +12,7 @@ class FBViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var content: UITextView!
     @IBOutlet weak var nickname: UITextField!
     @IBOutlet weak var commit: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -30,6 +31,7 @@ class FBViewController: UIViewController,UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+//    反馈功能实现
     func feedBack(){
         if let _ = content.text {
             if let _ = nickname.text{
@@ -46,11 +48,13 @@ class FBViewController: UIViewController,UITextViewDelegate {
     
     }
     
+//    当点击页面时调用
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         content.resignFirstResponder()
         nickname.resignFirstResponder()
     }
     
+//    textview点击事件
     func textViewDidBeginEditing(textView: UITextView){
         content.text=""
     }

@@ -13,7 +13,8 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var version: UILabel!
     @IBOutlet var tableview: UITableView!
-    var userDefault = NSUserDefaults.standardUserDefaults()
+    var userDefault = NSUserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -34,10 +35,12 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         // Dispose of any resources that can be recreated.
     }
     
+//    view将出现时调用
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.barTintColor=UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1.0)
     }
     
+//    每个Cell的点击事件
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         switch indexPath.section{
         case 0:
@@ -100,7 +103,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         self.tableview.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
-    
+//    图片选择
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         let image=info[UIImagePickerControllerOriginalImage] as! UIImage
         let img=RSKImageCropViewController.init(image: image, cropMode: RSKImageCropMode.Circle)
@@ -109,18 +112,20 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         self.presentViewController(img, animated: true, completion: nil)
     }
     
+//    图片取消裁剪
     func imageCropViewControllerDidCancelCrop(controller: RSKImageCropViewController!) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
+//    图片裁剪结束
     func imageCropViewController(controller: RSKImageCropViewController!, didCropImage croppedImage: UIImage!, usingCropRect cropRect: CGRect) {
         let IMGDATA = UIImageJPEGRepresentation(croppedImage, CGFloat(1))
         userDefault.setObject(IMGDATA, forKey: "headimage")
-        let PARAMS:[String:AnyObject] = ["token":userDefault.stringForKey("token")!]
-        let AFMANAGER = AFHTTPRequestOperationManager()
+        let params:[String:AnyObject] = ["token":userDefault.stringForKey("token")!]
+        let afmanager = AFHTTPRequestOperationManager()
         let studentID = userDefault.stringForKey("account")!
         let url = "http://user.ecjtu.net/api/user/\(studentID)/avatar"
-        AFMANAGER.POST(url, parameters: PARAMS, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
+        afmanager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
             formdata.appendPartWithFileData(IMGDATA!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
             }, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
                 if( resp.objectForKey("result")! as! Int == 1){
@@ -132,14 +137,15 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         }
         controller.dismissViewControllerAnimated(true, completion: nil)
         MozTopAlertView.showWithType(MozAlertTypeInfo, text: "头像上传中", parentView: self.view)
-        AFMANAGER.requestSerializer = AFHTTPRequestSerializer()
-        AFMANAGER.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as Set<NSObject>
+        afmanager.requestSerializer = AFHTTPRequestSerializer()
+        afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as Set<NSObject>
     }
     
+//    获取头像
     func headImageGet(){
-        let AFMANAGER = AFHTTPRequestOperationManager()
+        let afmanager = AFHTTPRequestOperationManager()
         let URL = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
-        let GET = AFMANAGER.GET(URL, parameters: nil, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
+        let GET = afmanager.GET(URL, parameters: nil, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
             let JSON: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
             let AVATAR_URL = "http://"+((JSON?.objectForKey("user")?.objectForKey("avatar"))! as! String)
             self.headImg.sd_setImageWithURL(NSURL(string: AVATAR_URL), completed: { (image:UIImage!, error:NSError!, catchType:SDImageCacheType, nsurl:NSURL!) -> Void in
