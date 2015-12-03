@@ -204,18 +204,6 @@
                         <subviews>
                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jzh-2f-3de">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <subviews>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Fxa-6C-yJM">
-                                        <rect key="frame" x="85" y="132" width="150" height="2"/>
-                                        <animations/>
-                                        <color key="progressTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="trackTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </progressView>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cTJ-QG-QRn">
-                                        <rect key="frame" x="150" y="226" width="20" height="20"/>
-                                        <animations/>
-                                    </activityIndicatorView>
-                                </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -505,6 +493,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCF-KY-bES" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1207" y="-122"/>
+        </scene>
+        <!--Local Web View Controller-->
+        <scene sceneID="uTb-3u-lhp">
+            <objects>
+                <viewController id="NSS-18-0cH" customClass="LocalWebViewController" customModule="rxNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="264-7a-I6y"/>
+                        <viewControllerLayoutGuide type="bottom" id="4JP-09-mn7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OOO-Fl-Uvo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VOr-2Q-Ul3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1618" y="-122"/>
         </scene>
         <!--学院专题-->
         <scene sceneID="bhm-9p-JM1">

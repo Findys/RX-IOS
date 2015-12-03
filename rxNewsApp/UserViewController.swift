@@ -74,11 +74,9 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         switch indexPath.row{
 //            成绩查询
         case 0:
-//            let webview = UIStoryboard.init(name: "Main", bundle: nil)
-//            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-//            push.path = NSBundle.mainBundle().pathForResource("scoreQuery", ofType: "html")!
-//            push.ifJs = true
-//            self.navigationController?.pushViewController(push, animated: true)
+            let local = LocalWebViewController()
+            local.path = NSBundle.mainBundle().pathForResource("scoreQuery", ofType: "html")!
+            self.navigationController?.pushViewController(local, animated: true)
             break
         
 //            课表查询

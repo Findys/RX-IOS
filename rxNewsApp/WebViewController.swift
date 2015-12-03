@@ -29,6 +29,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         progressBar.frame = CGRect(x: 0, y: (self.view.viewWithTag(1)?.frame.origin.y)!, width: self.view.frame.width, height: 20)
         progressBar.backgroundColor = UIColor.lightGrayColor()
         progressBar.progressTintColor = UIColor.greenColor()
+        webView.alpha = 0;
         self.view.addSubview(webView)
         self.view.addSubview(progressBar)
         
@@ -47,12 +48,16 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         webView.loadRequest(request)
+        UIView.animateWithDuration(2) { () -> Void in
+            self.webView.alpha = 1
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     func commentButton(){
         let myStoryBoard = UIStoryboard.init(name: "Main", bundle: nil)
