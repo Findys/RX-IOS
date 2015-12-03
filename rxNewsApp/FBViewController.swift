@@ -23,15 +23,15 @@ class FBViewController: UIViewController,UITextViewDelegate {
         content.text="请输入内容"
         content.layer.borderColor = UIColor.lightGrayColor().CGColor
         content.delegate = self
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-//    反馈功能实现
+    //    反馈功能实现
     func feedBack(){
         if let _ = content.text {
             if let _ = nickname.text{
@@ -39,25 +39,25 @@ class FBViewController: UIViewController,UITextViewDelegate {
                 let AFMANAGER = AFHTTPRequestOperationManager()
                 let url = "http://app.ecjtu.net/api/v1/feedback"
                 AFMANAGER.POST(url, parameters: PARAM, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
-                        MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "感谢您的支持", parentView: self.view.viewWithTag(1))
+                    MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "感谢您的支持", parentView: self.view.viewWithTag(1))
                     }, failure: { (AFHTTPRequestOperation, error:NSError) -> Void in
                         MozTopAlertView.showWithType(MozAlertTypeError, text: "请检查网络", parentView: self.view.viewWithTag(1))
                 })
             }
         }
-    
+        
     }
     
-//    当点击页面时调用
+    //    当点击页面时调用
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         content.resignFirstResponder()
         nickname.resignFirstResponder()
     }
     
-//    textview点击事件
+    //    textview点击事件
     func textViewDidBeginEditing(textView: UITextView){
         content.text=""
     }
-
-
+    
+    
 }

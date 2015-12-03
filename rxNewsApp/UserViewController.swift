@@ -36,7 +36,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         reload()
     }
     
-//    view将要出现时调用
+    //    view将要出现时调用
     override func viewWillAppear(animated: Bool) {
         reload()
     }
@@ -46,12 +46,12 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         // Dispose of any resources that can be recreated.
     }
     
-//    返回Section数量
+    //    返回Section数量
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return array.count
     }
     
-//    获取每个Cell的数据
+    //    获取每个Cell的数据
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = rxServiceTable.dequeueReusableCellWithIdentifier("rxServiceCell")!
         let label=cell.viewWithTag(1) as! UILabel
@@ -60,58 +60,58 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         label.text=array[indexPath.row]
         return cell
     }
-
-//    每个cell的点击事件
+    
+    //    每个cell的点击事件
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         switch indexPath.row{
-//            成绩查询
+            //            成绩查询
         case 0:
             let local = LocalWebViewController()
             local.path = NSBundle.mainBundle().pathForResource("scoreQuery", ofType: "html")!
             self.navigationController?.pushViewController(local, animated: true)
             break
-        
-//            课表查询
+            
+            //            课表查询
         case 1:
             let local = LocalWebViewController()
             local.path = NSBundle.mainBundle().pathForResource("classQuery", ofType: "html")!
             self.navigationController?.pushViewController(local, animated: true)
             break
-        
-//            一卡通查询
+            
+            //            一卡通查询
         case 2:
-//            let webview = UIStoryboard.init(name: "Main", bundle: nil)
-//            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-//            push.path = NSBundle.mainBundle().pathForResource("cardQuery", ofType: "html")!
-//            push.ifJs = true
-//            self.navigationController?.pushViewController(push, animated: true)
+            //            let webview = UIStoryboard.init(name: "Main", bundle: nil)
+            //            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+            //            push.path = NSBundle.mainBundle().pathForResource("cardQuery", ofType: "html")!
+            //            push.ifJs = true
+            //            self.navigationController?.pushViewController(push, animated: true)
             MozTopAlertView.showWithType(MozAlertTypeInfo, text: "开发中..", parentView: self.view.viewWithTag(1))
             break
-        
-//            图书馆查询
+            
+            //            图书馆查询
         case 3:
-//            let webview = UIStoryboard.init(name: "Main", bundle: nil)
-//            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-//            push.path = NSBundle.mainBundle().pathForResource("review", ofType: "html")!
-//            push.ifJs = true
-//            self.navigationController?.pushViewController(push, animated: true)
+            //            let webview = UIStoryboard.init(name: "Main", bundle: nil)
+            //            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+            //            push.path = NSBundle.mainBundle().pathForResource("review", ofType: "html")!
+            //            push.ifJs = true
+            //            self.navigationController?.pushViewController(push, animated: true)
             MozTopAlertView.showWithType(MozAlertTypeInfo, text: "开发中..", parentView: self.view.viewWithTag(1))
             break
-        
-//            个人设置
+            
+            //            个人设置
         case 4:
             let setting=UIStoryboard.init(name: "Main", bundle: nil)
             let push=setting.instantiateViewControllerWithIdentifier("setting")
             push.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(push, animated: true)
             break
-        
+            
         default:break
         }
         self.rxServiceTable.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-//    发送用户信息
+    //    发送用户信息
     func postData(){
         let afManager = AFHTTPRequestOperationManager()
         let mypassword=password.text! as String
@@ -139,12 +139,12 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         op!.responseSerializer = AFHTTPResponseSerializer()
         op!.start()
     }
-
-//        判断是否登录以使输入框失去焦点
+    
+    //        判断是否登录以使输入框失去焦点
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if iflogin==false{
-        password.resignFirstResponder()
-        account.resignFirstResponder()
+            password.resignFirstResponder()
+            account.resignFirstResponder()
         }
     }
     
@@ -159,7 +159,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-//    监听键盘的return的事件
+    //    监听键盘的return的事件
     func textFieldShouldReturn(textField: UITextField) -> Bool{
         if(password.text?.characters.count>=6){
             postData()
@@ -170,7 +170,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return true
     }
     
-//    获取头像
+    //    获取头像
     func headImageGet(){
         let afManager = AFHTTPRequestOperationManager()
         let url = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
@@ -192,7 +192,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
     }
     
-//    判断是否已登录并且刷新界面
+    //    判断是否已登录并且刷新界面
     func reload(){
         
         if (userDefault.boolForKey("iflogin")){
@@ -202,7 +202,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.account.alpha = 0
                 self.username.alpha = 1
                 self.rxServiceTable.alpha = 1
-//                self.headimage.alpha = 1
+                //                self.headimage.alpha = 1
                 self.headimage.layer.cornerRadius = 50
                 self.headimage.clipsToBounds = true
             })
@@ -211,7 +211,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             account.hidden = true
             username.hidden = false
             rxServiceTable.hidden = false
-//            headimage.hidden = false
+            //            headimage.hidden = false
             if let himage = userDefault.objectForKey("headimage"){
                 let h2image = UIImage.init(data: himage as! NSData)! as UIImage
                 headimage.image = h2image
@@ -225,7 +225,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.account.alpha = 1
                 self.username.alpha = 0
                 self.rxServiceTable.alpha = 0
-//                self.headimage.alpha = 0
+                //                self.headimage.alpha = 0
             })
             self.headimage.clipsToBounds = false
             self.headimage.image = UIImage(named: "welcome_logo")
@@ -234,7 +234,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             account.hidden = false
             username.hidden = true
             rxServiceTable.hidden = true
-//            headimage.hidden = true
+            //            headimage.hidden = true
             self.view.viewWithTag(1)!.backgroundColor = UIColor.whiteColor()
         }
         let name = userDefault.objectForKey("name") as! String
@@ -242,5 +242,5 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         
     }
-
+    
 }

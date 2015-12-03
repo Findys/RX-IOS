@@ -40,13 +40,13 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         newsTable.delegate=self
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-//    segue页面跳转
+    //    segue页面跳转
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "rxNews" {
             let cell = sender as! UITableViewCell
@@ -61,7 +61,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-//    返回cell的高度
+    //    返回cell的高度
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if 0 == indexPath.row {
             return 204
@@ -70,12 +70,12 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-//    返回section数量
+    //    返回section数量
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsArray.count
     }
     
-//    获取每个cell的值
+    //    获取每个cell的值
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = newsTable.dequeueReusableCellWithIdentifier("pageCell")!
@@ -93,7 +93,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                     relatedBy: NSLayoutRelation.Equal,
                     toItem: self.view,
                     attribute: NSLayoutAttribute.Trailing,
-                    multiplier: 1, 
+                    multiplier: 1,
                     constant: 0)
                 pageControl.numberOfPages = 3
                 pageControl.tag = 112
@@ -117,13 +117,13 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 let url = slideArray[i].objectForKey("thumb") as! String
                 view.sd_setImageWithURL(NSURL(string:url), completed: { (uiImage:UIImage!, error:NSError!, cacheType:SDImageCacheType, nsurl:NSURL!) -> Void in
                     if (error != nil){
-                         MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
+                        MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
                     }
                     else{
                         view.frame = CGRectMake(CGFloat(Int(cell.frame.width)*i),
                             CGFloat(0),self.WINDOW_WIDTH,self.WINDOW_WIDTH/uiImage.size.width*uiImage.size.height)
                         self.scrollview.contentSize = CGSizeMake(CGFloat(Int(self.WINDOW_WIDTH)*3),0)
-                    }	
+                    }
                 })
             }
             return cell
@@ -143,8 +143,8 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             return cell!
         }
     }
-
-//    请求数据
+    
+    //    请求数据
     func requestData() {
         let afManager = AFHTTPRequestOperationManager()
         let op =  afManager.GET("http://app.ecjtu.net/api/v1/index",
@@ -164,18 +164,18 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             failure: {  (operation: AFHTTPRequestOperation,
                 error: NSError) in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
-//                self.newsTable.hidden=true
-//                let backimage=UIImageView()
-//                backimage.image=UIImage(named: "IMG_0034")
-//                backimage.frame=CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
-//                self.view.addSubview(backimage)
+                //                self.newsTable.hidden=true
+                //                let backimage=UIImageView()
+                //                backimage.image=UIImage(named: "IMG_0034")
+                //                backimage.frame=CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+                //                self.view.addSubview(backimage)
                 self.newsTable.header.endRefreshing()
         })
         op!.responseSerializer = AFHTTPResponseSerializer()
         op!.start()
     }
     
-//    获取更多数据
+    //    获取更多数据
     func loadMoreData(id:Int) {
         let afManager = AFHTTPRequestOperationManager()
         let op = afManager.GET("http://app.ecjtu.net/api/v1/index?until=\(id)", parameters: nil,
@@ -203,7 +203,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         op!.start()
     }
     
-//    横幅滚动更新pagecontroller
+    //    横幅滚动更新pagecontroller
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if pageInited {
             let pageWidth = scrollview.frame.width
@@ -213,7 +213,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-//    横幅点击事件
+    //    横幅点击事件
     func scrollViewClick() {
         let wv=UIStoryboard.init(name:"Main", bundle: nil)
         let push = wv.instantiateViewControllerWithIdentifier("webview") as! WebViewController
@@ -221,7 +221,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.navigationController?.pushViewController(push, animated: true)
     }
     
-//    使cell取消选中状态
+    //    使cell取消选中状态
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         self.newsTable.deselectRowAtIndexPath(indexPath, animated: true)
     }

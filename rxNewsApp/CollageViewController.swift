@@ -1,6 +1,6 @@
 //
 //  CollageViewController.swift
-//  
+//
 //
 //  Created by Shakugan on 15/10/5.
 //
@@ -9,7 +9,7 @@
 import UIKit
 
 class CollageViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-
+    
     var newsArray = Array<AnyObject>()
     var articleID = Int()
     @IBOutlet weak var collageTable: UITableView!
@@ -26,13 +26,13 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         self.collageTable.header.beginRefreshing()
         collageTable.delegate=self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-//    segue页面跳转
+    //    segue页面跳转
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let cell = sender as! UITableViewCell
         let vc = segue.destinationViewController as! WebViewController
@@ -40,7 +40,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         vc.hidesBottomBarWhenPushed = true
     }
     
-//    获取数据
+    //    获取数据
     func loadData() {
         let afManager = AFHTTPRequestOperationManager()
         let op = afManager.GET("http://app.ecjtu.net/api/v1/schoolnews", parameters: nil,
@@ -52,14 +52,14 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
                 self.collageTable.header.endRefreshing()
             },
             failure:{ (operation:AFHTTPRequestOperation, error:NSError) -> Void in
-                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.collageTable)
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.collageTable)
                 self.collageTable.header.endRefreshing()
         })
         op!.responseSerializer = AFHTTPResponseSerializer()
         op!.start()
     }
-
-//    获取更多数据
+    
+    //    获取更多数据
     func loadMoreData(id:Int) {
         let afManager = AFHTTPRequestOperationManager()
         let op = afManager.GET("http://app.ecjtu.net/api/v1/schoolnews?until=\(id)", parameters: nil,
@@ -86,7 +86,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         op!.start()
     }
     
-//    每个cell的点击事件
+    //    每个cell的点击事件
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         self.collageTable.deselectRowAtIndexPath(indexPath, animated: true)
     }

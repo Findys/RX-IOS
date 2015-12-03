@@ -1,6 +1,6 @@
 //
 //  tsShowCardViewController.swift
-//  
+//
 //
 //  Created by Shakugan on 15/10/6.
 //
@@ -39,13 +39,13 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         self.backview.addSubview(scrollview)
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-//    加载数据
+    //    加载数据
     func loadScroll(){
         
         for index in 0..<picArray.count {
@@ -94,20 +94,20 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     }
     
     
-//     页面滑动时重载UI
+    //     页面滑动时重载UI
     func scrollViewDidScroll(scrollView: UIScrollView){
         if ifloading{
-        let detail = picArray[Int(scrollview.contentOffset.x/WINDOW_WIDTH)].objectForKey("detail") as! NSString
-        let size = detail.boundingRectWithSize(CGSize(width: WINDOW_WIDTH, height: 300), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:text.font], context: nil).size
-        let current = String(Int(scrollview.contentOffset.x/WINDOW_WIDTH + 1))
-        let count = String(picArray.count)
-        text.text = current+"/"+count+"   "+(detail as String)
-        background.frame = CGRect(x: 0, y: WINDOW_HEIGHT-size.height-60, width: WINDOW_WIDTH, height: size.height+60)
-        text.frame = CGRect(x: 10, y:0, width: WINDOW_WIDTH-20, height: size.height+20)
+            let detail = picArray[Int(scrollview.contentOffset.x/WINDOW_WIDTH)].objectForKey("detail") as! NSString
+            let size = detail.boundingRectWithSize(CGSize(width: WINDOW_WIDTH, height: 300), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:text.font], context: nil).size
+            let current = String(Int(scrollview.contentOffset.x/WINDOW_WIDTH + 1))
+            let count = String(picArray.count)
+            text.text = current+"/"+count+"   "+(detail as String)
+            background.frame = CGRect(x: 0, y: WINDOW_HEIGHT-size.height-60, width: WINDOW_WIDTH, height: size.height+60)
+            text.frame = CGRect(x: 10, y:0, width: WINDOW_WIDTH-20, height: size.height+20)
         }
     }
     
-//    打开页面获取数据
+    //    打开页面获取数据
     func requestData() {
         let afManager = AFHTTPRequestOperationManager()
         let op =  afManager.GET("http://pic.ecjtu.net/api.php/post/\(pid)",
@@ -130,7 +130,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         op!.start()
     }
     
-//    分享功能
+    //    分享功能
     func shareFunc(){
         let shareParames = NSMutableDictionary()
         let shareimage=imagearray[Int(scrollview.contentOffset.x/WINDOW_HEIGHT)] as UIImage
@@ -153,19 +153,19 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         }
     }
     
-//    返回时改变navigationbar颜色
+    //    返回时改变navigationbar颜色
     func back(){
         self.navigationController?.navigationBar.barTintColor=UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1.0)
     }
     
-//    长按图片事件
+    //    长按图片事件
     func longPress(){
-//        if gestureRec.state == UIGestureRecognizerState.Began {
-            MozTopAlertView.showWithType(MozAlertTypeInfo, text: "保存到图库", doText: "是的", doBlock: { () -> Void in
+        //        if gestureRec.state == UIGestureRecognizerState.Began {
+        MozTopAlertView.showWithType(MozAlertTypeInfo, text: "保存到图库", doText: "是的", doBlock: { () -> Void in
             let img = self.imagearray[Int(self.scrollview.contentOffset.x/self.WINDOW_WIDTH)] as UIImage
             UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
-                }, parentView: self.backview)
-//        }
+            }, parentView: self.backview)
+        //        }
     }
-
+    
 }

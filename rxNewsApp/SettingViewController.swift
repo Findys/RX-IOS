@@ -26,27 +26,27 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         headImg.image = h2image
         headImg.layer.cornerRadius = 15
         headImg.clipsToBounds = true
-
+        
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-//    view将出现时调用
+    //    view将出现时调用
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.barTintColor=UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1.0)
     }
     
-//    每个Cell的点击事件
+    //    每个Cell的点击事件
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         switch indexPath.section{
         case 0:
             switch indexPath.row{
-            
-//            修改头像
+                
+                //            修改头像
             case 0:
                 let imagepicker=UIImagePickerController()
                 imagepicker.delegate=self
@@ -54,43 +54,43 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
                 self.presentViewController(imagepicker, animated: true, completion: nil)
                 break
                 
-//            修改用户名
+                //            修改用户名
             case 1:
                 break
-            
-//            修改密码
+                
+                //            修改密码
             case 2: break
-            
+                
             default:break
                 
             }
             break
         case 1:
             switch indexPath.row{
-//                反馈建议
+                //                反馈建议
             case 0:
                 let feedback = UIStoryboard.init(name: "Main", bundle: nil)
                 let push = feedback.instantiateViewControllerWithIdentifier("feedback")
                 self.navigationController?.pushViewController(push, animated: true)
                 break
                 
-//            好评
+                //            好评
             case 1:
                 break
-            
-//            关于我们
+                
+                //            关于我们
             case 3:
                 let setting = UIStoryboard.init(name: "Main", bundle: nil)
                 let push = setting.instantiateViewControllerWithIdentifier("about")
                 push.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(push, animated: true)
                 break
-            
+                
             default:break
             }
             break
             
-//        注销账户
+            //        注销账户
         case 2:
             let ALERT = DXAlertView.init(title: "提示", contentText: "真的要注销吗？", leftButtonTitle: "是的", rightButtonTitle: "点错了")
             ALERT.show()
@@ -102,8 +102,8 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         }
         self.tableview.deselectRowAtIndexPath(indexPath, animated: true)
     }
-
-//    图片选择
+    
+    //    图片选择
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         let image=info[UIImagePickerControllerOriginalImage] as! UIImage
         let img=RSKImageCropViewController.init(image: image, cropMode: RSKImageCropMode.Circle)
@@ -112,12 +112,12 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         self.presentViewController(img, animated: true, completion: nil)
     }
     
-//    图片取消裁剪
+    //    图片取消裁剪
     func imageCropViewControllerDidCancelCrop(controller: RSKImageCropViewController!) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
-//    图片裁剪结束
+    //    图片裁剪结束
     func imageCropViewController(controller: RSKImageCropViewController!, didCropImage croppedImage: UIImage!, usingCropRect cropRect: CGRect) {
         let IMGDATA = UIImageJPEGRepresentation(croppedImage, CGFloat(1))
         userDefault.setObject(IMGDATA, forKey: "headimage")
@@ -141,7 +141,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as Set<NSObject>
     }
     
-//    获取头像
+    //    获取头像
     func headImageGet(){
         let afmanager = AFHTTPRequestOperationManager()
         let URL = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
