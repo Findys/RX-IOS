@@ -123,8 +123,8 @@
 		93AF65671C0FDADB00C80A9E /* materialize.min.css in Resources */ = {isa = PBXBuildFile; fileRef = 93AF65251C0FDADB00C80A9E /* materialize.min.css */; };
 		93AF65681C0FDADB00C80A9E /* materialize.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 93AF65261C0FDADB00C80A9E /* materialize.min.js */; };
 		93AF65691C0FDADB00C80A9E /* scoreQuery.html in Resources */ = {isa = PBXBuildFile; fileRef = 93AF65271C0FDADB00C80A9E /* scoreQuery.html */; };
-		93AF656B1C0FDADB00C80A9E /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 93AF65291C0FDADB00C80A9E /* style.css */; };
 		93D6DC3A1C11CAD600BB475C /* scoreQuery.js in Resources */ = {isa = PBXBuildFile; fileRef = 93D6DC391C11CAD600BB475C /* scoreQuery.js */; };
+		93D6DC431C11D1C100BB475C /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 93D6DC421C11D1C100BB475C /* style.css */; };
 		D23DCFDC1BC272DD00C32F94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */; };
 		D23DCFE01BC272DD00C32F94 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */; };
 		D23DCFEC1BC27ED400C32F94 /* CollageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFEB1BC27ED400C32F94 /* CollageViewController.swift */; };
@@ -333,9 +333,9 @@
 		93AF65251C0FDADB00C80A9E /* materialize.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = materialize.min.css; sourceTree = "<group>"; };
 		93AF65261C0FDADB00C80A9E /* materialize.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = materialize.min.js; sourceTree = "<group>"; };
 		93AF65271C0FDADB00C80A9E /* scoreQuery.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = scoreQuery.html; sourceTree = "<group>"; };
-		93AF65291C0FDADB00C80A9E /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		93AF652A1C0FDADB00C80A9E /* style.css.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = style.css.map; sourceTree = "<group>"; };
 		93D6DC391C11CAD600BB475C /* scoreQuery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = scoreQuery.js; path = ../../../../Downloads/scoreQuery.js; sourceTree = "<group>"; };
+		93D6DC421C11D1C100BB475C /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = style.css; path = ../../../../Downloads/style.css; sourceTree = "<group>"; };
 		D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = rxNewsApp/AppDelegate.swift; sourceTree = "<group>"; };
 		D23DCFDA1BC272DD00C32F94 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = rxNewsApp/Info.plist; sourceTree = "<group>"; };
 		D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = rxNewsApp/MainViewController.swift; sourceTree = "<group>"; };
@@ -701,8 +701,8 @@
 				93AF65241C0FDADB00C80A9E /* materialize.css */,
 				93AF65251C0FDADB00C80A9E /* materialize.min.css */,
 				93AF65261C0FDADB00C80A9E /* materialize.min.js */,
+				93D6DC421C11D1C100BB475C /* style.css */,
 				93AF65271C0FDADB00C80A9E /* scoreQuery.html */,
-				93AF65291C0FDADB00C80A9E /* style.css */,
 				93AF652A1C0FDADB00C80A9E /* style.css.map */,
 			);
 			path = RixinScoreQuery;
@@ -1019,6 +1019,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14F827561BEB6F8A004AEA96 /* btn_close_normal.png in Resources */,
+				93D6DC431C11D1C100BB475C /* style.css in Resources */,
 				93AF654B1C0FDADB00C80A9E /* _csshake.scssc in Resources */,
 				93AF653B1C0FDADB00C80A9E /* materialize.css in Resources */,
 				93AF65531C0FDADB00C80A9E /* _reset.scssc in Resources */,
@@ -1062,7 +1063,6 @@
 				93AF652F1C0FDADB00C80A9E /* dayly-style.scssc in Resources */,
 				93AF652B1C0FDADB00C80A9E /* _csshake.scssc in Resources */,
 				93AF65621C0FDADB00C80A9E /* _mixin.scssc in Resources */,
-				93AF656B1C0FDADB00C80A9E /* style.css in Resources */,
 				93AF65561C0FDADB00C80A9E /* _reset.scssc in Resources */,
 				143714B81BEDA94200D2F5A9 /* FontAwesome.ttf in Resources */,
 				93AF65661C0FDADB00C80A9E /* materialize.css in Resources */,
