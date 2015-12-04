@@ -216,6 +216,10 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 let h2image = UIImage.init(data: himage as! NSData)! as UIImage
                 headimage.image = h2image
             }
+            
+            if let name = userDefault.objectForKey("name"){
+                username.text = name as! String
+            }
             self.view.viewWithTag(1)!.backgroundColor = UIColor(red: 38/255.0, green: 165/255.0, blue: 153/255.0, alpha: 1.0)
             
         }else{
@@ -237,9 +241,6 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             //            headimage.hidden = true
             self.view.viewWithTag(1)!.backgroundColor = UIColor.whiteColor()
         }
-        let name = userDefault.objectForKey("name") as! String
-        self.username.text = name
-        
         
     }
     
