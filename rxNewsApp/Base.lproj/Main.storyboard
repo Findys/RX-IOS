@@ -230,7 +230,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="comment" destination="bVt-D5-uc2" id="i7I-Po-HeF"/>
+                        <outlet property="commitList" destination="bVt-D5-uc2" id="XgJ-IS-Wcd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZl-Rz-AF2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1487,6 +1487,6 @@
         <image name="zaozhe" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yQ2-KQ-zjh"/>
+        <segue reference="WVL-6a-b49"/>
     </inferredMetricsTieBreakers>
 </document>

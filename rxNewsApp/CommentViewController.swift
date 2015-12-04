@@ -12,6 +12,7 @@ class CommentViewController: UIViewController,UITextViewDelegate {
     var content = UITextView()
     var commit = UIButton()
     var id = NSNumber()
+    var userDefault = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,17 +63,6 @@ class CommentViewController: UIViewController,UITextViewDelegate {
         self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
     }
     
-    //    提交评论
-    func commitComment(){
-        let afmanager = AFHTTPRequestOperationManager()
-        let URL = "http://app.ecjtu.net/api/v1/article/\(id)/comment"
-        let param = ["id":id,"content":content.text!]
-        afmanager.POST(URL, parameters: param, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
-            print(resp)
-            }) { (AFHTTPRequestOperation, error:NSError) -> Void in
-                print(error)
-        }
-    }
     
     /*
     // MARK: - Navigation

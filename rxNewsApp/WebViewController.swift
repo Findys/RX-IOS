@@ -11,29 +11,19 @@ import WebKit
 
 @available(iOS 8.0, *)
 class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate{
-    
-    @IBOutlet weak var comment: UIButton!
+    let WINDOW_WIDTH = UIScreen.mainScreen().bounds.width
+    let WINDOW_HEIGHT = UIScreen.mainScreen().bounds.height
     var progressBar = UIProgressView()
     var userDefault = NSUserDefaults()
     var path = String()
     var id = Int()
     var webView: WKWebView!
+    var from = String()
+    let content = UITextView()
     
+    @IBOutlet weak var commitList: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    //    加载所需空间
-    override func loadView() {
-        super.loadView()
         let config = WKWebViewConfiguration()
         let contentController = WKUserContentController()
         config.userContentController = contentController
@@ -44,28 +34,61 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         progressBar.backgroundColor = UIColor.lightGrayColor()
         progressBar.progressTintColor = UIColor(red: 58/255.0, green: 168/255.0, blue: 252/255.0, alpha: 1.0)
         
-        webView.alpha = 0;
+        webView.alpha = 0
         self.view.addSubview(webView)
         self.view.addSubview(progressBar)
         
-        comment.addTarget(self, action: "commentButton", forControlEvents: UIControlEvents.TouchUpInside)
+        if from == "rx"{
+            let backView = UIView()
+            backView.backgroundColor = UIColor(red: 28/255.0, green: 144/255.0, blue: 129/255.0, alpha: 1.0)
+            backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 40, width: WINDOW_WIDTH, height: 40)
+            self.view.addSubview(backView)
+            
+            content.frame = CGRect(x: 8, y: 5, width: WINDOW_WIDTH - 90, height: 30)
+            content.clipsToBounds = true
+            content.layer.cornerRadius = 5
+            backView.addSubview(content)
+            
+            
+            let comment = UIButton()
+            comment.setTitle("评论", forState: UIControlState.Normal)
+            comment.backgroundColor = UIColor.whiteColor()
+            comment.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            comment.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Highlighted)
+            comment.frame = CGRect(x: WINDOW_WIDTH - 73, y: 5, width: 65, height: 30)
+            comment.clipsToBounds = true
+            comment.layer.cornerRadius = 5
+            comment.addTarget(self, action: "commitComment", forControlEvents: UIControlEvents.TouchUpInside)
+            backView.addSubview(comment)
+            
+            commitList.addTarget(self, action: "commentList", forControlEvents: UIControlEvents.TouchUpInside)
+            
+        }
+        // Do any additional setup after loading the view.
         
     }
     
-    //    view将消失时执行
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    //    view将出现
     override func viewWillAppear(animated: Bool) {
         let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)
+        print(request)
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         webView.loadRequest(request)
         UIView.animateWithDuration(2) { () -> Void in
-            self.webView.alpha = 1
+        self.webView.alpha = 1
         }
     }
     
-    //    评论按钮点击事件
-    func commentButton(){
+    //    评论列表
+    func commentList(){
         let myStoryBoard = UIStoryboard.init(name: "Main", bundle: nil)
-        let push = myStoryBoard.instantiateViewControllerWithIdentifier("comment")
+        let push = myStoryBoard.instantiateViewControllerWithIdentifier("comment") as! CommentViewController
+        push.id = id
         self.navigationController?.pushViewController(push, animated: true)
     }
     
@@ -81,6 +104,19 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         if (keyPath == "estimatedProgress") {
             progressBar.hidden = webView.estimatedProgress == 1
             progressBar.setProgress(Float(webView.estimatedProgress), animated: true)
+        }
+    }
+    
+    //    提交评论
+    func commitComment(){
+        let afmanager = AFHTTPRequestOperationManager()
+        let URL = "http://app.ecjtu.net/api/v1/article/\(id)/comment"
+        let token = userDefault.objectForKey("token") as! String
+        let param = ["id":id,"content":content.text!,"token":token]
+        afmanager.POST(URL, parameters: param, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
+            print(resp)
+            }) { (AFHTTPRequestOperation, error:NSError) -> Void in
+                print(error)
         }
     }
     
