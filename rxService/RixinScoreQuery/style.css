@@ -3000,4 +3000,7 @@ body {
   text-align: center;
   padding: 12px; }
 
+#student_id,#student_name{
+  color:#000;
+}
 /*# sourceMappingURL=style.css.map */

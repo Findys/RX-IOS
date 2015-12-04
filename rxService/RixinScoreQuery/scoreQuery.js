@@ -43,7 +43,7 @@ $(document).ready(function() {
         sSelect = $('.select-dropdown');
         // select = $('option[selected]');
     var ChineseRegExp = /^[\u4E00-\u9FA5\uF900-\uFA2D]*$/;
-    if (name.val() !== "" && sid.val() !== "" && sSelect.val() !== "") {
+    if (sName.val() !== "" && sId.val() !== "" && sSelect.val() !== "") {
         $('#student_name, #student_id').bind('change', function(event) {
             event.preventDefault();
             if (ChineseRegExp.test(sName.val()) && (sId.val().length === 14 || 16)) {
@@ -85,6 +85,7 @@ $(document).ready(function() {
                     if (scoreInfo.Term == temp) {
                         $('#student_name, #student_id, .select-dropdown').css('font', '1.2rem normal Roboto, Microsoft Yahei, sans-serif');
                         $('#student_name').val(scoreInfo.Name);
+                       $('#student_id').val(window.id);
                         $('ul.collection').append("<li class='collection-item row'><span class='score-course col s10'>" + scoreInfo.Course + "</span><span class='score-mark col s2 center-align'>" + scoreInfo.Score + "</span></li>");
                         $('.collection-item').css('padding', '0px')
                             .children('.score-course, .score-mark').css({paddingTop: '6px', paddingBottom: '6px'});
