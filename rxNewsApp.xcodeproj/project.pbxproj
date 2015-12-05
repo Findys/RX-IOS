@@ -935,7 +935,7 @@
 				TargetAttributes = {
 					D2C040431BBFC71A00791443 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = XFR56P3UV2;
+						DevelopmentTeam = ULPY5PPAV6;
 					};
 					D2C040581BBFC71A00791443 = {
 						CreatedOnToolsVersion = 6.4;
@@ -1320,7 +1320,7 @@
 					"$(PROJECT_DIR)/rxNewsApp/libraries/extends/SinaWeiboSDK",
 					"$(PROJECT_DIR)/rxNewsApp/libraries/extends/WeChatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ecjtu.net.rxNewsAppIOS;
+				PRODUCT_BUNDLE_IDENTIFIER = ecjtu.net.rxNewsApp5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Geek/Desktop/rxNewsAppIOS/rxNewsApp/rxNewsApp-Bridging-Header.h";
@@ -1353,7 +1353,7 @@
 					"$(PROJECT_DIR)/rxNewsApp/libraries/extends/SinaWeiboSDK",
 					"$(PROJECT_DIR)/rxNewsApp/libraries/extends/WeChatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ecjtu.net.rxNewsAppIOS;
+				PRODUCT_BUNDLE_IDENTIFIER = ecjtu.net.rxNewsApp5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Geek/Desktop/rxNewsAppIOS/rxNewsApp/rxNewsApp-Bridging-Header.h";

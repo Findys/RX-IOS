@@ -31,7 +31,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             self.newsTable.rowHeight = UITableViewAutomaticDimension
         }
         self.newsTable.header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
-            self.requestData()
+            self.loadData()
         })
         self.newsTable.footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
             self.loadMoreData(self.articleID)
@@ -80,7 +80,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         if indexPath.row == 0 {
             let cell = newsTable.dequeueReusableCellWithIdentifier("pageCell")!
             
-            self.scrollview = cell.viewWithTag(1) as! UIScrollView
+            scrollview = cell.viewWithTag(1) as! UIScrollView
             scrollview.scrollEnabled = true
             scrollview.pagingEnabled = true
             scrollview.scrollsToTop = false
@@ -145,7 +145,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     //    请求数据
-    func requestData() {
+    func loadData() {
         let afManager = AFHTTPRequestOperationManager()
         let op =  afManager.GET("http://app.ecjtu.net/api/v1/index",
             parameters:nil,

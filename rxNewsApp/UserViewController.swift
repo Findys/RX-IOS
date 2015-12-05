@@ -218,7 +218,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             }
             
             if let name = userDefault.objectForKey("name"){
-                username.text = name as! String
+                username.text = name as? String
             }
             self.view.viewWithTag(1)!.backgroundColor = UIColor(red: 38/255.0, green: 165/255.0, blue: 153/255.0, alpha: 1.0)
             

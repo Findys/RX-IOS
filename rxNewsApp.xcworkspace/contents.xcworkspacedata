@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:rxService/RixinScoreQuery/scoreQuery.js">
-   </FileRef>
-   <FileRef
       location = "group:rxNewsApp.xcodeproj">
    </FileRef>
 </Workspace>

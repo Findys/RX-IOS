@@ -43,25 +43,6 @@ class CommentViewController: UIViewController,UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    //    开始编辑textview时调用
-    func textViewDidBeginEditing(textView: UITextView){
-        let frame = textView.frame
-        let offset = frame.origin.y+67-(self.view.frame.size.height-216)
-        UIView.beginAnimations("ResizeForKeyboard", context: nil)
-        UIView.setAnimationDuration(0.5)
-        self.view.frame = CGRectMake(0, -offset, self.view.frame.size.width, self.view.frame.size.height)
-        UIView.commitAnimations()
-    }
-    
-    //    点击页面调用
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        content.resignFirstResponder()
-    }
-    
-    //    结束编辑时调用
-    func textViewDidEndEditing(textView: UITextView){
-        self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-    }
     
     
     /*

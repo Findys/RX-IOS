@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 
 @available(iOS 8.0, *)
-class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate{
+class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate,UITextViewDelegate{
     let WINDOW_WIDTH = UIScreen.mainScreen().bounds.width
     let WINDOW_HEIGHT = UIScreen.mainScreen().bounds.height
     var progressBar = UIProgressView()
@@ -47,6 +47,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
             content.frame = CGRect(x: 8, y: 5, width: WINDOW_WIDTH - 90, height: 30)
             content.clipsToBounds = true
             content.layer.cornerRadius = 5
+            content.delegate = self
             backView.addSubview(content)
             
             
@@ -76,7 +77,6 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     //    view将出现
     override func viewWillAppear(animated: Bool) {
         let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)
-        print(request)
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         webView.loadRequest(request)
         UIView.animateWithDuration(2) { () -> Void in
@@ -120,7 +120,25 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         }
     }
     
+    //    点击页面调用
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        content.resignFirstResponder()
+    }
     
+    //    开始编辑textview时调用
+    func textViewDidBeginEditing(textView: UITextView){
+        let frame = textView.frame
+        let offset = self.view.frame.size.height-300
+        UIView.beginAnimations("ResizeForKeyboard", context: nil)
+        UIView.setAnimationDuration(0.5)
+        self.view.frame = CGRectMake(0, -253, self.view.frame.size.width, self.view.frame.size.height)
+        UIView.commitAnimations()
+    }
+    
+    //    结束编辑时调用
+    func textViewDidEndEditing(textView: UITextView){
+        self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+    }
     
     /*
     // MARK: - Navigation
