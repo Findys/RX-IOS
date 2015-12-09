@@ -20,6 +20,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     var webView: WKWebView!
     var from = String()
     let content = UITextView()
+    let backView = UIView()
     
     @IBOutlet weak var commitList: UIButton!
     override func viewDidLoad() {
@@ -39,7 +40,6 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         self.view.addSubview(progressBar)
         
         if from == "rx"{
-            let backView = UIView()
             backView.backgroundColor = UIColor(red: 28/255.0, green: 144/255.0, blue: 129/255.0, alpha: 1.0)
             backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 40, width: WINDOW_WIDTH, height: 40)
             self.view.addSubview(backView)
@@ -109,14 +109,20 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     
     //    提交评论
     func commitComment(){
+        if let _ = userDefault.objectForKey("account"){
+            
         let afmanager = AFHTTPRequestOperationManager()
         let URL = "http://app.ecjtu.net/api/v1/article/\(id)/comment"
-        let token = userDefault.objectForKey("token") as! String
-        let param = ["id":id,"content":content.text!,"token":token]
+        let account = userDefault.objectForKey("account") as! String
+        let param:[String:String] = ["sid":String(account),"content":content.text!]
         afmanager.POST(URL, parameters: param, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
             print(resp)
             }) { (AFHTTPRequestOperation, error:NSError) -> Void in
                 print(error)
+        }
+        }else{
+            MozTopAlertView.showWithType(MozAlertTypeError, text: "请先登录", parentView: webView)
+            print("asd")
         }
     }
     
@@ -127,17 +133,15 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     
     //    开始编辑textview时调用
     func textViewDidBeginEditing(textView: UITextView){
-        let frame = textView.frame
-        let offset = self.view.frame.size.height-300
         UIView.beginAnimations("ResizeForKeyboard", context: nil)
         UIView.setAnimationDuration(0.5)
-        self.view.frame = CGRectMake(0, -253, self.view.frame.size.width, self.view.frame.size.height)
+        backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 293, width: WINDOW_WIDTH, height: 40)
         UIView.commitAnimations()
     }
     
     //    结束编辑时调用
     func textViewDidEndEditing(textView: UITextView){
-        self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 40, width: WINDOW_WIDTH, height: 40)
     }
     
     /*

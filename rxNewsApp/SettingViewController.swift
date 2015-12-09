@@ -97,6 +97,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             ALERT.leftBlock={
                 self.userDefault.setBool(false, forKey: "iflogin")
                 self.navigationController?.popViewControllerAnimated(true)
+                self.userDefault.removeObjectForKey("account")
             }
         default:break
         }
