@@ -160,12 +160,10 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     
     //    长按图片事件
     func longPress(){
-        //        if gestureRec.state == UIGestureRecognizerState.Began {
         MozTopAlertView.showWithType(MozAlertTypeInfo, text: "保存到图库", doText: "是的", doBlock: { () -> Void in
             let img = self.imagearray[Int(self.scrollview.contentOffset.x/self.WINDOW_WIDTH)] as UIImage
             UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
             }, parentView: self.backview)
-        //        }
     }
     
 }

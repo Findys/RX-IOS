@@ -122,7 +122,6 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         }
         }else{
             MozTopAlertView.showWithType(MozAlertTypeError, text: "请先登录", parentView: webView)
-            print("asd")
         }
     }
     

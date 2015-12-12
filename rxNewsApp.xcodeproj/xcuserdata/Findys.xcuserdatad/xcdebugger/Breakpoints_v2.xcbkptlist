@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
             endingLineNumber = "67"
-            landmarkName = "loadscroll()"
+            landmarkName = "loadScroll()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -156,7 +156,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
             endingLineNumber = "88"
-            landmarkName = "loadscroll()"
+            landmarkName = "loadScroll()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
