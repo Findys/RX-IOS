@@ -238,7 +238,6 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             account.hidden = false
             username.hidden = true
             rxServiceTable.hidden = true
-            //            headimage.hidden = true
             self.view.viewWithTag(1)!.backgroundColor = UIColor.whiteColor()
         }
         
