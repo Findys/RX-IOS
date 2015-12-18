@@ -8,11 +8,9 @@
 import UIKit
 
 class MainViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate, UIPageViewControllerDelegate{
-    let WINDOW_WIDTH = UIScreen.mainScreen().bounds.width
     var newsArray = Array<AnyObject>()
     var slideArray = Array<AnyObject>()
     var articleID = Int()
-    var isiOS7 = false
     var pageInited = false
     @IBOutlet weak var newsTable: UITableView!
     var scrollview: UIScrollView!
@@ -21,15 +19,8 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let version = UIDevice.currentDevice().systemVersion
-        let flag = version.compare("8.0.0", options: NSStringCompareOptions.NumericSearch)
-        if flag == .OrderedAscending {
-            isiOS7 = true
-            
-        } else {
             self.newsTable.estimatedRowHeight = 114
             self.newsTable.rowHeight = UITableViewAutomaticDimension
-        }
         self.newsTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
             self.loadData()
         })
@@ -186,8 +177,8 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                     }
                     else{
                         view.frame = CGRectMake(CGFloat(Int(cell.frame.width)*i),
-                            CGFloat(0),self.WINDOW_WIDTH,self.WINDOW_WIDTH/uiImage.size.width*uiImage.size.height)
-                        self.scrollview.contentSize = CGSizeMake(CGFloat(Int(self.WINDOW_WIDTH)*3),0)
+                            CGFloat(0),WINDOW_WIDTH,WINDOW_WIDTH/uiImage.size.width*uiImage.size.height)
+                        self.scrollview.contentSize = CGSizeMake(CGFloat(Int(WINDOW_WIDTH)*3),0)
                     }
                 })
             }

@@ -11,7 +11,6 @@ import UIKit
 let WINDOW_WIDTH = UIScreen.mainScreen().bounds.width
 let WINDOW_HEIGHT = UIScreen.mainScreen().bounds.height
 var userDefault = NSUserDefaults.standardUserDefaults()
-var iflogin = false
 var myStoryBoard = UIStoryboard(name: "Main", bundle: nil)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        firstLaunch()
         shareSDKset()
         getToken()
         return true
@@ -128,6 +128,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
         })
 
+    }
+    
+    func firstLaunch(){
+        if (userDefault.objectForKey("everlaunched") == nil){
+            userDefault.setBool(false, forKey: "iflogin")
+            userDefault.setBool(true, forKey: "everlaunched")
+        }
     }
 
 }

@@ -71,7 +71,6 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         // Dispose of any resources that can be recreated.
     }
     
-    //    view将出现
     override func viewWillAppear(animated: Bool) {
         let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
@@ -113,7 +112,9 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         let account = userDefault.objectForKey("account") as! String
         let param:[String:String] = ["sid":String(account),"content":content.text!]
             afmanager.POST(url, parameters: param, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-            print(resp)
+            self.content.resignFirstResponder()
+                self.content.text = ""
+                MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "评论成功", parentView: self.view.viewWithTag(1))
                 }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                  print(error)
             })

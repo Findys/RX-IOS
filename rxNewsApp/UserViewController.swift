@@ -15,14 +15,25 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     @IBOutlet weak var rxServiceTable: UITableView!
     @IBOutlet weak var username: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        rxServiceTable.dataSource=self
-        rxServiceTable.delegate=self
+    override func loadView() {
+        super.loadView()
         self.headimage.layer.cornerRadius = 50
         self.headimage.clipsToBounds = true
         if let _ = userDefault.objectForKey("headimage"){
             self.headimage.image = UIImage(data: userDefault.objectForKey("headimage")as! NSData)
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        rxServiceTable.dataSource=self
+        rxServiceTable.delegate=self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        let iflogin = userDefault.objectForKey("iflogin") as! Bool
+        if iflogin == false{
+            tabBarController!.selectedIndex = 0
         }
     }
     
@@ -31,12 +42,12 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         // Dispose of any resources that can be recreated.
     }
     
-    //    返回Section数量
+    
+//    tableview的delegate和datasource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return array.count
     }
     
-    //    获取每个Cell的数据
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = rxServiceTable.dequeueReusableCellWithIdentifier("rxServiceCell")!
         let label=cell.viewWithTag(1) as! UILabel
@@ -46,7 +57,6 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return cell
     }
     
-    //    每个cell的点击事件
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         switch indexPath.row{
             //            成绩查询

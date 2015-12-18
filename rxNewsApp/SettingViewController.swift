@@ -95,8 +95,9 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             let ALERT = DXAlertView.init(title: "提示", contentText: "真的要注销吗？", leftButtonTitle: "是的", rightButtonTitle: "点错了")
             ALERT.show()
             ALERT.leftBlock={
-                iflogin = false
+                userDefault.setBool(false, forKey: "iflogin")
                 userDefault.removeObjectForKey("account")
+                self.navigationController?.popViewControllerAnimated(true)
             }
         default:break
         }

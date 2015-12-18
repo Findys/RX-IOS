@@ -139,41 +139,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		143714DE1BEDAAC000D2F5A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 143714D61BEDAABF00D2F5A9 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B731F3C79F3EDFA1DF17D10D34B18E1E;
-			remoteInfo = AFNetworking;
-		};
-		143714E01BEDAAC000D2F5A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 143714D61BEDAABF00D2F5A9 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4B477CF65602521B791614A5B326FAC2;
-			remoteInfo = MJRefresh;
-		};
-		143714E21BEDAAC000D2F5A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 143714D61BEDAABF00D2F5A9 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 104CBACB3E2B16A4623A8CC8AE0159B9;
-			remoteInfo = Pods;
-		};
-		143714E41BEDAAC000D2F5A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 143714D61BEDAABF00D2F5A9 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A4E3C75131DB73B535BA7338F6201845;
-			remoteInfo = SDWebImage;
-		};
-		14C9F6B71BF7508F00319365 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 143714D61BEDAABF00D2F5A9 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 53C3F3892E011222871F089DA0D7BC26;
-			remoteInfo = VIPhotoView;
-		};
 		D2C0405A1BBFC71A00791443 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D2C0403C1BBFC71A00791443 /* Project object */;
@@ -193,7 +158,6 @@
 		143714B41BEDA94200D2F5A9 /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
 		143714B51BEDA94200D2F5A9 /* MozTopAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MozTopAlertView.h; sourceTree = "<group>"; };
 		143714B61BEDA94200D2F5A9 /* MozTopAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MozTopAlertView.m; sourceTree = "<group>"; };
-		143714D61BEDAABF00D2F5A9 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		143A93E51BF43E62001A36C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = rxNewsApp/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		143BA8621BF4D380007697E2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		143BA8691BF4D3B9007697E2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -423,18 +387,6 @@
 			path = fontawesome;
 			sourceTree = "<group>";
 		};
-		143714D71BEDAABF00D2F5A9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				143714DF1BEDAAC000D2F5A9 /* libAFNetworking.a */,
-				143714E11BEDAAC000D2F5A9 /* libMJRefresh.a */,
-				143714E31BEDAAC000D2F5A9 /* libPods.a */,
-				143714E51BEDAAC000D2F5A9 /* libSDWebImage.a */,
-				14C9F6B81BF7508F00319365 /* libVIPhotoView.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		143BA8701BF4D5EA007697E2 /* ShareSDKBinary */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,7 +526,6 @@
 				145B93891BF37AB500A430EA /* RSKImageCropper */,
 				14F8274F1BEB6F8A004AEA96 /* Vendor */,
 				143714AC1BEDA94200D2F5A9 /* TopAlertView */,
-				143714D61BEDAABF00D2F5A9 /* Pods.xcodeproj */,
 				F4200A8D112B17FCC73B7358 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -955,12 +906,6 @@
 			mainGroup = D2C0403B1BBFC71A00791443;
 			productRefGroup = D2C040451BBFC71A00791443 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 143714D71BEDAABF00D2F5A9 /* Products */;
-					ProjectRef = 143714D61BEDAABF00D2F5A9 /* Pods.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				D2C040431BBFC71A00791443 /* rxNewsApp */,
@@ -968,44 +913,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		143714DF1BEDAAC000D2F5A9 /* libAFNetworking.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libAFNetworking.a;
-			remoteRef = 143714DE1BEDAAC000D2F5A9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		143714E11BEDAAC000D2F5A9 /* libMJRefresh.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMJRefresh.a;
-			remoteRef = 143714E01BEDAAC000D2F5A9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		143714E31BEDAAC000D2F5A9 /* libPods.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libPods.a;
-			remoteRef = 143714E21BEDAAC000D2F5A9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		143714E51BEDAAC000D2F5A9 /* libSDWebImage.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSDWebImage.a;
-			remoteRef = 143714E41BEDAAC000D2F5A9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		14C9F6B81BF7508F00319365 /* libVIPhotoView.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libVIPhotoView.a;
-			remoteRef = 14C9F6B71BF7508F00319365 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D2C040421BBFC71A00791443 /* Resources */ = {

@@ -20,10 +20,11 @@ class TabViewController: UITabBarController,UITabBarControllerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem){
+        print(self.tabBarController?.selectedViewController)
         if item.title! == "我"{
+            let iflogin = userDefault.objectForKey("iflogin") as! Bool
             if iflogin == false{
                 let vc = myStoryBoard.instantiateViewControllerWithIdentifier("login") as! LoginViewController
                 self.presentViewController(vc, animated: true, completion: nil)

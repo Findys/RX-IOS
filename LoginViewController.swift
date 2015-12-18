@@ -90,9 +90,8 @@ class LoginViewController: UIViewController {
             headimage.sd_setImageWithURL(NSURL(string: avatar), completed: { (image:UIImage!, error:NSError!, catchType:SDImageCacheType, nsurl:NSURL!) -> Void in
                 let imagedata = UIImageJPEGRepresentation(headimage.image!, CGFloat(100))
                 userDefault.setObject(imagedata, forKey: "headimage")
-                 self.dismissViewControllerAnimated(true, completion: nil)
             })
-            iflogin = true
+            userDefault.setBool(true, forKey: "iflogin")
             self.dismissViewControllerAnimated(true, completion: nil)
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 print(error)
