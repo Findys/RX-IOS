@@ -12,7 +12,6 @@ class CommentViewController: UIViewController,UITextViewDelegate {
     var content = UITextView()
     var commit = UIButton()
     var id = NSNumber()
-    var userDefault = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()

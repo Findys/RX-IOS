@@ -8,11 +8,16 @@
 
 import UIKit
 
+let WINDOW_WIDTH = UIScreen.mainScreen().bounds.width
+let WINDOW_HEIGHT = UIScreen.mainScreen().bounds.height
+var userDefault = NSUserDefaults.standardUserDefaults()
+var iflogin = false
+var myStoryBoard = UIStoryboard(name: "Main", bundle: nil)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         shareSDKset()
         getToken()

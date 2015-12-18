@@ -14,7 +14,6 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     let WINDOW_WIDTH = UIScreen.mainScreen().bounds.width
     let WINDOW_HEIGHT = UIScreen.mainScreen().bounds.height
     var progressBar = UIProgressView()
-    var userDefault = NSUserDefaults()
     var path = String()
     var id = Int()
     var webView: WKWebView!

@@ -12,7 +12,6 @@ import WebKit
 class LocalWebViewController: UIViewController,WKNavigationDelegate {
     var path = NSString()
     var webView: WKWebView!
-    var userDefault = NSUserDefaults()
     override func viewDidLoad() {
         super.viewDidLoad()
         let id = userDefault.objectForKey("account") as! String

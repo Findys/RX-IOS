@@ -9,36 +9,18 @@
 import UIKit
 
 class UserViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate {
-    var iflogin=Bool()
     @IBOutlet weak var headimage: UIImageView!
-    var userDefault = NSUserDefaults.standardUserDefaults()
-    var url="http://user.ecjtu.net/api/login"
     let array = ["成绩查询","课表查询","一卡通查询","图书馆查询","个人设置"]
     let iconArray = ["score","classquery","ecard","book","Untitled"]
     @IBOutlet weak var rxServiceTable: UITableView!
-    @IBOutlet weak var account: UITextField!
     @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var login: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        login.addTarget(self, action: "loginClick", forControlEvents: UIControlEvents.TouchUpInside)
         rxServiceTable.dataSource=self
         rxServiceTable.delegate=self
-        
-        
-        if (userDefault.objectForKey("password") == nil){
-            iflogin=false
-            userDefault.setBool(iflogin, forKey: "iflogin")
-        }
-        
-        reload()
-    }
-    
-    //    view将要出现时调用
-    override func viewWillAppear(animated: Bool) {
-        reload()
+        self.headimage.layer.cornerRadius = 50
+        self.headimage.clipsToBounds = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -109,136 +91,6 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         default:break
         }
         self.rxServiceTable.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-    
-    //    发送用户信息
-    func postData(){
-        let afManager = AFHTTPSessionManager()
-        let mypassword=password.text! as String
-        let myaccount=account.text! as String
-        afManager.responseSerializer = AFHTTPResponseSerializer()
-        let params:[String:String] = ["username": myaccount, "password": mypassword]
-        afManager.POST(url, parameters: params, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-            let json = try! NSJSONSerialization.JSONObjectWithData(resp as! NSData, options: NSJSONReadingOptions())
-            print(json)
-            let result:AnyObject=(json.objectForKey("result"))!
-            if result as! NSObject==1{
-                let token=(json.objectForKey("token"))! as! String
-                self.iflogin=true
-                self.userDefault.setBool(self.iflogin, forKey: "iflogin")
-                self.userDefault.setObject(mypassword, forKey: "password")
-                self.userDefault.setObject(token, forKey: "token")
-                self.userDefault.setObject(myaccount, forKey: "account")
-                self.headImageGet()
-                MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "登录成功", parentView:self.view.viewWithTag(1))
-                self.reload()
-            }else{
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "登录错误", parentView:self.view.viewWithTag(1))
-            }
-            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                print(error)
-            MozTopAlertView.showWithType(MozAlertTypeError, text: "请检查网络", parentView:self.view.viewWithTag(1))
-        }
-    }
-    
-    //        判断是否登录以使输入框失去焦点
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if iflogin==false{
-            password.resignFirstResponder()
-            account.resignFirstResponder()
-        }
-    }
-    
-//    点击登录按钮
-    func loginClick()
-    {
-        password.resignFirstResponder()
-        account.resignFirstResponder()
-        if (account.text?.characters.count==14)&&(password.text?.characters.count>=6){
-            postData()
-        }else{
-            MozTopAlertView.showWithType(MozAlertTypeWarning, text: "输入错误", parentView:self.view.viewWithTag(1))
-        }
-    }
-    
-    //    监听键盘的return的事件
-    func textFieldShouldReturn(textField: UITextField) -> Bool{
-        if(password.text?.characters.count>=6){
-            postData()
-        }else{
-            MozTopAlertView.showWithType(MozAlertTypeWarning, text: "输入错误", parentView:self.view.viewWithTag(1))
-            password.resignFirstResponder()
-        }
-        return true
-    }
-    
-    //    获取头像
-    func headImageGet(){
-        let afManager = AFHTTPSessionManager()
-        let url = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
-        afManager.GET(url, parameters: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-            let avatar = "http://"+((resp!.objectForKey("user")?.objectForKey("avatar"))! as! String)
-            let name = (resp!.objectForKey("user")?.objectForKey("name")!) as! String
-            self.username.text = name
-            self.userDefault.setObject(name, forKey: "name")
-            self.headimage.sd_setImageWithURL(NSURL(string: avatar), completed: { (image:UIImage!, error:NSError!, catchType:SDImageCacheType, nsurl:NSURL!) -> Void in
-                let imagedata = UIImageJPEGRepresentation(self.headimage.image!, CGFloat(100))
-                self.userDefault.setObject(imagedata, forKey: "headimage")
-            })
-            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                print(error)
-        }
-    }
-    
-    //    判断是否已登录并且刷新界面
-    func reload(){
-        
-        if (userDefault.boolForKey("iflogin")){
-            UIView.animateWithDuration(1, animations: { () -> Void in
-                self.login.alpha = 0
-                self.password.alpha = 0
-                self.account.alpha = 0
-                self.username.alpha = 1
-                self.rxServiceTable.alpha = 1
-                //                self.headimage.alpha = 1
-                self.headimage.layer.cornerRadius = 50
-                self.headimage.clipsToBounds = true
-            })
-            login.hidden = true
-            password.hidden = true
-            account.hidden = true
-            username.hidden = false
-            rxServiceTable.hidden = false
-            //            headimage.hidden = false
-            if let himage = userDefault.objectForKey("headimage"){
-                let h2image = UIImage.init(data: himage as! NSData)! as UIImage
-                headimage.image = h2image
-            }
-            
-            if let name = userDefault.objectForKey("name"){
-                username.text = name as? String
-            }
-            self.view.viewWithTag(1)!.backgroundColor = UIColor(red: 38/255.0, green: 165/255.0, blue: 153/255.0, alpha: 1.0)
-            
-        }else{
-            UIView.animateWithDuration(1, animations: { () -> Void in
-                self.login.alpha = 1
-                self.password.alpha = 1
-                self.account.alpha = 1
-                self.username.alpha = 0
-                self.rxServiceTable.alpha = 0
-                //                self.headimage.alpha = 0
-            })
-            self.headimage.clipsToBounds = false
-            self.headimage.image = UIImage(named: "welcome_logo")
-            login.hidden = false
-            password.hidden = false
-            account.hidden = false
-            username.hidden = true
-            rxServiceTable.hidden = true
-            self.view.viewWithTag(1)!.backgroundColor = UIColor.whiteColor()
-        }
-        
     }
     
 }

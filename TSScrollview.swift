@@ -8,9 +8,6 @@
 
 import UIKit
 
-let WINDOW_WIDTH = UIScreen.mainScreen().bounds.width
-let WINDOW_HEIGHT = UIScreen.mainScreen().bounds.height
-
 class TSScrollview: UIView,UIScrollViewDelegate {
     var picArray = Array<AnyObject>()
     let text = UILabel()

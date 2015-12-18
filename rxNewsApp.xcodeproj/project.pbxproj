@@ -46,6 +46,8 @@
 		14D3E4FF1BFC9C0700640C29 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E4FE1BFC9C0700640C29 /* CoreGraphics.framework */; };
 		14D3E5011BFC9C1D00640C29 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E5001BFC9C1D00640C29 /* libz.tbd */; };
 		14D3E5031BFC9C5500640C29 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14D3E5021BFC9C5500640C29 /* PushConfig.plist */; };
+		14E697C41C243D76004106A4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E697C31C243D76004106A4 /* LoginViewController.swift */; };
+		14E697CB1C244317004106A4 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E697CA1C244317004106A4 /* TabViewController.swift */; };
 		14E996691BF4C72E009F8184 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E996681BF4C72E009F8184 /* SystemConfiguration.framework */; };
 		14E9966B1BF4C73A009F8184 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E9966A1BF4C73A009F8184 /* QuartzCore.framework */; };
 		14E9966D1BF4C744009F8184 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E9966C1BF4C744009F8184 /* CoreTelephony.framework */; };
@@ -165,13 +167,6 @@
 			remoteGlobalIDString = A4E3C75131DB73B535BA7338F6201845;
 			remoteInfo = SDWebImage;
 		};
-		143714E61BEDAAC000D2F5A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 143714D61BEDAABF00D2F5A9 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 67479A9A58DC13D06495057D4800628F;
-			remoteInfo = XLPagerTabStrip;
-		};
 		14C9F6B71BF7508F00319365 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 143714D61BEDAABF00D2F5A9 /* Pods.xcodeproj */;
@@ -254,6 +249,8 @@
 		14D3E4FE1BFC9C0700640C29 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		14D3E5001BFC9C1D00640C29 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		14D3E5021BFC9C5500640C29 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		14E697C31C243D76004106A4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		14E697CA1C244317004106A4 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		14E996681BF4C72E009F8184 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		14E9966A1BF4C73A009F8184 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		14E9966C1BF4C744009F8184 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -434,7 +431,6 @@
 				143714E31BEDAAC000D2F5A9 /* libPods.a */,
 				143714E51BEDAAC000D2F5A9 /* libSDWebImage.a */,
 				14C9F6B81BF7508F00319365 /* libVIPhotoView.a */,
-				143714E71BEDAAC000D2F5A9 /* libXLPagerTabStrip.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -609,6 +605,7 @@
 				939313BA1C1083E2001DC404 /* AboutViewController.swift */,
 				939313B61C1083CF001DC404 /* FBViewController.swift */,
 				939313B81C1083D6001DC404 /* SettingViewController.swift */,
+				14E697C31C243D76004106A4 /* LoginViewController.swift */,
 			);
 			name = UserController;
 			sourceTree = "<group>";
@@ -837,6 +834,7 @@
 		D23DCFE21BC2732F00C32F94 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				14E697CA1C244317004106A4 /* TabViewController.swift */,
 				D26734801BC3C5A500E63D15 /* WebViewController.swift */,
 				939313BE1C1083F7001DC404 /* LocalWebViewController.swift */,
 				9396651D1C0C5BAC00539CE0 /* PictureController */,
@@ -1000,13 +998,6 @@
 			remoteRef = 143714E41BEDAAC000D2F5A9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		143714E71BEDAAC000D2F5A9 /* libXLPagerTabStrip.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libXLPagerTabStrip.a;
-			remoteRef = 143714E61BEDAAC000D2F5A9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		14C9F6B81BF7508F00319365 /* libVIPhotoView.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1158,6 +1149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E697C41C243D76004106A4 /* LoginViewController.swift in Sources */,
 				939313BD1C1083ED001DC404 /* CommentViewController.swift in Sources */,
 				145B93A11BF37AB500A430EA /* UIApplication+RSKImageCropper.m in Sources */,
 				145B939D1BF37AB500A430EA /* RSKImageCropViewController.m in Sources */,
@@ -1169,6 +1161,7 @@
 				14F8275A1BEB6F8A004AEA96 /* DXAlertView.m in Sources */,
 				939313BB1C1083E2001DC404 /* AboutViewController.swift in Sources */,
 				D2FC4D991BD4C89D00F18240 /* UserViewController.swift in Sources */,
+				14E697CB1C244317004106A4 /* TabViewController.swift in Sources */,
 				143714BB1BEDA94200D2F5A9 /* MozTopAlertView.m in Sources */,
 				143714BA1BEDA94200D2F5A9 /* UIFont+FontAwesome.m in Sources */,
 				D23DCFEC1BC27ED400C32F94 /* CollageViewController.swift in Sources */,

@@ -13,7 +13,6 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var version: UILabel!
     @IBOutlet var tableview: UITableView!
-    var userDefault = NSUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,9 +95,9 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             let ALERT = DXAlertView.init(title: "提示", contentText: "真的要注销吗？", leftButtonTitle: "是的", rightButtonTitle: "点错了")
             ALERT.show()
             ALERT.leftBlock={
-                self.userDefault.setBool(false, forKey: "iflogin")
+                userDefault.setBool(false, forKey: "iflogin")
                 self.navigationController?.popViewControllerAnimated(true)
-                self.userDefault.removeObjectForKey("account")
+                userDefault.removeObjectForKey("account")
             }
         default:break
         }
@@ -141,7 +140,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         controller.dismissViewControllerAnimated(true, completion: nil)
         MozTopAlertView.showWithType(MozAlertTypeInfo, text: "头像上传中", parentView: self.view)
         afmanager.requestSerializer = AFHTTPRequestSerializer()
-        afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as! Set<String>
+        afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
     }
     
     //    获取头像
@@ -152,7 +151,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             let AVATAR_URL = "http://"+((resp!.objectForKey("user")?.objectForKey("avatar"))! as! String)
             self.headImg.sd_setImageWithURL(NSURL(string: AVATAR_URL), completed: { (image:UIImage!, error:NSError!, catchType:SDImageCacheType, nsurl:NSURL!) -> Void in
                 let IMGDATA = UIImageJPEGRepresentation(self.headImg.image!, CGFloat(1))
-                self.userDefault.setObject(IMGDATA, forKey: "headimage")
+                userDefault.setObject(IMGDATA, forKey: "headimage")
             })
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 print(error)
