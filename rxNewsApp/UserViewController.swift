@@ -113,15 +113,17 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     //    发送用户信息
     func postData(){
-        let afManager = AFHTTPRequestOperationManager()
+        let afManager = AFHTTPSessionManager()
         let mypassword=password.text! as String
         let myaccount=account.text! as String
+        afManager.responseSerializer = AFHTTPResponseSerializer()
         let params:[String:String] = ["username": myaccount, "password": mypassword]
-        let op=afManager.POST(url, parameters:params , success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
-            let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
-            let result:AnyObject=(json?.objectForKey("result"))!
+        afManager.POST(url, parameters: params, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            let json = try! NSJSONSerialization.JSONObjectWithData(resp as! NSData, options: NSJSONReadingOptions())
+            print(json)
+            let result:AnyObject=(json.objectForKey("result"))!
             if result as! NSObject==1{
-                let token=(json?.objectForKey("token"))! as! String
+                let token=(json.objectForKey("token"))! as! String
                 self.iflogin=true
                 self.userDefault.setBool(self.iflogin, forKey: "iflogin")
                 self.userDefault.setObject(mypassword, forKey: "password")
@@ -133,11 +135,10 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             }else{
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "登录错误", parentView:self.view.viewWithTag(1))
             }
-            }) { (AFHTTPRequestOperation, error:NSError) -> Void in
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "登录超时", parentView:self.view.viewWithTag(1))
+            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                print(error)
+            MozTopAlertView.showWithType(MozAlertTypeError, text: "请检查网络", parentView:self.view.viewWithTag(1))
         }
-        op!.responseSerializer = AFHTTPResponseSerializer()
-        op!.start()
     }
     
     //        判断是否登录以使输入框失去焦点
@@ -172,24 +173,20 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     //    获取头像
     func headImageGet(){
-        let afManager = AFHTTPRequestOperationManager()
+        let afManager = AFHTTPSessionManager()
         let url = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
-        let op = afManager.GET(url, parameters: nil, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
-            let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
-            let avatar = "http://"+((json?.objectForKey("user")?.objectForKey("avatar"))! as! String)
-            let name = (json?.objectForKey("user")?.objectForKey("name")!) as! String
+        afManager.GET(url, parameters: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            let avatar = "http://"+((resp!.objectForKey("user")?.objectForKey("avatar"))! as! String)
+            let name = (resp!.objectForKey("user")?.objectForKey("name")!) as! String
             self.username.text = name
             self.userDefault.setObject(name, forKey: "name")
             self.headimage.sd_setImageWithURL(NSURL(string: avatar), completed: { (image:UIImage!, error:NSError!, catchType:SDImageCacheType, nsurl:NSURL!) -> Void in
                 let imagedata = UIImageJPEGRepresentation(self.headimage.image!, CGFloat(100))
                 self.userDefault.setObject(imagedata, forKey: "headimage")
             })
-            }) { (AFHTTPRequestOperation, error:NSError) -> Void in
+            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 print(error)
         }
-        op?.responseSerializer = AFHTTPResponseSerializer()
-        op?.start()
-        
     }
     
     //    判断是否已登录并且刷新界面

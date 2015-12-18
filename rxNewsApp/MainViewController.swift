@@ -30,13 +30,13 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             self.newsTable.estimatedRowHeight = 114
             self.newsTable.rowHeight = UITableViewAutomaticDimension
         }
-        self.newsTable.header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
+        self.newsTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
             self.loadData()
         })
-        self.newsTable.footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
+        self.newsTable.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
             self.loadMoreData(self.articleID)
         })
-        self.newsTable.header.beginRefreshing()
+        self.newsTable.mj_header.beginRefreshing()
         newsTable.delegate=self
         
     }
@@ -146,61 +146,48 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     //    请求数据
     func loadData() {
-        let afManager = AFHTTPRequestOperationManager()
-        let op =  afManager.GET("http://app.ecjtu.net/api/v1/index",
-            parameters:nil,
-            success: {  (operation: AFHTTPRequestOperation,
-                responseObject: AnyObject) in
-                let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(responseObject as! NSData, options:NSJSONReadingOptions() )
-                let normal: AnyObject? = json?.objectForKey("normal_article")
-                let slide: AnyObject? = json?.objectForKey("slide_article")
-                self.newsArray = normal?.objectForKey("articles") as! Array<AnyObject>
-                self.slideArray = slide?.objectForKey("articles") as! Array<AnyObject>
-                self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
-                self.newsTable.reloadData()
-                self.newsTable.hidden=false
-                self.newsTable.header.endRefreshing()
-            },
-            failure: {  (operation: AFHTTPRequestOperation,
-                error: NSError) in
+        let afManager = AFHTTPSessionManager()
+        afManager.GET("http://app.ecjtu.net/api/v1/index", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            let normal = resp!.objectForKey("normal_article")
+            let slide = resp!.objectForKey("slide_article")
+            self.newsArray = normal?.objectForKey("articles") as! Array<AnyObject>
+            self.slideArray = slide?.objectForKey("articles") as! Array<AnyObject>
+            self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
+            self.newsTable.reloadData()
+            self.newsTable.hidden=false
+            self.newsTable.mj_header.endRefreshing()
+            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
                 //                self.newsTable.hidden=true
                 //                let backimage=UIImageView()
                 //                backimage.image=UIImage(named: "IMG_0034")
                 //                backimage.frame=CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
                 //                self.view.addSubview(backimage)
-                self.newsTable.header.endRefreshing()
-        })
-        op!.responseSerializer = AFHTTPResponseSerializer()
-        op!.start()
+                self.newsTable.mj_header.endRefreshing()
+        }
     }
     
     //    获取更多数据
     func loadMoreData(id:Int) {
-        let afManager = AFHTTPRequestOperationManager()
-        let op = afManager.GET("http://app.ecjtu.net/api/v1/index?until=\(id)", parameters: nil,
-            success: { (operation:AFHTTPRequestOperation, response:AnyObject) -> Void in
-                let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(response as! NSData , options:NSJSONReadingOptions() )
-                let lang: AnyObject? = json?.objectForKey("normal_article")
-                let count = lang?.objectForKey("count") as! Int
-                if count==0 {
-                    self.newsTable.footer.noticeNoMoreData()
-                    return
-                }
-                var array = lang?.objectForKey("articles") as! Array<AnyObject>
-                for index in 0...count-1 {
-                    self.newsArray.append(array[index])
-                }
-                self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
-                self.newsTable.reloadData()
-                self.newsTable.footer.endRefreshing()
-            },
-            failure:{ (operation:AFHTTPRequestOperation, error:NSError) -> Void in
+        let afManager = AFHTTPSessionManager()
+        afManager.GET("http://app.ecjtu.net/api/v1/index?until=\(id)", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            let lang: AnyObject? = resp!.objectForKey("normal_article")
+            let count = lang?.objectForKey("count") as! Int
+            if count==0 {
+                self.newsTable.mj_footer.endRefreshingWithNoMoreData()
+                return
+            }
+            var array = lang?.objectForKey("articles") as! Array<AnyObject>
+            for index in 0...count-1 {
+                self.newsArray.append(array[index])
+            }
+            self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
+            self.newsTable.reloadData()
+            self.newsTable.mj_footer.endRefreshing()
+            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
-                self.newsTable.footer.endRefreshing()
-        })
-        op!.responseSerializer = AFHTTPResponseSerializer()
-        op!.start()
+                self.newsTable.mj_footer.endRefreshing()
+        }
     }
     
     //    横幅滚动更新pagecontroller

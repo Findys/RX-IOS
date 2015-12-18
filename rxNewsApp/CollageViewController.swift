@@ -17,13 +17,13 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.collageTable.header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
+        self.collageTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
             self.loadData()
         })
-        self.collageTable.footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
+        self.collageTable.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
             self.loadMoreData(self.articleID)
         })
-        self.collageTable.header.beginRefreshing()
+        self.collageTable.mj_header.beginRefreshing()
         collageTable.delegate=self
     }
     
@@ -42,48 +42,38 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     //    获取数据
     func loadData() {
-        let afManager = AFHTTPRequestOperationManager()
-        let op = afManager.GET("http://app.ecjtu.net/api/v1/schoolnews", parameters: nil,
-            success: { (operation:AFHTTPRequestOperation, response:AnyObject) -> Void in
-                let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(response as! NSData , options:NSJSONReadingOptions() )
-                self.newsArray = json?.objectForKey("articles") as! Array<AnyObject>
-                self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
-                self.collageTable.reloadData()
-                self.collageTable.header.endRefreshing()
-            },
-            failure:{ (operation:AFHTTPRequestOperation, error:NSError) -> Void in
+        let afManager = AFHTTPSessionManager()
+        afManager.GET("http://app.ecjtu.net/api/v1/schoolnews", parameters: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            self.newsArray = resp!.objectForKey("articles") as! Array<AnyObject>
+            self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
+            self.collageTable.reloadData()
+            self.collageTable.mj_header.endRefreshing()
+            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.collageTable)
-                self.collageTable.header.endRefreshing()
-        })
-        op!.responseSerializer = AFHTTPResponseSerializer()
-        op!.start()
+                self.collageTable.mj_header.endRefreshing()
+        }
     }
     
     //    获取更多数据
     func loadMoreData(id:Int) {
-        let afManager = AFHTTPRequestOperationManager()
-        let op = afManager.GET("http://app.ecjtu.net/api/v1/schoolnews?until=\(id)", parameters: nil,
-            success: { (operation:AFHTTPRequestOperation, response:AnyObject) -> Void in
-                let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(response as! NSData , options:NSJSONReadingOptions() )
-                let count = json?.objectForKey("count") as! Int
-                if count == 0 {
-                    self.collageTable.footer.noticeNoMoreData()
-                    return
-                }
-                var array = json?.objectForKey("articles") as! Array<AnyObject>
-                for index in 0...count-1 {
-                    self.newsArray.append(array[index])
-                }
-                self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
-                self.collageTable.reloadData()
-                self.collageTable.footer.endRefreshing()
-            },
-            failure:{ (operation:AFHTTPRequestOperation, error:NSError) -> Void in
+        let afManager = AFHTTPSessionManager()
+        afManager.GET("http://app.ecjtu.net/api/v1/schoolnews?until=\(id)", parameters: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            let count = resp!.objectForKey("count") as! Int
+            if count == 0 {
+                self.collageTable.mj_footer.endRefreshingWithNoMoreData()
+                return
+            }
+            var array = resp!.objectForKey("articles") as! Array<AnyObject>
+            for index in 0...count-1 {
+                self.newsArray.append(array[index])
+            }
+            self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
+            self.collageTable.reloadData()
+            self.collageTable.mj_footer.endRefreshing()
+            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.collageTable)
-                self.collageTable.footer.endRefreshing()
-        })
-        op!.responseSerializer = AFHTTPResponseSerializer()
-        op!.start()
+                self.collageTable.mj_footer.endRefreshing()
+        }
     }
     
     //    每个cell的点击事件

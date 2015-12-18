@@ -49,17 +49,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let userDefault=NSUserDefaults()
         let password=userDefault.objectForKey("password")
         let account=userDefault.objectForKey("account")
-        let afManager = AFHTTPRequestOperationManager()
+        let afmanager = AFHTTPSessionManager()
         if let _=account{
         let params:[String:String] = ["username": String(account!), "password":String(password!)]
-        let op=afManager.POST("http://user.ecjtu.net/api/login", parameters:params , success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
-            let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
-            let token=(json?.objectForKey("token"))!
-            userDefault.setObject(token, forKey: "token")
-            }) { (AFHTTPRequestOperation, error:NSError) -> Void in
-        }
-            op!.responseSerializer = AFHTTPResponseSerializer()
-            op!.start()
+            afmanager.POST("http://user.ecjtu.net/api/login", parameters: params, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+                let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
+                let token=(json?.objectForKey("token"))!
+                userDefault.setObject(token, forKey: "token")
+                }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                    
+            })
         }
     }
     

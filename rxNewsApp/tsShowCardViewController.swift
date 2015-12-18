@@ -109,25 +109,16 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     
     //    打开页面获取数据
     func requestData() {
-        let afManager = AFHTTPRequestOperationManager()
-        let op =  afManager.GET("http://pic.ecjtu.net/api.php/post/\(pid)",
-            parameters:nil,
-            success: {  (operation: AFHTTPRequestOperation,
-                responseObject: AnyObject) in
-                let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(responseObject as! NSData, options:NSJSONReadingOptions() )
-                self.picArray = (json?.objectForKey("pictures"))! as! Array<AnyObject>
-                dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                    self.loadScroll()
-                    self.ifloading=true
-                }
-            },
-            failure: {  (operation: AFHTTPRequestOperation,
-                error: NSError) in
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.backview)
-                
-        })
-        op!.responseSerializer = AFHTTPResponseSerializer()
-        op!.start()
+        let afManager = AFHTTPSessionManager()
+        afManager.GET("http://pic.ecjtu.net/api.php/post/\(pid)", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask?, resp:AnyObject?) -> Void in
+            self.picArray = (resp!.objectForKey("pictures"))! as! Array<AnyObject>
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                self.loadScroll()
+                self.ifloading=true
+            }
+            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.backview)
+        }
     }
     
     //    分享功能

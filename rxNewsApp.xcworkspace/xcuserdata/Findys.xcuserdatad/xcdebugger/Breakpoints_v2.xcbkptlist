@@ -58,13 +58,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "rxNewsApp/UserViewController.swift"
-            timestampString = "470203811.291127"
+            timestampString = "472093009.583505"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "UserViewController"
-            landmarkType = "3">
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "headImageGet()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "rxNewsApp/UserViewController.swift"
-            timestampString = "470203811.291127"
+            timestampString = "472093009.583505"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "loginClick()"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "rxNewsApp/tsShowCardViewController.swift"
-            timestampString = "470202162.386494"
+            timestampString = "472092271.2451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "shareFunc()"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,28 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "rxNewsApp/tsShowCardViewController.swift"
-            timestampString = "470202162.386494"
+            timestampString = "472092271.2451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "shareFunc()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "rxNewsApp/UserViewController.swift"
-            timestampString = "470203811.291127"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
-            landmarkName = "headImageGet()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

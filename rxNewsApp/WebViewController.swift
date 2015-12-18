@@ -111,15 +111,15 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     func commitComment(){
         if let _ = userDefault.objectForKey("account"){
             
-        let afmanager = AFHTTPRequestOperationManager()
-        let URL = "http://app.ecjtu.net/api/v1/article/\(id)/comment"
+        let afmanager = AFHTTPSessionManager()
+        let url = "http://app.ecjtu.net/api/v1/article/\(id)/comment"
         let account = userDefault.objectForKey("account") as! String
         let param:[String:String] = ["sid":String(account),"content":content.text!]
-        afmanager.POST(URL, parameters: param, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
+            afmanager.POST(url, parameters: param, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             print(resp)
-            }) { (AFHTTPRequestOperation, error:NSError) -> Void in
-                print(error)
-        }
+                }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                 print(error)
+            })
         }else{
             MozTopAlertView.showWithType(MozAlertTypeError, text: "请先登录", parentView: webView)
         }

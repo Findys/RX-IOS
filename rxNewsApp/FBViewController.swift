@@ -35,12 +35,12 @@ class FBViewController: UIViewController,UITextViewDelegate {
     func feedBack(){
         if let _ = content.text {
             if let _ = nickname.text{
-                let PARAM = ["content":content.text!,"nickname":nickname.text!]
-                let AFMANAGER = AFHTTPRequestOperationManager()
+                let param = ["content":content.text!,"nickname":nickname.text!]
+                let afmanager = AFHTTPSessionManager()
                 let url = "http://app.ecjtu.net/api/v1/feedback"
-                AFMANAGER.POST(url, parameters: PARAM, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
+                afmanager.POST(url, parameters: param, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
                     MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "感谢您的支持", parentView: self.view.viewWithTag(1))
-                    }, failure: { (AFHTTPRequestOperation, error:NSError) -> Void in
+                    }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                         MozTopAlertView.showWithType(MozAlertTypeError, text: "请检查网络", parentView: self.view.viewWithTag(1))
                 })
             }

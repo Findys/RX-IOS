@@ -15,15 +15,15 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tushuoTable.header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
+        self.tushuoTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
             self.initData()
         })
         
-        self.tushuoTable.footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
+        self.tushuoTable.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
             self.loadMoreData(self.articleID)
         })
         
-        self.tushuoTable.header.beginRefreshing()
+        self.tushuoTable.mj_header.beginRefreshing()
         tushuoTable.delegate=self
     }
     
@@ -77,21 +77,16 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     //    获取数据
     func initData() {
-        let afManager = AFHTTPRequestOperationManager()
-        let op = afManager.GET("http://pic.ecjtu.net/api.php/list", parameters: nil,
-            success: { (operation:AFHTTPRequestOperation, response:AnyObject) -> Void in
-                let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(response as! NSData , options:NSJSONReadingOptions() )
-                self.newsArray = json?.objectForKey("list") as! Array<AnyObject>
-                self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("pubdate") as! String
-                self.tushuoTable.reloadData()
-                self.tushuoTable.header.endRefreshing()
-            },
-            failure:{ (operation:AFHTTPRequestOperation, error:NSError) -> Void in
+        let afManager = AFHTTPSessionManager()
+        afManager.GET("http://pic.ecjtu.net/api.php/list", parameters: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            self.newsArray = resp!.objectForKey("list") as! Array<AnyObject>
+            self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("pubdate") as! String
+            self.tushuoTable.reloadData()
+            self.tushuoTable.mj_header.endRefreshing()
+            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.tushuoTable)
-                self.tushuoTable.header.endRefreshing()
-        })
-        op!.responseSerializer = AFHTTPResponseSerializer()
-        op!.start()
+                self.tushuoTable.mj_header.endRefreshing()
+        }
     }
     
     //    从tsCardFJ返回时回复navigationbar颜色
@@ -103,29 +98,24 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     //    获取更多数据
     func loadMoreData(id:String) {
-        let afManager = AFHTTPRequestOperationManager()
-        let op = afManager.GET("http://pic.ecjtu.net/api.php/list?before=\(id)", parameters: nil,
-            success: { (operation:AFHTTPRequestOperation, response:AnyObject) -> Void in
-                let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(response as! NSData , options:NSJSONReadingOptions() )
-                let count = json?.objectForKey("count") as! Int
-                if count==0 {
-                    self.tushuoTable.footer.noticeNoMoreData()
-                    return
-                }
-                let array = json?.objectForKey("list") as! Array<AnyObject>
-                for index in 0...count-1 {
-                    self.newsArray.append(array[index])
-                }
-                self.articleID = array[array.count-1].objectForKey("pubdate") as! String
-                self.tushuoTable.reloadData()
-                self.tushuoTable.footer.endRefreshing()
-            },
-            failure:{ (operation:AFHTTPRequestOperation, error:NSError) -> Void in
+        let afManager = AFHTTPSessionManager()
+        afManager.GET("http://pic.ecjtu.net/api.php/list?before=\(id)", parameters: nil, success: { (nsurl:NSURLSessionDataTask,resp:AnyObject?) -> Void in
+            let count = resp!.objectForKey("count") as! Int
+            if count==0 {
+                self.tushuoTable.mj_footer.endRefreshingWithNoMoreData()
+                return
+            }
+            let array = resp!.objectForKey("list") as! Array<AnyObject>
+            for index in 0...count-1 {
+                self.newsArray.append(array[index])
+            }
+            self.articleID = array[array.count-1].objectForKey("pubdate") as! String
+            self.tushuoTable.reloadData()
+            self.tushuoTable.mj_footer.endRefreshing()
+            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.tushuoTable)
-                self.tushuoTable.footer.endRefreshing()
-        })
-        op!.responseSerializer = AFHTTPResponseSerializer()
-        op!.start()
+                self.tushuoTable.mj_footer.endRefreshing()
+        }
     }
     
     //    设置时间显示

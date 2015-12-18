@@ -20,12 +20,13 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         // Do any additional setup after loading the view, typically from a nib.
         tableview.delegate=self
         version.text=String(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")!)
-        
+        if let _ = userDefault.objectForKey("headimage"){
         let himage = userDefault.objectForKey("headimage") as! NSData
         let h2image = UIImage.init(data: himage)! as UIImage
         headImg.image = h2image
         headImg.layer.cornerRadius = 15
         headImg.clipsToBounds = true
+        }
         
     }
     
@@ -123,41 +124,38 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         let IMGDATA = UIImageJPEGRepresentation(croppedImage, CGFloat(1))
         userDefault.setObject(IMGDATA, forKey: "headimage")
         let params:[String:AnyObject] = ["token":userDefault.stringForKey("token")!]
-        let afmanager = AFHTTPRequestOperationManager()
+        let afmanager = AFHTTPSessionManager()
         let studentID = userDefault.stringForKey("account")!
         let url = "http://user.ecjtu.net/api/user/\(studentID)/avatar"
         afmanager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
-            formdata.appendPartWithFileData(IMGDATA!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
-            }, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
-                if( resp.objectForKey("result")! as! Int == 1){
+                        formdata.appendPartWithFileData(IMGDATA!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
+            }, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+                if( resp!.objectForKey("result")! as! Int == 1){
                     MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "头像上传成功",parentView: self.view)
                     self.headImageGet()
                 }
-            }) { (AFHTTPRequestOperation, error:NSError) -> Void in
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView: self.view)
+
+            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView: self.view)
         }
         controller.dismissViewControllerAnimated(true, completion: nil)
         MozTopAlertView.showWithType(MozAlertTypeInfo, text: "头像上传中", parentView: self.view)
         afmanager.requestSerializer = AFHTTPRequestSerializer()
-        afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as Set<NSObject>
+        afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as! Set<String>
     }
     
     //    获取头像
     func headImageGet(){
-        let afmanager = AFHTTPRequestOperationManager()
-        let URL = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
-        let GET = afmanager.GET(URL, parameters: nil, success: { (AFHTTPRequestOperation, resp:AnyObject) -> Void in
-            let JSON: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
-            let AVATAR_URL = "http://"+((JSON?.objectForKey("user")?.objectForKey("avatar"))! as! String)
+        let afmanager = AFHTTPSessionManager()
+        let url = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
+        afmanager.GET(url, parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            let AVATAR_URL = "http://"+((resp!.objectForKey("user")?.objectForKey("avatar"))! as! String)
             self.headImg.sd_setImageWithURL(NSURL(string: AVATAR_URL), completed: { (image:UIImage!, error:NSError!, catchType:SDImageCacheType, nsurl:NSURL!) -> Void in
                 let IMGDATA = UIImageJPEGRepresentation(self.headImg.image!, CGFloat(1))
                 self.userDefault.setObject(IMGDATA, forKey: "headimage")
             })
-            }) { (AFHTTPRequestOperation, error:NSError) -> Void in
+            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 print(error)
         }
-        GET?.responseSerializer = AFHTTPResponseSerializer()
-        GET?.start()
-        
     }
 }
