@@ -16,7 +16,7 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tushuoTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
-            self.initData()
+            self.loadData()
         })
         
         self.tushuoTable.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
@@ -41,7 +41,7 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     
     //    获取数据
-    func initData() {
+    func loadData() {
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://pic.ecjtu.net/api.php/list", parameters: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             self.newsArray = resp!.objectForKey("list") as! Array<AnyObject>

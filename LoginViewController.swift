@@ -41,13 +41,12 @@ class LoginViewController: UIViewController {
                 userDefault.setObject(token, forKey: "token")
                 userDefault.setObject(myaccount, forKey: "account")
                 self.headImageGet()
-                MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "登录成功", parentView:self.view.viewWithTag(1))
             }else{
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "登录错误", parentView:self.view.viewWithTag(1))
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "登录错误", parentView:self.view)
             }
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 print(error)
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "请检查网络", parentView:self.view.viewWithTag(1))
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "请检查网络", parentView:self.view)
         }
     }
     
@@ -63,7 +62,7 @@ class LoginViewController: UIViewController {
         if (account.text?.characters.count==14)&&(password.text?.characters.count>=6){
             postData()
         }else{
-            MozTopAlertView.showWithType(MozAlertTypeWarning, text: "输入错误", parentView:self.view.viewWithTag(1))
+            MozTopAlertView.showWithType(MozAlertTypeWarning, text: "输入错误", parentView:self.view)
         }
     }
     
@@ -72,7 +71,7 @@ class LoginViewController: UIViewController {
         if(password.text?.characters.count>=6){
             postData()
         }else{
-            MozTopAlertView.showWithType(MozAlertTypeWarning, text: "输入错误", parentView:self.view.viewWithTag(1))
+            MozTopAlertView.showWithType(MozAlertTypeWarning, text: "输入错误", parentView:self.view)
             password.resignFirstResponder()
         }
         return true
@@ -80,9 +79,10 @@ class LoginViewController: UIViewController {
     
     //    获取头像
     func headImageGet(){
-        let afManager = AFHTTPSessionManager()
+        let afmanager = AFHTTPSessionManager()
         let url = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
-        afManager.GET(url, parameters: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+        afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
+        afmanager.GET(url, parameters: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             let avatar = "http://"+((resp!.objectForKey("user")?.objectForKey("avatar"))! as! String)
             let name = (resp!.objectForKey("user")?.objectForKey("name")!) as! String
             userDefault.setObject(name, forKey: "name")
@@ -92,6 +92,8 @@ class LoginViewController: UIViewController {
                 userDefault.setObject(imagedata, forKey: "headimage")
                  self.dismissViewControllerAnimated(true, completion: nil)
             })
+            iflogin = true
+            self.dismissViewControllerAnimated(true, completion: nil)
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 print(error)
         }

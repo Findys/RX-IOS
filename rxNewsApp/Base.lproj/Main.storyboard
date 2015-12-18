@@ -10,7 +10,7 @@
         <!--日小新-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="MainViewController" customModule="rxNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main" id="vXZ-lx-hvc" customClass="MainViewController" customModule="rxNewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -262,7 +262,7 @@
         <!--Tab View Controller-->
         <scene sceneID="g9d-t9-vvY">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="YoS-Ge-62U" customClass="TabViewController" customModule="rxNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tab" automaticallyAdjustsScrollViewInsets="NO" id="YoS-Ge-62U" customClass="TabViewController" customModule="rxNewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="vDn-QN-SWt"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -602,10 +602,13 @@
                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B6E-BB-QO4">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfM-pI-VON">
-                                        <rect key="frame" x="136" y="155" width="48" height="19.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfM-pI-VON">
+                                        <rect key="frame" x="136" y="155" width="48" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="cRl-PE-ysE"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome_logo" translatesAutoresizingMaskIntoConstraints="NO" id="EzX-rg-qTW">
@@ -615,7 +618,7 @@
                                             <constraint firstAttribute="width" constant="100" id="wHI-bu-O2t"/>
                                         </constraints>
                                     </imageView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yxM-gu-sjA">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yxM-gu-sjA">
                                         <rect key="frame" x="0.0" y="194" width="320" height="261"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
@@ -657,11 +660,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="EzX-rg-qTW" firstAttribute="top" secondItem="B6E-BB-QO4" secondAttribute="top" constant="31" id="Dwe-FP-JcQ"/>
+                                    <constraint firstItem="yxM-gu-sjA" firstAttribute="top" secondItem="OfM-pI-VON" secondAttribute="bottom" constant="19" id="IuD-EQ-RIq"/>
                                     <constraint firstItem="EzX-rg-qTW" firstAttribute="leading" secondItem="B6E-BB-QO4" secondAttribute="leading" constant="110" id="M0O-M7-brs"/>
+                                    <constraint firstItem="OfM-pI-VON" firstAttribute="top" secondItem="EzX-rg-qTW" secondAttribute="bottom" constant="24" id="QfA-nh-dts"/>
+                                    <constraint firstItem="OfM-pI-VON" firstAttribute="centerX" secondItem="EzX-rg-qTW" secondAttribute="centerX" id="frJ-0H-J4T"/>
                                     <constraint firstAttribute="trailing" secondItem="yxM-gu-sjA" secondAttribute="trailing" id="heS-2C-3AU"/>
                                     <constraint firstAttribute="bottom" secondItem="yxM-gu-sjA" secondAttribute="bottom" id="jRC-hL-ljZ"/>
                                     <constraint firstItem="yxM-gu-sjA" firstAttribute="leading" secondItem="B6E-BB-QO4" secondAttribute="leading" id="m2A-Ux-iIo"/>
-                                    <constraint firstItem="yxM-gu-sjA" firstAttribute="top" secondItem="OfM-pI-VON" secondAttribute="bottom" constant="19" id="ybp-pN-5BV"/>
                                 </constraints>
                             </view>
                         </subviews>

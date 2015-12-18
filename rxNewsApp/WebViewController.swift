@@ -11,8 +11,6 @@ import WebKit
 
 @available(iOS 8.0, *)
 class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate,UITextViewDelegate{
-    let WINDOW_WIDTH = UIScreen.mainScreen().bounds.width
-    let WINDOW_HEIGHT = UIScreen.mainScreen().bounds.height
     var progressBar = UIProgressView()
     var path = String()
     var id = Int()

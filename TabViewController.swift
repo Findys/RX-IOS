@@ -13,7 +13,6 @@ class TabViewController: UITabBarController,UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-//        self.tabBar.delegate = self
         // Do any additional setup after loading the view.
     }
 

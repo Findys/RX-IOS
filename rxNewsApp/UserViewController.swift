@@ -21,6 +21,9 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         rxServiceTable.delegate=self
         self.headimage.layer.cornerRadius = 50
         self.headimage.clipsToBounds = true
+        if let _ = userDefault.objectForKey("headimage"){
+            self.headimage.image = UIImage(data: userDefault.objectForKey("headimage")as! NSData)
+        }
     }
     
     override func didReceiveMemoryWarning() {

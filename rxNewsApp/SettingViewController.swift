@@ -95,8 +95,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             let ALERT = DXAlertView.init(title: "提示", contentText: "真的要注销吗？", leftButtonTitle: "是的", rightButtonTitle: "点错了")
             ALERT.show()
             ALERT.leftBlock={
-                userDefault.setBool(false, forKey: "iflogin")
-                self.navigationController?.popViewControllerAnimated(true)
+                iflogin = false
                 userDefault.removeObjectForKey("account")
             }
         default:break
@@ -127,7 +126,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         let studentID = userDefault.stringForKey("account")!
         let url = "http://user.ecjtu.net/api/user/\(studentID)/avatar"
         afmanager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
-                        formdata.appendPartWithFileData(IMGDATA!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
+            formdata.appendPartWithFileData(IMGDATA!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
             }, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
                 if( resp!.objectForKey("result")! as! Int == 1){
                     MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "头像上传成功",parentView: self.view)
