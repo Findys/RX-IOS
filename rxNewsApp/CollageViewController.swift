@@ -75,18 +75,15 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
                 self.collageTable.mj_footer.endRefreshing()
         }
     }
-    
-    //    每个cell的点击事件
+//    tableview的datasource和delegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         self.collageTable.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    //    返回section数量
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsArray.count
     }
     
-    //    获取每个cell的数据
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = collageTable.dequeueReusableCellWithIdentifier("collageCell")
         cell!.tag = newsArray[indexPath.row].objectForKey("id") as! Int

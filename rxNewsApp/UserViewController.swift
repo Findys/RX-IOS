@@ -149,6 +149,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
+//    点击登录按钮
     func loginClick()
     {
         password.resignFirstResponder()

@@ -61,7 +61,74 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-    //    返回cell的高度
+    //    请求数据
+    func loadData() {
+        let afManager = AFHTTPSessionManager()
+        afManager.GET("http://app.ecjtu.net/api/v1/index", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            let normal = resp!.objectForKey("normal_article")
+            let slide = resp!.objectForKey("slide_article")
+            self.newsArray = normal?.objectForKey("articles") as! Array<AnyObject>
+            self.slideArray = slide?.objectForKey("articles") as! Array<AnyObject>
+            self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
+            self.newsTable.reloadData()
+            self.newsTable.hidden=false
+            self.newsTable.mj_header.endRefreshing()
+            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
+                //                self.newsTable.hidden=true
+                //                let backimage=UIImageView()
+                //                backimage.image=UIImage(named: "IMG_0034")
+                //                backimage.frame=CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+                //                self.view.addSubview(backimage)
+                self.newsTable.mj_header.endRefreshing()
+        }
+    }
+    
+    //    获取更多数据
+    func loadMoreData(id:Int) {
+        let afManager = AFHTTPSessionManager()
+        afManager.GET("http://app.ecjtu.net/api/v1/index?until=\(id)", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            let lang: AnyObject? = resp!.objectForKey("normal_article")
+            let count = lang?.objectForKey("count") as! Int
+            if count==0 {
+                self.newsTable.mj_footer.endRefreshingWithNoMoreData()
+                return
+            }
+            var array = lang?.objectForKey("articles") as! Array<AnyObject>
+            for index in 0...count-1 {
+                self.newsArray.append(array[index])
+            }
+            self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
+            self.newsTable.reloadData()
+            self.newsTable.mj_footer.endRefreshing()
+            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
+                self.newsTable.mj_footer.endRefreshing()
+        }
+    }
+    
+    //    横幅滚动更新pagecontroller
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if pageInited {
+            let pageWidth = scrollview.frame.width
+            let page = Int(floor((scrollview.contentOffset.x * 2.0 + pageWidth) / (pageWidth * 2.0)))
+            pageControl.currentPage=page
+            self.slidetitle.text = slideArray[page].objectForKey("title") as? String
+        }
+    }
+    
+    //    横幅点击事件
+    func scrollViewClick() {
+        let wv=UIStoryboard.init(name:"Main", bundle: nil)
+        let push = wv.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+        push.hidesBottomBarWhenPushed = true
+        push.id = (slideArray[pageControl.currentPage].objectForKey("id") as? Int)!
+        push.from = "rx"
+        self.navigationController?.pushViewController(push, animated: true)
+    }
+    
+    
+//    tableview的datasource和delegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if 0 == indexPath.row {
             return 204
@@ -70,12 +137,10 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-    //    返回section数量
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsArray.count
     }
     
-    //    获取每个cell的值
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = newsTable.dequeueReusableCellWithIdentifier("pageCell")!
@@ -144,73 +209,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-    //    请求数据
-    func loadData() {
-        let afManager = AFHTTPSessionManager()
-        afManager.GET("http://app.ecjtu.net/api/v1/index", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-            let normal = resp!.objectForKey("normal_article")
-            let slide = resp!.objectForKey("slide_article")
-            self.newsArray = normal?.objectForKey("articles") as! Array<AnyObject>
-            self.slideArray = slide?.objectForKey("articles") as! Array<AnyObject>
-            self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
-            self.newsTable.reloadData()
-            self.newsTable.hidden=false
-            self.newsTable.mj_header.endRefreshing()
-            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
-                //                self.newsTable.hidden=true
-                //                let backimage=UIImageView()
-                //                backimage.image=UIImage(named: "IMG_0034")
-                //                backimage.frame=CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
-                //                self.view.addSubview(backimage)
-                self.newsTable.mj_header.endRefreshing()
-        }
-    }
-    
-    //    获取更多数据
-    func loadMoreData(id:Int) {
-        let afManager = AFHTTPSessionManager()
-        afManager.GET("http://app.ecjtu.net/api/v1/index?until=\(id)", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-            let lang: AnyObject? = resp!.objectForKey("normal_article")
-            let count = lang?.objectForKey("count") as! Int
-            if count==0 {
-                self.newsTable.mj_footer.endRefreshingWithNoMoreData()
-                return
-            }
-            var array = lang?.objectForKey("articles") as! Array<AnyObject>
-            for index in 0...count-1 {
-                self.newsArray.append(array[index])
-            }
-            self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
-            self.newsTable.reloadData()
-            self.newsTable.mj_footer.endRefreshing()
-            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
-                self.newsTable.mj_footer.endRefreshing()
-        }
-    }
-    
-    //    横幅滚动更新pagecontroller
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if pageInited {
-            let pageWidth = scrollview.frame.width
-            let page = Int(floor((scrollview.contentOffset.x * 2.0 + pageWidth) / (pageWidth * 2.0)))
-            pageControl.currentPage=page
-            self.slidetitle.text = slideArray[page].objectForKey("title") as? String
-        }
-    }
-    
-    //    横幅点击事件
-    func scrollViewClick() {
-        let wv=UIStoryboard.init(name:"Main", bundle: nil)
-        let push = wv.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-        push.hidesBottomBarWhenPushed = true
-        push.id = (slideArray[pageControl.currentPage].objectForKey("id") as? Int)!
-        push.from = "rx"
-        self.navigationController?.pushViewController(push, animated: true)
-    }
-    
-    //    使cell取消选中状态
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         self.newsTable.deselectRowAtIndexPath(indexPath, animated: true)
     }

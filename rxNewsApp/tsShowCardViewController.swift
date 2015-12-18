@@ -24,19 +24,19 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     let background = UIView()
     var imagearray=Array<UIImage>()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.navigationController?.navigationBar.barTintColor=UIColor.clearColor()
-        self.navigationController?.navigationBar.shadowImage = UIImage.init()
-        requestData()
-        share.addTarget(self, action: "shareFunc", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        scrollview.delegate = self
+    override func loadView() {
         scrollview.frame = CGRectMake(0, 0, backview.frame.width, backview.frame.height)
         scrollview.pagingEnabled = true
         scrollview.showsHorizontalScrollIndicator = false
         self.backview.addSubview(scrollview)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        requestData()
+        share.addTarget(self, action: "shareFunc", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        scrollview.delegate = self
         
     }
     
@@ -144,9 +144,16 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         }
     }
     
-    //    返回时改变navigationbar颜色
-    func back(){
-        self.navigationController?.navigationBar.barTintColor=UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1.0)
+    override func viewWillDisappear(animated: Bool) {
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.navigationController?.navigationBar.barTintColor=UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1.0)
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        UIView.animateWithDuration(0.5) { () -> Void in
+                    self.navigationController?.navigationBar.barTintColor=UIColor.clearColor()
+        }
     }
     
     //    长按图片事件

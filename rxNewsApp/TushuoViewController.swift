@@ -39,41 +39,6 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         vc.pid = cell.tag
     }
     
-    //    返回Section数量
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsArray.count
-    }
-    
-    //    获取每个Cell数据
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tushuoTable.dequeueReusableCellWithIdentifier("tushuoCell")
-        let view = cell!.contentView.viewWithTag(1)
-        let title = cell!.contentView.viewWithTag(2) as! UILabel
-        let click = cell!.contentView.viewWithTag(3) as! UILabel
-        let info = cell!.contentView.viewWithTag(4) as! UILabel
-        let time = cell!.contentView.viewWithTag(5) as! UILabel
-        let pid = newsArray[indexPath.row].objectForKey("pid") as! String
-        cell!.tag = Int(pid)!
-        title.text = newsArray[indexPath.row].objectForKey("title") as? String
-        click.text = newsArray[indexPath.row].objectForKey("click") as? String
-        info.text = newsArray[indexPath.row].objectForKey("count") as? String
-        time.text = timeStampToString((newsArray[indexPath.row].objectForKey("pubdate") as? String)!)
-        var url = newsArray[indexPath.row].objectForKey("thumb") as! String
-        url = "http://\(url)"
-        var image = UIImageView()
-        if view?.viewWithTag(6) == nil {
-            view?.addSubview(image)
-            image.tag = 6
-        } else {
-            image = view?.viewWithTag(6) as! UIImageView
-        }
-        image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, cacheType:SDImageCacheType, nsurl:NSURL!) -> Void in
-            image.frame = CGRectMake(CGFloat(0),
-                CGFloat(0),cell!.frame.width,cell!.frame.width/UIimage.size.width*UIimage.size.height)
-        })
-        return cell!
-    }
-    
     
     //    获取数据
     func initData() {
@@ -86,13 +51,6 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.tushuoTable)
                 self.tushuoTable.mj_header.endRefreshing()
-        }
-    }
-    
-    //    从tsCardFJ返回时回复navigationbar颜色
-    override func viewDidAppear(animated: Bool) {
-        UIView.animateWithDuration(0.5) { () -> Void in
-            self.navigationController?.navigationBar.barTintColor=UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1.0)
         }
     }
     
@@ -132,7 +90,40 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         return dfmatter.stringFromDate(date)
     }
     
-    //    使cell取消选中状态
+    //    tableview的delegate和Datasource
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return newsArray.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tushuoTable.dequeueReusableCellWithIdentifier("tushuoCell")
+        let view = cell!.contentView.viewWithTag(1)
+        let title = cell!.contentView.viewWithTag(2) as! UILabel
+        let click = cell!.contentView.viewWithTag(3) as! UILabel
+        let info = cell!.contentView.viewWithTag(4) as! UILabel
+        let time = cell!.contentView.viewWithTag(5) as! UILabel
+        let pid = newsArray[indexPath.row].objectForKey("pid") as! String
+        cell!.tag = Int(pid)!
+        title.text = newsArray[indexPath.row].objectForKey("title") as? String
+        click.text = newsArray[indexPath.row].objectForKey("click") as? String
+        info.text = newsArray[indexPath.row].objectForKey("count") as? String
+        time.text = timeStampToString((newsArray[indexPath.row].objectForKey("pubdate") as? String)!)
+        var url = newsArray[indexPath.row].objectForKey("thumb") as! String
+        url = "http://\(url)"
+        var image = UIImageView()
+        if view?.viewWithTag(6) == nil {
+            view?.addSubview(image)
+            image.tag = 6
+        } else {
+            image = view?.viewWithTag(6) as! UIImageView
+        }
+        image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, cacheType:SDImageCacheType, nsurl:NSURL!) -> Void in
+            image.frame = CGRectMake(CGFloat(0),
+                CGFloat(0),cell!.frame.width,cell!.frame.width/UIimage.size.width*UIimage.size.height)
+        })
+        return cell!
+    }
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         self.tushuoTable.deselectRowAtIndexPath(indexPath, animated: true)
     }

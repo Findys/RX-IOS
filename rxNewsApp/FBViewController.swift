@@ -13,17 +13,20 @@ class FBViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var nickname: UITextField!
     @IBOutlet weak var commit: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    override func loadView() {
+        super.loadView()
         commit.addTarget(self, action: "feedBack", forControlEvents: UIControlEvents.TouchUpInside)
         content.layer.borderWidth = 1
         content.layer.cornerRadius = 5
         content.clipsToBounds = true
         content.text="请输入内容"
         content.layer.borderColor = UIColor.lightGrayColor().CGColor
-        content.delegate = self
-        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+                content.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
