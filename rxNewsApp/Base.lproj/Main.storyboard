@@ -200,20 +200,7 @@
                             <constraint firstItem="Jzh-2f-3de" firstAttribute="leading" secondItem="wbK-Mn-ba8" secondAttribute="leading" id="iH7-Ns-f8z"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="pTa-S4-f5z">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="DVQ-xl-3WF">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bVt-D5-uc2">
-                                <rect key="frame" x="233" y="7" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="评论">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="commitList" destination="bVt-D5-uc2" id="XgJ-IS-Wcd"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="pTa-S4-f5z"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZl-Rz-AF2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -608,7 +595,7 @@
                                             <constraint firstAttribute="height" constant="20" id="cRl-PE-ysE"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome_logo" translatesAutoresizingMaskIntoConstraints="NO" id="EzX-rg-qTW">

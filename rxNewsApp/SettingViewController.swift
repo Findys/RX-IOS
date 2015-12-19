@@ -30,10 +30,6 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         // Dispose of any resources that can be recreated.
     }
     
-    //    view将出现时调用
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBar.barTintColor=UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1.0)
-    }
     
     //    每个Cell的点击事件
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
@@ -113,18 +109,18 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
     
     //    图片裁剪结束
     func imageCropViewController(controller: RSKImageCropViewController!, didCropImage croppedImage: UIImage!, usingCropRect cropRect: CGRect) {
-        let IMGDATA = UIImageJPEGRepresentation(croppedImage, CGFloat(1))
-        userDefault.setObject(IMGDATA, forKey: "headimage")
+        let imgData = UIImageJPEGRepresentation(croppedImage, CGFloat(1))
         let params:[String:AnyObject] = ["token":userDefault.stringForKey("token")!]
         let afmanager = AFHTTPSessionManager()
         let studentID = userDefault.stringForKey("account")!
         let url = "http://user.ecjtu.net/api/user/\(studentID)/avatar"
         afmanager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
-            formdata.appendPartWithFileData(IMGDATA!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
+            formdata.appendPartWithFileData(imgData!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
             }, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
                 if( resp!.objectForKey("result")! as! Int == 1){
                     MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "头像上传成功",parentView: self.view)
                     self.headImageGet()
+                    self.headImg.image = croppedImage
                 }
                 
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in

@@ -19,14 +19,12 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     let content = UITextView()
     let backView = UIView()
     
-    @IBOutlet weak var commitList: UIButton!
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
+        super.loadView()
         let config = WKWebViewConfiguration()
         let contentController = WKUserContentController()
         config.userContentController = contentController
         self.webView = WKWebView(frame:self.view.viewWithTag(1)!.frame, configuration: config)
-        webView.navigationDelegate = self
         progressBar.progress = 0
         progressBar.frame = CGRect(x: 0, y: (self.view.viewWithTag(1)?.frame.origin.y)!, width: self.view.frame.width, height: 20)
         progressBar.backgroundColor = UIColor.lightGrayColor()
@@ -35,6 +33,11 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         webView.alpha = 0
         self.view.addSubview(webView)
         self.view.addSubview(progressBar)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        webView.navigationDelegate = self
         
         if from == "rx"{
             backView.backgroundColor = UIColor(red: 28/255.0, green: 144/255.0, blue: 129/255.0, alpha: 1.0)
@@ -59,7 +62,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
             comment.addTarget(self, action: "commitComment", forControlEvents: UIControlEvents.TouchUpInside)
             backView.addSubview(comment)
             
-            commitList.addTarget(self, action: "commentList", forControlEvents: UIControlEvents.TouchUpInside)
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "评论页", style: UIBarButtonItemStyle.Bordered, target: self, action: "pushToComment")
             
         }
         // Do any additional setup after loading the view.
@@ -104,7 +107,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     }
     
     //    提交评论
-    func commitComment(){
+    func pushToComment(){
         if let _ = userDefault.objectForKey("account"){
             
         let afmanager = AFHTTPSessionManager()
