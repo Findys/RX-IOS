@@ -21,9 +21,8 @@ class TabViewController: UITabBarController,UITabBarControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem){
-        print(self.tabBarController?.selectedViewController)
-        if item.title! == "我"{
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        if tabBarController.selectedIndex == 3{
             let iflogin = userDefault.objectForKey("iflogin") as! Bool
             if iflogin == false{
                 let vc = myStoryBoard.instantiateViewControllerWithIdentifier("login") as! LoginViewController
@@ -31,5 +30,6 @@ class TabViewController: UITabBarController,UITabBarControllerDelegate {
             }
         }
     }
+    
 
 }

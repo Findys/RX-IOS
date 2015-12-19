@@ -19,13 +19,11 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         super.loadView()
         self.headimage.layer.cornerRadius = 50
         self.headimage.clipsToBounds = true
-        if let _ = userDefault.objectForKey("headimage"){
-            self.headimage.image = UIImage(data: userDefault.objectForKey("headimage")as! NSData)
-        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         rxServiceTable.dataSource=self
         rxServiceTable.delegate=self
     }
@@ -34,6 +32,8 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         let iflogin = userDefault.objectForKey("iflogin") as! Bool
         if iflogin == false{
             tabBarController!.selectedIndex = 0
+        }else{
+            headImageGet()
         }
     }
     
@@ -95,8 +95,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
             //            个人设置
         case 4:
-            let setting=UIStoryboard.init(name: "Main", bundle: nil)
-            let push=setting.instantiateViewControllerWithIdentifier("setting")
+            let push = myStoryBoard.instantiateViewControllerWithIdentifier("setting")
             push.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(push, animated: true)
             break
@@ -104,6 +103,23 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         default:break
         }
         self.rxServiceTable.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    //    获取头像
+    func headImageGet(){
+        let afmanager = AFHTTPSessionManager()
+        let url = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
+        afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
+        afmanager.GET(url, parameters: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            let avatar = "http://"+((resp!.objectForKey("user")?.objectForKey("avatar"))! as! String)
+            userDefault.setObject(avatar, forKey: "headimg")
+            let name = (resp!.objectForKey("user")?.objectForKey("name")!) as! String
+            self.username.text = name
+            userDefault.setObject(name, forKey: "name")
+            self.headimage.sd_setImageWithURL(NSURL(string: avatar))
+            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                print(error)
+        }
     }
     
 }

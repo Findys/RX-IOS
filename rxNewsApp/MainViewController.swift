@@ -19,8 +19,8 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            self.newsTable.estimatedRowHeight = 114
-            self.newsTable.rowHeight = UITableViewAutomaticDimension
+        self.newsTable.estimatedRowHeight = 114
+        self.newsTable.rowHeight = UITableViewAutomaticDimension
         self.newsTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
             self.loadData()
         })
@@ -110,8 +110,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     //    横幅点击事件
     func scrollViewClick() {
-        let wv=UIStoryboard.init(name:"Main", bundle: nil)
-        let push = wv.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+        let push = myStoryBoard.instantiateViewControllerWithIdentifier("webview") as! WebViewController
         push.hidesBottomBarWhenPushed = true
         push.id = (slideArray[pageControl.currentPage].objectForKey("id") as? Int)!
         push.from = "rx"
@@ -119,7 +118,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     
-//    tableview的datasource和delegate
+    //    tableview的datasource和delegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if 0 == indexPath.row {
             return 204
@@ -200,7 +199,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         self.newsTable.deselectRowAtIndexPath(indexPath, animated: true)
     }

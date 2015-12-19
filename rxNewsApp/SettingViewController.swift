@@ -19,14 +19,9 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         // Do any additional setup after loading the view, typically from a nib.
         tableview.delegate=self
         version.text=String(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")!)
-        if let _ = userDefault.objectForKey("headimage"){
-        let himage = userDefault.objectForKey("headimage") as! NSData
-        let h2image = UIImage.init(data: himage)! as UIImage
-        headImg.image = h2image
+        headImageGet()
         headImg.layer.cornerRadius = 15
         headImg.clipsToBounds = true
-        }
-        
     }
     
     
@@ -69,8 +64,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             switch indexPath.row{
                 //                反馈建议
             case 0:
-                let feedback = UIStoryboard.init(name: "Main", bundle: nil)
-                let push = feedback.instantiateViewControllerWithIdentifier("feedback")
+                let push = myStoryBoard.instantiateViewControllerWithIdentifier("feedback")
                 self.navigationController?.pushViewController(push, animated: true)
                 break
                 
@@ -80,8 +74,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
                 
                 //            关于我们
             case 3:
-                let setting = UIStoryboard.init(name: "Main", bundle: nil)
-                let push = setting.instantiateViewControllerWithIdentifier("about")
+                let push = myStoryBoard.instantiateViewControllerWithIdentifier("about")
                 push.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(push, animated: true)
                 break
@@ -133,9 +126,9 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
                     MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "头像上传成功",parentView: self.view)
                     self.headImageGet()
                 }
-
+                
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView: self.view)
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView: self.view)
         }
         controller.dismissViewControllerAnimated(true, completion: nil)
         MozTopAlertView.showWithType(MozAlertTypeInfo, text: "头像上传中", parentView: self.view)
@@ -145,16 +138,9 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
     
     //    获取头像
     func headImageGet(){
-        let afmanager = AFHTTPSessionManager()
-        let url = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
-        afmanager.GET(url, parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-            let AVATAR_URL = "http://"+((resp!.objectForKey("user")?.objectForKey("avatar"))! as! String)
-            self.headImg.sd_setImageWithURL(NSURL(string: AVATAR_URL), completed: { (image:UIImage!, error:NSError!, catchType:SDImageCacheType, nsurl:NSURL!) -> Void in
-                let IMGDATA = UIImageJPEGRepresentation(self.headImg.image!, CGFloat(1))
-                userDefault.setObject(IMGDATA, forKey: "headimage")
-            })
-            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                print(error)
-        }
+        let avatar = userDefault.objectForKey("headimg") as! String
+        self.headImg.sd_setImageWithURL(NSURL(string: avatar))
+        
     }
+    
 }

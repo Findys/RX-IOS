@@ -40,7 +40,8 @@ class LoginViewController: UIViewController {
                 userDefault.setObject(mypassword, forKey: "password")
                 userDefault.setObject(token, forKey: "token")
                 userDefault.setObject(myaccount, forKey: "account")
-                self.headImageGet()
+                userDefault.setBool(true, forKey: "iflogin")
+                self.dismissViewControllerAnimated(true, completion: nil)
             }else{
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "登录错误", parentView:self.view)
             }
@@ -76,27 +77,5 @@ class LoginViewController: UIViewController {
         }
         return true
     }
-    
-    //    获取头像
-    func headImageGet(){
-        let afmanager = AFHTTPSessionManager()
-        let url = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
-        afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
-        afmanager.GET(url, parameters: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-            let avatar = "http://"+((resp!.objectForKey("user")?.objectForKey("avatar"))! as! String)
-            let name = (resp!.objectForKey("user")?.objectForKey("name")!) as! String
-            userDefault.setObject(name, forKey: "name")
-            var headimage = UIImageView()
-            headimage.sd_setImageWithURL(NSURL(string: avatar), completed: { (image:UIImage!, error:NSError!, catchType:SDImageCacheType, nsurl:NSURL!) -> Void in
-                let imagedata = UIImageJPEGRepresentation(headimage.image!, CGFloat(100))
-                userDefault.setObject(imagedata, forKey: "headimage")
-            })
-            userDefault.setBool(true, forKey: "iflogin")
-            self.dismissViewControllerAnimated(true, completion: nil)
-            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                print(error)
-        }
-    }
-
 
 }
