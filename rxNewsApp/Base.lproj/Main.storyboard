@@ -223,7 +223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xEc-Il-zZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1702" y="574"/>
+            <point key="canvasLocation" x="1714" y="566"/>
         </scene>
         <!--新闻-->
         <scene sceneID="laG-7v-23T">
@@ -427,7 +427,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="图说" id="TMB-z5-O1A">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="n5c-fl-hwM">
+                        <barButtonItem key="rightBarButtonItem" id="n5c-fl-hwM">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AVf-RS-8B5">
                                 <rect key="frame" x="233" y="7" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -445,24 +445,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCF-KY-bES" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1207" y="-122"/>
-        </scene>
-        <!--Local Web View Controller-->
-        <scene sceneID="uTb-3u-lhp">
-            <objects>
-                <viewController id="NSS-18-0cH" customClass="LocalWebViewController" customModule="rxNewsApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="264-7a-I6y"/>
-                        <viewControllerLayoutGuide type="bottom" id="4JP-09-mn7"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="OOO-Fl-Uvo">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VOr-2Q-Ul3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1618" y="-122"/>
         </scene>
         <!--学院专题-->
         <scene sceneID="bhm-9p-JM1">
@@ -1374,6 +1356,6 @@
         <image name="zaozhe" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WVL-6a-b49"/>
+        <segue reference="yQ2-KQ-zjh"/>
     </inferredMetricsTieBreakers>
 </document>

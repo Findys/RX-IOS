@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
         let myaccount=account.text! as String
         afManager.responseSerializer = AFHTTPResponseSerializer()
         let params:[String:String] = ["username": myaccount, "password": mypassword]
-        afManager.POST(url, parameters: params, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+        afManager.POST(url, parameters: params,progress: nil,success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             let json = try! NSJSONSerialization.JSONObjectWithData(resp as! NSData, options: NSJSONReadingOptions())
             print(json)
             let result:AnyObject=(json.objectForKey("result"))!

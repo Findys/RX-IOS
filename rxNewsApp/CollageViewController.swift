@@ -43,7 +43,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     //    获取数据
     func loadData() {
         let afManager = AFHTTPSessionManager()
-        afManager.GET("http://app.ecjtu.net/api/v1/schoolnews", parameters: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+        afManager.GET("http://app.ecjtu.net/api/v1/schoolnews", parameters: nil,progress: nil,success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             self.newsArray = resp!.objectForKey("articles") as! Array<AnyObject>
             self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
             self.collageTable.reloadData()
@@ -57,7 +57,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     //    获取更多数据
     func loadMoreData(id:Int) {
         let afManager = AFHTTPSessionManager()
-        afManager.GET("http://app.ecjtu.net/api/v1/schoolnews?until=\(id)", parameters: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+        afManager.GET("http://app.ecjtu.net/api/v1/schoolnews?until=\(id)", parameters: nil, progress:nil,success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             let count = resp!.objectForKey("count") as! Int
             if count == 0 {
                 self.collageTable.mj_footer.endRefreshingWithNoMoreData()

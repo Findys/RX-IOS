@@ -62,7 +62,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
             comment.addTarget(self, action: "commitComment", forControlEvents: UIControlEvents.TouchUpInside)
             backView.addSubview(comment)
             
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "评论页", style: UIBarButtonItemStyle.Bordered, target: self, action: "pushToComment")
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "评论页", style: UIBarButtonItemStyle.Plain, target: self, action: "pushToComment")
             
         }
         // Do any additional setup after loading the view.

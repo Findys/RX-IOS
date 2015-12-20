@@ -110,7 +110,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         let afmanager = AFHTTPSessionManager()
         let url = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
         afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
-        afmanager.GET(url, parameters: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+        afmanager.GET(url, parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             let avatar = "http://"+((resp!.objectForKey("user")?.objectForKey("avatar"))! as! String)
             userDefault.setObject(avatar, forKey: "headimg")
             let name = (resp!.objectForKey("user")?.objectForKey("name")!) as! String
