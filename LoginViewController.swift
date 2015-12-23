@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import CoreMotion
 
 class LoginViewController: UIViewController {
+    var img = UIImageView()
     var url="http://user.ecjtu.net/api/login"
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var login: UIButton!
@@ -16,6 +18,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         login.addTarget(self, action: "loginClick", forControlEvents: UIControlEvents.TouchUpInside)
+
         // Do any additional setup after loading the view.
     }
 

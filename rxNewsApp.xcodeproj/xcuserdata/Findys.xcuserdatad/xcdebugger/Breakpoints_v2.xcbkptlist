@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "rxNewsApp/tsShowCardViewController.swift"
-            timestampString = "472094331.843514"
+            timestampString = "472538622.013473"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "loadScroll()"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,104 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "rxNewsApp/tsShowCardViewController.swift"
-            timestampString = "469771314.497815"
+            timestampString = "472538622.013473"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "tsShowCardViewController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "rxNewsApp.tsShowCardViewController.frame.getter : __C.CGRect"
-                  moduleName = "rxNewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Findys/Documents/RX-IOS-master/rxNewsApp/tsShowCardViewController.swift"
-                  timestampString = "468775874.494792"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "11">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "rxNewsApp.tsShowCardViewController.frame.setter : __C.CGRect"
-                  moduleName = "rxNewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Findys/Documents/RX-IOS-master/rxNewsApp/tsShowCardViewController.swift"
-                  timestampString = "468775874.495064"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "47">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "rxNewsApp.tsShowCardViewController.frame.materializeForSet : __C.CGRect"
-                  moduleName = "rxNewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Findys/Documents/RX-IOS-master/rxNewsApp/tsShowCardViewController.swift"
-                  timestampString = "468775874.495266"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "12">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "rxNewsApp.tsShowCardViewController.init (rxNewsApp.tsShowCardViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; rxNewsApp.tsShowCardViewController"
-                  moduleName = "rxNewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Findys/Documents/RX-IOS-master/rxNewsApp/tsShowCardViewController.swift"
-                  timestampString = "468775874.495439"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "15"
-                  endingLineNumber = "15"
-                  offsetFromSymbolStart = "215">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "rxNewsApp.tsShowCardViewController.init (rxNewsApp.tsShowCardViewController.Type)(coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;rxNewsApp.tsShowCardViewController&gt;"
-                  moduleName = "rxNewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Findys/Documents/RX-IOS-master/rxNewsApp/tsShowCardViewController.swift"
-                  timestampString = "468775874.49561"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "15"
-                  endingLineNumber = "15"
-                  offsetFromSymbolStart = "130">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "rxNewsApp/tsShowCardViewController.swift"
-            timestampString = "472094331.843514"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "loadScroll()"
             landmarkType = "5">
          </BreakpointContent>

@@ -12,6 +12,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     var newsArray = Array<AnyObject>()
     var articleID = Int()
+    var dataSource = NSMutableArray()
     @IBOutlet weak var collageTable: UITableView!
     
     override func viewDidLoad() {
@@ -32,22 +33,28 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
-    //    segue页面跳转
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let cell = sender as! UITableViewCell
-        let vc = segue.destinationViewController as! WebViewController
-        vc.id = cell.tag
-        vc.hidesBottomBarWhenPushed = true
-    }
-    
     //    获取数据
     func loadData() {
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://app.ecjtu.net/api/v1/schoolnews", parameters: nil,progress: nil,success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             self.newsArray = resp!.objectForKey("articles") as! Array<AnyObject>
             self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
-            self.collageTable.reloadData()
-            self.collageTable.mj_header.endRefreshing()
+            let currentData = NSMutableArray()
+            for each in self.newsArray{
+                let item = CollageItem()
+                item.id = each.objectForKey("id") as! NSNumber
+                item.info = each.objectForKey("info") as! String
+                item.click = each.objectForKey("click") as! NSNumber
+                item.title = each.objectForKey("title") as! String
+                item.time = each.objectForKey("created_at") as! String
+                currentData.addObject(item)
+            }
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.dataSource = currentData
+                self.collageTable.dataSource = self
+                self.collageTable.reloadData()
+                self.collageTable.mj_header.endRefreshing()
+            })
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.collageTable)
                 self.collageTable.mj_header.endRefreshing()
@@ -75,8 +82,12 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
                 self.collageTable.mj_footer.endRefreshing()
         }
     }
-//    tableview的datasource和delegate
+    //    tableview的datasource和delegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        let item = dataSource[indexPath.row] as! CollageItem
+        let push = myStoryBoard.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+        push.id = Int(item.id)
+        self.navigationController?.pushViewController(push, animated: true)
         self.collageTable.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
@@ -86,16 +97,16 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = collageTable.dequeueReusableCellWithIdentifier("collageCell")
-        cell!.tag = newsArray[indexPath.row].objectForKey("id") as! Int
+        let item = dataSource[indexPath.row] as! CollageItem
         let title = cell!.contentView.viewWithTag(1) as! UILabel
         let click = cell!.contentView.viewWithTag(2) as! UILabel
         let info = cell!.contentView.viewWithTag(3) as! UILabel
         let time = cell!.contentView.viewWithTag(4) as! UILabel
         
-        title.text = newsArray[indexPath.row].objectForKey("title") as? String
-        click.text = String(stringInterpolationSegment: newsArray[indexPath.row].objectForKey("click") as! Int)
-        info.text = newsArray[indexPath.row].objectForKey("info") as? String
-        time.text = newsArray[indexPath.row].objectForKey("created_at") as? String
+        time.text = item.time as String
+        click.text = String(item.click) as String
+        info.text = item.info as String
+        title.text = item.title as String
         return cell!
     }
 }

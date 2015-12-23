@@ -523,14 +523,8 @@
                                                 <constraint firstItem="AS0-U4-Yrj" firstAttribute="leading" secondItem="WwQ-RS-om6" secondAttribute="leadingMargin" constant="9" id="vrY-51-fgz"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="3nK-eJ-gpE" kind="push" id="yQ2-KQ-zjh"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="Wy0-wE-D6z" id="rzw-PU-3Pj"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1356,6 +1350,6 @@
         <image name="zaozhe" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yQ2-KQ-zjh"/>
+        <segue reference="XSj-wH-IVb"/>
     </inferredMetricsTieBreakers>
 </document>

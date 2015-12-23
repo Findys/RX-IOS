@@ -41,6 +41,7 @@
 		14BF77851C00A0CC00251561 /* ShareSDKUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 14BF77771C00A0CC00251561 /* ShareSDKUI.bundle */; };
 		14BF77861C00A0CC00251561 /* ShareSDKUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BF77781C00A0CC00251561 /* ShareSDKUI.framework */; };
 		14BF78C41C00A36F00251561 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14BF78C31C00A36F00251561 /* Images.xcassets */; };
+		14C9B9621C2A9B2000FC2099 /* CollageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C9B9611C2A9B2000FC2099 /* CollageItem.swift */; };
 		14D3E4FB1BFC9BE300640C29 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E4FA1BFC9BE300640C29 /* CFNetwork.framework */; };
 		14D3E4FD1BFC9BF300640C29 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E4FC1BFC9BF300640C29 /* CoreFoundation.framework */; };
 		14D3E4FF1BFC9C0700640C29 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E4FE1BFC9C0700640C29 /* CoreGraphics.framework */; };
@@ -208,6 +209,7 @@
 		14BF77771C00A0CC00251561 /* ShareSDKUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKUI.bundle; sourceTree = "<group>"; };
 		14BF77781C00A0CC00251561 /* ShareSDKUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKUI.framework; sourceTree = "<group>"; };
 		14BF78C31C00A36F00251561 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = rxNewsApp/Images.xcassets; sourceTree = "<group>"; };
+		14C9B9611C2A9B2000FC2099 /* CollageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageItem.swift; sourceTree = "<group>"; };
 		14D3E4FA1BFC9BE300640C29 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		14D3E4FC1BFC9BF300640C29 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		14D3E4FE1BFC9C0700640C29 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -763,6 +765,7 @@
 			children = (
 				D23DCFEA1BC27A9000C32F94 /* rxNewsApp-Bridging-Header.h */,
 				939313B41C1083C1001DC404 /* TuShuoNewsItem.swift */,
+				14C9B9611C2A9B2000FC2099 /* CollageItem.swift */,
 				D23DCFE21BC2732F00C32F94 /* ViewController */,
 				D23DCFE11BC2730600C32F94 /* Base */,
 				14D3E5021BFC9C5500640C29 /* PushConfig.plist */,
@@ -1061,6 +1064,7 @@
 				145B93A11BF37AB500A430EA /* UIApplication+RSKImageCropper.m in Sources */,
 				145B939D1BF37AB500A430EA /* RSKImageCropViewController.m in Sources */,
 				143714B91BEDA94200D2F5A9 /* NSString+FontAwesome.m in Sources */,
+				14C9B9621C2A9B2000FC2099 /* CollageItem.swift in Sources */,
 				145B939F1BF37AB500A430EA /* RSKInternalUtility.m in Sources */,
 				143714B71BEDA94200D2F5A9 /* FAImageView.m in Sources */,
 				D23DCFEE1BC27F8B00C32F94 /* TushuoViewController.swift in Sources */,
