@@ -66,17 +66,27 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://app.ecjtu.net/api/v1/schoolnews?until=\(id)", parameters: nil, progress:nil,success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             let count = resp!.objectForKey("count") as! Int
-            if count == 0 {
+            if count==0 {
                 self.collageTable.mj_footer.endRefreshingWithNoMoreData()
                 return
+            }else{
+                let newsArray = resp!.objectForKey("list") as! Array<AnyObject>
+                self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! Int
+                for each in newsArray{
+                    let item = TuShuoItem()
+                    item.thumb = each.objectForKey("thumb") as! String
+                    item.title = each.objectForKey("title") as! String
+                    item.click = each.objectForKey("click") as! String
+                    item.info = each.objectForKey("count") as! String
+                    item.pid = each.objectForKey("pid") as! String
+                    item.time = each.objectForKey("pubdate") as! String
+                    self.dataSource.addObject(item)
+                }
             }
-            var array = resp!.objectForKey("articles") as! Array<AnyObject>
-            for index in 0...count-1 {
-                self.newsArray.append(array[index])
-            }
-            self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
-            self.collageTable.reloadData()
-            self.collageTable.mj_footer.endRefreshing()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.collageTable.reloadData()
+                self.collageTable.mj_footer.endRefreshing()
+            })
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.collageTable)
                 self.collageTable.mj_footer.endRefreshing()
@@ -98,10 +108,10 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = collageTable.dequeueReusableCellWithIdentifier("collageCell")
         let item = dataSource[indexPath.row] as! CollageItem
-        let title = cell!.contentView.viewWithTag(1) as! UILabel
-        let click = cell!.contentView.viewWithTag(2) as! UILabel
-        let info = cell!.contentView.viewWithTag(3) as! UILabel
-        let time = cell!.contentView.viewWithTag(4) as! UILabel
+        let title = cell!.viewWithTag(1) as! UILabel
+        let click = cell!.viewWithTag(2) as! UILabel
+        let info = cell!.viewWithTag(3) as! UILabel
+        let time = cell!.viewWithTag(4) as! UILabel
         
         time.text = item.time as String
         click.text = String(item.click) as String

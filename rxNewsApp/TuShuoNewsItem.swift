@@ -8,10 +8,10 @@
 
 import Foundation
 class TuShuoItem:NSObject{
-    var click = NSNumber()
-    var title = NSString()
-    var info = NSString()
-    var thumb = NSString()
-    var time = NSString()
-    var pid = NSString()
+    var click = String()
+    var title = String()
+    var info = String()
+    var thumb = String()
+    var time = String()
+    var pid = String()
 }

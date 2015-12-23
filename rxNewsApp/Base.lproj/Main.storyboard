@@ -374,9 +374,6 @@
                                                 <constraint firstItem="oiG-N8-dP0" firstAttribute="leading" secondItem="0dh-uZ-XdI" secondAttribute="leadingMargin" id="xWE-G2-WOU"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="EqC-OX-jJu" kind="push" id="W1e-di-BS1"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -404,7 +401,7 @@
         <!--图说-->
         <scene sceneID="ula-mq-jB1">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="EqC-OX-jJu" customClass="tsShowCardViewController" customModule="rxNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tushuoview" hidesBottomBarWhenPushed="YES" id="EqC-OX-jJu" customClass="tsShowCardViewController" customModule="rxNewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EPT-VB-1Xb"/>
                         <viewControllerLayoutGuide type="bottom" id="1rr-AJ-krx"/>
@@ -413,7 +410,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDJ-kr-SmB">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eDJ-kr-SmB">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
