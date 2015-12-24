@@ -8,8 +8,8 @@
 import UIKit
 
 class MainViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate, UIPageViewControllerDelegate{
-    var newsArray = Array<AnyObject>()
-    var slideArray = Array<AnyObject>()
+    var slideData = NSMutableArray()
+    var dataSource = NSMutableArray()
     var articleID = Int()
     var pageInited = false
     @IBOutlet weak var newsTable: UITableView!
@@ -47,7 +47,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
         if segue.identifier == "rxPageNews" {
             let vc = segue.destinationViewController as! WebViewController
-            vc.id = (slideArray[pageControl.currentPage].objectForKey("id") as? Int)!
+//            vc.id = (slideArray[pageControl.currentPage].objectForKey("id") as? Int)!
             vc.hidesBottomBarWhenPushed = true
         }
     }
@@ -58,19 +58,34 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         afManager.GET("http://app.ecjtu.net/api/v1/index", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             let normal = resp!.objectForKey("normal_article")
             let slide = resp!.objectForKey("slide_article")
-            self.newsArray = normal?.objectForKey("articles") as! Array<AnyObject>
-            self.slideArray = slide?.objectForKey("articles") as! Array<AnyObject>
-            self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
-            self.newsTable.reloadData()
-            self.newsTable.hidden=false
-            self.newsTable.mj_header.endRefreshing()
+            var newsArray = normal?.objectForKey("articles") as! Array<AnyObject>
+            let slideArray = slide?.objectForKey("articles") as! Array<AnyObject>
+            let currentData = NSMutableArray()
+            for each in newsArray{
+                let item = rxNewsItem()
+                item.title = each.objectForKey("title") as! String
+                item.click = each.objectForKey("click") as! NSNumber
+                item.info = each.objectForKey("info") as! String
+                item.thumb = each.objectForKey("thumb") as! String
+                item.id = each.objectForKey("id") as! NSNumber
+                currentData.addObject(item)
+            }
+            let currentSlideData = NSMutableArray()
+            for each in slideArray{
+                let item = rxNewsSlideItem()
+                item.title = each.objectForKey("title") as! String
+                item.thumb = each.objectForKey("thumb") as! String
+                item.id = each.objectForKey("id") as! NSNumber
+                currentSlideData.addObject(item)
+            }
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.dataSource = currentData
+                self.slideData = currentSlideData
+                self.newsTable.reloadData()
+                self.newsTable.mj_header.endRefreshing()
+            })
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
-                //                self.newsTable.hidden=true
-                //                let backimage=UIImageView()
-                //                backimage.image=UIImage(named: "IMG_0034")
-                //                backimage.frame=CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
-                //                self.view.addSubview(backimage)
                 self.newsTable.mj_header.endRefreshing()
         }
     }
@@ -84,14 +99,22 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             if count==0 {
                 self.newsTable.mj_footer.endRefreshingWithNoMoreData()
                 return
+            }else{
+                let array = lang?.objectForKey("articles") as! Array<AnyObject>
+                for each in array{
+                    let item = rxNewsItem()
+                    item.title = each.objectForKey("title") as! String
+                    item.click = each.objectForKey("click") as! NSNumber
+                    item.info = each.objectForKey("info") as! String
+                    item.thumb = each.objectForKey("thumb") as! String
+                    item.id = each.objectForKey("id") as! NSNumber
+                    self.dataSource.addObject(item)
+                }
             }
-            var array = lang?.objectForKey("articles") as! Array<AnyObject>
-            for index in 0...count-1 {
-                self.newsArray.append(array[index])
-            }
-            self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
-            self.newsTable.reloadData()
-            self.newsTable.mj_footer.endRefreshing()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.newsTable.reloadData()
+                self.newsTable.mj_header.endRefreshing()
+            })
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
                 self.newsTable.mj_footer.endRefreshing()
@@ -104,7 +127,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             let pageWidth = scrollview.frame.width
             let page = Int(floor((scrollview.contentOffset.x * 2.0 + pageWidth) / (pageWidth * 2.0)))
             pageControl.currentPage=page
-            self.slidetitle.text = slideArray[page].objectForKey("title") as? String
+//            self.slidetitle.text = slideData[page].objectForKey("title") as? String
         }
     }
     
@@ -112,7 +135,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func scrollViewClick() {
         let push = myStoryBoard.instantiateViewControllerWithIdentifier("webview") as! WebViewController
         push.hidesBottomBarWhenPushed = true
-        push.id = (slideArray[pageControl.currentPage].objectForKey("id") as? Int)!
+//        push.id = (slideData[pageControl.currentPage].objectForKey("id") as? Int)!
         push.from = "rx"
         self.navigationController?.pushViewController(push, animated: true)
     }
@@ -128,7 +151,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsArray.count
+        return dataSource.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -163,13 +186,14 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 view.userInteractionEnabled=true
                 if scrollview.viewWithTag(i+20) == nil {
                     self.slidetitle = cell.viewWithTag(11) as! UILabel
-                    slidetitle.text = slideArray[indexPath.row].objectForKey("title") as? String
+                    slidetitle.text = slideData[indexPath.row].title
                     view.tag = i+20
                     scrollview.addSubview(view)
                 } else {
                     view = scrollview.viewWithTag(i+20) as! UIImageView
                 }
-                let url = slideArray[i].objectForKey("thumb") as! String
+                let item = slideData[i] as! rxNewsSlideItem
+                let url = item.thumb
                 view.sd_setImageWithURL(NSURL(string:url), completed: { (uiImage:UIImage!, error:NSError!, cacheType:SDImageCacheType, nsurl:NSURL!) -> Void in
                     if (error != nil){
                         MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
@@ -184,16 +208,16 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             return cell
         } else {
             let cell = newsTable.dequeueReusableCellWithIdentifier("rxCell")
-            cell!.tag = newsArray[indexPath.row-1].objectForKey("id") as! Int
-            let title = cell!.contentView.viewWithTag(1) as! UILabel
-            let click = cell!.contentView.viewWithTag(2) as! UILabel
-            let info = cell!.contentView.viewWithTag(3) as! UILabel
-            let image = cell!.contentView.viewWithTag(4) as! UIImageView
-            title.text = newsArray[indexPath.row-1].objectForKey("title") as? String
+            let item = dataSource[indexPath.row] as! rxNewsItem
+            let title = cell!.viewWithTag(1) as! UILabel
+            let click = cell!.viewWithTag(2) as! UILabel
+            let info = cell!.viewWithTag(3) as! UILabel
+            let image = cell!.viewWithTag(4) as! UIImageView
+            title.text = item.title
             title.font = UIFont.boldSystemFontOfSize(16)
-            click.text = String(stringInterpolationSegment: newsArray[indexPath.row-1].objectForKey("click") as! Int)
-            info.text = newsArray[indexPath.row-1].objectForKey("info") as? String
-            let url = newsArray[indexPath.row-1].objectForKey("thumb") as! String
+            click.text = String(item.click)
+            info.text = item.info
+            let url = item.thumb
             image.sd_setImageWithURL(NSURL(string:url))
             return cell!
         }
