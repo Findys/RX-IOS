@@ -13,7 +13,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var articleID = Int()
     var pageInited = false
     @IBOutlet weak var newsTable: UITableView!
-    var slideView = SlideScrollView()
+    var slideView:SlideScrollView?
     var slidetitle = UILabel()
     var pageControl = UIPageControl()
     
@@ -136,17 +136,18 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = newsTable.dequeueReusableCellWithIdentifier("pageCell")!
-            slideView = SlideScrollView(frame: cell.contentView.frame)
-            slideView.delegate = self
             let slideImgArray = NSMutableArray()
             let slideTtlArray = NSMutableArray()
+            slideView = SlideScrollView(rect: self.view.frame, imgArr: slideImgArray, titArr: slideTtlArray)
+            slideView!.delegate = self
             for each in slideData{
                 let item = each as! rxNewsSlideItem
                 slideImgArray.addObject(item.thumb)
                 slideTtlArray.addObject(item.title)
             }
-            slideView.initWithFrameRect(cell.contentView.frame,imgArr:slideImgArray,titArr:slideTtlArray)
-            cell.contentView.addSubview(slideView)
+            let myslideView = slideView!.initWithFrameRect(cell.contentView.frame,imgArr:slideImgArray,titArr:slideTtlArray)
+            print(cell.contentView.frame.size.height)
+            cell.contentView.addSubview(myslideView as! UIView)
             return cell
         } else {
             let cell = newsTable.dequeueReusableCellWithIdentifier("rxCell")

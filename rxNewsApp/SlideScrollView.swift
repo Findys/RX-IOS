@@ -26,18 +26,27 @@ class SlideScrollView: UIView,UIScrollViewDelegate {
     var currentPageIndex:Int = 0
     var noteTitle:UILabel = UILabel()
     var currentPage = Int()
+    var view = UIView()
     
     var delegate:SlideScrollViewDelegate?
+    
+    init(rect:CGRect,imgArr:NSArray,titArr:NSArray){
+        super.init(frame: rect)
+        view.frame = rect
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
    
     func initWithFrameRect(rect:CGRect,imgArr:NSArray,titArr:NSArray)->AnyObject{
-        
-        self.userInteractionEnabled=true;
+        self.userInteractionEnabled = true;
         
         imageArray = imgArr
         titleArray = titArr
         viewSize = rect
         let pageCount:Int = imageArray.count
-        scrollView=UIScrollView(frame:CGRect(origin: CGPoint(x: 0,y: 0),size: CGSize(width: rect.size.width,height: rect.size.height)))
+        scrollView = UIScrollView(frame:CGRect(origin: CGPoint(x: 0,y: 0),size: CGSize(width: rect.size.width,height: rect.size.height)))
         scrollView.pagingEnabled = true
         let contentWidth = WINDOW_WIDTH*CGFloat(pageCount)
         
@@ -77,7 +86,7 @@ class SlideScrollView: UIView,UIScrollViewDelegate {
 
         //文字层
         let shadowImg:UIImageView = UIImageView()
-        shadowImg.frame = CGRect(origin: CGPoint(x: 0,y: 130),size: CGSize(width: 320,height: 80))
+        shadowImg.frame = CGRect(origin: CGPoint(x: 0,y: rect.height-80),size: CGSize(width: 320,height: 80))
         shadowImg.image = UIImage(named:"shadow.png")
         self.addSubview(shadowImg)
         
