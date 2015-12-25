@@ -74,7 +74,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewDidAppear(animated: Bool) {
         let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         webView.loadRequest(request)

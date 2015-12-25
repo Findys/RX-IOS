@@ -37,20 +37,6 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         // Dispose of any resources that can be recreated.
     }
     
-    //    segue页面跳转
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "rxNews" {
-            let cell = sender as! UITableViewCell
-            let vc = segue.destinationViewController as! WebViewController
-            vc.id = cell.tag
-            vc.hidesBottomBarWhenPushed = true
-        }
-        if segue.identifier == "rxPageNews" {
-            let vc = segue.destinationViewController as! WebViewController
-//            vc.id = (slideArray[pageControl.currentPage].objectForKey("id") as? Int)!
-            vc.hidesBottomBarWhenPushed = true
-        }
-    }
     
     //    请求数据
     func loadData() {
@@ -58,7 +44,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         afManager.GET("http://app.ecjtu.net/api/v1/index", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             let normal = resp!.objectForKey("normal_article")
             let slide = resp!.objectForKey("slide_article")
-            var newsArray = normal?.objectForKey("articles") as! Array<AnyObject>
+            let newsArray = normal?.objectForKey("articles") as! Array<AnyObject>
             let slideArray = slide?.objectForKey("articles") as! Array<AnyObject>
             let currentData = NSMutableArray()
             for each in newsArray{
@@ -127,23 +113,14 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             let pageWidth = scrollview.frame.width
             let page = Int(floor((scrollview.contentOffset.x * 2.0 + pageWidth) / (pageWidth * 2.0)))
             pageControl.currentPage=page
-//            self.slidetitle.text = slideData[page].objectForKey("title") as? String
+            self.slidetitle.text = slideData[page].title
         }
-    }
-    
-    //    横幅点击事件
-    func scrollViewClick() {
-        let push = myStoryBoard.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-        push.hidesBottomBarWhenPushed = true
-//        push.id = (slideData[pageControl.currentPage].objectForKey("id") as? Int)!
-        push.from = "rx"
-        self.navigationController?.pushViewController(push, animated: true)
     }
     
     
     //    tableview的datasource和delegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if 0 == indexPath.row {
+        if 0 == indexPath.section {
             return 204
         } else {
             return 114
@@ -151,60 +128,25 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0{
+            return 1
+        }
         return dataSource.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             let cell = newsTable.dequeueReusableCellWithIdentifier("pageCell")!
-            
-            scrollview = cell.viewWithTag(1) as! UIScrollView
-            scrollview.scrollEnabled = true
-            scrollview.pagingEnabled = true
-            scrollview.scrollsToTop = false
-            scrollview.delegate=self
-            
-            if cell.viewWithTag(112) == nil {
-                pageControl = UIPageControl(frame: CGRectMake(0,0,70,(cell.viewWithTag(111)!.frame.height)))
-                let leftConstraint = NSLayoutConstraint(item: pageControl,
-                    attribute: NSLayoutAttribute.Trailing,
-                    relatedBy: NSLayoutRelation.Equal,
-                    toItem: self.view,
-                    attribute: NSLayoutAttribute.Trailing,
-                    multiplier: 1,
-                    constant: 0)
-                pageControl.numberOfPages = 3
-                pageControl.tag = 112
-                cell.viewWithTag(111)?.addSubview(pageControl)
-                pageControl.addConstraint(leftConstraint)
+            let slideView = SlideScrollView(frame: cell.contentView.frame)
+            let slideImgArray = NSMutableArray()
+            let slideTtlArray = NSMutableArray()
+            for each in slideData{
+                let item = each as! rxNewsSlideItem
+                slideImgArray.addObject(item.thumb)
+                slideTtlArray.addObject(item.title)
             }
-            pageControl = cell.viewWithTag(112) as! UIPageControl
-            pageInited = true
-            for i in 0...2 {
-                var view = UIImageView()
-                view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "scrollViewClick"))
-                view.userInteractionEnabled=true
-                if scrollview.viewWithTag(i+20) == nil {
-                    self.slidetitle = cell.viewWithTag(11) as! UILabel
-                    slidetitle.text = slideData[indexPath.row].title
-                    view.tag = i+20
-                    scrollview.addSubview(view)
-                } else {
-                    view = scrollview.viewWithTag(i+20) as! UIImageView
-                }
-                let item = slideData[i] as! rxNewsSlideItem
-                let url = item.thumb
-                view.sd_setImageWithURL(NSURL(string:url), completed: { (uiImage:UIImage!, error:NSError!, cacheType:SDImageCacheType, nsurl:NSURL!) -> Void in
-                    if (error != nil){
-                        MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
-                    }
-                    else{
-                        view.frame = CGRectMake(CGFloat(Int(cell.frame.width)*i),
-                            CGFloat(0),WINDOW_WIDTH,WINDOW_WIDTH/uiImage.size.width*uiImage.size.height)
-                        self.scrollview.contentSize = CGSizeMake(CGFloat(Int(WINDOW_WIDTH)*3),0)
-                    }
-                })
-            }
+            slideView.initWithFrameRect(cell.contentView.frame,imgArr:slideImgArray,titArr:slideTtlArray)
+            cell.addSubview(slideView)
             return cell
         } else {
             let cell = newsTable.dequeueReusableCellWithIdentifier("rxCell")
@@ -225,7 +167,23 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        if indexPath.section == 0{
+            let item = slideData[pageControl.currentPage] as! rxNewsSlideItem
+            let push = myStoryBoard.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+            push.id = item.id as Int
+            push.from = "rx"
+            self.navigationController?.pushViewController(push, animated: true)
+        }else{
+            let item = dataSource[indexPath.row] as! rxNewsItem
+            let push = myStoryBoard.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+            push.id = item.id as Int
+            self.navigationController?.pushViewController(push, animated: true)
+        }
         self.newsTable.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int{
+        return 2
     }
 }
 
