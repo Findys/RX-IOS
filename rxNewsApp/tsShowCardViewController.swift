@@ -15,12 +15,17 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     var pid = Int()
     var ifloading = Bool()
     var ifheight = false
-    @IBOutlet weak var backview: UIView!
+    var backview = UIView(frame: CGRect(x: 0, y: 64, width: WINDOW_WIDTH, height: WINDOW_HEIGHT-64))
     var picheight = Int()
     var picArray = Array<AnyObject>()
     let text = UILabel()
     let background = UIView()
-    var imagearray=Array<UIImage>()
+    var imagearray = Array<UIImage>()
+    
+    override func loadView() {
+        super.loadView()
+        self.view.backgroundColor = UIColor.blackColor()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +33,9 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         scrollview.frame = CGRectMake(0, 0, backview.frame.width, backview.frame.height)
         scrollview.pagingEnabled = true
         scrollview.showsHorizontalScrollIndicator = false
-        self.backview.addSubview(scrollview)
-        share.addTarget(self, action: "shareFunc", forControlEvents: UIControlEvents.TouchUpInside)
-        
+        backview.addSubview(scrollview)
+        self.view.addSubview(backview)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "shareFunc")
         scrollview.delegate = self
         
     }
@@ -39,11 +44,19 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         UIView.animateWithDuration(0.5) { () -> Void in
             self.navigationController?.navigationBar.barTintColor=UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1.0)
         }
+        UIView.animateWithDuration(0.3) { () -> Void in
+            let frame = self.tabBarController?.tabBar.frame
+            self.tabBarController?.tabBar.frame = CGRect(x: frame!.origin.x, y: frame!.origin.y - 50, width: frame!.width, height: frame!.height)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         UIView.animateWithDuration(0.5) { () -> Void in
             self.navigationController?.navigationBar.barTintColor=UIColor.clearColor()
+        }
+        UIView.animateWithDuration(0.3) { () -> Void in
+            let frame = self.tabBarController?.tabBar.frame
+            self.tabBarController?.tabBar.frame = CGRect(x: frame!.origin.x, y: frame!.origin.y + 50, width: frame!.width, height: frame!.height)
         }
     }
     

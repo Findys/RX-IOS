@@ -24,9 +24,10 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         let config = WKWebViewConfiguration()
         let contentController = WKUserContentController()
         config.userContentController = contentController
-        self.webView = WKWebView(frame:self.view.viewWithTag(1)!.frame, configuration: config)
+        self.view.backgroundColor = UIColor.whiteColor()
+        self.webView = WKWebView(frame:self.view.frame, configuration: config)
         progressBar.progress = 0
-        progressBar.frame = CGRect(x: 0, y: (self.view.viewWithTag(1)?.frame.origin.y)!, width: self.view.frame.width, height: 20)
+        progressBar.frame = CGRect(x: 0, y: (self.view.frame.origin.y), width: self.view.frame.width, height: 20)
         progressBar.backgroundColor = UIColor.lightGrayColor()
         progressBar.progressTintColor = UIColor(red: 58/255.0, green: 168/255.0, blue: 252/255.0, alpha: 1.0)
         
@@ -96,6 +97,16 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     override func viewWillDisappear(animated: Bool) {
         webView.removeObserver(self, forKeyPath: "estimatedProgress")
         progressBar.setProgress(0.0, animated: false)
+        UIView.animateWithDuration(0.3) { () -> Void in
+            let frame = self.tabBarController?.tabBar.frame
+            self.tabBarController?.tabBar.frame = CGRect(x: frame!.origin.x, y: frame!.origin.y - 50, width: frame!.width, height: frame!.height)
+        }
+    }
+    override func viewWillAppear(animated: Bool) {
+        UIView.animateWithDuration(0.3) { () -> Void in
+            let frame = self.tabBarController?.tabBar.frame
+            self.tabBarController?.tabBar.frame = CGRect(x: frame!.origin.x, y: frame!.origin.y + 50, width: frame!.width, height: frame!.height)
+        }
     }
     
     //    KVO监控

@@ -7,13 +7,13 @@
 //
 import UIKit
 
-class MainViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate, UIPageViewControllerDelegate{
+class MainViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,SlideScrollViewDelegate{
     var slideData = NSMutableArray()
     var dataSource = NSMutableArray()
     var articleID = Int()
     var pageInited = false
     @IBOutlet weak var newsTable: UITableView!
-    var scrollview: UIScrollView!
+    var slideView = SlideScrollView()
     var slidetitle = UILabel()
     var pageControl = UIPageControl()
     
@@ -107,14 +107,13 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-    //    横幅滚动更新pagecontroller
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if pageInited {
-            let pageWidth = scrollview.frame.width
-            let page = Int(floor((scrollview.contentOffset.x * 2.0 + pageWidth) / (pageWidth * 2.0)))
-            pageControl.currentPage=page
-            self.slidetitle.text = slideData[page].title
-        }
+//    横幅点击事件
+    func SlideScrollViewDidClicked(index:Int){
+        let item = slideData[index] as! rxNewsSlideItem
+        let push = WebViewController()
+        push.id = item.id as Int
+        push.from = "rx"
+        self.navigationController?.pushViewController(push, animated: true)
     }
     
     
@@ -137,7 +136,8 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = newsTable.dequeueReusableCellWithIdentifier("pageCell")!
-            let slideView = SlideScrollView(frame: cell.contentView.frame)
+            slideView = SlideScrollView(frame: cell.contentView.frame)
+            slideView.delegate = self
             let slideImgArray = NSMutableArray()
             let slideTtlArray = NSMutableArray()
             for each in slideData{
@@ -146,7 +146,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 slideTtlArray.addObject(item.title)
             }
             slideView.initWithFrameRect(cell.contentView.frame,imgArr:slideImgArray,titArr:slideTtlArray)
-            cell.addSubview(slideView)
+            cell.contentView.addSubview(slideView)
             return cell
         } else {
             let cell = newsTable.dequeueReusableCellWithIdentifier("rxCell")
@@ -167,15 +167,9 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        if indexPath.section == 0{
-            let item = slideData[pageControl.currentPage] as! rxNewsSlideItem
-            let push = myStoryBoard.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-            push.id = item.id as Int
-            push.from = "rx"
-            self.navigationController?.pushViewController(push, animated: true)
-        }else{
+        if indexPath.section != 0{
             let item = dataSource[indexPath.row] as! rxNewsItem
-            let push = myStoryBoard.instantiateViewControllerWithIdentifier("webview") as! WebViewController
+            let push = WebViewController()
             push.id = item.id as Int
             self.navigationController?.pushViewController(push, animated: true)
         }

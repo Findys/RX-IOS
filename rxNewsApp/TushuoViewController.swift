@@ -142,7 +142,7 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        let push = myStoryBoard.instantiateViewControllerWithIdentifier("tushuoview") as! tsShowCardViewController
+        let push = tsShowCardViewController()
         let item = dataSource[indexPath.row] as! TuShuoItem
         push.pid = Int(item.pid)!
         self.navigationController?.pushViewController(push, animated: true)
