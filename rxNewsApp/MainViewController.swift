@@ -13,7 +13,6 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var articleID = Int()
     var pageInited = false
     @IBOutlet weak var newsTable: UITableView!
-    var slideView:SlideScrollView?
     var slidetitle = UILabel()
     var pageControl = UIPageControl()
     
@@ -65,8 +64,9 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 currentSlideData.addObject(item)
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.dataSource = currentData
                 self.slideData = currentSlideData
+                self.dataSource = currentData
+                self.newsTable.dataSource = self
                 self.newsTable.reloadData()
                 self.newsTable.mj_header.endRefreshing()
             })
@@ -138,16 +138,14 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             let cell = newsTable.dequeueReusableCellWithIdentifier("pageCell")!
             let slideImgArray = NSMutableArray()
             let slideTtlArray = NSMutableArray()
-            slideView = SlideScrollView(rect: self.view.frame, imgArr: slideImgArray, titArr: slideTtlArray)
-            slideView!.delegate = self
             for each in slideData{
                 let item = each as! rxNewsSlideItem
                 slideImgArray.addObject(item.thumb)
                 slideTtlArray.addObject(item.title)
             }
-            let myslideView = slideView!.initWithFrameRect(cell.contentView.frame,imgArr:slideImgArray,titArr:slideTtlArray)
-            print(cell.contentView.frame.size.height)
-            cell.contentView.addSubview(myslideView as! UIView)
+            let myslideView = SlideScrollView(rect: cell.contentView.frame,imgArr:slideImgArray,titArr:slideTtlArray)
+            myslideView.mydelegate = self
+            cell.contentView.addSubview(myslideView)
             return cell
         } else {
             let cell = newsTable.dequeueReusableCellWithIdentifier("rxCell")

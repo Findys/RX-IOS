@@ -18,35 +18,23 @@ protocol SlideScrollViewDelegate {
 
 class SlideScrollView: UIView,UIScrollViewDelegate {
 
-    var viewSize:CGRect = CGRect()
     var scrollView:UIScrollView = UIScrollView()
-    var imageArray:NSArray = NSArray()
-    var titleArray:NSArray = NSArray()
-    var pageControl:UIPageControl = UIPageControl()
-    var currentPageIndex:Int = 0
+    var imageArray = NSArray()
+    var titleArray = NSArray()
+    var pageControl = UIPageControl()
+    var currentPageIndex = 0
     var noteTitle:UILabel = UILabel()
     var currentPage = Int()
-    var view = UIView()
     
-    var delegate:SlideScrollViewDelegate?
+    var mydelegate:SlideScrollViewDelegate?
     
     init(rect:CGRect,imgArr:NSArray,titArr:NSArray){
         super.init(frame: rect)
-        view.frame = rect
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-   
-    func initWithFrameRect(rect:CGRect,imgArr:NSArray,titArr:NSArray)->AnyObject{
-        self.userInteractionEnabled = true;
-        
         imageArray = imgArr
         titleArray = titArr
-        viewSize = rect
+        self.userInteractionEnabled = true
         let pageCount:Int = imageArray.count
-        scrollView = UIScrollView(frame:CGRect(origin: CGPoint(x: 0,y: 0),size: CGSize(width: rect.size.width,height: rect.size.height)))
+        scrollView.frame = self.frame
         scrollView.pagingEnabled = true
         let contentWidth = WINDOW_WIDTH*CGFloat(pageCount)
         
@@ -57,23 +45,23 @@ class SlideScrollView: UIView,UIScrollViewDelegate {
         scrollView.pagingEnabled = true
         scrollView.scrollsToTop = false
         scrollView.delegate = self
-        scrollView.bounces = false
+//        scrollView.bounces = false
         
         for var i = 0; i<pageCount; i++ {
             let imgURL = imageArray[i] as! String
             let imgView:UIImageView=UIImageView()
             
-            let viewWidth = Int(viewSize.size.width)*i
+            let viewWidth = Int(rect.size.width)*i
             imgView.sd_setImageWithURL(NSURL(string: imgURL), completed: { (img:UIImage!, error:NSError!, cache:SDImageCacheType, nsurl:NSURL!) -> Void in
                 imgView.frame = CGRect(origin: CGPoint(x: CGFloat(viewWidth), y:CGFloat(0)),size: CGSize(width: rect.width,height:rect.width/img.size.width*img.size.height))
             })
-
+            
             imgView.contentMode = UIViewContentMode.ScaleToFill
             imgView.userInteractionEnabled = true
             imgView.tag = i
             
             let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "imagePressed:")
-
+            
             tap.numberOfTapsRequired = 1
             tap.numberOfTouchesRequired = 1
             imgView.addGestureRecognizer(tap)
@@ -83,7 +71,7 @@ class SlideScrollView: UIView,UIScrollViewDelegate {
         scrollView.contentOffset = CGPoint(x:0, y:0)
         
         self.addSubview(scrollView)
-
+        
         //文字层
         let shadowImg:UIImageView = UIImageView()
         shadowImg.frame = CGRect(origin: CGPoint(x: 0,y: rect.height-80),size: CGSize(width: 320,height: 80))
@@ -102,15 +90,15 @@ class SlideScrollView: UIView,UIScrollViewDelegate {
         noteTitle.font = UIFont.boldSystemFontOfSize(16)
         noteTitle.numberOfLines = 0
         noteTitle.lineBreakMode = NSLineBreakMode.ByCharWrapping
-        if titleArray.count != 0{
             noteTitle.text = titleArray[pageControl.currentPage] as? String
-        }
         noteTitle.frame = CGRect(origin: CGPoint(x: 10,y: 140),size: CGSize(width: 300,height: 50))
         self.addSubview(noteTitle)
-
-        NSTimer.scheduledTimerWithTimeInterval(4, target: self, selector: "autoShowNextPage", userInfo: nil, repeats: true)
         
-        return self
+        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "autoShowNextPage", userInfo: nil, repeats: true)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func autoShowNextPage() {
@@ -133,13 +121,11 @@ class SlideScrollView: UIView,UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
         currentPage = Int(scrollView.contentOffset.x/WINDOW_WIDTH)
         pageControl.currentPage = currentPage
-        if titleArray.count != 0{
-            noteTitle.text = titleArray[pageControl.currentPage] as? String
-        }
+        noteTitle.text = titleArray[pageControl.currentPage] as? String
     }
     
     func imagePressed (tap:UITapGestureRecognizer){
-        delegate?.SlideScrollViewDidClicked(tap.view!.tag)
+        mydelegate?.SlideScrollViewDidClicked(tap.view!.tag)
     }
 
 }
