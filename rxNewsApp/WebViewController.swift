@@ -84,7 +84,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         }
     }
     
-    //    评论列表
+    //    跳转评论列表
     func commentList(){
         let myStoryBoard = UIStoryboard.init(name: "Main", bundle: nil)
         let push = myStoryBoard.instantiateViewControllerWithIdentifier("comment") as! CommentViewController
@@ -92,8 +92,6 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         self.navigationController?.pushViewController(push, animated: true)
     }
     
-    
-    //    view将要消失时执行
     override func viewWillDisappear(animated: Bool) {
         webView.removeObserver(self, forKeyPath: "estimatedProgress")
         progressBar.setProgress(0.0, animated: false)
@@ -102,6 +100,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
             self.tabBarController?.tabBar.frame = CGRect(x: frame!.origin.x, y: frame!.origin.y - 50, width: frame!.width, height: frame!.height)
         }
     }
+    
     override func viewWillAppear(animated: Bool) {
         UIView.animateWithDuration(0.3) { () -> Void in
             let frame = self.tabBarController?.tabBar.frame
@@ -117,7 +116,6 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         }
     }
     
-    //    提交评论
     func pushToComment(){
         if let _ = userDefault.objectForKey("account"){
             
@@ -137,12 +135,11 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         }
     }
     
-    //    点击页面调用
+    //    点击页面取消焦点
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         content.resignFirstResponder()
     }
     
-    //    开始编辑textview时调用
     func textViewDidBeginEditing(textView: UITextView){
         UIView.beginAnimations("ResizeForKeyboard", context: nil)
         UIView.setAnimationDuration(0.5)
@@ -150,7 +147,6 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         UIView.commitAnimations()
     }
     
-    //    结束编辑时调用
     func textViewDidEndEditing(textView: UITextView){
         backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 40, width: WINDOW_WIDTH, height: 40)
     }

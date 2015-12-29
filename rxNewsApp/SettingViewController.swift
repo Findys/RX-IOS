@@ -69,7 +69,6 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
     }
     
-    //    获取头像
     func headImageGet(){
         let avatar = userDefault.objectForKey("headimg") as! String
         self.headImg.sd_setImageWithURL(NSURL(string: avatar))
@@ -135,7 +134,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             }
         default:break
         }
-        self.tableview.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
 }

@@ -114,12 +114,12 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tushuoTable.dequeueReusableCellWithIdentifier("tushuoCell")
-        let view = cell!.contentView.viewWithTag(1)
-        let title = cell!.contentView.viewWithTag(2) as! UILabel
-        let click = cell!.contentView.viewWithTag(3) as! UILabel
-        let info = cell!.contentView.viewWithTag(4) as! UILabel
-        let time = cell!.contentView.viewWithTag(5) as! UILabel
+        let cell = tableView.dequeueReusableCellWithIdentifier("tushuoCell")
+        let view = cell!.viewWithTag(1)
+        let title = cell!.viewWithTag(2) as! UILabel
+        let click = cell!.viewWithTag(3) as! UILabel
+        let info = cell!.viewWithTag(4) as! UILabel
+        let time = cell!.viewWithTag(5) as! UILabel
         let item = dataSource[indexPath.row] as! TuShuoItem
         title.text = item.title as String
         click.text = item.click 
@@ -146,7 +146,7 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         let item = dataSource[indexPath.row] as! TuShuoItem
         push.pid = Int(item.pid)!
         self.navigationController?.pushViewController(push, animated: true)
-        self.tushuoTable.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
 }

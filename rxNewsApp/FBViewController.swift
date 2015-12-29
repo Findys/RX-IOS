@@ -36,22 +36,23 @@ class FBViewController: UIViewController,UITextViewDelegate {
     
     //    反馈功能实现
     func feedBack(){
-        if let _ = content.text {
-            if let _ = nickname.text{
-                let param = ["content":content.text!,"nickname":nickname.text!]
-                let afmanager = AFHTTPSessionManager()
-                let url = "http://app.ecjtu.net/api/v1/feedback"
-                afmanager.POST(url, parameters: param, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-                    MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "感谢您的支持", parentView: self.view.viewWithTag(1))
-                    }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                        MozTopAlertView.showWithType(MozAlertTypeError, text: "请检查网络", parentView: self.view.viewWithTag(1))
-                })
-            }
+        if content.text != nil && nickname.text != nil {
+            let param = ["content":content.text!,"nickname":nickname.text!]
+            let afmanager = AFHTTPSessionManager()
+            let url = "http://app.ecjtu.net/api/v1/feedback"
+            afmanager.POST(url, parameters: param, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+                MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "感谢您的支持", parentView: self.view.viewWithTag(1))
+                }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                    MozTopAlertView.showWithType(MozAlertTypeError, text: "请检查网络", parentView: self.view.viewWithTag(1))
+            })
+
+        }else{
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "请填写必要信息", parentView: self.view.viewWithTag(1))
         }
         
     }
     
-    //    当点击页面时调用
+    //    点击页面时取消焦点
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         content.resignFirstResponder()
         nickname.resignFirstResponder()

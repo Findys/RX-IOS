@@ -98,7 +98,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         let push = WebViewController()
         push.id = Int(item.id)
         self.navigationController?.pushViewController(push, animated: true)
-        self.collageTable.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,7 +106,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = collageTable.dequeueReusableCellWithIdentifier("collageCell")
+        let cell = tableView.dequeueReusableCellWithIdentifier("collageCell")
         let item = dataSource[indexPath.row] as! CollageItem
         let title = cell!.viewWithTag(1) as! UILabel
         let click = cell!.viewWithTag(2) as! UILabel

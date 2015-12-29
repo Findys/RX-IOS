@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    //        判断是否登录以使输入框失去焦点
+    //        点击使输入框失去焦点
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
             password.resignFirstResponder()
             account.resignFirstResponder()

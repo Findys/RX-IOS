@@ -20,3 +20,20 @@ class rxNewsSlideItem:NSObject {
     var id = NSNumber()
     var thumb = String()
 }
+
+class CollageItem:NSObject {
+    var click = NSNumber()
+    var title = NSString()
+    var info = NSString()
+    var time = NSString()
+    var id = NSNumber()
+}
+
+class TuShuoItem:NSObject{
+    var click = String()
+    var title = String()
+    var info = String()
+    var thumb = String()
+    var time = String()
+    var pid = String()
+}

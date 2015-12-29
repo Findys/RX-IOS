@@ -66,7 +66,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = rxServiceTable.dequeueReusableCellWithIdentifier("rxServiceCell")!
+        let cell = tableView.dequeueReusableCellWithIdentifier("rxServiceCell")!
         let label=cell.viewWithTag(1) as! UILabel
         let image=cell.viewWithTag(2) as! UIImageView
         image.image = UIImage(named:iconArray[indexPath.row])
@@ -92,21 +92,11 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
             //            一卡通查询
         case 2:
-            //            let webview = UIStoryboard.init(name: "Main", bundle: nil)
-            //            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-            //            push.path = NSBundle.mainBundle().pathForResource("cardQuery", ofType: "html")!
-            //            push.ifJs = true
-            //            self.navigationController?.pushViewController(push, animated: true)
             MozTopAlertView.showWithType(MozAlertTypeInfo, text: "开发中..", parentView: self.view.viewWithTag(1))
             break
             
             //            图书馆查询
         case 3:
-            //            let webview = UIStoryboard.init(name: "Main", bundle: nil)
-            //            let push = webview.instantiateViewControllerWithIdentifier("webview") as! WebViewController
-            //            push.path = NSBundle.mainBundle().pathForResource("review", ofType: "html")!
-            //            push.ifJs = true
-            //            self.navigationController?.pushViewController(push, animated: true)
             MozTopAlertView.showWithType(MozAlertTypeInfo, text: "开发中..", parentView: self.view.viewWithTag(1))
             break
             
@@ -119,7 +109,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
         default:break
         }
-        self.rxServiceTable.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
 }

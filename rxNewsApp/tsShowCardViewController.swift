@@ -65,7 +65,6 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         // Dispose of any resources that can be recreated.
     }
     
-    //    加载数据
     func loadScroll(){
         
         for index in 0..<picArray.count {
@@ -114,7 +113,6 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     }
     
     
-    //     页面滑动时重载UI
     func scrollViewDidScroll(scrollView: UIScrollView){
         if ifloading{
             let detail = picArray[Int(scrollview.contentOffset.x/WINDOW_WIDTH)].objectForKey("detail") as! NSString
@@ -127,7 +125,6 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         }
     }
     
-    //    打开页面获取数据
     func requestData() {
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://pic.ecjtu.net/api.php/post/\(pid)", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask?, resp:AnyObject?) -> Void in
@@ -165,7 +162,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     }
     
     
-    //    长按图片事件
+    //    长按保存图片
     func longPress(){
         MozTopAlertView.showWithType(MozAlertTypeInfo, text: "保存到图库", doText: "是的", doBlock: { () -> Void in
             let img = self.imagearray[Int(self.scrollview.contentOffset.x/WINDOW_WIDTH)] as UIImage
