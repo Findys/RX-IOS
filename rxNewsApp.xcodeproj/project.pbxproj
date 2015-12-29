@@ -1231,7 +1231,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ecjtu.net.rxNewsApp5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Geetion/Documents/rxNewsAppIOS/rxNewsApp/rxNewsApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "rxNewsApp/rxNewsApp-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1264,7 +1264,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ecjtu.net.rxNewsApp5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Geetion/Documents/rxNewsAppIOS/rxNewsApp/rxNewsApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "rxNewsApp/rxNewsApp-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
