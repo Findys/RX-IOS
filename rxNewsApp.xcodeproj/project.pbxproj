@@ -127,6 +127,7 @@
 		93AF65691C0FDADB00C80A9E /* scoreQuery.html in Resources */ = {isa = PBXBuildFile; fileRef = 93AF65271C0FDADB00C80A9E /* scoreQuery.html */; };
 		93D6DC451C11D36000BB475C /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 93D6DC441C11D36000BB475C /* style.css */; };
 		93D6DC471C11D36500BB475C /* scoreQuery.js in Resources */ = {isa = PBXBuildFile; fileRef = 93D6DC461C11D36500BB475C /* scoreQuery.js */; };
+		C039DC531C4A01DD0084AA92 /* extendFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C039DC521C4A01DD0084AA92 /* extendFunction.swift */; };
 		C088131E1C2C30C500A5C96C /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C088131D1C2C30C500A5C96C /* NewsItem.swift */; };
 		C09BF9CF1C2D43C500FBBF9F /* SlideScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF9CE1C2D43C500FBBF9F /* SlideScrollView.swift */; };
 		D23DCFDC1BC272DD00C32F94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */; };
@@ -299,6 +300,7 @@
 		93AF652A1C0FDADB00C80A9E /* style.css.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = style.css.map; sourceTree = "<group>"; };
 		93D6DC441C11D36000BB475C /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		93D6DC461C11D36500BB475C /* scoreQuery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = scoreQuery.js; sourceTree = "<group>"; };
+		C039DC521C4A01DD0084AA92 /* extendFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extendFunction.swift; sourceTree = "<group>"; };
 		C088131D1C2C30C500A5C96C /* NewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 		C09BF9CE1C2D43C500FBBF9F /* SlideScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideScrollView.swift; path = rxNewsApp/SlideScrollView.swift; sourceTree = "<group>"; };
 		D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = rxNewsApp/AppDelegate.swift; sourceTree = "<group>"; };
@@ -769,6 +771,7 @@
 				D23DCFE11BC2730600C32F94 /* Base */,
 				14D3E5021BFC9C5500640C29 /* PushConfig.plist */,
 				93AF64D71C0FDADB00C80A9E /* rxService */,
+				C039DC521C4A01DD0084AA92 /* extendFunction.swift */,
 			);
 			name = rxNewsApp;
 			sourceTree = "<group>";
@@ -1088,6 +1091,7 @@
 				14ECBA5C1C1BC0AA00461BC5 /* TSScrollview.swift in Sources */,
 				D23DCFDC1BC272DD00C32F94 /* AppDelegate.swift in Sources */,
 				939313B71C1083CF001DC404 /* FBViewController.swift in Sources */,
+				C039DC531C4A01DD0084AA92 /* extendFunction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

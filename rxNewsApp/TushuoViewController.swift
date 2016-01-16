@@ -36,7 +36,7 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func loadData() {
         let afmanager = AFHTTPSessionManager()
         afmanager.GET("http://pic.ecjtu.net/api.php/list", parameters: nil,progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-            var newsArray = resp!.objectForKey("list") as! Array<AnyObject>
+            let newsArray = resp!.objectForKey("list") as! NSArray
             self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! String
             let currentData = NSMutableArray()
             for each in newsArray{
@@ -62,7 +62,6 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         }
     }
     
-    //    获取更多数据
     func loadMoreData(id:String) {
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://pic.ecjtu.net/api.php/list?before=\(id)", parameters: nil,progress: nil,  success: { (nsurl:NSURLSessionDataTask,resp:AnyObject?) -> Void in
