@@ -16,7 +16,7 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tushuoTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
-            self.loadData()
+            self.requestData()
         })
         
         self.tushuoTable.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
@@ -32,34 +32,42 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
-    //    获取数据
-    func loadData() {
+    func requestData() {
         let afmanager = AFHTTPSessionManager()
         afmanager.GET("http://pic.ecjtu.net/api.php/list", parameters: nil,progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             let newsArray = resp!.objectForKey("list") as! NSArray
-            self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! String
-            let currentData = NSMutableArray()
-            for each in newsArray{
-                let item = TuShuoItem()
-                item.thumb = each.objectForKey("thumb") as! String
-                item.title = each.objectForKey("title") as! String
-                item.click = each.objectForKey("click") as! String
-                item.info = each.objectForKey("count") as! String
-                item.pid = each.objectForKey("pid") as! String
-                item.time = each.objectForKey("pubdate") as! String
-                currentData.addObject(item)
-                
-            }
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.dataSource = currentData
-                self.tushuoTable.dataSource = self
-                self.tushuoTable.reloadData()
-                self.tushuoTable.mj_header.endRefreshing()
-            })
+            self.saveData(newsArray, localDataName: "tushuoCache")
+            self.loadData(newsArray)
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.tushuoTable)
                 self.tushuoTable.mj_header.endRefreshing()
+                
+                if let cache = self.getlocalData("tushuoCache"){
+                    self.loadData(cache)
+                }
         }
+    }
+    
+    func loadData(newsArray:NSArray){
+        self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! String
+        let currentData = NSMutableArray()
+        for each in newsArray{
+            let item = TuShuoItem()
+            item.thumb = each.objectForKey("thumb") as! String
+            item.title = each.objectForKey("title") as! String
+            item.click = each.objectForKey("click") as! String
+            item.info = each.objectForKey("count") as! String
+            item.pid = each.objectForKey("pid") as! String
+            item.time = each.objectForKey("pubdate") as! String
+            currentData.addObject(item)
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.dataSource = currentData
+            self.tushuoTable.dataSource = self
+            self.tushuoTable.reloadData()
+            self.tushuoTable.mj_header.endRefreshing()
+        })
     }
     
     func loadMoreData(id:String) {

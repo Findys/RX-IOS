@@ -23,7 +23,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.newsTable.rowHeight = UITableViewAutomaticDimension
         
         self.newsTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
-            self.loadData()
+            self.requestData()
         })
         
         self.newsTable.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
@@ -43,7 +43,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     
     //    请求数据
-    func loadData() {
+    func requestData() {
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://app.ecjtu.net/api/v1/index", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             let normal = resp!.objectForKey("normal_article")

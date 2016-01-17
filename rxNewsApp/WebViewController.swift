@@ -108,7 +108,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         }
     }
     
-    //    KVO监控
+    //    KVO
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if (keyPath == "estimatedProgress") {
             progressBar.hidden = webView.estimatedProgress == 1
