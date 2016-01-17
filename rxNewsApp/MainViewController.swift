@@ -18,15 +18,20 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.newsTable.estimatedRowHeight = 114
         self.newsTable.rowHeight = UITableViewAutomaticDimension
+        
         self.newsTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
             self.loadData()
         })
+        
         self.newsTable.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
             self.loadMoreData(self.articleID)
         })
+        
         self.newsTable.mj_header.beginRefreshing()
+        
         newsTable.delegate=self
         
     }
@@ -63,6 +68,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 item.id = each.objectForKey("id") as! NSNumber
                 currentSlideData.addObject(item)
             }
+            
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.slideData = currentSlideData
                 self.dataSource = currentData
@@ -70,6 +76,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.newsTable.reloadData()
                 self.newsTable.mj_header.endRefreshing()
             })
+            
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
                 self.newsTable.mj_header.endRefreshing()
@@ -143,7 +150,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 slideImgArray.addObject(item.thumb)
                 slideTtlArray.addObject(item.title)
             }
-            let myslideView = SlideScrollView(rect: cell.contentView.frame,imgArr:slideImgArray,titArr:slideTtlArray)
+            let myslideView = SlideScrollView(frame: cell.contentView.frame,imgArr:slideImgArray,titArr:slideTtlArray,backShadowImage: nil)
             myslideView.mydelegate = self
             cell.contentView.addSubview(myslideView)
             return cell
