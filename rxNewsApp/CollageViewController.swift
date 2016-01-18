@@ -73,13 +73,12 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
                 let newsArray = resp!.objectForKey("list") as! Array<AnyObject>
                 self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! Int
                 for each in newsArray{
-                    let item = TuShuoItem()
-                    item.thumb = each.objectForKey("thumb") as! String
+                    let item = CollageItem()
+                    item.id = each.objectForKey("id") as! NSNumber
+                    item.info = each.objectForKey("info") as! String
+                    item.click = each.objectForKey("click") as! NSNumber
                     item.title = each.objectForKey("title") as! String
-                    item.click = each.objectForKey("click") as! String
-                    item.info = each.objectForKey("count") as! String
-                    item.pid = each.objectForKey("pid") as! String
-                    item.time = each.objectForKey("pubdate") as! String
+                    item.time = each.objectForKey("created_at") as! String
                     self.dataSource.addObject(item)
                 }
             }

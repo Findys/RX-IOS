@@ -11,7 +11,7 @@ import UIKit
 class UserViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate {
     @IBOutlet weak var headimage: UIImageView!
     let array = ["成绩查询","课表查询","一卡通查询","图书馆查询","个人设置"]
-    let iconArray = ["score","classquery","ecard","book","Untitled"]
+    let iconArray = ["score","classquery","ecard","library","Untitled"]
     @IBOutlet weak var rxServiceTable: UITableView!
     @IBOutlet weak var username: UILabel!
     
