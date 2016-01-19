@@ -128,11 +128,11 @@
 		93D6DC451C11D36000BB475C /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 93D6DC441C11D36000BB475C /* style.css */; };
 		93D6DC471C11D36500BB475C /* scoreQuery.js in Resources */ = {isa = PBXBuildFile; fileRef = 93D6DC461C11D36500BB475C /* scoreQuery.js */; };
 		C039DC531C4A01DD0084AA92 /* extendFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C039DC521C4A01DD0084AA92 /* extendFunction.swift */; };
-		C088131E1C2C30C500A5C96C /* rxNewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C088131D1C2C30C500A5C96C /* rxNewsItem.swift */; };
 		C09BF9CF1C2D43C500FBBF9F /* SlideScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF9CE1C2D43C500FBBF9F /* SlideScrollView.swift */; };
-		C0A45D651C4E6DA600ED8F2F /* rxNewsSlideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A45D641C4E6DA600ED8F2F /* rxNewsSlideItem.swift */; };
-		C0A45D671C4E6DC500ED8F2F /* CollageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A45D661C4E6DC500ED8F2F /* CollageItem.swift */; };
-		C0A45D691C4E6DE000ED8F2F /* TuShuoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A45D681C4E6DE000ED8F2F /* TuShuoItem.swift */; };
+		C0A45D7C1C4E70EA00ED8F2F /* CollageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A45D781C4E70EA00ED8F2F /* CollageItem.swift */; };
+		C0A45D7D1C4E70EA00ED8F2F /* rxNewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A45D791C4E70EA00ED8F2F /* rxNewsItem.swift */; };
+		C0A45D7E1C4E70EA00ED8F2F /* rxNewsSlideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A45D7A1C4E70EA00ED8F2F /* rxNewsSlideItem.swift */; };
+		C0A45D7F1C4E70EA00ED8F2F /* TuShuoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A45D7B1C4E70EA00ED8F2F /* TuShuoItem.swift */; };
 		D23DCFDC1BC272DD00C32F94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */; };
 		D23DCFE01BC272DD00C32F94 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */; };
 		D23DCFEC1BC27ED400C32F94 /* CollageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFEB1BC27ED400C32F94 /* CollageViewController.swift */; };
@@ -304,11 +304,11 @@
 		93D6DC441C11D36000BB475C /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		93D6DC461C11D36500BB475C /* scoreQuery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = scoreQuery.js; sourceTree = "<group>"; };
 		C039DC521C4A01DD0084AA92 /* extendFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extendFunction.swift; sourceTree = "<group>"; };
-		C088131D1C2C30C500A5C96C /* rxNewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rxNewsItem.swift; sourceTree = "<group>"; };
 		C09BF9CE1C2D43C500FBBF9F /* SlideScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideScrollView.swift; path = rxNewsApp/SlideScrollView.swift; sourceTree = "<group>"; };
-		C0A45D641C4E6DA600ED8F2F /* rxNewsSlideItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rxNewsSlideItem.swift; sourceTree = "<group>"; };
-		C0A45D661C4E6DC500ED8F2F /* CollageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageItem.swift; sourceTree = "<group>"; };
-		C0A45D681C4E6DE000ED8F2F /* TuShuoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuShuoItem.swift; sourceTree = "<group>"; };
+		C0A45D781C4E70EA00ED8F2F /* CollageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageItem.swift; sourceTree = "<group>"; };
+		C0A45D791C4E70EA00ED8F2F /* rxNewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rxNewsItem.swift; sourceTree = "<group>"; };
+		C0A45D7A1C4E70EA00ED8F2F /* rxNewsSlideItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rxNewsSlideItem.swift; sourceTree = "<group>"; };
+		C0A45D7B1C4E70EA00ED8F2F /* TuShuoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuShuoItem.swift; sourceTree = "<group>"; };
 		D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = rxNewsApp/AppDelegate.swift; sourceTree = "<group>"; };
 		D23DCFDA1BC272DD00C32F94 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = rxNewsApp/Info.plist; sourceTree = "<group>"; };
 		D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = rxNewsApp/MainViewController.swift; sourceTree = "<group>"; };
@@ -556,6 +556,7 @@
 				939313BC1C1083ED001DC404 /* CommentViewController.swift */,
 				D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */,
 				C09BF9CE1C2D43C500FBBF9F /* SlideScrollView.swift */,
+				D23DCFE11BC2730600C32F94 /* Base */,
 			);
 			name = MainController;
 			sourceTree = "<group>";
@@ -769,12 +770,24 @@
 			path = b68b3c58a8597df73602974e603324080a358843;
 			sourceTree = "<group>";
 		};
+		C0A45D771C4E70EA00ED8F2F /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				C0A45D781C4E70EA00ED8F2F /* CollageItem.swift */,
+				C0A45D791C4E70EA00ED8F2F /* rxNewsItem.swift */,
+				C0A45D7A1C4E70EA00ED8F2F /* rxNewsSlideItem.swift */,
+				C0A45D7B1C4E70EA00ED8F2F /* TuShuoItem.swift */,
+			);
+			name = Item;
+			path = rxNewsApp/Item;
+			sourceTree = "<group>";
+		};
 		D23DCFD61BC272BF00C32F94 /* rxNewsApp */ = {
 			isa = PBXGroup;
 			children = (
 				D23DCFEA1BC27A9000C32F94 /* rxNewsApp-Bridging-Header.h */,
+				C0A45D771C4E70EA00ED8F2F /* Item */,
 				D23DCFE21BC2732F00C32F94 /* ViewController */,
-				D23DCFE11BC2730600C32F94 /* Base */,
 				14D3E5021BFC9C5500640C29 /* PushConfig.plist */,
 				93AF64D71C0FDADB00C80A9E /* rxService */,
 				C039DC521C4A01DD0084AA92 /* extendFunction.swift */,
@@ -785,10 +798,6 @@
 		D23DCFE11BC2730600C32F94 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				C088131D1C2C30C500A5C96C /* rxNewsItem.swift */,
-				C0A45D661C4E6DC500ED8F2F /* CollageItem.swift */,
-				C0A45D681C4E6DE000ED8F2F /* TuShuoItem.swift */,
-				C0A45D641C4E6DA600ED8F2F /* rxNewsSlideItem.swift */,
 				14BF78C31C00A36F00251561 /* Images.xcassets */,
 				143A93E41BF43E62001A36C8 /* Main.storyboard */,
 				D23DCFDA1BC272DD00C32F94 /* Info.plist */,
@@ -1075,6 +1084,7 @@
 				939313BD1C1083ED001DC404 /* CommentViewController.swift in Sources */,
 				C09BF9CF1C2D43C500FBBF9F /* SlideScrollView.swift in Sources */,
 				145B93A11BF37AB500A430EA /* UIApplication+RSKImageCropper.m in Sources */,
+				C0A45D7C1C4E70EA00ED8F2F /* CollageItem.swift in Sources */,
 				145B939D1BF37AB500A430EA /* RSKImageCropViewController.m in Sources */,
 				143714B91BEDA94200D2F5A9 /* NSString+FontAwesome.m in Sources */,
 				145B939F1BF37AB500A430EA /* RSKInternalUtility.m in Sources */,
@@ -1082,27 +1092,26 @@
 				D23DCFEE1BC27F8B00C32F94 /* TushuoViewController.swift in Sources */,
 				939313BF1C1083F7001DC404 /* LocalWebViewController.swift in Sources */,
 				14F8275A1BEB6F8A004AEA96 /* DXAlertView.m in Sources */,
-				C088131E1C2C30C500A5C96C /* rxNewsItem.swift in Sources */,
 				939313BB1C1083E2001DC404 /* AboutViewController.swift in Sources */,
 				D2FC4D991BD4C89D00F18240 /* UserViewController.swift in Sources */,
 				14E697CB1C244317004106A4 /* TabViewController.swift in Sources */,
-				C0A45D691C4E6DE000ED8F2F /* TuShuoItem.swift in Sources */,
+				C0A45D7F1C4E70EA00ED8F2F /* TuShuoItem.swift in Sources */,
 				143714BB1BEDA94200D2F5A9 /* MozTopAlertView.m in Sources */,
 				143714BA1BEDA94200D2F5A9 /* UIFont+FontAwesome.m in Sources */,
 				D23DCFEC1BC27ED400C32F94 /* CollageViewController.swift in Sources */,
-				C0A45D671C4E6DC500ED8F2F /* CollageItem.swift in Sources */,
 				D26734831BC3E35700E63D15 /* tsShowCardViewController.swift in Sources */,
 				D23DCFE01BC272DD00C32F94 /* MainViewController.swift in Sources */,
 				145B939E1BF37AB500A430EA /* RSKImageScrollView.m in Sources */,
 				D26734811BC3C5A500E63D15 /* WebViewController.swift in Sources */,
 				145B93A01BF37AB500A430EA /* RSKTouchView.m in Sources */,
+				C0A45D7E1C4E70EA00ED8F2F /* rxNewsSlideItem.swift in Sources */,
 				145B939B1BF37AB500A430EA /* CGGeometry+RSKImageCropper.m in Sources */,
 				145B93A21BF37AB500A430EA /* UIImage+RSKImageCropper.m in Sources */,
 				939313B91C1083D6001DC404 /* SettingViewController.swift in Sources */,
 				14ECBA5C1C1BC0AA00461BC5 /* TSScrollview.swift in Sources */,
 				D23DCFDC1BC272DD00C32F94 /* AppDelegate.swift in Sources */,
+				C0A45D7D1C4E70EA00ED8F2F /* rxNewsItem.swift in Sources */,
 				939313B71C1083CF001DC404 /* FBViewController.swift in Sources */,
-				C0A45D651C4E6DA600ED8F2F /* rxNewsSlideItem.swift in Sources */,
 				C039DC531C4A01DD0084AA92 /* extendFunction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
