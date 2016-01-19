@@ -32,7 +32,6 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         self.newsTable.mj_header.beginRefreshing()
         
-        newsTable.delegate=self
         
     }
     
@@ -46,11 +45,15 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func requestData() {
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://app.ecjtu.net/api/v1/index", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            
             let normal = resp!.objectForKey("normal_article")
             let slide = resp!.objectForKey("slide_article")
+            
             let newsArray = normal?.objectForKey("articles") as! Array<AnyObject>
             let slideArray = slide?.objectForKey("articles") as! Array<AnyObject>
+            
             let currentData = NSMutableArray()
+            
             for each in newsArray{
                 let item = rxNewsItem()
                 item.title = each.objectForKey("title") as! String
@@ -60,7 +63,9 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 item.id = each.objectForKey("id") as! NSNumber
                 currentData.addObject(item)
             }
+            
             let currentSlideData = NSMutableArray()
+            
             for each in slideArray{
                 let item = rxNewsSlideItem()
                 item.title = each.objectForKey("title") as! String
@@ -70,15 +75,32 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             }
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                self.saveData(currentData, localDataName: "rxNewsCache")
+                self.saveData(currentSlideData, localDataName: "rxNewsSlideCache")
+                
                 self.slideData = currentSlideData
                 self.dataSource = currentData
-                self.newsTable.dataSource = self
+                
                 self.newsTable.reloadData()
+                
                 self.newsTable.mj_header.endRefreshing()
             })
             
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
+                
+                if let cache = self.getlocalData("rxNewsCache"){
+                    self.dataSource = cache as! NSMutableArray
+                }
+                
+                if let slideCache = self.getlocalData("rxNewsSlideCache"){
+                    self.slideData = slideCache as! NSMutableArray
+                }
+                
+                self.newsTable.reloadData()
+                
                 self.newsTable.mj_header.endRefreshing()
         }
     }
@@ -150,7 +172,9 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 slideImgArray.addObject(item.thumb)
                 slideTtlArray.addObject(item.title)
             }
-            let myslideView = SlideScrollView(frame: cell.contentView.frame,imgArr:slideImgArray,titArr:slideTtlArray,backShadowImage: nil)
+            
+            let shadow = UIImage(named: "shadow")
+            let myslideView = SlideScrollView(frame: cell.contentView.frame,imgArr:slideImgArray,titArr:slideTtlArray,backShadowImage: shadow)
             myslideView.mydelegate = self
             cell.contentView.addSubview(myslideView)
             return cell

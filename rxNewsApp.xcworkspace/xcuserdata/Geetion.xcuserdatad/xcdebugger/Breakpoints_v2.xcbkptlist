@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "rxNewsApp/MainViewController.swift"
-            timestampString = "474682883.118536"
+            timestampString = "474900614.786665"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "requestData()"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "rxNewsApp/MainViewController.swift"
-            timestampString = "474682883.118536"
+            timestampString = "474901457.353822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -199,11 +199,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "rxNewsApp/MainViewController.swift"
-            timestampString = "474682883.118536"
+            timestampString = "474900753.213378"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>

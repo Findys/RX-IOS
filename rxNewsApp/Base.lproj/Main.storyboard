@@ -97,6 +97,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="vzZ-cq-ZBZ"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="pJu-pB-Z7J"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -287,8 +291,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="oXi-gY-xht" id="myO-hr-0av"/>
-                                    <outlet property="delegate" destination="oXi-gY-xht" id="z2r-25-Sfb"/>
+                                    <outlet property="dataSource" destination="oXi-gY-xht" id="3Yx-tN-KW0"/>
+                                    <outlet property="delegate" destination="oXi-gY-xht" id="tGf-wg-6Wr"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -388,6 +392,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Wy0-wE-D6z" id="XZS-eZ-jWA"/>
+                                    <outlet property="delegate" destination="Wy0-wE-D6z" id="4X9-PA-bU4"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

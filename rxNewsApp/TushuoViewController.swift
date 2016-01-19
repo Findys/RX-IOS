@@ -24,6 +24,7 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         })
         
         self.tushuoTable.mj_header.beginRefreshing()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,6 +57,8 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.saveData(currentData, localDataName: "tushuoCache")
+                self.dataSource = currentData
+                self.tushuoTable.reloadData()
                 self.tushuoTable.mj_header.endRefreshing()
             })
             

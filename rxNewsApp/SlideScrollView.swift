@@ -81,7 +81,7 @@ class SlideScrollView: UIView,UIScrollViewDelegate {
         pageControl = UIPageControl()
         pageControl.frame.size = CGSize(width: 100, height: 50)
         pageControl.center = CGPoint(x: frame.width/2, y: frame.height-10)
-        pageControl.currentPage = Int(scrollView.contentOffset.x/WINDOW_WIDTH)
+        pageControl.currentPage = 0
         pageControl.numberOfPages = pageCount
         self.addSubview(pageControl)
         
@@ -90,7 +90,9 @@ class SlideScrollView: UIView,UIScrollViewDelegate {
         noteTitle.font = UIFont.boldSystemFontOfSize(16)
         noteTitle.numberOfLines = 0
         noteTitle.lineBreakMode = NSLineBreakMode.ByCharWrapping
+        if titleArray.count != 0{
         noteTitle.text = titleArray[pageControl.currentPage] as? String
+        }
         noteTitle.frame = CGRect(origin: CGPoint(x: 10,y: 140),size: CGSize(width: 300,height: 50))
         self.addSubview(noteTitle)
         
@@ -121,7 +123,10 @@ class SlideScrollView: UIView,UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
         currentPage = Int(scrollView.contentOffset.x/WINDOW_WIDTH)
         pageControl.currentPage = currentPage
+        
+        if titleArray.count != 0{
         noteTitle.text = titleArray[pageControl.currentPage] as? String
+        }
     }
     
     func imagePressed (tap:UITapGestureRecognizer){
