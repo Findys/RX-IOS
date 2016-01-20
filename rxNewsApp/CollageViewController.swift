@@ -19,10 +19,10 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.collageTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
-            self.loadData()
+            self.requestData()
         })
         self.collageTable.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
-            self.loadMoreData(self.articleID)
+            self.requestMoreData(self.articleID)
         })
         self.collageTable.mj_header.beginRefreshing()
     }
@@ -33,7 +33,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     
     //    获取数据
-    func loadData() {
+    func requestData() {
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://app.ecjtu.net/api/v1/schoolnews", parameters: nil,progress: nil,success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             
@@ -71,17 +71,16 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
                 
                 self.collageTable.mj_header.endRefreshing()
                 
-                    if let cache = self.getlocalData("CollageCache"){
+                    if let cache = self.getlocalData("CollageCache") as? NSMutableArray{
                         
-                        self.dataSource = cache as! NSMutableArray
+                        self.dataSource = cache
                         
                         self.collageTable.reloadData()
                     }
         }
     }
     
-    //    获取更多数据
-    func loadMoreData(id:Int) {
+    func requestMoreData(id:Int) {
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://app.ecjtu.net/api/v1/schoolnews?until=\(id)", parameters: nil, progress:nil,success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             let count = resp!.objectForKey("count") as! Int

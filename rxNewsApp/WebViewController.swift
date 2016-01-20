@@ -21,26 +21,32 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     
     override func loadView() {
         super.loadView()
+        
         let config = WKWebViewConfiguration()
-        let contentController = WKUserContentController()
-        config.userContentController = contentController
+        
+        config.userContentController = WKUserContentController()
+        
         self.view.backgroundColor = UIColor.whiteColor()
+        
         self.webView = WKWebView(frame:self.view.frame, configuration: config)
+        self.view.addSubview(webView)
+        
         progressBar.progress = 0
         progressBar.frame = CGRect(x: 0, y: (self.view.frame.origin.y), width: self.view.frame.width, height: 20)
         progressBar.backgroundColor = UIColor.lightGrayColor()
         progressBar.progressTintColor = UIColor(red: 58/255.0, green: 168/255.0, blue: 252/255.0, alpha: 1.0)
+        self.view.addSubview(progressBar)
         
         webView.alpha = 0
-        self.view.addSubview(webView)
-        self.view.addSubview(progressBar)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         webView.navigationDelegate = self
         
         if from == "rx"{
+            
             backView.backgroundColor = UIColor(red: 28/255.0, green: 144/255.0, blue: 129/255.0, alpha: 1.0)
             backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 40, width: WINDOW_WIDTH, height: 40)
             self.view.addSubview(backView)
@@ -68,8 +74,6 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: "UIKeyboardWillShowNotification", object: nil)
             
         }
-        // Do any additional setup after loading the view.
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,7 +86,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         webView.loadRequest(request)
         UIView.animateWithDuration(2) { () -> Void in
-        self.webView.alpha = 1
+            self.webView.alpha = 1
         }
     }
     
@@ -119,18 +123,18 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     }
     
     func pushToComment(){
-        if let _ = userDefault.objectForKey("account"){
+        
+        if let account = userDefault.objectForKey("account") as? String{
             
-        let afmanager = AFHTTPSessionManager()
-        let url = "http://app.ecjtu.net/api/v1/article/\(id)/comment"
-        let account = userDefault.objectForKey("account") as! String
-        let param:[String:String] = ["sid":String(account),"content":content.text!]
+            let afmanager = AFHTTPSessionManager()
+            let url = "http://app.ecjtu.net/api/v1/article/\(id)/comment"
+            let param:[String:String] = ["sid":String(account),"content":content.text!]
             afmanager.POST(url, parameters: param, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-            self.content.resignFirstResponder()
+                self.content.resignFirstResponder()
                 self.content.text = ""
                 MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "评论成功", parentView: self.view.viewWithTag(1))
                 }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                 print(error)
+                    print(error)
             })
         }else{
             MozTopAlertView.showWithType(MozAlertTypeError, text: "请先登录", parentView: webView)
@@ -139,13 +143,15 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     
     //    点击页面取消焦点
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
         content.resignFirstResponder()
+        
     }
     
     func keyboardWillShow(notification:NSNotification){
-        let userInfo = notification.userInfo as! NSDictionary
-        let value = (userInfo.objectForKey("UIKeyboardFrameEndUserInfoKey")?.CGRectValue)! as CGRect
-        print(value)
+        let userInfo = notification.userInfo as? NSDictionary
+        let value = (userInfo!.objectForKey("UIKeyboardFrameEndUserInfoKey")?.CGRectValue)! as CGRect
+        print("123")
     }
     
     func textViewDidBeginEditing(textView: UITextView){

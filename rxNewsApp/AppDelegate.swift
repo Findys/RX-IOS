@@ -10,58 +10,72 @@ import UIKit
 
 let WINDOW_WIDTH = UIScreen.mainScreen().bounds.width
 let WINDOW_HEIGHT = UIScreen.mainScreen().bounds.height
+
 var userDefault = NSUserDefaults.standardUserDefaults()
+
 var myStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
         firstLaunch()
+        
         shareSDKset()
+        
         getToken()
+        
         return true
         
         
         
-
+        
     }
-
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
-
+    
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
-
+    
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
-
+    
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-
+    
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
     func getToken(){
-            let userDefault=NSUserDefaults()
-        let password=userDefault.objectForKey("password")
-        let account=userDefault.objectForKey("account")
+        
         let afmanager = AFHTTPSessionManager()
-        if let _=account{
-        let params:[String:String] = ["username": String(account!), "password":String(password!)]
+        
+        afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
+        
+        if let account = userDefault.objectForKey("account") as? String{
+            
+            let password=userDefault.objectForKey("password") as! String
+            
+            let params:[String:String] = ["username": account, "password":password]
+            
             afmanager.POST("http://user.ecjtu.net/api/login", parameters: params, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-                let json: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(resp as! NSData, options:NSJSONReadingOptions() )
-                let token=(json?.objectForKey("token"))!
+                
+                let token=(resp!.objectForKey("token"))!
+                
                 userDefault.setObject(token, forKey: "token")
                 }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                    print(error)
                     
             })
         }
@@ -127,7 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     break
                 }
         })
-
+        
     }
     
     func firstLaunch(){
@@ -136,6 +150,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userDefault.setBool(true, forKey: "everlaunched")
         }
     }
-
+    
 }
 

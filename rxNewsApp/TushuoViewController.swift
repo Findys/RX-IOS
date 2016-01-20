@@ -20,7 +20,7 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         })
         
         self.tushuoTable.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
-            self.loadMoreData(self.articleID)
+            self.requestMoreData(self.articleID)
         })
         
         self.tushuoTable.mj_header.beginRefreshing()
@@ -66,17 +66,17 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.tushuoTable)
                 self.tushuoTable.mj_header.endRefreshing()
                 
-                if let cache = self.getlocalData("tushuoCache"){
-                    self.dataSource = cache as! NSMutableArray
+                if let cache = self.getlocalData("tushuoCache") as? NSMutableArray{
+                    
+                    self.dataSource = cache
+                    
                     self.tushuoTable.reloadData()
                 }
         }
     }
     
-    func loadData(newsArray:NSArray){
-    }
     
-    func loadMoreData(id:String) {
+    func requestMoreData(id:String) {
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://pic.ecjtu.net/api.php/list?before=\(id)", parameters: nil,progress: nil,  success: { (nsurl:NSURLSessionDataTask,resp:AnyObject?) -> Void in
             let count = resp!.objectForKey("count") as! Int

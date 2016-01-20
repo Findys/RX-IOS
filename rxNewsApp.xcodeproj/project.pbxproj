@@ -554,7 +554,6 @@
 				939313BC1C1083ED001DC404 /* CommentViewController.swift */,
 				D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */,
 				C09BF9CE1C2D43C500FBBF9F /* SlideScrollView.swift */,
-				D23DCFE11BC2730600C32F94 /* Base */,
 			);
 			name = MainController;
 			sourceTree = "<group>";
@@ -786,6 +785,7 @@
 				C0A45D771C4E70EA00ED8F2F /* Item */,
 				D23DCFE21BC2732F00C32F94 /* ViewController */,
 				14D3E5021BFC9C5500640C29 /* PushConfig.plist */,
+				D23DCFE11BC2730600C32F94 /* Base */,
 				93AF64D71C0FDADB00C80A9E /* rxService */,
 				C039DC521C4A01DD0084AA92 /* extendFunction.swift */,
 			);

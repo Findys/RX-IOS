@@ -27,7 +27,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         })
         
         self.newsTable.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
-            self.loadMoreData(self.articleID)
+            self.requestMoreData(self.articleID)
         })
         
         self.newsTable.mj_header.beginRefreshing()
@@ -41,7 +41,6 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     
-    //    请求数据
     func requestData() {
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://app.ecjtu.net/api/v1/index", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
@@ -91,12 +90,12 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
                 
-                if let cache = self.getlocalData("rxNewsCache"){
-                    self.dataSource = cache as! NSMutableArray
+                if let cache = self.getlocalData("rxNewsCache") as? NSMutableArray{
+                    self.dataSource = cache
                 }
                 
-                if let slideCache = self.getlocalData("rxNewsSlideCache"){
-                    self.slideData = slideCache as! NSMutableArray
+                if let slideCache = self.getlocalData("rxNewsSlideCache") as? NSMutableArray{
+                    self.slideData = slideCache
                 }
                 
                 self.newsTable.reloadData()
@@ -105,8 +104,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-    //    获取更多数据
-    func loadMoreData(id:Int) {
+    func requestMoreData(id:Int) {
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://app.ecjtu.net/api/v1/index?until=\(id)", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             let lang: AnyObject? = resp!.objectForKey("normal_article")
