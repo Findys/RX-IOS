@@ -58,7 +58,6 @@
 		14E996771BF4C7C3009F8184 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E996761BF4C7C3009F8184 /* Accounts.framework */; };
 		14E996791BF4C7DD009F8184 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E996781BF4C7DD009F8184 /* libstdc++.tbd */; };
 		14E9967B1BF4C817009F8184 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E9967A1BF4C817009F8184 /* libsqlite3.tbd */; };
-		14ECBA5C1C1BC0AA00461BC5 /* TSScrollview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECBA5B1C1BC0AA00461BC5 /* TSScrollview.swift */; };
 		14F827561BEB6F8A004AEA96 /* btn_close_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827501BEB6F8A004AEA96 /* btn_close_normal.png */; };
 		14F827571BEB6F8A004AEA96 /* btn_close_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827511BEB6F8A004AEA96 /* btn_close_normal@2x.png */; };
 		14F827581BEB6F8A004AEA96 /* btn_close_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827521BEB6F8A004AEA96 /* btn_close_selected.png */; };
@@ -230,7 +229,6 @@
 		14E996761BF4C7C3009F8184 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		14E996781BF4C7DD009F8184 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		14E9967A1BF4C817009F8184 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		14ECBA5B1C1BC0AA00461BC5 /* TSScrollview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSScrollview.swift; sourceTree = "<group>"; };
 		14F827501BEB6F8A004AEA96 /* btn_close_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_close_normal.png; sourceTree = "<group>"; };
 		14F827511BEB6F8A004AEA96 /* btn_close_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_normal@2x.png"; sourceTree = "<group>"; };
 		14F827521BEB6F8A004AEA96 /* btn_close_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_close_selected.png; sourceTree = "<group>"; };
@@ -586,7 +584,6 @@
 			children = (
 				D23DCFED1BC27F8B00C32F94 /* TushuoViewController.swift */,
 				D26734821BC3E35700E63D15 /* tsShowCardViewController.swift */,
-				14ECBA5B1C1BC0AA00461BC5 /* TSScrollview.swift */,
 			);
 			name = PictureController;
 			sourceTree = "<group>";
@@ -911,7 +908,7 @@
 				TargetAttributes = {
 					D2C040431BBFC71A00791443 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = ULPY5PPAV6;
+						DevelopmentTeam = K7PR95WTDD;
 					};
 					D2C040581BBFC71A00791443 = {
 						CreatedOnToolsVersion = 6.4;
@@ -1108,7 +1105,6 @@
 				145B939B1BF37AB500A430EA /* CGGeometry+RSKImageCropper.m in Sources */,
 				145B93A21BF37AB500A430EA /* UIImage+RSKImageCropper.m in Sources */,
 				939313B91C1083D6001DC404 /* SettingViewController.swift in Sources */,
-				14ECBA5C1C1BC0AA00461BC5 /* TSScrollview.swift in Sources */,
 				D23DCFDC1BC272DD00C32F94 /* AppDelegate.swift in Sources */,
 				C0A45D7D1C4E70EA00ED8F2F /* rxNewsItem.swift in Sources */,
 				939313B71C1083CF001DC404 /* FBViewController.swift in Sources */,

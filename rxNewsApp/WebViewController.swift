@@ -65,6 +65,8 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
             
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "评论页", style: UIBarButtonItemStyle.Plain, target: self, action: "pushToComment")
             
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: "UIKeyboardWillShowNotification", object: nil)
+            
         }
         // Do any additional setup after loading the view.
         
@@ -138,6 +140,12 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     //    点击页面取消焦点
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         content.resignFirstResponder()
+    }
+    
+    func keyboardWillShow(notification:NSNotification){
+        let userInfo = notification.userInfo as! NSDictionary
+        let value = (userInfo.objectForKey("UIKeyboardFrameEndUserInfoKey")?.CGRectValue)! as CGRect
+        print(value)
     }
     
     func textViewDidBeginEditing(textView: UITextView){
