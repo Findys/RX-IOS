@@ -70,8 +70,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
             backView.addSubview(comment)
             
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "评论页", style: UIBarButtonItemStyle.Plain, target: self, action: "pushToComment")
-            
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: "UIKeyboardWillShowNotification", object: nil)
+
             
         }
     }
@@ -82,20 +81,13 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     }
     
     override func viewDidAppear(animated: Bool) {
+                   NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: UIKeyboardDidShowNotification, object: nil)
         let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         webView.loadRequest(request)
         UIView.animateWithDuration(2) { () -> Void in
             self.webView.alpha = 1
         }
-    }
-    
-    //    跳转评论列表
-    func commentList(){
-        let myStoryBoard = UIStoryboard.init(name: "Main", bundle: nil)
-        let push = myStoryBoard.instantiateViewControllerWithIdentifier("comment") as! CommentViewController
-        push.id = id
-        self.navigationController?.pushViewController(push, animated: true)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -122,17 +114,38 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         }
     }
     
-    func pushToComment(){
+    func keyboardWillShow(notification:NSNotification){
+        let userInfo = notification.userInfo as? NSDictionary
+        let value = (userInfo!.objectForKey("UIKeyboardFrameEndUserInfoKey")?.CGRectValue)! as CGRect
+        print("123")
+    }
+    
+    
+    func commitComment(){
+        
+        if content.text.characters.count != 0{
+            print("123"+content.text)
+            postData()
+        }else{
+            MozTopAlertView.showWithType(MozAlertTypeWarning, text: "请输入评论内容", parentView: webView)
+        }
+        
+    }
+    
+    let window = UIApplication.sharedApplication().keyWindow
+    
+    func postData(){
         
         if let account = userDefault.objectForKey("account") as? String{
             
             let afmanager = AFHTTPSessionManager()
             let url = "http://app.ecjtu.net/api/v1/article/\(id)/comment"
-            let param:[String:String] = ["sid":String(account),"content":content.text!]
+            
+            let param:[String:String] = ["sid":account,"content":content.text!]
             afmanager.POST(url, parameters: param, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
                 self.content.resignFirstResponder()
                 self.content.text = ""
-                MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "评论成功", parentView: self.view.viewWithTag(1))
+                MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "评论成功", parentView: self.window)
                 }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                     print(error)
             })
@@ -141,17 +154,14 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         }
     }
     
+    func pushToComment(){
+        let webView = myStoryBoard.instantiateViewControllerWithIdentifier("")
+    }
+    
     //    点击页面取消焦点
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         content.resignFirstResponder()
-        
-    }
-    
-    func keyboardWillShow(notification:NSNotification){
-        let userInfo = notification.userInfo as? NSDictionary
-        let value = (userInfo!.objectForKey("UIKeyboardFrameEndUserInfoKey")?.CGRectValue)! as CGRect
-        print("123")
     }
     
     func textViewDidBeginEditing(textView: UITextView){

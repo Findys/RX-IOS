@@ -38,7 +38,6 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         afmanager.GET("http://pic.ecjtu.net/api.php/list", parameters: nil,progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             let newsArray = resp!.objectForKey("list") as! NSArray
             self.saveData(newsArray, localDataName: "tushuoCache")
-            self.loadData(newsArray)
             
             self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! String
             let currentData = NSMutableArray()

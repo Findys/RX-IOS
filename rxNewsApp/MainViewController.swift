@@ -134,7 +134,6 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-//    横幅点击事件
     func SlideScrollViewDidClicked(index:Int){
         let item = slideData[index] as! rxNewsSlideItem
         let push = WebViewController()
