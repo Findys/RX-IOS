@@ -17,8 +17,22 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     override func loadView() {
         super.loadView()
+        
         self.headimage.layer.cornerRadius = 50
+        
         self.headimage.clipsToBounds = true
+        
+        if let image = userDefault.objectForKey("headimage") as? String{
+            self.headimage.sd_setImageWithURL(NSURL(string: image))
+        }else{
+            getUserData()
+        }
+        
+        if let name = userDefault.objectForKey("name") as? String{
+            self.username.text = name
+        }else{
+            getUserData()
+        }
     }
     
     override func viewDidLoad() {
@@ -29,11 +43,17 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     override func viewWillAppear(animated: Bool) {
+        
         let iflogin = userDefault.objectForKey("iflogin") as! Bool
+        
         if iflogin == false{
+            
             tabBarController!.selectedIndex = 0
+            
         }else{
-            headImageGet()
+            
+            getUserData()
+            
         }
     }
     
@@ -43,19 +63,29 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     //    获取头像
-    func headImageGet(){
+    func getUserData(){
+        
         let afmanager = AFHTTPSessionManager()
+        
         let url = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
+        
         afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
+        
         afmanager.GET(url, parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            
             let avatar = "http://"+((resp!.objectForKey("user")?.objectForKey("avatar"))! as! String)
-            userDefault.setObject(avatar, forKey: "headimg")
+            
+            userDefault.setObject(avatar, forKey: "headimage")
+            
             let name = (resp!.objectForKey("user")?.objectForKey("name")!) as! String
+            
             self.username.text = name
+            
             userDefault.setObject(name, forKey: "name")
+            
             self.headimage.sd_setImageWithURL(NSURL(string: avatar))
+            
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                print(error)
         }
     }
     
@@ -66,11 +96,17 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("rxServiceCell")!
+        
         let label=cell.viewWithTag(1) as! UILabel
+        
         let image=cell.viewWithTag(2) as! UIImageView
+        
         image.image = UIImage(named:iconArray[indexPath.row])
+        
         label.text=array[indexPath.row]
+        
         return cell
     }
     

@@ -8,13 +8,14 @@
 import UIKit
 
 class MainViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,SlideScrollViewDelegate{
+    
     var slideData = NSMutableArray()
+    
     var dataSource = NSMutableArray()
+    
     var articleID = Int()
-    var pageInited = false
+    
     @IBOutlet weak var newsTable: UITableView!
-    var slidetitle = UILabel()
-    var pageControl = UIPageControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -177,29 +178,45 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             return cell
         } else {
             let cell = newsTable.dequeueReusableCellWithIdentifier("rxCell")
+            
             let item = dataSource[indexPath.row] as! rxNewsItem
+            
             let title = cell!.viewWithTag(1) as! UILabel
             let click = cell!.viewWithTag(2) as! UILabel
             let info = cell!.viewWithTag(3) as! UILabel
             let image = cell!.viewWithTag(4) as! UIImageView
+            
             title.text = item.title
             title.font = UIFont.boldSystemFontOfSize(16)
+            
             click.text = String(item.click)
+            
             info.text = item.info
+            
             let url = item.thumb
+            
             image.sd_setImageWithURL(NSURL(string:url))
+            
             return cell!
         }
     }
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        
         if indexPath.section != 0{
+            
             let item = dataSource[indexPath.row] as! rxNewsItem
+            
             let push = WebViewController()
+            
             push.id = item.id as Int
+            
+            push.from = "rx"
+            
             self.navigationController?.pushViewController(push, animated: true)
         }
+        
         self.newsTable.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
