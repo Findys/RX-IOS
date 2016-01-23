@@ -10,7 +10,7 @@ import Foundation
 
 class rxNewsSlideItem:NSObject {
     var title = String()
-    var id = NSNumber()
+    var id = Int()
     var thumb = String()
     
     override init() {
@@ -19,7 +19,7 @@ class rxNewsSlideItem:NSObject {
     
     required init?(coder aDecoder: NSCoder){
         self.title = aDecoder.decodeObjectForKey("title") as! String
-        self.id = aDecoder.decodeObjectForKey("id") as! NSNumber
+        self.id = aDecoder.decodeObjectForKey("id") as! Int
         self.thumb = aDecoder.decodeObjectForKey("thumb") as! String
     }
     

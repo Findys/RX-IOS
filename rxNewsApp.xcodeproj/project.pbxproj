@@ -132,6 +132,7 @@
 		C0A45D7D1C4E70EA00ED8F2F /* rxNewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A45D791C4E70EA00ED8F2F /* rxNewsItem.swift */; };
 		C0A45D7E1C4E70EA00ED8F2F /* rxNewsSlideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A45D7A1C4E70EA00ED8F2F /* rxNewsSlideItem.swift */; };
 		C0A45D7F1C4E70EA00ED8F2F /* TuShuoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A45D7B1C4E70EA00ED8F2F /* TuShuoItem.swift */; };
+		C0AF6CD11C53BAB4005E0D89 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AF6CD01C53BAB4005E0D89 /* CommentsViewController.swift */; };
 		D23DCFDC1BC272DD00C32F94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */; };
 		D23DCFE01BC272DD00C32F94 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */; };
 		D23DCFEC1BC27ED400C32F94 /* CollageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFEB1BC27ED400C32F94 /* CollageViewController.swift */; };
@@ -307,6 +308,7 @@
 		C0A45D791C4E70EA00ED8F2F /* rxNewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rxNewsItem.swift; sourceTree = "<group>"; };
 		C0A45D7A1C4E70EA00ED8F2F /* rxNewsSlideItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rxNewsSlideItem.swift; sourceTree = "<group>"; };
 		C0A45D7B1C4E70EA00ED8F2F /* TuShuoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuShuoItem.swift; sourceTree = "<group>"; };
+		C0AF6CD01C53BAB4005E0D89 /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = rxNewsApp/AppDelegate.swift; sourceTree = "<group>"; };
 		D23DCFDA1BC272DD00C32F94 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = rxNewsApp/Info.plist; sourceTree = "<group>"; };
 		D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = rxNewsApp/MainViewController.swift; sourceTree = "<group>"; };
@@ -813,6 +815,7 @@
 				9396651C1C0C5B9500539CE0 /* CollageController */,
 				9396651B1C0C5A7C00539CE0 /* UserController */,
 				9396651A1C0C5A2E00539CE0 /* MainController */,
+				C0AF6CD01C53BAB4005E0D89 /* CommentsViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -1079,6 +1082,7 @@
 			files = (
 				14E697C41C243D76004106A4 /* LoginViewController.swift in Sources */,
 				939313BD1C1083ED001DC404 /* CommentViewController.swift in Sources */,
+				C0AF6CD11C53BAB4005E0D89 /* CommentsViewController.swift in Sources */,
 				C09BF9CF1C2D43C500FBBF9F /* SlideScrollView.swift in Sources */,
 				145B93A11BF37AB500A430EA /* UIApplication+RSKImageCropper.m in Sources */,
 				C0A45D7C1C4E70EA00ED8F2F /* CollageItem.swift in Sources */,

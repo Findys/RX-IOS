@@ -9,6 +9,7 @@
 import Foundation
 
 class TuShuoItem:NSObject,NSCoding{
+    
     var click = String()
     var title = String()
     var info = String()

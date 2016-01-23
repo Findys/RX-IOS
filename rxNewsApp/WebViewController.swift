@@ -124,7 +124,6 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     func commitComment(){
         
         if content.text.characters.count != 0{
-            print("123"+content.text)
             postData()
         }else{
             MozTopAlertView.showWithType(MozAlertTypeWarning, text: "请输入评论内容", parentView: webView)
@@ -155,7 +154,9 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     }
     
     func pushToComment(){
-        let webView = myStoryBoard.instantiateViewControllerWithIdentifier("")
+        let webView = WebViewController()
+        self.navigationController?.pushViewController(webView, animated: true)
+        
     }
     
     //    点击页面取消焦点

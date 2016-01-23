@@ -9,21 +9,21 @@
 import Foundation
 
 class CollageItem:NSObject {
-    var click = NSNumber()
+    var click = Int()
     var title = NSString()
     var info = NSString()
     var time = NSString()
-    var id = NSNumber()
+    var id = Int()
     
     override init() {
         super.init()
     }
     
     required init?(coder aDecoder: NSCoder){
-        self.click = aDecoder.decodeObjectForKey("click") as! NSNumber
+        self.click = aDecoder.decodeObjectForKey("click") as! Int
         self.title = aDecoder.decodeObjectForKey("title") as! String
         self.info = aDecoder.decodeObjectForKey("info") as! String
-        self.id = aDecoder.decodeObjectForKey("id") as! NSNumber
+        self.id = aDecoder.decodeObjectForKey("id") as! Int
         self.time = aDecoder.decodeObjectForKey("time") as! String
     }
     

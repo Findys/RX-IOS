@@ -57,10 +57,10 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             for each in newsArray{
                 let item = rxNewsItem()
                 item.title = each.objectForKey("title") as! String
-                item.click = each.objectForKey("click") as! NSNumber
+                item.click = each.objectForKey("click") as! Int
                 item.info = each.objectForKey("info") as! String
                 item.thumb = each.objectForKey("thumb") as! String
-                item.id = each.objectForKey("id") as! NSNumber
+                item.id = each.objectForKey("id") as! Int
                 currentData.addObject(item)
             }
             
@@ -70,7 +70,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 let item = rxNewsSlideItem()
                 item.title = each.objectForKey("title") as! String
                 item.thumb = each.objectForKey("thumb") as! String
-                item.id = each.objectForKey("id") as! NSNumber
+                item.id = each.objectForKey("id") as! Int
                 currentSlideData.addObject(item)
             }
             
@@ -118,10 +118,10 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 for each in array{
                     let item = rxNewsItem()
                     item.title = each.objectForKey("title") as! String
-                    item.click = each.objectForKey("click") as! NSNumber
+                    item.click = each.objectForKey("click") as! Int
                     item.info = each.objectForKey("info") as! String
                     item.thumb = each.objectForKey("thumb") as! String
-                    item.id = each.objectForKey("id") as! NSNumber
+                    item.id = each.objectForKey("id") as! Int
                     self.dataSource.addObject(item)
                 }
             }
@@ -210,7 +210,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
             let push = WebViewController()
             
-            push.id = item.id as Int
+            push.id = item.id
             
             push.from = "rx"
             

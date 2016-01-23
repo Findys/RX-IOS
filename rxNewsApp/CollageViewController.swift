@@ -46,9 +46,9 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
             for each in self.newsArray{
                 
                 let item = CollageItem()
-                item.id = each.objectForKey("id") as! NSNumber
+                item.id = each.objectForKey("id") as! Int
                 item.info = each.objectForKey("info") as! String
-                item.click = each.objectForKey("click") as! NSNumber
+                item.click = each.objectForKey("click") as! Int
                 item.title = each.objectForKey("title") as! String
                 item.time = each.objectForKey("created_at") as! String
                 
@@ -92,9 +92,9 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
                 self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! Int
                 for each in newsArray{
                     let item = CollageItem()
-                    item.id = each.objectForKey("id") as! NSNumber
+                    item.id = each.objectForKey("id") as! Int
                     item.info = each.objectForKey("info") as! String
-                    item.click = each.objectForKey("click") as! NSNumber
+                    item.click = each.objectForKey("click") as! Int
                     item.title = each.objectForKey("title") as! String
                     item.time = each.objectForKey("created_at") as! String
                     self.dataSource.addObject(item)

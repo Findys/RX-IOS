@@ -10,10 +10,10 @@ import Foundation
 
 class rxNewsItem:NSObject {
     
-    var click = NSNumber()
+    var click = Int()
     var title = String()
     var info = String()
-    var id = NSNumber()
+    var id = Int()
     var thumb = String()
     
     override init() {
@@ -21,10 +21,10 @@ class rxNewsItem:NSObject {
     }
     
     required init?(coder aDecoder: NSCoder){
-        self.click = aDecoder.decodeObjectForKey("click") as! NSNumber
+        self.click = aDecoder.decodeObjectForKey("click") as! Int
         self.title = aDecoder.decodeObjectForKey("title") as! String
         self.info = aDecoder.decodeObjectForKey("info") as! String
-        self.id = aDecoder.decodeObjectForKey("id") as! NSNumber
+        self.id = aDecoder.decodeObjectForKey("id") as! Int
         self.thumb = aDecoder.decodeObjectForKey("thumb") as! String
     }
     
