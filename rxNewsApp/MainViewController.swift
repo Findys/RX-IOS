@@ -36,12 +36,6 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
     func requestData() {
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://app.ecjtu.net/api/v1/index", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
@@ -136,10 +130,14 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     func SlideScrollViewDidClicked(index:Int){
+        
         let item = slideData[index] as! rxNewsSlideItem
+        
         let push = WebViewController()
-        push.id = item.id as Int
+        
+        push.id = item.id
         push.from = "rx"
+        
         self.navigationController?.pushViewController(push, animated: true)
     }
     

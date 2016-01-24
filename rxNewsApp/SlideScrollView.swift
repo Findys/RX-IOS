@@ -16,7 +16,7 @@ protocol SlideScrollViewDelegate {
 
 
 
-class SlideScrollView: UIView,UIScrollViewDelegate {
+class SlideScrollView: UIView,UIScrollViewDelegate{
     
     var scrollView = UIScrollView()
     var imageArray = NSArray()
@@ -83,6 +83,7 @@ class SlideScrollView: UIView,UIScrollViewDelegate {
         pageControl.center = CGPoint(x: frame.width/2, y: frame.height-10)
         pageControl.currentPage = 0
         pageControl.numberOfPages = pageCount
+        pageControl.userInteractionEnabled = false
         self.addSubview(pageControl)
         
         noteTitle = UILabel()

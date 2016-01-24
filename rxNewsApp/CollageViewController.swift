@@ -112,10 +112,15 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     //    tableview的datasource和delegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        
         let item = dataSource[indexPath.row] as! CollageItem
+        
         let push = WebViewController()
-        push.id = Int(item.id)
+        
+        push.id = item.id
+        
         self.navigationController?.pushViewController(push, animated: true)
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     

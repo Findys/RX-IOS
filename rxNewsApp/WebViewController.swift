@@ -12,15 +12,16 @@ import WebKit
 @available(iOS 8.0, *)
 class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate,UITextViewDelegate{
     var progressBar = UIProgressView()
-    var path = String()
-    var id = Int()
     var webView: WKWebView!
     var from = String()
     let content = UITextView()
     let backView = UIView()
+    var id = Int()
     
     override func loadView() {
         super.loadView()
+        
+        self.edgesForExtendedLayout = UIRectEdge.Bottom
         
         let config = WKWebViewConfiguration()
         
@@ -48,7 +49,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         if from == "rx"{
             
             backView.backgroundColor = UIColor(red: 28/255.0, green: 144/255.0, blue: 129/255.0, alpha: 1.0)
-            backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 40, width: WINDOW_WIDTH, height: 40)
+            backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 104, width: WINDOW_WIDTH, height: 40)
             self.view.addSubview(backView)
             
             content.frame = CGRect(x: 8, y: 5, width: WINDOW_WIDTH - 90, height: 30)
@@ -75,14 +76,16 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func viewDidAppear(animated: Bool) {
-                   NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: UIKeyboardDidShowNotification, object: nil)
-        let request = NSURLRequest(URL:NSURL(string:"http://app.ecjtu.net/api/v1/article/\(id)/view")!)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: UIKeyboardDidShowNotification, object: nil)
+        var url = String()
+        if from == "comment"{
+            url = "http://app.ecjtu.net/api/v1/article/\(id)/comments"
+        }else{
+            url = "http://app.ecjtu.net/api/v1/article/\(id)/view"
+        }
+        let request = NSURLRequest(URL:NSURL(string:url)!)
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         webView.loadRequest(request)
         UIView.animateWithDuration(2) { () -> Void in
@@ -109,6 +112,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     //    KVO
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if (keyPath == "estimatedProgress") {
+            print("123")
             progressBar.hidden = webView.estimatedProgress == 1
             progressBar.setProgress(Float(webView.estimatedProgress), animated: true)
         }
@@ -138,6 +142,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         if let account = userDefault.objectForKey("account") as? String{
             
             let afmanager = AFHTTPSessionManager()
+            
             let url = "http://app.ecjtu.net/api/v1/article/\(id)/comment"
             
             let param:[String:String] = ["sid":account,"content":content.text!]
@@ -154,8 +159,11 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     }
     
     func pushToComment(){
-        let webView = WebViewController()
-        self.navigationController?.pushViewController(webView, animated: true)
+        let myWebViewController = WebViewController()
+        
+        myWebViewController.id = id
+        myWebViewController.from = "comment"
+        self.navigationController?.pushViewController(myWebViewController, animated: true)
         
     }
     
@@ -173,7 +181,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     }
     
     func textViewDidEndEditing(textView: UITextView){
-        backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 40, width: WINDOW_WIDTH, height: 40)
+        backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 104, width: WINDOW_WIDTH, height: 40)
     }
     
 }
