@@ -15,8 +15,6 @@ var userDefault = NSUserDefaults.standardUserDefaults()
 
 var myStoryBoard = UIStoryboard(name: "Main", bundle: nil)
 
-let WINDOWSCREEN = UIApplication.sharedApplication().keyWindow
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     

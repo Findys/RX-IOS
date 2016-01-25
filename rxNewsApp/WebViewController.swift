@@ -9,6 +9,8 @@
 import UIKit
 import WebKit
 
+let notifictionCenter = NSNotificationCenter.defaultCenter()
+
 @available(iOS 8.0, *)
 class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate,UITextViewDelegate{
     var progressBar = UIProgressView()
@@ -77,8 +79,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     }
     
     override func viewDidAppear(animated: Bool) {
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: UIKeyboardDidShowNotification, object: nil)
+        notifictionCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardDidShowNotification, object: nil)
         var url = String()
         if from == "comment"{
             url = "http://app.ecjtu.net/api/v1/article/\(id)/comments"
@@ -112,16 +113,20 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     //    KVO
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if (keyPath == "estimatedProgress") {
-            print("123")
             progressBar.hidden = webView.estimatedProgress == 1
             progressBar.setProgress(Float(webView.estimatedProgress), animated: true)
         }
     }
     
+    
     func keyboardWillShow(notification:NSNotification){
-        let userInfo = notification.userInfo as? NSDictionary
-        let value = (userInfo!.objectForKey("UIKeyboardFrameEndUserInfoKey")?.CGRectValue)! as CGRect
-        print("123")
+        let userInfo = notification.userInfo as! NSDictionary
+        let value = (userInfo.objectForKey("UIKeyboardFrameEndUserInfoKey")?.CGRectValue)! as CGRect
+        let animationDuration = userInfo.objectForKey("UIKeyboardAnimationDurationUserInfoKey") as! Double
+        print(value.height)
+        UIView.setAnimationDuration(animationDuration)
+        backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 104 - value.height, width: WINDOW_WIDTH, height: 40)
+        UIView.commitAnimations()
     }
     
     
@@ -130,12 +135,10 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         if content.text.characters.count != 0{
             postData()
         }else{
-            MozTopAlertView.showWithType(MozAlertTypeWarning, text: "请输入评论内容", parentView: webView)
+            MozTopAlertView.showWithType(MozAlertTypeWarning, text: "请输入评论内容", parentView: self.view)
         }
         
     }
-    
-    let window = UIApplication.sharedApplication().keyWindow
     
     func postData(){
         
@@ -149,12 +152,12 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
             afmanager.POST(url, parameters: param, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
                 self.content.resignFirstResponder()
                 self.content.text = ""
-                MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "评论成功", parentView: self.window)
+                MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "评论成功", parentView: self.view)
                 }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                     print(error)
             })
         }else{
-            MozTopAlertView.showWithType(MozAlertTypeError, text: "请先登录", parentView: webView)
+            MozTopAlertView.showWithType(MozAlertTypeError, text: "请先登录", parentView: self.view)
         }
     }
     
