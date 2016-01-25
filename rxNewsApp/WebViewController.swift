@@ -12,7 +12,7 @@ import WebKit
 let notifictionCenter = NSNotificationCenter.defaultCenter()
 
 @available(iOS 8.0, *)
-class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate,UITextViewDelegate{
+class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate{
     var progressBar = UIProgressView()
     var webView: WKWebView!
     var from = String()
@@ -57,7 +57,6 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
             content.frame = CGRect(x: 8, y: 5, width: WINDOW_WIDTH - 90, height: 30)
             content.clipsToBounds = true
             content.layer.cornerRadius = 5
-            content.delegate = self
             backView.addSubview(content)
             
             
@@ -79,7 +78,8 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     }
     
     override func viewDidAppear(animated: Bool) {
-        notifictionCenter.addObserver(self, selector: "keyboardHeightDidChange:", name: UIKeyboardDidShowNotification, object: nil)
+        notifictionCenter.addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardWillShowNotification, object: nil)
+        notifictionCenter.addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardWillHideNotification, object: nil)
         var url = String()
         if from == "comment"{
             url = "http://app.ecjtu.net/api/v1/article/\(id)/comments"
@@ -119,13 +119,21 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     }
     
     
-    func keyboardHeightDidChange(notification:NSNotification){
+    func keyboardDidShow(notification:NSNotification){
         let userInfo = notification.userInfo as! NSDictionary
         let value = (userInfo.objectForKey("UIKeyboardFrameEndUserInfoKey")?.CGRectValue)! as CGRect
         let animationDuration = userInfo.objectForKey("UIKeyboardAnimationDurationUserInfoKey") as! Double
         print(userInfo)
         UIView.setAnimationDuration(animationDuration)
         backView.frame.origin.y = WINDOW_HEIGHT - 104 - value.height
+        UIView.commitAnimations()
+    }
+    
+    func keyboardDidHide(notification:NSNotification){
+        let userInfo = notification.userInfo as! NSDictionary
+        let animationDuration = userInfo.objectForKey("UIKeyboardAnimationDurationUserInfoKey") as! Double
+        UIView.setAnimationDuration(animationDuration)
+        backView.frame.origin.y = WINDOW_HEIGHT - 104
         UIView.commitAnimations()
     }
     
@@ -175,17 +183,5 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
         
         content.resignFirstResponder()
     }
-    
-    func textViewDidBeginEditing(textView: UITextView){
-        UIView.beginAnimations("ResizeForKeyboard", context: nil)
-        UIView.setAnimationDuration(0.5)
-        backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 293, width: WINDOW_WIDTH, height: 40)
-        UIView.commitAnimations()
-    }
-    
-    func textViewDidEndEditing(textView: UITextView){
-        backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 104, width: WINDOW_WIDTH, height: 40)
-    }
-    
 }
 
