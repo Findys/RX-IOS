@@ -79,7 +79,7 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     }
     
     override func viewDidAppear(animated: Bool) {
-        notifictionCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardDidShowNotification, object: nil)
+        notifictionCenter.addObserver(self, selector: "keyboardHeightDidChange:", name: UIKeyboardDidShowNotification, object: nil)
         var url = String()
         if from == "comment"{
             url = "http://app.ecjtu.net/api/v1/article/\(id)/comments"
@@ -119,13 +119,13 @@ class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate
     }
     
     
-    func keyboardWillShow(notification:NSNotification){
+    func keyboardHeightDidChange(notification:NSNotification){
         let userInfo = notification.userInfo as! NSDictionary
         let value = (userInfo.objectForKey("UIKeyboardFrameEndUserInfoKey")?.CGRectValue)! as CGRect
         let animationDuration = userInfo.objectForKey("UIKeyboardAnimationDurationUserInfoKey") as! Double
-        print(value.height)
+        print(userInfo)
         UIView.setAnimationDuration(animationDuration)
-        backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 104 - value.height, width: WINDOW_WIDTH, height: 40)
+        backView.frame.origin.y = WINDOW_HEIGHT - 104 - value.height
         UIView.commitAnimations()
     }
     
