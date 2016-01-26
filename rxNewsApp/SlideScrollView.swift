@@ -2,8 +2,8 @@
 //  SlideScrollView.swift
 //  ZhihuDaily
 //
-//  Created by XuDong Jin on 14-6-12.
-//  Copyright (c) 2014年 XuDong Jin. All rights reserved.
+//  Created by Geetion on 14-6-12.
+//  Copyright (c) 2014年 Geetion. All rights reserved.
 //
 
 import UIKit

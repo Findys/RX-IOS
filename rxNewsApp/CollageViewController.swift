@@ -2,7 +2,7 @@
 //  CollageViewController.swift
 //
 //
-//  Created by Shakugan on 15/10/5.
+//  Created by Geetion on 15/10/5.
 //
 //
 
@@ -17,7 +17,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         self.collageTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
             self.requestData()
         })

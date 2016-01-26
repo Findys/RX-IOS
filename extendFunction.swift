@@ -2,11 +2,19 @@
 //  extendFunction.swift
 //  rxNewsApp
 //
-//  Created by 胡健 on 16/1/16.
-//  Copyright © 2016年 Findys. All rights reserved.
+//  Created by Geetion on 16/1/16.
+//  Copyright © 2016年 Geetion. All rights reserved.
 //
 
 import Foundation
+
+let WINDOW_WIDTH = UIScreen.mainScreen().bounds.width
+let WINDOW_HEIGHT = UIScreen.mainScreen().bounds.height
+
+var userDefault = NSUserDefaults.standardUserDefaults()
+
+var myStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+
 extension UIViewController{
     func saveData(array:NSArray,localDataName:String){
         

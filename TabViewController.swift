@@ -2,7 +2,7 @@
 //  TabViewController.swift
 //  rxNewsApp
 //
-//  Created by Findys on 15/12/18.
+//  Created by Geetion on 15/12/18.
 //  Copyright © 2015年 Findys. All rights reserved.
 //
 

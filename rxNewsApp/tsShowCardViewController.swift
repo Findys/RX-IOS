@@ -2,7 +2,7 @@
 //  tsShowCardViewController.swift
 //
 //
-//  Created by Shakugan on 15/10/6.
+//  Created by Geetion on 15/10/6.
 //
 //
 

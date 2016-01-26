@@ -3,7 +3,7 @@
 //  rxNewsApp
 //
 //  Created by Geetion on 16/1/19.
-//  Copyright © 2016年 Findys. All rights reserved.
+//  Copyright © 2016年 Geetion. All rights reserved.
 //
 
 import Foundation

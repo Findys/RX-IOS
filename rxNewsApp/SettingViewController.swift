@@ -2,8 +2,8 @@
 //  SettingViewController.swift
 //  rxNewsApp
 //
-//  Created by HuJian on 15/11/4.
-//  Copyright © 2015年 Shakugan. All rights reserved.
+//  Created by Geetion on 15/11/4.
+//  Copyright © 2015年 Geetion. All rights reserved.
 //
 
 import UIKit
@@ -16,7 +16,6 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         tableview.delegate=self
         version.text=String(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")!)
         headImageGet()
@@ -24,12 +23,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         headImg.clipsToBounds = true
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     //    图片选择
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         let image=info[UIImagePickerControllerOriginalImage] as! UIImage

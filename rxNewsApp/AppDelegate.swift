@@ -2,18 +2,12 @@
 //  AppDelegate.swift
 //  rxNewsApp
 //
-//  Created by Shakugan on 15/10/3.
-//  Copyright (c) 2015年 Shakugan. All rights reserved.
+//  Created by Geetion on 15/10/3.
+//  Copyright (c) 2015年 Geetion. All rights reserved.
 //
 
 import UIKit
 
-let WINDOW_WIDTH = UIScreen.mainScreen().bounds.width
-let WINDOW_HEIGHT = UIScreen.mainScreen().bounds.height
-
-var userDefault = NSUserDefaults.standardUserDefaults()
-
-var myStoryBoard = UIStoryboard(name: "Main", bundle: nil)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

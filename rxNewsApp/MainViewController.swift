@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  rxNewsApp
 //
-//  Created by Shakugan on 15/10/3.
-//  Copyright (c) 2015年 Shakugan. All rights reserved.
+//  Created by Geetion on 15/10/3.
+//  Copyright (c) 2015年 Geetion. All rights reserved.
 //
 import UIKit
 

@@ -2,8 +2,8 @@
 //  FBViewController.swift
 //  rxNewsApp
 //
-//  Created by HuJian on 15/11/21.
-//  Copyright © 2015年 Shakugan. All rights reserved.
+//  Created by Geetion on 15/11/21.
+//  Copyright © 2015年 Geetion. All rights reserved.
 //
 
 import UIKit
@@ -25,13 +25,7 @@ class FBViewController: UIViewController,UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
                 content.delegate = self
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //    反馈功能实现

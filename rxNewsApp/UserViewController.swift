@@ -2,13 +2,13 @@
 //  UserViewController.swift
 //  rxNewsApp
 //
-//  Created by Shakugan on 15/10/19.
-//  Copyright © 2015年 Shakugan. All rights reserved.
+//  Created by Geetion on 15/10/19.
+//  Copyright © 2015年 Geetion. All rights reserved.
 //
 
 import UIKit
 
-class UserViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate {
+class UserViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     @IBOutlet weak var headimage: UIImageView!
     let array = ["成绩查询","课表查询","一卡通查询","图书馆查询","个人设置"]
     let iconArray = ["score","classquery","ecard","library","Untitled"]
@@ -55,11 +55,6 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             getUserData()
             
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //    获取头像
