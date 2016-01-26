@@ -120,25 +120,6 @@
             </objects>
             <point key="canvasLocation" x="550" y="566"/>
         </scene>
-        <!--Comment View Controller-->
-        <scene sceneID="mbQ-0j-KxB">
-            <objects>
-                <viewController storyboardIdentifier="comment" id="kAb-QL-g9j" customClass="CommentViewController" customModule="rxNewsApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="A64-7i-v12"/>
-                        <viewControllerLayoutGuide type="bottom" id="aAL-7c-o0u"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dEi-6I-V9u">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Z2p-8y-EGO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xEc-Il-zZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1714" y="566"/>
-        </scene>
         <!--新闻-->
         <scene sceneID="laG-7v-23T">
             <objects>

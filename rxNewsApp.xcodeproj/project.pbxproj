@@ -66,7 +66,6 @@
 		939313B71C1083CF001DC404 /* FBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939313B61C1083CF001DC404 /* FBViewController.swift */; };
 		939313B91C1083D6001DC404 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939313B81C1083D6001DC404 /* SettingViewController.swift */; };
 		939313BB1C1083E2001DC404 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939313BA1C1083E2001DC404 /* AboutViewController.swift */; };
-		939313BD1C1083ED001DC404 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939313BC1C1083ED001DC404 /* CommentViewController.swift */; };
 		939313BF1C1083F7001DC404 /* LocalWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939313BE1C1083F7001DC404 /* LocalWebViewController.swift */; };
 		93AF652B1C0FDADB00C80A9E /* _csshake.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 93AF64DB1C0FDADB00C80A9E /* _csshake.scssc */; };
 		93AF652C1C0FDADB00C80A9E /* _reset.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 93AF64DC1C0FDADB00C80A9E /* _reset.scssc */; };
@@ -239,7 +238,6 @@
 		939313B61C1083CF001DC404 /* FBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBViewController.swift; path = rxNewsApp/FBViewController.swift; sourceTree = "<group>"; };
 		939313B81C1083D6001DC404 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = rxNewsApp/SettingViewController.swift; sourceTree = "<group>"; };
 		939313BA1C1083E2001DC404 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = rxNewsApp/AboutViewController.swift; sourceTree = "<group>"; };
-		939313BC1C1083ED001DC404 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentViewController.swift; path = rxNewsApp/CommentViewController.swift; sourceTree = "<group>"; };
 		939313BE1C1083F7001DC404 /* LocalWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalWebViewController.swift; path = rxNewsApp/LocalWebViewController.swift; sourceTree = "<group>"; };
 		93AF64DB1C0FDADB00C80A9E /* _csshake.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = _csshake.scssc; sourceTree = "<group>"; };
 		93AF64DC1C0FDADB00C80A9E /* _reset.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = _reset.scssc; sourceTree = "<group>"; };
@@ -551,7 +549,6 @@
 		9396651A1C0C5A2E00539CE0 /* MainController */ = {
 			isa = PBXGroup;
 			children = (
-				939313BC1C1083ED001DC404 /* CommentViewController.swift */,
 				D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */,
 				C09BF9CE1C2D43C500FBBF9F /* SlideScrollView.swift */,
 			);
@@ -1078,7 +1075,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				14E697C41C243D76004106A4 /* LoginViewController.swift in Sources */,
-				939313BD1C1083ED001DC404 /* CommentViewController.swift in Sources */,
 				C09BF9CF1C2D43C500FBBF9F /* SlideScrollView.swift in Sources */,
 				145B93A11BF37AB500A430EA /* UIApplication+RSKImageCropper.m in Sources */,
 				C0A45D7C1C4E70EA00ED8F2F /* CollageItem.swift in Sources */,

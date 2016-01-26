@@ -9,29 +9,24 @@
 import UIKit
 import WebKit
 
-let notifictionCenter = NSNotificationCenter.defaultCenter()
-
 @available(iOS 8.0, *)
-class WebViewController: UIViewController,WKNavigationDelegate,UIWebViewDelegate{
+class WebViewController: UIViewController,WKNavigationDelegate{
     var progressBar = UIProgressView()
     var webView: WKWebView!
     var from = String()
     let content = UITextView()
     let backView = UIView()
     var id = Int()
+    let notifictionCenter = NSNotificationCenter.defaultCenter()
     
     override func loadView() {
         super.loadView()
         
         self.edgesForExtendedLayout = UIRectEdge.Bottom
         
-        let config = WKWebViewConfiguration()
-        
-        config.userContentController = WKUserContentController()
-        
         self.view.backgroundColor = UIColor.whiteColor()
         
-        self.webView = WKWebView(frame:self.view.frame, configuration: config)
+        self.webView = WKWebView(frame:self.view.frame)
         self.view.addSubview(webView)
         
         progressBar.progress = 0

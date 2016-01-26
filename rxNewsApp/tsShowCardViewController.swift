@@ -15,7 +15,6 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     var pid = Int()
     var ifloading = Bool()
     var ifheight = false
-    var backview = UIView(frame: CGRect(x: 0, y: 64, width: WINDOW_WIDTH, height: WINDOW_HEIGHT-64))
     var picheight = Int()
     var picArray = Array<AnyObject>()
     let text = UILabel()
@@ -24,19 +23,25 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     
     override func loadView() {
         super.loadView()
-        self.view.backgroundColor = UIColor.blackColor()
+        
+        self.edgesForExtendedLayout = UIRectEdge.Bottom
+        
+        scrollview.frame = self.view.frame
+        scrollview.backgroundColor = UIColor.blackColor()
+        scrollview.pagingEnabled = true
+        scrollview.showsHorizontalScrollIndicator = false
+        
+        self.view.addSubview(scrollview)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "shareFunc")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         requestData()
-        scrollview.frame = CGRectMake(0, 0, backview.frame.width, backview.frame.height)
-        scrollview.pagingEnabled = true
-        scrollview.showsHorizontalScrollIndicator = false
-        backview.addSubview(scrollview)
-        self.view.addSubview(backview)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "shareFunc")
+        
         scrollview.delegate = self
+        
         
     }
     
@@ -59,27 +64,25 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             self.tabBarController?.tabBar.frame = CGRect(x: frame!.origin.x, y: frame!.origin.y + 50, width: frame!.width, height: frame!.height)
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+      
     func loadScroll(){
         
         for index in 0..<picArray.count {
+            
             var url = picArray[index].objectForKey("url") as! String
             let detail = picArray[0].objectForKey("detail") as! String
             
             text.text="1/"+String(picArray.count)+"   "+detail
+            
             let size = detail.boundingRectWithSize(CGSize(width: WINDOW_WIDTH, height: 300), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:text.font], context: nil).size
+            
             text.frame=CGRect(x: 10, y:0, width: WINDOW_WIDTH-20, height: size.height+20)
             text.lineBreakMode=NSLineBreakMode.ByWordWrapping
             text.numberOfLines=0
             text.textColor=UIColor.whiteColor()
             text.font=UIFont.boldSystemFontOfSize(15)
             
-            background.frame=CGRectMake(0, WINDOW_HEIGHT-size.height-60, WINDOW_WIDTH, size.height+60)
+            background.frame = CGRect(x: 0, y: WINDOW_HEIGHT-text.frame.height-84, width: WINDOW_WIDTH, height: text.frame.height+20)
             background.backgroundColor=UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
             
             url = "http://pic.ecjtu.net/\(url)"
@@ -93,7 +96,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
                 longpress.minimumPressDuration = 1
                 longpress.numberOfTouchesRequired = 1
                 let photoview = VIPhotoView.init(frame:CGRect(x: CGFloat(index)*WINDOW_WIDTH,y:-70
-                    ,width: self.backview.frame.width,height: self.backview.frame.height), andImage: UIimage)
+                    ,width: WINDOW_WIDTH,height: WINDOW_HEIGHT), andImage: UIimage)
                 photoview.userInteractionEnabled = true
                 photoview.addGestureRecognizer(longpress)
                 if self.ifheight == false{
@@ -109,7 +112,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             self.view.addSubview(background)
             background.addSubview(text)
         }
-        self.scrollview.contentSize = CGSizeMake(self.backview.frame.size.width * CGFloat(picArray.count),CGFloat(picheight))
+        self.scrollview.contentSize = CGSizeMake(WINDOW_WIDTH * CGFloat(picArray.count),CGFloat(picheight))
     }
     
     
@@ -117,11 +120,14 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         if ifloading{
             let detail = picArray[Int(scrollview.contentOffset.x/WINDOW_WIDTH)].objectForKey("detail") as! NSString
             let size = detail.boundingRectWithSize(CGSize(width: WINDOW_WIDTH, height: 300), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:text.font], context: nil).size
-            let current = String(Int(scrollview.contentOffset.x/WINDOW_WIDTH + 1))
+            var current = String(Int(scrollview.contentOffset.x/WINDOW_WIDTH + 1))
+            if current == "0"{
+                current = "1"
+            }
             let count = String(picArray.count)
             text.text = current+"/"+count+"   "+(detail as String)
-            background.frame = CGRect(x: 0, y: WINDOW_HEIGHT-size.height-60, width: WINDOW_WIDTH, height: size.height+60)
             text.frame = CGRect(x: 10, y:0, width: WINDOW_WIDTH-20, height: size.height+20)
+            background.frame = CGRect(x: 0, y: WINDOW_HEIGHT-text.frame.height-84, width: WINDOW_WIDTH, height: text.frame.height+20)
         }
     }
     
@@ -134,7 +140,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
                 self.ifloading=true
             }
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.backview)
+            MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
         }
     }
     
@@ -167,7 +173,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         MozTopAlertView.showWithType(MozAlertTypeInfo, text: "保存到图库", doText: "是的", doBlock: { () -> Void in
             let img = self.imagearray[Int(self.scrollview.contentOffset.x/WINDOW_WIDTH)] as UIImage
             UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
-            }, parentView: self.backview)
+            }, parentView: self.view)
     }
     
 }

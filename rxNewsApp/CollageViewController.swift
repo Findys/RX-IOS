@@ -27,11 +27,6 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         self.collageTable.mj_header.beginRefreshing()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     //    获取数据
     func requestData() {
         let afManager = AFHTTPSessionManager()

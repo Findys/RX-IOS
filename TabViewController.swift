@@ -14,13 +14,7 @@ class TabViewController: UITabBarController,UITabBarControllerDelegate {
         super.viewDidLoad()
         
         self.delegate = self
-        
-        // Do any additional setup after loading the view.
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
