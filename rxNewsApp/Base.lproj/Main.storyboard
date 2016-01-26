@@ -307,7 +307,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="102" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="C5R-OW-Lm5">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="collageCell" rowHeight="114" id="yDZ-kE-4bZ">
@@ -318,13 +318,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0gO-oN-5EJ">
-                                                    <rect key="frame" x="67" y="8" width="187" height="21"/>
+                                                    <rect key="frame" x="67" y="8" width="187" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQI-WM-nbc">
-                                                    <rect key="frame" x="17" y="37" width="287" height="15"/>
+                                                    <rect key="frame" x="17" y="36" width="287" height="14.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="287" id="XyS-SN-U4q"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="12" id="gNT-ye-57I"/>
@@ -383,8 +383,8 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="C5R-OW-Lm5" secondAttribute="centerX" id="7sv-uY-dHU"/>
                             <constraint firstItem="C5R-OW-Lm5" firstAttribute="width" secondItem="NJx-gC-0bS" secondAttribute="width" id="Jxq-0z-5B1"/>
-                            <constraint firstItem="C5R-OW-Lm5" firstAttribute="top" secondItem="ada-pb-Fmb" secondAttribute="bottom" constant="-64" id="enn-KH-9pQ"/>
-                            <constraint firstItem="C5R-OW-Lm5" firstAttribute="height" secondItem="NJx-gC-0bS" secondAttribute="height" id="nrH-I4-vCf"/>
+                            <constraint firstItem="C5R-OW-Lm5" firstAttribute="top" secondItem="ada-pb-Fmb" secondAttribute="bottom" id="enn-KH-9pQ"/>
+                            <constraint firstItem="C5R-OW-Lm5" firstAttribute="height" secondItem="NJx-gC-0bS" secondAttribute="height" constant="-64" id="nrH-I4-vCf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="学院专题" id="z3E-Qv-dQR"/>
