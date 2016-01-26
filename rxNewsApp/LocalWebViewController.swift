@@ -18,7 +18,7 @@ class LocalWebViewController: UIViewController,WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let id = userDefault.objectForKey("account") as! String
+        let id = userDefault.stringForKey("account")
         
         let config = WKWebViewConfiguration()
         
@@ -26,7 +26,7 @@ class LocalWebViewController: UIViewController,WKNavigationDelegate {
         
         config.userContentController = contentController
         
-        let js = "window.id = '"+id+"';"
+        let js = "window.id = '"+id!+"';"
         
         let script = WKUserScript.init(source: js, injectionTime: .AtDocumentStart,forMainFrameOnly: true)
         

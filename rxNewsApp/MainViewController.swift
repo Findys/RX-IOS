@@ -20,6 +20,8 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.edgesForExtendedLayout = UIRectEdge.Bottom
+        
         self.newsTable.estimatedRowHeight = 114
         self.newsTable.rowHeight = UITableViewAutomaticDimension
         
@@ -83,7 +85,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                 
                 if let cache = self.getlocalData("rxNewsCache") as? NSMutableArray{
                     self.dataSource = cache
@@ -124,7 +126,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.newsTable.mj_header.endRefreshing()
             })
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.newsTable)
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                 self.newsTable.mj_footer.endRefreshing()
         }
     }

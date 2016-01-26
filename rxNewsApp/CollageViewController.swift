@@ -17,6 +17,8 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.edgesForExtendedLayout = UIRectEdge.Bottom
 
         self.collageTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
             self.requestData()
@@ -62,7 +64,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
             })
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.collageTable)
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                 
                 self.collageTable.mj_header.endRefreshing()
                 
@@ -76,31 +78,47 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     
     func requestMoreData(id:Int) {
+        
         let afManager = AFHTTPSessionManager()
+        
         afManager.GET("http://app.ecjtu.net/api/v1/schoolnews?until=\(id)", parameters: nil, progress:nil,success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            
             let count = resp!.objectForKey("count") as! Int
+            
             if count==0 {
+                
                 self.collageTable.mj_footer.endRefreshingWithNoMoreData()
-                return
+                
             }else{
+                
                 let newsArray = resp!.objectForKey("list") as! Array<AnyObject>
+                
                 self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! Int
+                
                 for each in newsArray{
+                    
                     let item = CollageItem()
+                    
                     item.id = each.objectForKey("id") as! Int
                     item.info = each.objectForKey("info") as! String
                     item.click = each.objectForKey("click") as! Int
                     item.title = each.objectForKey("title") as! String
                     item.time = each.objectForKey("created_at") as! String
+                    
                     self.dataSource.addObject(item)
                 }
             }
+            
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
                 self.collageTable.reloadData()
+                
                 self.collageTable.mj_footer.endRefreshing()
             })
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.collageTable)
+                
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
+                
                 self.collageTable.mj_footer.endRefreshing()
         }
     }
@@ -125,7 +143,9 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("collageCell")
+        
         let item = dataSource[indexPath.row] as! CollageItem
+        
         let title = cell!.viewWithTag(1) as! UILabel
         let click = cell!.viewWithTag(2) as! UILabel
         let info = cell!.viewWithTag(3) as! UILabel
@@ -135,6 +155,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         click.text = String(item.click) as String
         info.text = item.info as String
         title.text = item.title as String
+        
         return cell!
     }
 }

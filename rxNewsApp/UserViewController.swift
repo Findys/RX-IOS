@@ -22,29 +22,27 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         self.headimage.clipsToBounds = true
         
-        if let image = userDefault.objectForKey("headimage") as? String{
+        if let image = userDefault.stringForKey("headimage"){
+            if let name = userDefault.stringForKey("name"){
+                self.username.text = name
+            }
+            
             self.headimage.sd_setImageWithURL(NSURL(string: image))
+            
         }else{
+            if let _  = userDefault.stringForKey("account"){
             getUserData()
-        }
-        
-        if let name = userDefault.objectForKey("name") as? String{
-            self.username.text = name
-        }else{
-            getUserData()
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        rxServiceTable.dataSource=self
-        rxServiceTable.delegate=self
     }
     
     override func viewWillAppear(animated: Bool) {
         
-        let iflogin = userDefault.objectForKey("iflogin") as! Bool
+        let iflogin = userDefault.boolForKey("iflogin")
         
         if iflogin == false{
             
@@ -62,7 +60,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         let afmanager = AFHTTPSessionManager()
         
-        let url = "http://user.ecjtu.net/api/user/" + (userDefault.objectForKey("account")! as! String)
+        let url = "http://user.ecjtu.net/api/user/" + (userDefault.stringForKey("account"))!
         
         afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
         

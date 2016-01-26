@@ -15,6 +15,9 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.edgesForExtendedLayout = UIRectEdge.Bottom
+        
         self.tushuoTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
             self.requestData()
         })
@@ -56,7 +59,7 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
             })
             
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.tushuoTable)
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                 self.tushuoTable.mj_header.endRefreshing()
                 
                 if let cache = self.getlocalData("tushuoCache") as? NSMutableArray{
@@ -95,7 +98,7 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 self.tushuoTable.mj_footer.endRefreshing()
             })
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.tushuoTable)
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                 self.tushuoTable.mj_footer.endRefreshing()
         }
     }

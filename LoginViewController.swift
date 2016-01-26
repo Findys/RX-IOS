@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreMotion
 
 class LoginViewController: UIViewController {
     var url="http://user.ecjtu.net/api/login"

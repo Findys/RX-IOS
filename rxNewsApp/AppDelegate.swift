@@ -57,17 +57,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
         
-        if let account = userDefault.objectForKey("account") as? String{
+        if let account = userDefault.stringForKey("account"){
             
-            let password=userDefault.objectForKey("password") as! String
+            let password = userDefault.stringForKey("password")
             
-            let params:[String:String] = ["username": account, "password":password]
+            let params = ["username": account, "password":password!]
             
             afmanager.POST("http://user.ecjtu.net/api/login", parameters: params, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
                 
-                let token=(resp!.objectForKey("token"))!
+                let token = resp!.objectForKey("token")!
                 
                 userDefault.setObject(token, forKey: "token")
+                
                 }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                     print(error)
                     
@@ -139,6 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func firstLaunch(){
+        
         if (userDefault.objectForKey("everlaunched") == nil){
             userDefault.setBool(false, forKey: "iflogin")
             userDefault.setBool(true, forKey: "everlaunched")

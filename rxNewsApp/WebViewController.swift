@@ -67,7 +67,7 @@ class WebViewController: UIViewController,WKNavigationDelegate{
             backView.addSubview(comment)
             
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "评论页", style: UIBarButtonItemStyle.Plain, target: self, action: "pushToComment")
-
+            
             
         }
     }
@@ -115,18 +115,24 @@ class WebViewController: UIViewController,WKNavigationDelegate{
     
     
     func keyboardDidShow(notification:NSNotification){
+        
         let userInfo = notification.userInfo as! NSDictionary
+        
         let value = (userInfo.objectForKey("UIKeyboardFrameEndUserInfoKey")?.CGRectValue)! as CGRect
+        
         let animationDuration = userInfo.objectForKey("UIKeyboardAnimationDurationUserInfoKey") as! Double
-        print(userInfo)
+        
         UIView.setAnimationDuration(animationDuration)
         backView.frame.origin.y = WINDOW_HEIGHT - 104 - value.height
         UIView.commitAnimations()
     }
     
     func keyboardDidHide(notification:NSNotification){
+        
         let userInfo = notification.userInfo as! NSDictionary
+        
         let animationDuration = userInfo.objectForKey("UIKeyboardAnimationDurationUserInfoKey") as! Double
+        
         UIView.setAnimationDuration(animationDuration)
         backView.frame.origin.y = WINDOW_HEIGHT - 104
         UIView.commitAnimations()
@@ -145,7 +151,7 @@ class WebViewController: UIViewController,WKNavigationDelegate{
     
     func postData(){
         
-        if let account = userDefault.objectForKey("account") as? String{
+        if let account = userDefault.stringForKey("account"){
             
             let afmanager = AFHTTPSessionManager()
             
@@ -157,7 +163,8 @@ class WebViewController: UIViewController,WKNavigationDelegate{
                 self.content.text = ""
                 MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "评论成功", parentView: self.view)
                 }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                    print(error)
+                    
+                    MozTopAlertView.showWithType(MozAlertTypeError, text: "请检查网络", parentView: self.view)
             })
         }else{
             MozTopAlertView.showWithType(MozAlertTypeError, text: "请先登录", parentView: self.view)
@@ -169,6 +176,7 @@ class WebViewController: UIViewController,WKNavigationDelegate{
         
         myWebViewController.id = id
         myWebViewController.from = "comment"
+        
         self.navigationController?.pushViewController(myWebViewController, animated: true)
         
     }

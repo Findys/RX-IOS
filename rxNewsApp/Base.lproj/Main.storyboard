@@ -470,6 +470,10 @@
                                             </tableViewCell>
                                         </prototypes>
                                         <sections/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="PQT-d9-eiB" id="H6x-Cs-jTz"/>
+                                            <outlet property="delegate" destination="PQT-d9-eiB" id="GIc-aQ-ai5"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.14901960784313725" green="0.6470588235294118" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>

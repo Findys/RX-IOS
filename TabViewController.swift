@@ -21,7 +21,7 @@ class TabViewController: UITabBarController,UITabBarControllerDelegate {
         
         if tabBarController.selectedIndex == 3{
             
-            let iflogin = userDefault.objectForKey("iflogin") as! Bool
+            let iflogin = userDefault.boolForKey("iflogin")
             
             if iflogin == false{
                 

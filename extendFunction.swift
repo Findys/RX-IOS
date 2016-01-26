@@ -25,9 +25,9 @@ extension UIViewController{
     
     func getlocalData(localDataName:String)->NSArray?{
         
-        if let data = userDefault.objectForKey(localDataName){
+        if let data = userDefault.dataForKey(localDataName){
             
-            let localData = NSKeyedUnarchiver.unarchiveObjectWithData(data as! NSData) as! NSArray
+            let localData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! NSArray
             
             return localData
             

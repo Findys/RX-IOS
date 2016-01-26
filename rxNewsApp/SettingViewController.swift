@@ -9,6 +9,7 @@
 import UIKit
 
 class SettingViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate{
+    
     @IBOutlet weak var headImg: UIImageView!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var version: UILabel!
@@ -26,28 +27,41 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
 
     //    图片选择
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
-        let image=info[UIImagePickerControllerOriginalImage] as! UIImage
-        let img=RSKImageCropViewController.init(image: image, cropMode: RSKImageCropMode.Circle)
+        
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        let img = RSKImageCropViewController.init(image: image, cropMode: RSKImageCropMode.Circle)
+        
         img.delegate=self
+        
         picker.dismissViewControllerAnimated(true, completion: nil)
+        
         self.presentViewController(img, animated: true, completion: nil)
     }
     
     //    图片取消裁剪
     func imageCropViewControllerDidCancelCrop(controller: RSKImageCropViewController!) {
+        
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     //    图片裁剪结束
     func imageCropViewController(controller: RSKImageCropViewController!, didCropImage croppedImage: UIImage!, usingCropRect cropRect: CGRect) {
+        
         let imgData = UIImageJPEGRepresentation(croppedImage, CGFloat(1))
-        let params:[String:AnyObject] = ["token":userDefault.stringForKey("token")!]
+        
+        let params = ["token":userDefault.stringForKey("token")!]
+        
         let afmanager = AFHTTPSessionManager()
+        
         let studentID = userDefault.stringForKey("account")!
+        
         let url = "http://user.ecjtu.net/api/user/\(studentID)/avatar"
+        
         afmanager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
             formdata.appendPartWithFileData(imgData!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
             }, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+                print(resp)
                 if( resp!.objectForKey("result")! as! Int == 1){
                     MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "头像上传成功",parentView: self.view)
                     self.headImageGet()
@@ -57,15 +71,17 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView: self.view)
         }
+        
         controller.dismissViewControllerAnimated(true, completion: nil)
+        
         MozTopAlertView.showWithType(MozAlertTypeInfo, text: "头像上传中", parentView: self.view)
-        afmanager.requestSerializer = AFHTTPRequestSerializer()
+        
         afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
     }
     
     func headImageGet(){
-        let avatar = userDefault.objectForKey("headimg") as! String
-        self.headImg.sd_setImageWithURL(NSURL(string: avatar))
+        let avatar = userDefault.stringForKey("headimage")
+        self.headImg.sd_setImageWithURL(NSURL(string: avatar!))
         
     }
     
@@ -128,6 +144,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             }
         default:break
         }
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
