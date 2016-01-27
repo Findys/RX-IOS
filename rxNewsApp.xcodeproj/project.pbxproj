@@ -46,8 +46,6 @@
 		14D3E4FF1BFC9C0700640C29 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E4FE1BFC9C0700640C29 /* CoreGraphics.framework */; };
 		14D3E5011BFC9C1D00640C29 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E5001BFC9C1D00640C29 /* libz.tbd */; };
 		14D3E5031BFC9C5500640C29 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14D3E5021BFC9C5500640C29 /* PushConfig.plist */; };
-		14E697C41C243D76004106A4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E697C31C243D76004106A4 /* LoginViewController.swift */; };
-		14E697CB1C244317004106A4 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E697CA1C244317004106A4 /* TabViewController.swift */; };
 		14E996691BF4C72E009F8184 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E996681BF4C72E009F8184 /* SystemConfiguration.framework */; };
 		14E9966B1BF4C73A009F8184 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E9966A1BF4C73A009F8184 /* QuartzCore.framework */; };
 		14E9966D1BF4C744009F8184 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E9966C1BF4C744009F8184 /* CoreTelephony.framework */; };
@@ -63,9 +61,6 @@
 		14F827581BEB6F8A004AEA96 /* btn_close_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827521BEB6F8A004AEA96 /* btn_close_selected.png */; };
 		14F827591BEB6F8A004AEA96 /* btn_close_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F827531BEB6F8A004AEA96 /* btn_close_selected@2x.png */; };
 		14F8275A1BEB6F8A004AEA96 /* DXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F827551BEB6F8A004AEA96 /* DXAlertView.m */; };
-		939313B71C1083CF001DC404 /* FBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939313B61C1083CF001DC404 /* FBViewController.swift */; };
-		939313B91C1083D6001DC404 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939313B81C1083D6001DC404 /* SettingViewController.swift */; };
-		939313BB1C1083E2001DC404 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939313BA1C1083E2001DC404 /* AboutViewController.swift */; };
 		939313BF1C1083F7001DC404 /* LocalWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939313BE1C1083F7001DC404 /* LocalWebViewController.swift */; };
 		93AF652B1C0FDADB00C80A9E /* _csshake.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 93AF64DB1C0FDADB00C80A9E /* _csshake.scssc */; };
 		93AF652C1C0FDADB00C80A9E /* _reset.scssc in Resources */ = {isa = PBXBuildFile; fileRef = 93AF64DC1C0FDADB00C80A9E /* _reset.scssc */; };
@@ -125,20 +120,25 @@
 		93AF65691C0FDADB00C80A9E /* scoreQuery.html in Resources */ = {isa = PBXBuildFile; fileRef = 93AF65271C0FDADB00C80A9E /* scoreQuery.html */; };
 		93D6DC451C11D36000BB475C /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 93D6DC441C11D36000BB475C /* style.css */; };
 		93D6DC471C11D36500BB475C /* scoreQuery.js in Resources */ = {isa = PBXBuildFile; fileRef = 93D6DC461C11D36500BB475C /* scoreQuery.js */; };
-		C039DC531C4A01DD0084AA92 /* extendFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C039DC521C4A01DD0084AA92 /* extendFunction.swift */; };
-		C09BF9CF1C2D43C500FBBF9F /* SlideScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF9CE1C2D43C500FBBF9F /* SlideScrollView.swift */; };
+		C051964A1C586359006C2BD0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05196481C586359006C2BD0 /* MainViewController.swift */; };
+		C051964B1C586359006C2BD0 /* SlideScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05196491C586359006C2BD0 /* SlideScrollView.swift */; };
+		C05196521C5863E3006C2BD0 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C051964D1C5863E3006C2BD0 /* AboutViewController.swift */; };
+		C05196531C5863E3006C2BD0 /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C051964E1C5863E3006C2BD0 /* FeedBackViewController.swift */; };
+		C05196541C5863E3006C2BD0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C051964F1C5863E3006C2BD0 /* LoginViewController.swift */; };
+		C05196551C5863E3006C2BD0 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05196501C5863E3006C2BD0 /* SettingViewController.swift */; };
+		C05196561C5863E3006C2BD0 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05196511C5863E3006C2BD0 /* UserViewController.swift */; };
+		C051965A1C586415006C2BD0 /* tsShowCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05196581C586415006C2BD0 /* tsShowCardViewController.swift */; };
+		C051965B1C586415006C2BD0 /* TushuoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05196591C586415006C2BD0 /* TushuoViewController.swift */; };
+		C051965E1C58643D006C2BD0 /* CollageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C051965D1C58643D006C2BD0 /* CollageViewController.swift */; };
+		C05196601C586456006C2BD0 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C051965F1C586456006C2BD0 /* TabViewController.swift */; };
+		C05196621C586469006C2BD0 /* extendFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05196611C586469006C2BD0 /* extendFunction.swift */; };
 		C0A45D7C1C4E70EA00ED8F2F /* CollageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A45D781C4E70EA00ED8F2F /* CollageItem.swift */; };
 		C0A45D7D1C4E70EA00ED8F2F /* rxNewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A45D791C4E70EA00ED8F2F /* rxNewsItem.swift */; };
 		C0A45D7E1C4E70EA00ED8F2F /* rxNewsSlideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A45D7A1C4E70EA00ED8F2F /* rxNewsSlideItem.swift */; };
 		C0A45D7F1C4E70EA00ED8F2F /* TuShuoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A45D7B1C4E70EA00ED8F2F /* TuShuoItem.swift */; };
 		D23DCFDC1BC272DD00C32F94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */; };
-		D23DCFE01BC272DD00C32F94 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */; };
-		D23DCFEC1BC27ED400C32F94 /* CollageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFEB1BC27ED400C32F94 /* CollageViewController.swift */; };
-		D23DCFEE1BC27F8B00C32F94 /* TushuoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DCFED1BC27F8B00C32F94 /* TushuoViewController.swift */; };
 		D26734811BC3C5A500E63D15 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26734801BC3C5A500E63D15 /* WebViewController.swift */; };
-		D26734831BC3E35700E63D15 /* tsShowCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26734821BC3E35700E63D15 /* tsShowCardViewController.swift */; };
 		D2C040601BBFC71A00791443 /* rxNewsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C0405F1BBFC71A00791443 /* rxNewsAppTests.swift */; };
-		D2FC4D991BD4C89D00F18240 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FC4D981BD4C89D00F18240 /* UserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,8 +216,6 @@
 		14D3E4FE1BFC9C0700640C29 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		14D3E5001BFC9C1D00640C29 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		14D3E5021BFC9C5500640C29 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
-		14E697C31C243D76004106A4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		14E697CA1C244317004106A4 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		14E996681BF4C72E009F8184 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		14E9966A1BF4C73A009F8184 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		14E9966C1BF4C744009F8184 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -235,9 +233,6 @@
 		14F827541BEB6F8A004AEA96 /* DXAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXAlertView.h; sourceTree = "<group>"; };
 		14F827551BEB6F8A004AEA96 /* DXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXAlertView.m; sourceTree = "<group>"; };
 		197015E37310C125A909AEF2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		939313B61C1083CF001DC404 /* FBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBViewController.swift; path = rxNewsApp/FBViewController.swift; sourceTree = "<group>"; };
-		939313B81C1083D6001DC404 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = rxNewsApp/SettingViewController.swift; sourceTree = "<group>"; };
-		939313BA1C1083E2001DC404 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = rxNewsApp/AboutViewController.swift; sourceTree = "<group>"; };
 		939313BE1C1083F7001DC404 /* LocalWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalWebViewController.swift; path = rxNewsApp/LocalWebViewController.swift; sourceTree = "<group>"; };
 		93AF64DB1C0FDADB00C80A9E /* _csshake.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = _csshake.scssc; sourceTree = "<group>"; };
 		93AF64DC1C0FDADB00C80A9E /* _reset.scssc */ = {isa = PBXFileReference; lastKnownFileType = file; path = _reset.scssc; sourceTree = "<group>"; };
@@ -299,25 +294,30 @@
 		93AF652A1C0FDADB00C80A9E /* style.css.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = style.css.map; sourceTree = "<group>"; };
 		93D6DC441C11D36000BB475C /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		93D6DC461C11D36500BB475C /* scoreQuery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = scoreQuery.js; sourceTree = "<group>"; };
-		C039DC521C4A01DD0084AA92 /* extendFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extendFunction.swift; sourceTree = "<group>"; };
-		C09BF9CE1C2D43C500FBBF9F /* SlideScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideScrollView.swift; path = rxNewsApp/SlideScrollView.swift; sourceTree = "<group>"; };
+		C05196481C586359006C2BD0 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		C05196491C586359006C2BD0 /* SlideScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideScrollView.swift; sourceTree = "<group>"; };
+		C051964D1C5863E3006C2BD0 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		C051964E1C5863E3006C2BD0 /* FeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedBackViewController.swift; sourceTree = "<group>"; };
+		C051964F1C5863E3006C2BD0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C05196501C5863E3006C2BD0 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		C05196511C5863E3006C2BD0 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		C05196581C586415006C2BD0 /* tsShowCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tsShowCardViewController.swift; sourceTree = "<group>"; };
+		C05196591C586415006C2BD0 /* TushuoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TushuoViewController.swift; sourceTree = "<group>"; };
+		C051965D1C58643D006C2BD0 /* CollageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageViewController.swift; sourceTree = "<group>"; };
+		C051965F1C586456006C2BD0 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabViewController.swift; path = rxNewsApp/TabViewController.swift; sourceTree = "<group>"; };
+		C05196611C586469006C2BD0 /* extendFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = extendFunction.swift; path = rxNewsApp/extendFunction.swift; sourceTree = "<group>"; };
 		C0A45D781C4E70EA00ED8F2F /* CollageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageItem.swift; sourceTree = "<group>"; };
 		C0A45D791C4E70EA00ED8F2F /* rxNewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rxNewsItem.swift; sourceTree = "<group>"; };
 		C0A45D7A1C4E70EA00ED8F2F /* rxNewsSlideItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rxNewsSlideItem.swift; sourceTree = "<group>"; };
 		C0A45D7B1C4E70EA00ED8F2F /* TuShuoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuShuoItem.swift; sourceTree = "<group>"; };
 		D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = rxNewsApp/AppDelegate.swift; sourceTree = "<group>"; };
 		D23DCFDA1BC272DD00C32F94 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = rxNewsApp/Info.plist; sourceTree = "<group>"; };
-		D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = rxNewsApp/MainViewController.swift; sourceTree = "<group>"; };
 		D23DCFEA1BC27A9000C32F94 /* rxNewsApp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "rxNewsApp-Bridging-Header.h"; path = "rxNewsApp/rxNewsApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		D23DCFEB1BC27ED400C32F94 /* CollageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollageViewController.swift; path = rxNewsApp/CollageViewController.swift; sourceTree = "<group>"; };
-		D23DCFED1BC27F8B00C32F94 /* TushuoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TushuoViewController.swift; path = rxNewsApp/TushuoViewController.swift; sourceTree = "<group>"; };
 		D26734801BC3C5A500E63D15 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = rxNewsApp/WebViewController.swift; sourceTree = "<group>"; };
-		D26734821BC3E35700E63D15 /* tsShowCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = tsShowCardViewController.swift; path = rxNewsApp/tsShowCardViewController.swift; sourceTree = "<group>"; };
 		D2C040441BBFC71A00791443 /* rxNewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rxNewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C040591BBFC71A00791443 /* rxNewsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rxNewsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C0405E1BBFC71A00791443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2C0405F1BBFC71A00791443 /* rxNewsAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rxNewsAppTests.swift; sourceTree = "<group>"; };
-		D2FC4D981BD4C89D00F18240 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserViewController.swift; path = rxNewsApp/UserViewController.swift; sourceTree = "<group>"; };
 		F4200A8D112B17FCC73B7358 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DFE015847CD4C3C33E8EF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -546,44 +546,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		9396651A1C0C5A2E00539CE0 /* MainController */ = {
-			isa = PBXGroup;
-			children = (
-				D23DCFDB1BC272DD00C32F94 /* MainViewController.swift */,
-				C09BF9CE1C2D43C500FBBF9F /* SlideScrollView.swift */,
-			);
-			name = MainController;
-			sourceTree = "<group>";
-		};
-		9396651B1C0C5A7C00539CE0 /* UserController */ = {
-			isa = PBXGroup;
-			children = (
-				D2FC4D981BD4C89D00F18240 /* UserViewController.swift */,
-				939313BA1C1083E2001DC404 /* AboutViewController.swift */,
-				939313B61C1083CF001DC404 /* FBViewController.swift */,
-				939313B81C1083D6001DC404 /* SettingViewController.swift */,
-				14E697C31C243D76004106A4 /* LoginViewController.swift */,
-			);
-			name = UserController;
-			sourceTree = "<group>";
-		};
-		9396651C1C0C5B9500539CE0 /* CollageController */ = {
-			isa = PBXGroup;
-			children = (
-				D23DCFEB1BC27ED400C32F94 /* CollageViewController.swift */,
-			);
-			name = CollageController;
-			sourceTree = "<group>";
-		};
-		9396651D1C0C5BAC00539CE0 /* PictureController */ = {
-			isa = PBXGroup;
-			children = (
-				D23DCFED1BC27F8B00C32F94 /* TushuoViewController.swift */,
-				D26734821BC3E35700E63D15 /* tsShowCardViewController.swift */,
-			);
-			name = PictureController;
-			sourceTree = "<group>";
-		};
 		93AF64D71C0FDADB00C80A9E /* rxService */ = {
 			isa = PBXGroup;
 			children = (
@@ -763,6 +725,48 @@
 			path = b68b3c58a8597df73602974e603324080a358843;
 			sourceTree = "<group>";
 		};
+		C05196471C586359006C2BD0 /* MainController */ = {
+			isa = PBXGroup;
+			children = (
+				C05196481C586359006C2BD0 /* MainViewController.swift */,
+				C05196491C586359006C2BD0 /* SlideScrollView.swift */,
+			);
+			name = MainController;
+			path = rxNewsApp/MainController;
+			sourceTree = "<group>";
+		};
+		C051964C1C5863E3006C2BD0 /* UserController */ = {
+			isa = PBXGroup;
+			children = (
+				C051964D1C5863E3006C2BD0 /* AboutViewController.swift */,
+				C051964E1C5863E3006C2BD0 /* FeedBackViewController.swift */,
+				C051964F1C5863E3006C2BD0 /* LoginViewController.swift */,
+				C05196501C5863E3006C2BD0 /* SettingViewController.swift */,
+				C05196511C5863E3006C2BD0 /* UserViewController.swift */,
+			);
+			name = UserController;
+			path = rxNewsApp/UserController;
+			sourceTree = "<group>";
+		};
+		C05196571C586415006C2BD0 /* PictureController */ = {
+			isa = PBXGroup;
+			children = (
+				C05196581C586415006C2BD0 /* tsShowCardViewController.swift */,
+				C05196591C586415006C2BD0 /* TushuoViewController.swift */,
+			);
+			name = PictureController;
+			path = rxNewsApp/PictureController;
+			sourceTree = "<group>";
+		};
+		C051965C1C58643D006C2BD0 /* CollageController */ = {
+			isa = PBXGroup;
+			children = (
+				C051965D1C58643D006C2BD0 /* CollageViewController.swift */,
+			);
+			name = CollageController;
+			path = rxNewsApp/CollageController;
+			sourceTree = "<group>";
+		};
 		C0A45D771C4E70EA00ED8F2F /* Item */ = {
 			isa = PBXGroup;
 			children = (
@@ -784,7 +788,6 @@
 				14D3E5021BFC9C5500640C29 /* PushConfig.plist */,
 				D23DCFE11BC2730600C32F94 /* Base */,
 				93AF64D71C0FDADB00C80A9E /* rxService */,
-				C039DC521C4A01DD0084AA92 /* extendFunction.swift */,
 			);
 			name = rxNewsApp;
 			sourceTree = "<group>";
@@ -794,6 +797,7 @@
 			children = (
 				14BF78C31C00A36F00251561 /* Images.xcassets */,
 				143A93E41BF43E62001A36C8 /* Main.storyboard */,
+				C05196611C586469006C2BD0 /* extendFunction.swift */,
 				D23DCFDA1BC272DD00C32F94 /* Info.plist */,
 				D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */,
 			);
@@ -803,13 +807,13 @@
 		D23DCFE21BC2732F00C32F94 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				14E697CA1C244317004106A4 /* TabViewController.swift */,
+				C051965C1C58643D006C2BD0 /* CollageController */,
+				C05196571C586415006C2BD0 /* PictureController */,
+				C051964C1C5863E3006C2BD0 /* UserController */,
+				C05196471C586359006C2BD0 /* MainController */,
+				C051965F1C586456006C2BD0 /* TabViewController.swift */,
 				D26734801BC3C5A500E63D15 /* WebViewController.swift */,
 				939313BE1C1083F7001DC404 /* LocalWebViewController.swift */,
-				9396651D1C0C5BAC00539CE0 /* PictureController */,
-				9396651C1C0C5B9500539CE0 /* CollageController */,
-				9396651B1C0C5A7C00539CE0 /* UserController */,
-				9396651A1C0C5A2E00539CE0 /* MainController */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -1074,37 +1078,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14E697C41C243D76004106A4 /* LoginViewController.swift in Sources */,
-				C09BF9CF1C2D43C500FBBF9F /* SlideScrollView.swift in Sources */,
 				145B93A11BF37AB500A430EA /* UIApplication+RSKImageCropper.m in Sources */,
+				C051964B1C586359006C2BD0 /* SlideScrollView.swift in Sources */,
 				C0A45D7C1C4E70EA00ED8F2F /* CollageItem.swift in Sources */,
 				145B939D1BF37AB500A430EA /* RSKImageCropViewController.m in Sources */,
 				143714B91BEDA94200D2F5A9 /* NSString+FontAwesome.m in Sources */,
+				C05196551C5863E3006C2BD0 /* SettingViewController.swift in Sources */,
+				C05196541C5863E3006C2BD0 /* LoginViewController.swift in Sources */,
 				145B939F1BF37AB500A430EA /* RSKInternalUtility.m in Sources */,
+				C05196601C586456006C2BD0 /* TabViewController.swift in Sources */,
 				143714B71BEDA94200D2F5A9 /* FAImageView.m in Sources */,
-				D23DCFEE1BC27F8B00C32F94 /* TushuoViewController.swift in Sources */,
 				939313BF1C1083F7001DC404 /* LocalWebViewController.swift in Sources */,
+				C051964A1C586359006C2BD0 /* MainViewController.swift in Sources */,
 				14F8275A1BEB6F8A004AEA96 /* DXAlertView.m in Sources */,
-				939313BB1C1083E2001DC404 /* AboutViewController.swift in Sources */,
-				D2FC4D991BD4C89D00F18240 /* UserViewController.swift in Sources */,
-				14E697CB1C244317004106A4 /* TabViewController.swift in Sources */,
+				C05196521C5863E3006C2BD0 /* AboutViewController.swift in Sources */,
+				C05196561C5863E3006C2BD0 /* UserViewController.swift in Sources */,
 				C0A45D7F1C4E70EA00ED8F2F /* TuShuoItem.swift in Sources */,
 				143714BB1BEDA94200D2F5A9 /* MozTopAlertView.m in Sources */,
+				C05196531C5863E3006C2BD0 /* FeedBackViewController.swift in Sources */,
 				143714BA1BEDA94200D2F5A9 /* UIFont+FontAwesome.m in Sources */,
-				D23DCFEC1BC27ED400C32F94 /* CollageViewController.swift in Sources */,
-				D26734831BC3E35700E63D15 /* tsShowCardViewController.swift in Sources */,
-				D23DCFE01BC272DD00C32F94 /* MainViewController.swift in Sources */,
 				145B939E1BF37AB500A430EA /* RSKImageScrollView.m in Sources */,
 				D26734811BC3C5A500E63D15 /* WebViewController.swift in Sources */,
 				145B93A01BF37AB500A430EA /* RSKTouchView.m in Sources */,
 				C0A45D7E1C4E70EA00ED8F2F /* rxNewsSlideItem.swift in Sources */,
 				145B939B1BF37AB500A430EA /* CGGeometry+RSKImageCropper.m in Sources */,
 				145B93A21BF37AB500A430EA /* UIImage+RSKImageCropper.m in Sources */,
-				939313B91C1083D6001DC404 /* SettingViewController.swift in Sources */,
+				C051965B1C586415006C2BD0 /* TushuoViewController.swift in Sources */,
+				C051965A1C586415006C2BD0 /* tsShowCardViewController.swift in Sources */,
 				D23DCFDC1BC272DD00C32F94 /* AppDelegate.swift in Sources */,
 				C0A45D7D1C4E70EA00ED8F2F /* rxNewsItem.swift in Sources */,
-				939313B71C1083CF001DC404 /* FBViewController.swift in Sources */,
-				C039DC531C4A01DD0084AA92 /* extendFunction.swift in Sources */,
+				C05196621C586469006C2BD0 /* extendFunction.swift in Sources */,
+				C051965E1C58643D006C2BD0 /* CollageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

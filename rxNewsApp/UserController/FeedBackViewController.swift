@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FBViewController: UIViewController,UITextViewDelegate {
+class FeedBackViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var content: UITextView!
     @IBOutlet weak var nickname: UITextField!
     @IBOutlet weak var commit: UIButton!
