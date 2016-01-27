@@ -9,6 +9,8 @@
 import UIKit
 
 class TabViewController: UITabBarController,UITabBarControllerDelegate {
+    
+    var currentIndex = Int()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +19,22 @@ class TabViewController: UITabBarController,UITabBarControllerDelegate {
 
     }
     
+    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+        currentIndex = tabBarController.selectedIndex
+        return true
+    }
+    
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        
+        if tabBarController.selectedIndex != currentIndex{
+            viewController.view.viewWithTag(1)?.alpha = 0
+            
+            UIView.animateWithDuration(0.5) { () -> Void in
+                
+                viewController.view.viewWithTag(1)?.alpha = 1
+                
+            }
+        }
         
         if tabBarController.selectedIndex == 3{
             

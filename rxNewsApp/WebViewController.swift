@@ -45,6 +45,8 @@ class WebViewController: UIViewController,WKNavigationDelegate{
         
         if from == "rx"{
             
+            self.webView.frame.size = CGSize(width: WINDOW_WIDTH, height: WINDOW_HEIGHT - 40)
+            
             backView.backgroundColor = UIColor(red: 28/255.0, green: 144/255.0, blue: 129/255.0, alpha: 1.0)
             backView.frame = CGRect(x: 0, y: WINDOW_HEIGHT - 104, width: WINDOW_WIDTH, height: 40)
             self.view.addSubview(backView)
