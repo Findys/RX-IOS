@@ -36,10 +36,6 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(animated: Bool) {
         
         let iflogin = userDefault.boolForKey("iflogin")

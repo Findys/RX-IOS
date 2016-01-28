@@ -32,9 +32,9 @@ class LoginViewController: UIViewController {
         
         let afManager = AFHTTPSessionManager()
         
-        let mypassword=password.text! as String
+        let mypassword = password.text! as String
         
-        let myaccount=account.text! as String
+        let myaccount = account.text! as String
         
         afManager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
         
@@ -43,7 +43,9 @@ class LoginViewController: UIViewController {
         afManager.POST(url, parameters: params,progress: nil,success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             
             let result = resp!.objectForKey("result")!
+            
             if result as! NSObject==1{
+                
                 let token = resp!.objectForKey("token")! as! String
                 
                 userDefault.setObject(mypassword, forKey: "password")

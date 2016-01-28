@@ -74,72 +74,37 @@ class WebViewController: UIViewController,WKNavigationDelegate{
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillDisappear(animated: Bool) {
+        
+        webView.removeObserver(self, forKeyPath: "estimatedProgress")
+        
+        progressBar.setProgress(0.0, animated: false)
+        
+        self.showTabBar()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
         notifictionCenter.addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardWillShowNotification, object: nil)
         notifictionCenter.addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardWillHideNotification, object: nil)
+        
         var url = String()
+        
         if from == "comment"{
             url = "http://app.ecjtu.net/api/v1/article/\(id)/comments"
         }else{
             url = "http://app.ecjtu.net/api/v1/article/\(id)/view"
         }
+        
         let request = NSURLRequest(URL:NSURL(string:url)!)
+        
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
+        
         webView.loadRequest(request)
-        UIView.animateWithDuration(2) { () -> Void in
-            self.webView.alpha = 1
-        }
+        
+        
+        self.hideTabBar()
     }
-    
-    override func viewWillDisappear(animated: Bool) {
-        webView.removeObserver(self, forKeyPath: "estimatedProgress")
-        progressBar.setProgress(0.0, animated: false)
-        UIView.animateWithDuration(0.3) { () -> Void in
-            let frame = self.tabBarController?.tabBar.frame
-            self.tabBarController?.tabBar.frame = CGRect(x: frame!.origin.x, y: frame!.origin.y - 50, width: frame!.width, height: frame!.height)
-        }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        UIView.animateWithDuration(0.3) { () -> Void in
-            let frame = self.tabBarController?.tabBar.frame
-            self.tabBarController?.tabBar.frame = CGRect(x: frame!.origin.x, y: frame!.origin.y + 50, width: frame!.width, height: frame!.height)
-        }
-    }
-    
-    //    KVO
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if (keyPath == "estimatedProgress") {
-            progressBar.hidden = webView.estimatedProgress == 1
-            progressBar.setProgress(Float(webView.estimatedProgress), animated: true)
-        }
-    }
-    
-    
-    func keyboardDidShow(notification:NSNotification){
-        
-        let userInfo = notification.userInfo as! NSDictionary
-        
-        let value = (userInfo.objectForKey("UIKeyboardFrameEndUserInfoKey")?.CGRectValue)! as CGRect
-        
-        let animationDuration = userInfo.objectForKey("UIKeyboardAnimationDurationUserInfoKey") as! Double
-        
-        UIView.setAnimationDuration(animationDuration)
-        backView.frame.origin.y = WINDOW_HEIGHT - 104 - value.height
-        UIView.commitAnimations()
-    }
-    
-    func keyboardDidHide(notification:NSNotification){
-        
-        let userInfo = notification.userInfo as! NSDictionary
-        
-        let animationDuration = userInfo.objectForKey("UIKeyboardAnimationDurationUserInfoKey") as! Double
-        
-        UIView.setAnimationDuration(animationDuration)
-        backView.frame.origin.y = WINDOW_HEIGHT - 104
-        UIView.commitAnimations()
-    }
-    
     
     func commitComment(){
         
@@ -174,6 +139,7 @@ class WebViewController: UIViewController,WKNavigationDelegate{
     }
     
     func pushToComment(){
+        
         let myWebViewController = WebViewController()
         
         myWebViewController.id = id
@@ -187,6 +153,37 @@ class WebViewController: UIViewController,WKNavigationDelegate{
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         content.resignFirstResponder()
+    }
+    
+    //    KVO
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if (keyPath == "estimatedProgress") {
+            
+            progressBar.hidden = webView.estimatedProgress == 1
+            
+            if webView.estimatedProgress == 1{
+                
+                UIView.animateWithDuration(1) { () -> Void in
+                    self.webView.alpha = 1
+                }
+            }
+            progressBar.setProgress(Float(webView.estimatedProgress), animated: true)
+        }
+    }
+    
+    
+    func keyboardDidShow(notification:NSNotification){
+        
+        let userInfo = notification.userInfo as! NSDictionary
+        
+        let value = (userInfo.objectForKey("UIKeyboardFrameEndUserInfoKey")?.CGRectValue)! as CGRect
+        
+        backView.frame.origin.y = WINDOW_HEIGHT - 104 - value.height
+    }
+    
+    func keyboardDidHide(notification:NSNotification){
+    
+        backView.frame.origin.y = WINDOW_HEIGHT - 104
     }
 }
 

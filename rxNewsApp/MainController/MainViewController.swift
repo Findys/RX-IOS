@@ -45,28 +45,34 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             let normal = resp!.objectForKey("normal_article")
             let slide = resp!.objectForKey("slide_article")
             
-            let newsArray = normal?.objectForKey("articles") as! Array<AnyObject>
-            let slideArray = slide?.objectForKey("articles") as! Array<AnyObject>
+            let newsArray = normal?.objectForKey("articles") as! NSArray
+            let slideArray = slide?.objectForKey("articles") as! NSArray
             
             let currentData = NSMutableArray()
             
             for each in newsArray{
+                
                 let item = rxNewsItem()
+                
                 item.title = each.objectForKey("title") as! String
                 item.click = each.objectForKey("click") as! Int
                 item.info = each.objectForKey("info") as! String
                 item.thumb = each.objectForKey("thumb") as! String
                 item.id = each.objectForKey("id") as! Int
+                
                 currentData.addObject(item)
             }
             
             let currentSlideData = NSMutableArray()
             
             for each in slideArray{
+                
                 let item = rxNewsSlideItem()
+                
                 item.title = each.objectForKey("title") as! String
                 item.thumb = each.objectForKey("thumb") as! String
                 item.id = each.objectForKey("id") as! Int
+                
                 currentSlideData.addObject(item)
             }
             
@@ -102,30 +108,42 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     func requestMoreData(id:Int) {
+        
         let afManager = AFHTTPSessionManager()
+        
         afManager.GET("http://app.ecjtu.net/api/v1/index?until=\(id)", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-            let lang: AnyObject? = resp!.objectForKey("normal_article")
+            
+            let lang = resp!.objectForKey("normal_article")
+            
             let count = lang?.objectForKey("count") as! Int
+            
             if count==0 {
                 self.newsTable.mj_footer.endRefreshingWithNoMoreData()
-                return
             }else{
-                let array = lang?.objectForKey("articles") as! Array<AnyObject>
+                
+                let array = lang?.objectForKey("articles") as! NSArray
+                
                 for each in array{
+                    
                     let item = rxNewsItem()
+                    
                     item.title = each.objectForKey("title") as! String
                     item.click = each.objectForKey("click") as! Int
                     item.info = each.objectForKey("info") as! String
                     item.thumb = each.objectForKey("thumb") as! String
                     item.id = each.objectForKey("id") as! Int
+                    
                     self.dataSource.addObject(item)
                 }
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
                 self.newsTable.reloadData()
+                
                 self.newsTable.mj_header.endRefreshing()
             })
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                 self.newsTable.mj_footer.endRefreshing()
         }
@@ -162,19 +180,28 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
+            
             let cell = newsTable.dequeueReusableCellWithIdentifier("pageCell")!
+            
             let slideImgArray = NSMutableArray()
             let slideTtlArray = NSMutableArray()
+            
             for each in slideData{
+                
                 let item = each as! rxNewsSlideItem
+                
                 slideImgArray.addObject(item.thumb)
                 slideTtlArray.addObject(item.title)
             }
             
             let shadow = UIImage(named: "shadow")
+            
             let myslideView = SlideScrollView(frame: cell.contentView.frame,imgArr:slideImgArray,titArr:slideTtlArray,backShadowImage: shadow)
+            
             myslideView.mydelegate = self
+            
             cell.contentView.addSubview(myslideView)
+            
             return cell
         } else {
             let cell = newsTable.dequeueReusableCellWithIdentifier("rxCell")

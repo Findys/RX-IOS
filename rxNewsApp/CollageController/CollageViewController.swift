@@ -29,7 +29,6 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         self.collageTable.mj_header.beginRefreshing()
     }
     
-    //    获取数据
     func requestData() {
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://app.ecjtu.net/api/v1/schoolnews", parameters: nil,progress: nil,success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
@@ -43,6 +42,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
             for each in self.newsArray{
                 
                 let item = CollageItem()
+                
                 item.id = each.objectForKey("id") as! Int
                 item.info = each.objectForKey("info") as! String
                 item.click = each.objectForKey("click") as! Int

@@ -50,20 +50,18 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         UIView.animateWithDuration(0.5) { () -> Void in
             self.navigationController?.navigationBar.barTintColor=UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1.0)
         }
-        UIView.animateWithDuration(0.3) { () -> Void in
-            let frame = self.tabBarController?.tabBar.frame
-            self.tabBarController?.tabBar.frame = CGRect(x: frame!.origin.x, y: frame!.origin.y - 50, width: frame!.width, height: frame!.height)
-        }
+        
+        self.showTabBar()
+
     }
     
     override func viewWillAppear(animated: Bool) {
         UIView.animateWithDuration(0.5) { () -> Void in
             self.navigationController?.navigationBar.barTintColor=UIColor.clearColor()
         }
-        UIView.animateWithDuration(0.3) { () -> Void in
-            let frame = self.tabBarController?.tabBar.frame
-            self.tabBarController?.tabBar.frame = CGRect(x: frame!.origin.x, y: frame!.origin.y + 50, width: frame!.width, height: frame!.height)
-        }
+        
+        self.hideTabBar()
+
     }
       
     func loadScroll(){
@@ -161,7 +159,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 self.loadScroll()
-                self.ifloading=true
+                self.ifloading = true
             }
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 

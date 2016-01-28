@@ -16,6 +16,7 @@ var userDefault = NSUserDefaults.standardUserDefaults()
 var myStoryBoard = UIStoryboard(name: "Main", bundle: nil)
 
 extension UIViewController{
+    
     func saveData(array:NSArray,localDataName:String){
         
         let localData = NSKeyedArchiver.archivedDataWithRootObject(array)
@@ -33,6 +34,20 @@ extension UIViewController{
             
         }else{
             return nil
+        }
+    }
+    
+    func hideTabBar(){
+        UIView.animateWithDuration(0.3) { () -> Void in
+            let frame = self.tabBarController?.tabBar.frame
+            self.tabBarController?.tabBar.frame = CGRect(x: frame!.origin.x, y: frame!.origin.y + 50, width: frame!.width, height: frame!.height)
+        }
+    }
+    
+    func showTabBar(){
+        UIView.animateWithDuration(0.3) { () -> Void in
+            let frame = self.tabBarController?.tabBar.frame
+            self.tabBarController?.tabBar.frame = CGRect(x: frame!.origin.x, y: frame!.origin.y - 50, width: frame!.width, height: frame!.height)
         }
     }
 }

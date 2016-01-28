@@ -15,8 +15,8 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
     @IBOutlet weak var version: UILabel!
     @IBOutlet var tableview: UITableView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
+        super.loadView()
         tableview.delegate=self
         version.text=String(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")!)
         headImageGet()
@@ -24,7 +24,6 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         headImg.clipsToBounds = true
     }
     
-
     //    图片选择
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         
@@ -61,10 +60,13 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         afmanager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
             formdata.appendPartWithFileData(imgData!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
             }, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-                print(resp)
+                
                 if( resp!.objectForKey("result")! as! Int == 1){
+                    
                     MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "头像上传成功",parentView: self.view)
+                    
                     self.headImageGet()
+                    
                     self.headImg.image = croppedImage
                 }
                 
@@ -114,7 +116,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
             switch indexPath.row{
                 //                反馈建议
             case 0:
-                let push = myStoryBoard.instantiateViewControllerWithIdentifier("feedback")
+                let push = myStoryBoard.instantiateViewControllerWithIdentifier("feedback") as! FeedBackViewController
                 self.navigationController?.pushViewController(push, animated: true)
                 break
                 
