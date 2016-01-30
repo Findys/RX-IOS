@@ -174,7 +174,7 @@ class WebViewController: UIViewController,WKNavigationDelegate{
     
     func keyboardDidShow(notification:NSNotification){
         
-        let userInfo = notification.userInfo as! NSDictionary
+        let userInfo:NSDictionary = notification.userInfo!
         
         let value = (userInfo.objectForKey("UIKeyboardFrameEndUserInfoKey")?.CGRectValue)! as CGRect
         

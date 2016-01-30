@@ -43,45 +43,25 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         afManager.GET("http://app.ecjtu.net/api/v1/index", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             
             let normal = resp!.objectForKey("normal_article")
+            
             let slide = resp!.objectForKey("slide_article")
             
             let newsArray = normal?.objectForKey("articles") as! NSArray
+            
             let slideArray = slide?.objectForKey("articles") as! NSArray
             
             let currentData = NSMutableArray()
             
-            for each in newsArray{
-                
-                let item = rxNewsItem()
-                
-                item.title = each.objectForKey("title") as! String
-                item.click = each.objectForKey("click") as! Int
-                item.info = each.objectForKey("info") as! String
-                item.thumb = each.objectForKey("thumb") as! String
-                item.id = each.objectForKey("id") as! Int
-                
-                currentData.addObject(item)
-            }
+            self.getSlideArticles(slideArray, dataSource: self.slideData)
             
-            let currentSlideData = NSMutableArray()
+            self.getNormalArticles(newsArray, dataSource: currentData)
             
-            for each in slideArray{
-                
-                let item = rxNewsSlideItem()
-                
-                item.title = each.objectForKey("title") as! String
-                item.thumb = each.objectForKey("thumb") as! String
-                item.id = each.objectForKey("id") as! Int
-                
-                currentSlideData.addObject(item)
-            }
+            self.saveData(currentData, localDataName: "rxNewsCache")
+            self.saveData(self.slideData, localDataName: "rxNewsSlideCache")
+            
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-                self.saveData(currentData, localDataName: "rxNewsCache")
-                self.saveData(currentSlideData, localDataName: "rxNewsSlideCache")
-                
-                self.slideData = currentSlideData
                 self.dataSource = currentData
                 
                 self.newsTable.reloadData()
@@ -107,6 +87,36 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
+    func getSlideArticles(slideArray:NSArray,dataSource:NSMutableArray){
+        
+        for each in slideArray{
+            
+            let item = rxNewsSlideItem()
+            
+            item.title = each.objectForKey("title") as! String
+            item.thumb = each.objectForKey("thumb") as! String
+            item.id = each.objectForKey("id") as! Int
+            
+            dataSource.addObject(item)
+        }
+    }
+    
+    func getNormalArticles(newsArray:NSArray,dataSource:NSMutableArray){
+        
+        for each in newsArray{
+            
+            let item = rxNewsItem()
+            
+            item.title = each.objectForKey("title") as! String
+            item.click = each.objectForKey("click") as! Int
+            item.info = each.objectForKey("info") as! String
+            item.thumb = each.objectForKey("thumb") as! String
+            item.id = each.objectForKey("id") as! Int
+            
+            dataSource.addObject(item)
+        }
+    }
+    
     func requestMoreData(id:Int) {
         
         let afManager = AFHTTPSessionManager()
@@ -123,18 +133,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 
                 let array = lang?.objectForKey("articles") as! NSArray
                 
-                for each in array{
-                    
-                    let item = rxNewsItem()
-                    
-                    item.title = each.objectForKey("title") as! String
-                    item.click = each.objectForKey("click") as! Int
-                    item.info = each.objectForKey("info") as! String
-                    item.thumb = each.objectForKey("thumb") as! String
-                    item.id = each.objectForKey("id") as! Int
-                    
-                    self.dataSource.addObject(item)
-                }
+                self.getNormalArticles(array, dataSource: self.dataSource)
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 

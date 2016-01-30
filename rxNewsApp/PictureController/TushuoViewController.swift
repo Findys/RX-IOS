@@ -9,6 +9,7 @@
 import UIKit
 
 class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+    
     var dataSource = NSMutableArray()
     var articleID = String()
     @IBOutlet weak var tushuoTable: UITableView!
