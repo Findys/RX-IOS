@@ -10,14 +10,15 @@ import UIKit
 
 class CollageViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
-    var newsArray = Array<AnyObject>()
     var articleID = Int()
+    
     var dataSource = NSMutableArray()
+    
     @IBOutlet weak var collageTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //        set view subtract navigation bar‘s height and status bar’s height
         self.edgesForExtendedLayout = UIRectEdge.Bottom
 
         self.collageTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
@@ -33,24 +34,13 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         let afManager = AFHTTPSessionManager()
         afManager.GET("http://app.ecjtu.net/api/v1/schoolnews", parameters: nil,progress: nil,success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             
-            self.newsArray = resp!.objectForKey("articles") as! Array<AnyObject>
+            let newsArray = resp!.objectForKey("articles") as! Array<AnyObject>
             
-            self.articleID = self.newsArray[self.newsArray.count-1].objectForKey("id") as! Int
+            self.articleID = newsArray[newsArray.count-1].objectForKey("id") as! Int
             
             let currentData = NSMutableArray()
             
-            for each in self.newsArray{
-                
-                let item = CollageItem()
-                
-                item.id = each.objectForKey("id") as! Int
-                item.info = each.objectForKey("info") as! String
-                item.click = each.objectForKey("click") as! Int
-                item.title = each.objectForKey("title") as! String
-                item.time = each.objectForKey("created_at") as! String
-                
-                currentData.addObject(item)
-            }
+            self.changeJsonDatatoItem(newsArray, myDataSource: currentData)
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
@@ -77,6 +67,22 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         }
     }
     
+    func changeJsonDatatoItem(myNewsArray:NSArray,myDataSource:NSMutableArray){
+        
+        for each in myNewsArray{
+            
+            let item = CollageItem()
+            
+            item.id = each.objectForKey("id") as! Int
+            item.info = each.objectForKey("info") as! String
+            item.click = each.objectForKey("click") as! Int
+            item.title = each.objectForKey("title") as! String
+            item.time = each.objectForKey("created_at") as! String
+            
+            myDataSource.addObject(item)
+        }
+    }
+    
     func requestMoreData(id:Int) {
         
         let afManager = AFHTTPSessionManager()
@@ -95,18 +101,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
                 
                 self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! Int
                 
-                for each in newsArray{
-                    
-                    let item = CollageItem()
-                    
-                    item.id = each.objectForKey("id") as! Int
-                    item.info = each.objectForKey("info") as! String
-                    item.click = each.objectForKey("click") as! Int
-                    item.title = each.objectForKey("title") as! String
-                    item.time = each.objectForKey("created_at") as! String
-                    
-                    self.dataSource.addObject(item)
-                }
+                self.changeJsonDatatoItem(newsArray, myDataSource: self.dataSource)
             }
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in

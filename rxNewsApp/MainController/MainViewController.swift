@@ -20,11 +20,14 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //        set view subtract navigation bar‘s height and status bar’s height
         self.edgesForExtendedLayout = UIRectEdge.Bottom
         
+        //        Set cell’s hight self - change
         self.newsTable.estimatedRowHeight = 114
         self.newsTable.rowHeight = UITableViewAutomaticDimension
         
+        //        set
         self.newsTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
             self.requestData()
         })
@@ -39,7 +42,9 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     func requestData() {
+        
         let afManager = AFHTTPSessionManager()
+        
         afManager.GET("http://app.ecjtu.net/api/v1/index", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
             
             let normal = resp!.objectForKey("normal_article")
@@ -52,9 +57,9 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
             let currentData = NSMutableArray()
             
-            self.getSlideArticles(slideArray, dataSource: self.slideData)
+            self.changeJsonDatatoSlideItem(slideArray, myDataSource: self.slideData)
             
-            self.getNormalArticles(newsArray, dataSource: currentData)
+            self.changeJsonDatatoNewsItem(newsArray, myDataSource: currentData)
             
             self.saveData(currentData, localDataName: "rxNewsCache")
             self.saveData(self.slideData, localDataName: "rxNewsSlideCache")
@@ -63,7 +68,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
                 self.dataSource = currentData
-                
+                //                reload tabview‘s dataSource
                 self.newsTable.reloadData()
                 
                 self.newsTable.mj_header.endRefreshing()
@@ -73,6 +78,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                 
+                //                if cahces exist load cache data
                 if let cache = self.getlocalData("rxNewsCache") as? NSMutableArray{
                     self.dataSource = cache
                 }
@@ -87,9 +93,10 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-    func getSlideArticles(slideArray:NSArray,dataSource:NSMutableArray){
+    //    Convert JSON data to custom item
+    func changeJsonDatatoSlideItem(mySlideArray:NSArray,myDataSource:NSMutableArray){
         
-        for each in slideArray{
+        for each in mySlideArray{
             
             let item = rxNewsSlideItem()
             
@@ -97,13 +104,13 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             item.thumb = each.objectForKey("thumb") as! String
             item.id = each.objectForKey("id") as! Int
             
-            dataSource.addObject(item)
+            myDataSource.addObject(item)
         }
     }
     
-    func getNormalArticles(newsArray:NSArray,dataSource:NSMutableArray){
+    func changeJsonDatatoNewsItem(myNewsArray:NSArray,myDataSource:NSMutableArray){
         
-        for each in newsArray{
+        for each in myNewsArray{
             
             let item = rxNewsItem()
             
@@ -113,7 +120,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
             item.thumb = each.objectForKey("thumb") as! String
             item.id = each.objectForKey("id") as! Int
             
-            dataSource.addObject(item)
+            myDataSource.addObject(item)
         }
     }
     
@@ -121,30 +128,30 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         let afManager = AFHTTPSessionManager()
         
-        afManager.GET("http://app.ecjtu.net/api/v1/index?until=\(id)", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+        //        If Id is equal to 0 represents there is no more data
+        if id == 0{
+            self.newsTable.mj_footer.endRefreshingWithNoMoreData()
+        }else{
             
-            let lang = resp!.objectForKey("normal_article")
-            
-            let count = lang?.objectForKey("count") as! Int
-            
-            if count==0 {
-                self.newsTable.mj_footer.endRefreshingWithNoMoreData()
-            }else{
+            afManager.GET("http://app.ecjtu.net/api/v1/index?until=\(id)", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+                
+                let lang = resp!.objectForKey("normal_article")
                 
                 let array = lang?.objectForKey("articles") as! NSArray
                 
-                self.getNormalArticles(array, dataSource: self.dataSource)
+                self.changeJsonDatatoNewsItem(array, myDataSource: self.dataSource)
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    //                reload tabview‘s dataSource
+                    self.newsTable.reloadData()
+                    
+                    self.newsTable.mj_header.endRefreshing()
+                })
+                }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                    
+                    MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
+                    self.newsTable.mj_footer.endRefreshing()
             }
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                
-                self.newsTable.reloadData()
-                
-                self.newsTable.mj_header.endRefreshing()
-            })
-            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
-                self.newsTable.mj_footer.endRefreshing()
         }
     }
     
@@ -162,7 +169,8 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     
     //    tableview的datasource和delegate
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+
         if 0 == indexPath.section {
             return 204
         } else {

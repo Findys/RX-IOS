@@ -11,12 +11,14 @@ import UIKit
 class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     var dataSource = NSMutableArray()
+    
     var articleID = String()
+    
     @IBOutlet weak var tushuoTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //        set view subtract navigation bar‘s height and status bar’s height
         self.edgesForExtendedLayout = UIRectEdge.Bottom
         
         self.tushuoTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
@@ -43,19 +45,7 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
             
             let currentData = NSMutableArray()
             
-            for each in newsArray{
-                
-                let item = TuShuoItem()
-                
-                item.thumb = each.objectForKey("thumb") as! String
-                item.title = each.objectForKey("title") as! String
-                item.click = each.objectForKey("click") as! String
-                item.info = each.objectForKey("count") as! String
-                item.pid = each.objectForKey("pid") as! String
-                item.time = each.objectForKey("pubdate") as! String
-                
-                currentData.addObject(item)
-            }
+            self.changeJsonDatatoItem(newsArray, myDataSource: currentData)
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
@@ -82,6 +72,23 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
         }
     }
     
+    func changeJsonDatatoItem(myNewsArray:NSArray,myDataSource:NSMutableArray){
+        
+        for each in myNewsArray{
+            
+            let item = TuShuoItem()
+            
+            item.thumb = each.objectForKey("thumb") as! String
+            item.title = each.objectForKey("title") as! String
+            item.click = each.objectForKey("click") as! String
+            item.info = each.objectForKey("count") as! String
+            item.pid = each.objectForKey("pid") as! String
+            item.time = each.objectForKey("pubdate") as! String
+            
+            myDataSource.addObject(item)
+        }
+    }
+    
     
     func requestMoreData(id:String) {
         
@@ -101,19 +108,7 @@ class TushuoViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 
                 self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! String
                 
-                for each in newsArray{
-                    
-                let item = TuShuoItem()
-                    
-                item.thumb = each.objectForKey("thumb") as! String
-                item.title = each.objectForKey("title") as! String
-                item.click = each.objectForKey("click") as! String
-                item.info = each.objectForKey("count") as! String
-                item.pid = each.objectForKey("pid") as! String
-                item.time = each.objectForKey("pubdate") as! String
-                    
-                self.dataSource.addObject(item)
-                }
+                self.changeJsonDatatoItem(newsArray, myDataSource: self.dataSource)
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
