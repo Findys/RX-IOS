@@ -6,8 +6,9 @@
 //  Copyright (c) 2015年 Geetion. All rights reserved.
 //
 import UIKit
+import Alamofire
 
-class MainViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,SlideScrollViewDelegate{
+class MainViewController: UIViewController{
     
     var slideData = NSMutableArray()
     
@@ -42,40 +43,47 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     func requestData() {
-        
-        let afManager = AFHTTPSessionManager()
-        
-        afManager.GET("http://app.ecjtu.net/api/v1/index", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-            
-            let normal = resp!.objectForKey("normal_article")
-            
-            let slide = resp!.objectForKey("slide_article")
-            
-            let newsArray = normal?.objectForKey("articles") as! NSArray
-            
-            let slideArray = slide?.objectForKey("articles") as! NSArray
-            
-            let currentData = NSMutableArray()
-            
-            self.changeJsonDatatoSlideItem(slideArray, myDataSource: self.slideData)
-            
-            self.changeJsonDatatoNewsItem(newsArray, myDataSource: currentData)
-            
-            self.saveData(currentData, localDataName: "rxNewsCache")
-            self.saveData(self.slideData, localDataName: "rxNewsSlideCache")
-            
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        Alamofire.request(.GET, "http://app.ecjtu.net/api/v1/index").responseJSON { (resp:Response<AnyObject, NSError>) -> Void in
+            if resp.result.isSuccess{
                 
-                self.dataSource = currentData
-                //                reload tabview‘s dataSource
-                self.newsTable.reloadData()
+                let normal = resp.result.value!.objectForKey("normal_article")
                 
-                self.newsTable.mj_header.endRefreshing()
-            })
-            
-            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                let slide = resp.result.value!.objectForKey("slide_article")
                 
+                let newsArray = normal?.objectForKey("articles") as! NSArray
+                
+                let slideArray = slide?.objectForKey("articles") as! NSArray
+                
+                let currentData = NSMutableArray()
+                
+                for each in newsArray{
+                    
+                    let item = rxNewsItem(object: each)
+                    
+                    currentData.addObject(item)
+                }
+                
+                for each in slideArray{
+                    
+                    let item = rxNewsSlideItem(object: each)
+                    
+                    self.slideData.addObject(item)
+                }
+                
+                self.saveData(currentData, localDataName: "rxNewsCache")
+                self.saveData(self.slideData, localDataName: "rxNewsSlideCache")
+                
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    self.dataSource = currentData
+                    //                reload tabview‘s dataSource
+                    self.newsTable.reloadData()
+                    
+                    self.newsTable.mj_header.endRefreshing()
+                })
+                
+            }else{
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                 
                 //                if cahces exist load cache data
@@ -90,172 +98,44 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.newsTable.reloadData()
                 
                 self.newsTable.mj_header.endRefreshing()
-        }
-    }
-    
-    //    Convert JSON data to custom item
-    func changeJsonDatatoSlideItem(mySlideArray:NSArray,myDataSource:NSMutableArray){
-        
-        for each in mySlideArray{
-            
-            let item = rxNewsSlideItem()
-            
-            item.title = each.objectForKey("title") as! String
-            item.thumb = each.objectForKey("thumb") as! String
-            item.id = each.objectForKey("id") as! Int
-            
-            myDataSource.addObject(item)
-        }
-    }
-    
-    func changeJsonDatatoNewsItem(myNewsArray:NSArray,myDataSource:NSMutableArray){
-        
-        for each in myNewsArray{
-            
-            let item = rxNewsItem()
-            
-            item.title = each.objectForKey("title") as! String
-            item.click = each.objectForKey("click") as! Int
-            item.info = each.objectForKey("info") as! String
-            item.thumb = each.objectForKey("thumb") as! String
-            item.id = each.objectForKey("id") as! Int
-            
-            myDataSource.addObject(item)
+            }
         }
     }
     
     func requestMoreData(id:Int) {
         
-        let afManager = AFHTTPSessionManager()
-        
-        //        If Id is equal to 0 represents there is no more data
         if id == 0{
             self.newsTable.mj_footer.endRefreshingWithNoMoreData()
         }else{
             
-            afManager.GET("http://app.ecjtu.net/api/v1/index?until=\(id)", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-                
-                let lang = resp!.objectForKey("normal_article")
-                
-                let array = lang?.objectForKey("articles") as! NSArray
-                
-                self.changeJsonDatatoNewsItem(array, myDataSource: self.dataSource)
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    //                reload tabview‘s dataSource
-                    self.newsTable.reloadData()
+            Alamofire.request(.GET, "http://app.ecjtu.net/api/v1/index?until=\(id)").responseJSON { (resp:Response<AnyObject, NSError>) -> Void in
+                if resp.result.isSuccess{
                     
-                    self.newsTable.mj_header.endRefreshing()
-                })
-                }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                    let lang = resp.result.value!.objectForKey("normal_article")
                     
+                    let array = lang!.objectForKey("articles") as! NSArray
+                    
+                    for each in array{
+                        
+                        let item = rxNewsItem(object: each)
+                        
+                        self.dataSource.addObject(item)
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        //                reload tabview‘s dataSource
+                        self.newsTable.reloadData()
+                        
+                        self.newsTable.mj_header.endRefreshing()
+                    })
+                }else{
                     MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                     self.newsTable.mj_footer.endRefreshing()
+                }
             }
         }
     }
     
-    func SlideScrollViewDidClicked(index:Int){
-        
-        let item = slideData[index] as! rxNewsSlideItem
-        
-        let push = WebViewController()
-        
-        push.id = item.id
-        push.from = "rx"
-        
-        self.navigationController?.pushViewController(push, animated: true)
-    }
     
-    
-    //    tableview的datasource和delegate
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
-
-        if 0 == indexPath.section {
-            return 204
-        } else {
-            return 114
-        }
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0{
-            return 1
-        }
-        return dataSource.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            
-            let cell = newsTable.dequeueReusableCellWithIdentifier("pageCell")!
-            
-            let slideImgArray = NSMutableArray()
-            let slideTtlArray = NSMutableArray()
-            
-            for each in slideData{
-                
-                let item = each as! rxNewsSlideItem
-                
-                slideImgArray.addObject(item.thumb)
-                slideTtlArray.addObject(item.title)
-            }
-            
-            let shadow = UIImage(named: "shadow")
-            
-            let myslideView = SlideScrollView(frame: cell.contentView.frame,imgArr:slideImgArray,titArr:slideTtlArray,backShadowImage: shadow)
-            
-            myslideView.mydelegate = self
-            
-            cell.contentView.addSubview(myslideView)
-            
-            return cell
-        } else {
-            let cell = newsTable.dequeueReusableCellWithIdentifier("rxCell")
-            
-            let item = dataSource[indexPath.row] as! rxNewsItem
-            
-            let title = cell!.viewWithTag(1) as! UILabel
-            let click = cell!.viewWithTag(2) as! UILabel
-            let info = cell!.viewWithTag(3) as! UILabel
-            let image = cell!.viewWithTag(4) as! UIImageView
-            
-            title.text = item.title
-            title.font = UIFont.boldSystemFontOfSize(16)
-            
-            click.text = String(item.click)
-            
-            info.text = item.info
-            
-            let url = item.thumb
-            
-            image.sd_setImageWithURL(NSURL(string:url))
-            
-            return cell!
-        }
-    }
-    
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        
-        if indexPath.section != 0{
-            
-            let item = dataSource[indexPath.row] as! rxNewsItem
-            
-            let push = WebViewController()
-            
-            push.id = item.id
-            
-            push.from = "rx"
-            
-            self.navigationController?.pushViewController(push, animated: true)
-        }
-        
-        self.newsTable.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return 2
-    }
 }
 

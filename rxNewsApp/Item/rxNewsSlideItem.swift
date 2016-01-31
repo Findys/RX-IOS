@@ -13,8 +13,12 @@ class rxNewsSlideItem:NSObject {
     var id = Int()
     var thumb = String()
     
-    override init() {
+    init(object:AnyObject) {
         super.init()
+        
+        self.title = object.objectForKey("title") as! String
+        self.thumb = object.objectForKey("thumb") as! String
+        self.id = object.objectForKey("id") as! Int
     }
     
     required init?(coder aDecoder: NSCoder){

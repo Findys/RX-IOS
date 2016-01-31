@@ -15,8 +15,14 @@ class CollageItem:NSObject {
     var time = NSString()
     var id = Int()
     
-    override init() {
+    init(object:AnyObject) {
         super.init()
+        
+        self.id = object.objectForKey("id") as! Int
+        self.info = object.objectForKey("info") as! String
+        self.click = object.objectForKey("click") as! Int
+        self.title = object.objectForKey("title") as! String
+        self.time = object.objectForKey("created_at") as! String
     }
     
     required init?(coder aDecoder: NSCoder){

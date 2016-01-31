@@ -40,7 +40,12 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
             
             let currentData = NSMutableArray()
             
-            self.changeJsonDatatoItem(newsArray, myDataSource: currentData)
+            for each in newsArray{
+                
+                let item = CollageItem(object: each)
+                
+                currentData.addObject(item)
+            }
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
@@ -67,21 +72,6 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         }
     }
     
-    func changeJsonDatatoItem(myNewsArray:NSArray,myDataSource:NSMutableArray){
-        
-        for each in myNewsArray{
-            
-            let item = CollageItem()
-            
-            item.id = each.objectForKey("id") as! Int
-            item.info = each.objectForKey("info") as! String
-            item.click = each.objectForKey("click") as! Int
-            item.title = each.objectForKey("title") as! String
-            item.time = each.objectForKey("created_at") as! String
-            
-            myDataSource.addObject(item)
-        }
-    }
     
     func requestMoreData(id:Int) {
         
@@ -101,7 +91,12 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
                 
                 self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! Int
                 
-                self.changeJsonDatatoItem(newsArray, myDataSource: self.dataSource)
+                for each in newsArray{
+                    
+                    let item = CollageItem(object: each)
+                    
+                    self.dataSource.addObject(item)
+                }
             }
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in

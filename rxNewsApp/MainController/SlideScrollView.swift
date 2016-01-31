@@ -32,8 +32,11 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
         
         imageArray = imgArr
         titleArray = titArr
+        
         self.userInteractionEnabled = true
+        
         let pageCount = imageArray.count
+        
         scrollView.frame = self.frame
         scrollView.pagingEnabled = true
         
@@ -52,7 +55,7 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
             let imgView = UIImageView()
             
             let viewWidth = Int(frame.size.width)*i
-            imgView.sd_setImageWithURL(NSURL(string: imgURL), completed: { (img:UIImage!, error:NSError!, cache:SDImageCacheType, nsurl:NSURL!) -> Void in
+            imgView.sd_setImageWithURL(NSURL(string: imgURL), completed: { (img:UIImage!, error:NSError!, SDImageCacheType cacheType, nsurl:NSURL!) -> Void in
                 imgView.frame = CGRect(origin: CGPoint(x: CGFloat(viewWidth), y:CGFloat(0)),size: CGSize(width: frame.width,height:frame.width/img.size.width*img.size.height))
             })
             

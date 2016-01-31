@@ -88,7 +88,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             
             let image = UIImageView()
             
-            image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, cacheType:SDImageCacheType, nsurl:NSURL!) -> Void in
+            image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, SDImageCacheType cacheType, nsurl:NSURL!) -> Void in
                 
                 image.frame = CGRectMake(CGFloat(index)*WINDOW_WIDTH,WINDOW_HEIGHT/2-WINDOW_WIDTH/UIimage.size.width*UIimage.size.height/2-10
                     ,WINDOW_WIDTH,WINDOW_WIDTH/UIimage.size.width*UIimage.size.height)
@@ -168,30 +168,30 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     }
     
     //    分享功能
-    func shareFunc(){
-        
-        let shareParames = NSMutableDictionary()
-        
-        let shareimage=imagearray[Int(scrollview.contentOffset.x/WINDOW_HEIGHT)] as UIImage
-        
-        shareParames.SSDKSetupShareParamsByText("分享内容",
-            images : shareimage,
-            url : NSURL(string:"http://mob.com"),
-            title : "分享标题",
-            type : SSDKContentType.Auto)
-        ShareSDK.showShareActionSheet(self.view, items: nil, shareParams: shareParames) { (state : SSDKResponseState, platformType : SSDKPlatformType, userdata : [NSObject : AnyObject]!, contentEnity : SSDKContentEntity!, error : NSError!, Bool end) -> Void in
-            
-            switch state{
-                
-            case SSDKResponseState.Success: print("分享成功")
-            case SSDKResponseState.Fail:    print("分享失败,错误描述:\(error)")
-            case SSDKResponseState.Cancel:  print("分享取消")
-                
-            default:
-                break
-            }
-        }
-    }
+//    func shareFunc(){
+//        
+//        let shareParames = NSMutableDictionary()
+//        
+//        let shareimage=imagearray[Int(scrollview.contentOffset.x/WINDOW_HEIGHT)] as UIImage
+//        
+//        shareParames.SSDKSetupShareParamsByText("分享内容",
+//            images : shareimage,
+//            url : NSURL(string:"http://mob.com"),
+//            title : "分享标题",
+//            type : SSDKContentType.Auto)
+//        ShareSDK.showShareActionSheet(self.view, items: nil, shareParams: shareParames) { (state : SSDKResponseState, platformType : SSDKPlatformType, userdata : [NSObject : AnyObject]!, contentEnity : SSDKContentEntity!, error : NSError!, Bool end) -> Void in
+//            
+//            switch state{
+//                
+//            case SSDKResponseState.Success: print("分享成功")
+//            case SSDKResponseState.Fail:    print("分享失败,错误描述:\(error)")
+//            case SSDKResponseState.Cancel:  print("分享取消")
+//                
+//            default:
+//                break
+//            }
+//        }
+//    }
     
     
     //    长按保存图片

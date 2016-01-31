@@ -9,10 +9,10 @@
 #import "DXAlertView.h"
 #import "RSKImageCropViewController.h" 
 #import "VIPhotoView.h"
-#import <ShareSDK/ShareSDK.h>
-#import <ShareSDKConnector/ShareSDKConnector.h>
-#import <ShareSDKUI/ShareSDK+SSUI.h>
-#import <TencentOpenAPI/TencentOAuth.h>
-#import <TencentOpenAPI/QQApiInterface.h>
-#import "WXApi.h"
-#import "WeiboSDK.h"
+//#import <ShareSDK/ShareSDK.h>
+//#import <ShareSDKConnector/ShareSDKConnector.h>
+//#import <ShareSDKUI/ShareSDK+SSUI.h>
+//#import <TencentOpenAPI/TencentOAuth.h>
+//#import <TencentOpenAPI/QQApiInterface.h>
+//#import "WXApi.h"
+//#import "WeiboSDK.h"

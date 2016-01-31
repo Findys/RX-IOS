@@ -17,8 +17,15 @@ class TuShuoItem:NSObject,NSCoding{
     var time = String()
     var pid = String()
     
-    override init() {
+    init(object:AnyObject) {
         super.init()
+        
+        self.thumb = object.objectForKey("thumb") as! String
+        self.title = object.objectForKey("title") as! String
+        self.click = object.objectForKey("click") as! String
+        self.info = object.objectForKey("count") as! String
+        self.pid = object.objectForKey("pid") as! String
+        self.time = object.objectForKey("pubdate") as! String
     }
     
     required init?(coder aDecoder: NSCoder){

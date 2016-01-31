@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         firstLaunch()
         
-        shareSDKset()
+//        shareSDKset()
         
         getToken()
         
@@ -77,68 +77,68 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func shareSDKset(){
-        ShareSDK.registerApp("iosv1101",
-            activePlatforms :
-            [
-                SSDKPlatformType.TypeSinaWeibo.rawValue,
-                //                SSDKPlatformType.TypeDouBan.rawValue,
-                SSDKPlatformType.TypeCopy.rawValue,
-                //                SSDKPlatformType.TypeMail.rawValue,
-                SSDKPlatformType.TypeWechat.rawValue,
-                SSDKPlatformType.TypeQQ.rawValue,
-            ],
-            // onImport 里的代码,需要连接社交平台SDK时触发
-            onImport: {(platform : SSDKPlatformType) -> Void in
-                switch platform
-                {
-                case SSDKPlatformType.TypeSinaWeibo:
-                    ShareSDKConnector.connectWeibo(WeiboSDK.classForCoder())
-                case SSDKPlatformType.TypeWechat:
-                    ShareSDKConnector.connectWeChat(WXApi.classForCoder())
-                case SSDKPlatformType.TypeQQ:
-                    ShareSDKConnector.connectQQ(QQApiInterface.classForCoder(), tencentOAuthClass: TencentOAuth.classForCoder())
-                default:
-                    break
-                }
-            },
-            onConfiguration: {(platform : SSDKPlatformType,appInfo : NSMutableDictionary!) -> Void in
-                switch platform
-                {
-                case SSDKPlatformType.TypeSinaWeibo:
-                    //已设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                    appInfo.SSDKSetupSinaWeiboByAppKey("512695859",
-                        appSecret : "6723a7a263f99558ba086895654f39a2",
-                        redirectUri : "http://www.sharesdk.cn",
-                        authType : SSDKAuthTypeBoth)
-                    
-                case SSDKPlatformType.TypeWechat:
-                    //设置微信应用信息
-                    appInfo.SSDKSetupWeChatByAppId("wx4868b35061f87885", appSecret: "64020361b8ec4c99936c0e3999a9f249")
-                    
-                case SSDKPlatformType.TypeQQ:
-                    //设置QQ应用信息
-                    appInfo.SSDKSetupQQByAppId("100371282",
-                        appKey : "aed9b0303e3ed1e27bae87c33761161d",
-                        authType : SSDKAuthTypeWeb)
-                    
-                    
-                case SSDKPlatformType.TypeDouBan:
-                    //设置豆瓣应用信息
-                    appInfo.SSDKSetupDouBanByApiKey("02e2cbe5ca06de5908a863b15e149b0b", secret: "9f1e7b4f71304f2f", redirectUri: "http://www.sharesdk.cn")
-                    
-                    //设置印象笔记（中国版）应用信息
-                case SSDKPlatformType.TypeYinXiang:
-                    appInfo.SSDKSetupEvernoteByConsumerKey("sharesdk-7807", consumerSecret: "d05bf86993836004", sandbox: true)
-                    
-                    
-                default:
-                    break
-                }
-        })
-        
-    }
-    
+//    func shareSDKset(){
+//        ShareSDK.registerApp("iosv1101",
+//            activePlatforms :
+//            [
+//                SSDKPlatformType.TypeSinaWeibo.rawValue,
+//                //                SSDKPlatformType.TypeDouBan.rawValue,
+//                SSDKPlatformType.TypeCopy.rawValue,
+//                //                SSDKPlatformType.TypeMail.rawValue,
+//                SSDKPlatformType.TypeWechat.rawValue,
+//                SSDKPlatformType.TypeQQ.rawValue,
+//            ],
+//            // onImport 里的代码,需要连接社交平台SDK时触发
+//            onImport: {(platform : SSDKPlatformType) -> Void in
+//                switch platform
+//                {
+//                case SSDKPlatformType.TypeSinaWeibo:
+//                    ShareSDKConnector.connectWeibo(WeiboSDK.classForCoder())
+//                case SSDKPlatformType.TypeWechat:
+//                    ShareSDKConnector.connectWeChat(WXApi.classForCoder())
+//                case SSDKPlatformType.TypeQQ:
+//                    ShareSDKConnector.connectQQ(QQApiInterface.classForCoder(), tencentOAuthClass: TencentOAuth.classForCoder())
+//                default:
+//                    break
+//                }
+//            },
+//            onConfiguration: {(platform : SSDKPlatformType,appInfo : NSMutableDictionary!) -> Void in
+//                switch platform
+//                {
+//                case SSDKPlatformType.TypeSinaWeibo:
+//                    //已设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+//                    appInfo.SSDKSetupSinaWeiboByAppKey("512695859",
+//                        appSecret : "6723a7a263f99558ba086895654f39a2",
+//                        redirectUri : "http://www.sharesdk.cn",
+//                        authType : SSDKAuthTypeBoth)
+//                    
+//                case SSDKPlatformType.TypeWechat:
+//                    //设置微信应用信息
+//                    appInfo.SSDKSetupWeChatByAppId("wx4868b35061f87885", appSecret: "64020361b8ec4c99936c0e3999a9f249")
+//                    
+//                case SSDKPlatformType.TypeQQ:
+//                    //设置QQ应用信息
+//                    appInfo.SSDKSetupQQByAppId("100371282",
+//                        appKey : "aed9b0303e3ed1e27bae87c33761161d",
+//                        authType : SSDKAuthTypeWeb)
+//                    
+//                    
+//                case SSDKPlatformType.TypeDouBan:
+//                    //设置豆瓣应用信息
+//                    appInfo.SSDKSetupDouBanByApiKey("02e2cbe5ca06de5908a863b15e149b0b", secret: "9f1e7b4f71304f2f", redirectUri: "http://www.sharesdk.cn")
+//                    
+//                    //设置印象笔记（中国版）应用信息
+//                case SSDKPlatformType.TypeYinXiang:
+//                    appInfo.SSDKSetupEvernoteByConsumerKey("sharesdk-7807", consumerSecret: "d05bf86993836004", sandbox: true)
+//                    
+//                    
+//                default:
+//                    break
+//                }
+//        })
+//        
+//    }
+//    
     func firstLaunch(){
         
         if (userDefault.objectForKey("everlaunched") == nil){
