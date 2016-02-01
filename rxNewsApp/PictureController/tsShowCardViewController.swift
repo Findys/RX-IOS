@@ -11,14 +11,19 @@ import Alamofire
 
 class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     @IBOutlet weak var share: UIButton!
+    
     var scrollview = UIScrollView()
+    
     var pid = Int()
+    
     var ifloading = Bool()
-    var ifheight = false
-    var picheight = Int()
+    
     var picArray = Array<AnyObject>()
+    
     let text = UILabel()
+    
     let background = UIView()
+    
     var imagearray = Array<UIImage>()
     
     override func loadView() {
@@ -104,15 +109,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
                     ,width: WINDOW_WIDTH,height: WINDOW_HEIGHT), andImage: UIimage)
                 photoview.userInteractionEnabled = true
                 photoview.addGestureRecognizer(longpress)
-                
-                if self.ifheight == false{
-                    self.picheight = Int(image.frame.height)
-                }
-                else{
-                    if Int(image.frame.width)>self.picheight{
-                        self.picheight = Int(image.frame.width)
-                    }
-                }
+
                 self.scrollview.addSubview(photoview)
             })
             
@@ -121,7 +118,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             background.addSubview(text)
         }
         
-        self.scrollview.contentSize = CGSizeMake(WINDOW_WIDTH * CGFloat(picArray.count),CGFloat(picheight))
+        self.scrollview.contentSize = CGSizeMake(WINDOW_WIDTH * CGFloat(picArray.count),CGFloat(self.view.frame.height))
     }
     
     
@@ -167,7 +164,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         }
     }
     
-    //    长按保存图片
+    //    long press to save picture
     func longPress(){
         
         MozTopAlertView.showWithType(MozAlertTypeInfo, text: "保存到图库", doText: "是的", doBlock: { () -> Void in

@@ -86,13 +86,13 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         let cell = tableView.dequeueReusableCellWithIdentifier("rxServiceCell")!
         
-        let label=cell.viewWithTag(1) as! UILabel
+        let label = cell.viewWithTag(1) as! UILabel
         
-        let image=cell.viewWithTag(2) as! UIImageView
+        let image  = cell.viewWithTag(2) as! UIImageView
         
         image.image = UIImage(named:iconArray[indexPath.row])
         
-        label.text=array[indexPath.row]
+        label.text = array[indexPath.row]
         
         return cell
     }

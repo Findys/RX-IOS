@@ -20,7 +20,7 @@ class MainViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //                if cahces exist load cache data
         if let cache = self.getlocalData("rxNewsCache") as? NSMutableArray{
             self.dataSource = cache
         }
@@ -38,7 +38,7 @@ class MainViewController: UIViewController{
         self.newsTable.estimatedRowHeight = 114
         self.newsTable.rowHeight = UITableViewAutomaticDimension
         
-        //        set
+        //        set refresh header and footer
         self.newsTable.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
             self.requestData()
         })
@@ -46,12 +46,12 @@ class MainViewController: UIViewController{
         self.newsTable.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
             self.requestMoreData(self.articleID)
         })
-        
-//                self.newsTable.mj_header.beginRefreshing()
     }
     
     func requestData() {
+        
         Alamofire.request(.GET, "http://app.ecjtu.net/api/v1/index").responseJSON { (resp:Response<AnyObject, NSError>) -> Void in
+            
             if resp.result.isSuccess{
                 
                 let normal = resp.result.value!.objectForKey("normal_article")
@@ -63,6 +63,7 @@ class MainViewController: UIViewController{
                 let slideArray = slide?.objectForKey("articles") as! NSArray
                 
                 let currentData = NSMutableArray()
+                
                 let currentSlideData = NSMutableArray()
                 
                 for each in newsArray{
@@ -82,24 +83,16 @@ class MainViewController: UIViewController{
                 self.saveData(currentData, localDataName: "rxNewsCache")
                 self.saveData(currentSlideData,localDataName: "rxNewsSlideCache")
                 
+                self.slideData = currentSlideData
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
-                    self.slideData = currentSlideData
-                    
-                    self.dataSource = currentData
-                    
-                    self.newsTable.reloadData()
-                    
-                    self.newsTable.mj_header.endRefreshing()
-                })
-                
-            }else{
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
-                
-                //                if cahces exist load cache data
+                self.dataSource = currentData
                 
                 self.newsTable.reloadData()
+                
+                self.newsTable.mj_header.endRefreshing()
+
+            }else{
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                 
                 self.newsTable.mj_header.endRefreshing()
             }
@@ -126,12 +119,10 @@ class MainViewController: UIViewController{
                         self.dataSource.addObject(item)
                     }
                     
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        //                reload tabview‘s dataSource
-                        self.newsTable.reloadData()
-                        
-                        self.newsTable.mj_header.endRefreshing()
-                    })
+                    self.newsTable.reloadData()
+                    
+                    self.newsTable.mj_header.endRefreshing()
+                    
                 }else{
                     MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                     self.newsTable.mj_footer.endRefreshing()

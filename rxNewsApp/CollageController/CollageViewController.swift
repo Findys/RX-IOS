@@ -58,16 +58,14 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
                     currentData.addObject(item)
                 }
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
-                    self.saveData(currentData, localDataName: "CollageCache")
-                    
-                    self.dataSource = currentData
-                    
-                    self.collageTable.reloadData()
-                    
-                    self.collageTable.mj_header.endRefreshing()
-                })
+                self.saveData(currentData, localDataName: "CollageCache")
+                
+                self.dataSource = currentData
+                
+                self.collageTable.reloadData()
+                
+                self.collageTable.mj_header.endRefreshing()
+
             }else{
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                 
@@ -78,15 +76,14 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     
     func requestMoreData(id:Int) {
-        
+
         Alamofire.request(.GET, "http://app.ecjtu.net/api/v1/schoolnews?until=\(id)").responseJSON { (resp:Response<AnyObject, NSError>) -> Void in
             
             if resp.result.isSuccess{
                 
                 let count = resp.result.value!.objectForKey("count") as! Int
-                
-                if count==0 {
-                    
+                print(count)
+                if count == 0 {
                     self.collageTable.mj_footer.endRefreshingWithNoMoreData()
                     
                 }else{
@@ -101,14 +98,11 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
                         
                         self.dataSource.addObject(item)
                     }
-                }
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
                     self.collageTable.reloadData()
                     
                     self.collageTable.mj_footer.endRefreshing()
-                })
+                }
             }else{
                 
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)

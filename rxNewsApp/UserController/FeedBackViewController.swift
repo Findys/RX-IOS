@@ -31,6 +31,11 @@ class FeedBackViewController: UIViewController,UITextViewDelegate {
         content.delegate = self
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        nickname.becomeFirstResponder()
+    }
+    
     //    反馈功能实现
     func feedBack(){
         

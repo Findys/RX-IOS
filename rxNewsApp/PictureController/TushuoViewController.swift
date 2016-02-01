@@ -59,17 +59,13 @@ class TushuoViewController: UIViewController {
                     currentData.addObject(item)
                 }
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
-                    self.saveData(currentData, localDataName: "tushuoCache")
-                    
-                    self.dataSource = currentData
-                    
-                    self.tushuoTable.reloadData()
-                    
-                    self.tushuoTable.mj_header.endRefreshing()
-                })
+                self.saveData(currentData, localDataName: "tushuoCache")
                 
+                self.dataSource = currentData
+                
+                self.tushuoTable.reloadData()
+                
+                self.tushuoTable.mj_header.endRefreshing()
                 
             }else{
                 
@@ -105,12 +101,10 @@ class TushuoViewController: UIViewController {
                         self.dataSource.addObject(item)
                     }
                 }
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
-                    self.tushuoTable.reloadData()
-                    
-                    self.tushuoTable.mj_footer.endRefreshing()
-                })
+                
+                self.tushuoTable.reloadData()
+                
+                self.tushuoTable.mj_footer.endRefreshing()
                 
             }else{
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
