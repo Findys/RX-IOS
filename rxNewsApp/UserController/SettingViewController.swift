@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import AFNetworking
 
 class SettingViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate{
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import VIPhotoView
 
 class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     @IBOutlet weak var share: UIButton!

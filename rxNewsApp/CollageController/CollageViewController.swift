@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import MJRefresh
 
 class CollageViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
