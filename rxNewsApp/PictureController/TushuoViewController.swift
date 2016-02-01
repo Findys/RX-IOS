@@ -19,6 +19,14 @@ class TushuoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let cache = self.getlocalData("tushuoCache") as? NSMutableArray{
+            
+            self.dataSource = cache
+            
+        }
+        
+        requestData()
         //        set view subtract navigation bar‘s height and status bar’s height
         self.edgesForExtendedLayout = UIRectEdge.Bottom
         
@@ -29,9 +37,6 @@ class TushuoViewController: UIViewController {
         self.tushuoTable.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
             self.requestMoreData(self.articleID)
         })
-        
-        self.tushuoTable.mj_header.beginRefreshing()
-        
     }
     
     func requestData() {
@@ -40,50 +45,38 @@ class TushuoViewController: UIViewController {
             
             if resp.result.isSuccess{
                 
+                
+                let newsArray = resp.result.value!.objectForKey("list") as! NSArray
+                
+                self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! String
+                
+                let currentData = NSMutableArray()
+                
+                for each in newsArray{
+                    
+                    let item = TuShuoItem(object: each)
+                    
+                    currentData.addObject(item)
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    self.saveData(currentData, localDataName: "tushuoCache")
+                    
+                    self.dataSource = currentData
+                    
+                    self.tushuoTable.reloadData()
+                    
+                    self.tushuoTable.mj_header.endRefreshing()
+                })
+                
+                
             }else{
-                
-            }
-        }
-        
-        let afmanager = AFHTTPSessionManager()
-        
-        afmanager.GET("http://pic.ecjtu.net/api.php/list", parameters: nil,progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-            
-            let newsArray = resp!.objectForKey("list") as! NSArray
-            
-            self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! String
-            
-            let currentData = NSMutableArray()
-            
-            for each in newsArray{
-                
-                let item = TuShuoItem(object: each)
-                
-                currentData.addObject(item)
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                
-                self.saveData(currentData, localDataName: "tushuoCache")
-                
-                self.dataSource = currentData
-                
-                self.tushuoTable.reloadData()
-                
-                self.tushuoTable.mj_header.endRefreshing()
-            })
-            
-            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
                 
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                 self.tushuoTable.mj_header.endRefreshing()
                 
-                if let cache = self.getlocalData("tushuoCache") as? NSMutableArray{
-                    
-                    self.dataSource = cache
-                    
-                    self.tushuoTable.reloadData()
-                }
+            }
         }
     }
     

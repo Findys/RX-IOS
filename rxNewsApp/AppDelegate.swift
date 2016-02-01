@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 
 @UIApplicationMain
@@ -52,26 +53,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func getToken(){
-        
-        let afmanager = AFHTTPSessionManager()
-        
-        afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
-        
+
         if let account = userDefault.stringForKey("account"){
             
             let password = userDefault.stringForKey("password")
             
             let params = ["username": account, "password":password!]
             
-            afmanager.POST("http://user.ecjtu.net/api/login", parameters: params, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-                
-                let token = resp!.objectForKey("token")!
-                
-                userDefault.setObject(token, forKey: "token")
-                
-                }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                    print(error)
+            Alamofire.request(.POST, "http://user.ecjtu.net/api/login", parameters: params, encoding: .URL, headers: nil).responseJSON(completionHandler: { (resp:Response<AnyObject, NSError>) -> Void in
+                if resp.result.isSuccess{
                     
+                    let token = resp.result.value!.objectForKey("token")!
+                    
+                    userDefault.setObject(token, forKey: "token")
+                }else{
+                    
+                }
             })
         }
     }

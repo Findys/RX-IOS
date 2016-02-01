@@ -233,61 +233,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "rxNewsApp/WebViewController.swift"
-            timestampString = "475649278.366717"
+            timestampString = "475983389.644615"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "postData()"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "rxNewsApp/AppDelegate.swift"
-            timestampString = "475504174.619851"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "getToken()"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "rxNewsApp.AppDelegate.getToken (rxNewsApp.AppDelegate)() -&gt; ()"
-                  moduleName = "rxNewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Geetion/Documents/rxNewsAppIOS/rxNewsApp/AppDelegate.swift"
-                  timestampString = "475504174.632807"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "1673">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "rxNewsApp.AppDelegate.(getToken (rxNewsApp.AppDelegate) -&gt; () -&gt; ()).(closure #1)"
-                  moduleName = "rxNewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Geetion/Documents/rxNewsAppIOS/rxNewsApp/AppDelegate.swift"
-                  timestampString = "475504174.633001"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -303,22 +255,6 @@
             startingLineNumber = "18"
             endingLineNumber = "18"
             landmarkName = "init()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "rxNewsApp/PictureController/TushuoViewController.swift"
-            timestampString = "475897693.230953"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "requestData()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

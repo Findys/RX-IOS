@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class UserViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     @IBOutlet weak var headimage: UIImageView!
@@ -54,19 +55,17 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     //    获取头像
     func getUserData(){
         
-        let afmanager = AFHTTPSessionManager()
-        
         let url = "http://user.ecjtu.net/api/user/" + (userDefault.stringForKey("account"))!
         
-        afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
-        
-        afmanager.GET(url, parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+        Alamofire.request(.GET, url).responseJSON { (resp:Response<AnyObject, NSError>) -> Void in
             
-            let avatar = "http://"+((resp!.objectForKey("user")?.objectForKey("avatar"))! as! String)
+            let avatar = "http://"+((resp.result.value!.objectForKey("user")?.objectForKey("avatar"))! as! String)
+            
+            print(avatar)
             
             userDefault.setObject(avatar, forKey: "headimage")
             
-            let name = (resp!.objectForKey("user")?.objectForKey("name")!) as! String
+            let name = (resp.result.value!.objectForKey("user")?.objectForKey("name")!) as! String
             
             self.username.text = name
             
@@ -74,7 +73,6 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
             self.headimage.sd_setImageWithURL(NSURL(string: avatar))
             
-            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
         }
     }
     

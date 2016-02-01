@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Social
+import Alamofire
 
 class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     @IBOutlet weak var share: UIButton!
@@ -151,48 +151,21 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     
     func requestData() {
         
-        let afManager = AFHTTPSessionManager()
-        
-        afManager.GET("http://pic.ecjtu.net/api.php/post/\(pid)", parameters: nil, progress: nil, success: { (nsurl:NSURLSessionDataTask?, resp:AnyObject?) -> Void in
+        Alamofire.request(.GET, "http://pic.ecjtu.net/api.php/post/\(pid)").responseJSON { (resp:Response<AnyObject, NSError>) -> Void in
             
-            self.picArray = (resp!.objectForKey("pictures"))! as! Array<AnyObject>
-            
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                self.loadScroll()
-                self.ifloading = true
-            }
-            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+            if resp.result.isSuccess{
                 
-            MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
+                self.picArray = (resp.result.value!.objectForKey("pictures"))! as! Array<AnyObject>
+                
+                dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    self.loadScroll()
+                    self.ifloading = true
+                }
+            }else{
+                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
+            }
         }
     }
-    
-    //    分享功能
-//    func shareFunc(){
-//        
-//        let shareParames = NSMutableDictionary()
-//        
-//        let shareimage=imagearray[Int(scrollview.contentOffset.x/WINDOW_HEIGHT)] as UIImage
-//        
-//        shareParames.SSDKSetupShareParamsByText("分享内容",
-//            images : shareimage,
-//            url : NSURL(string:"http://mob.com"),
-//            title : "分享标题",
-//            type : SSDKContentType.Auto)
-//        ShareSDK.showShareActionSheet(self.view, items: nil, shareParams: shareParames) { (state : SSDKResponseState, platformType : SSDKPlatformType, userdata : [NSObject : AnyObject]!, contentEnity : SSDKContentEntity!, error : NSError!, Bool end) -> Void in
-//            
-//            switch state{
-//                
-//            case SSDKResponseState.Success: print("分享成功")
-//            case SSDKResponseState.Fail:    print("分享失败,错误描述:\(error)")
-//            case SSDKResponseState.Cancel:  print("分享取消")
-//                
-//            default:
-//                break
-//            }
-//        }
-//    }
-    
     
     //    长按保存图片
     func longPress(){

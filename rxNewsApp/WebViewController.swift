@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import Alamofire
 
 @available(iOS 8.0, *)
 class WebViewController: UIViewController,WKNavigationDelegate{
@@ -119,19 +120,20 @@ class WebViewController: UIViewController,WKNavigationDelegate{
     func postData(){
         
         if let account = userDefault.stringForKey("account"){
-            
-            let afmanager = AFHTTPSessionManager()
-            
+
             let url = "http://app.ecjtu.net/api/v1/article/\(id)/comment"
             
             let param:[String:String] = ["sid":account,"content":content.text!]
-            afmanager.POST(url, parameters: param, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-                self.content.resignFirstResponder()
-                self.content.text = ""
-                MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "评论成功", parentView: self.view)
-                }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+            
+            Alamofire.request(.POST, url, parameters: param, encoding: .URL, headers: nil).responseJSON(completionHandler: { (resp:Response<AnyObject, NSError>) -> Void in
+                if resp.result.isSuccess{
+                    self.content.resignFirstResponder()
+                    self.content.text = ""
+                    MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "评论成功", parentView: self.view)
+                }else{
                     
                     MozTopAlertView.showWithType(MozAlertTypeError, text: "请检查网络", parentView: self.view)
+                }
             })
         }else{
             MozTopAlertView.showWithType(MozAlertTypeError, text: "请先登录", parentView: self.view)

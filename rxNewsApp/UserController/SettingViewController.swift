@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class SettingViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate{
     
@@ -56,28 +57,45 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         let studentID = userDefault.stringForKey("account")!
         
         let url = "http://user.ecjtu.net/api/user/\(studentID)/avatar"
+//        
+//        Alamofire.upload(.POST, url, multipartFormData: { (data:MultipartFormData) -> Void in
+//            data.appendBodyPart(data: imgData!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
+//            }, encodingCompletion: nil)
+//        
+        
+//        Alamofire.upload(.POST, url, headers: params, multipartFormData: { (data:MultipartFormData) -> Void in
+//            data.appendBodyPart(data: imgData!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
+//            }, encodingMemoryThreshold: Manager.MultipartFormDataEncodingMemoryThreshold) { (manager:Manager.MultipartFormDataEncodingResult) -> Void in
+//                print("123")
+//                self.headImageGet()
+//        }
+        
+//        Alamofire.upload(.POST, url, headers: params, data: imgData!).responseJSON { (resp:Response<AnyObject, NSError>) -> Void in
+//            print(resp.result.value)
+//            if resp.result.isSuccess{
+//                if( resp.result.value!.objectForKey("result")! as! Int == 1){
+//                    
+//                    MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "头像上传成功",parentView: self.view)
+//                    
+//                    self.headImg.image = croppedImage
+//                }
+//            }else{
+//                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView: self.view)
+//            }
+//        }
         
         afmanager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
             formdata.appendPartWithFileData(imgData!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
             }, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-                
-                if( resp!.objectForKey("result")! as! Int == 1){
-                    
-                    MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "头像上传成功",parentView: self.view)
-                    
-                    self.headImageGet()
-                    
-                    self.headImg.image = croppedImage
-                }
+                print("123")
+
                 
             }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView: self.view)
+                print(error)
         }
-        
+//
         controller.dismissViewControllerAnimated(true, completion: nil)
-        
-        MozTopAlertView.showWithType(MozAlertTypeInfo, text: "头像上传中", parentView: self.view)
-        
+
         afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
     }
     

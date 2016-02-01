@@ -21,6 +21,16 @@ class MainViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let cache = self.getlocalData("rxNewsCache") as? NSMutableArray{
+            self.dataSource = cache
+        }
+        
+        if let slideCache = self.getlocalData("rxNewsSlideCache") as? NSMutableArray{
+            self.slideData = slideCache
+        }
+        
+        requestData()
+        
         //        set view subtract navigation bar‘s height and status bar’s height
         self.edgesForExtendedLayout = UIRectEdge.Bottom
         
@@ -37,9 +47,7 @@ class MainViewController: UIViewController{
             self.requestMoreData(self.articleID)
         })
         
-        self.newsTable.mj_header.beginRefreshing()
-        
-        
+//                self.newsTable.mj_header.beginRefreshing()
     }
     
     func requestData() {
@@ -55,6 +63,7 @@ class MainViewController: UIViewController{
                 let slideArray = slide?.objectForKey("articles") as! NSArray
                 
                 let currentData = NSMutableArray()
+                let currentSlideData = NSMutableArray()
                 
                 for each in newsArray{
                     
@@ -67,17 +76,19 @@ class MainViewController: UIViewController{
                     
                     let item = rxNewsSlideItem(object: each)
                     
-                    self.slideData.addObject(item)
+                    currentSlideData.addObject(item)
                 }
                 
                 self.saveData(currentData, localDataName: "rxNewsCache")
-                self.saveData(self.slideData, localDataName: "rxNewsSlideCache")
+                self.saveData(currentSlideData,localDataName: "rxNewsSlideCache")
                 
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
+                    self.slideData = currentSlideData
+                    
                     self.dataSource = currentData
-                    //                reload tabview‘s dataSource
+                    
                     self.newsTable.reloadData()
                     
                     self.newsTable.mj_header.endRefreshing()
@@ -87,13 +98,6 @@ class MainViewController: UIViewController{
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                 
                 //                if cahces exist load cache data
-                if let cache = self.getlocalData("rxNewsCache") as? NSMutableArray{
-                    self.dataSource = cache
-                }
-                
-                if let slideCache = self.getlocalData("rxNewsSlideCache") as? NSMutableArray{
-                    self.slideData = slideCache
-                }
                 
                 self.newsTable.reloadData()
                 

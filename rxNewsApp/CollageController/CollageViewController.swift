@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class CollageViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
@@ -18,6 +19,15 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let cache = self.getlocalData("CollageCache") as? NSMutableArray{
+            
+            self.dataSource = cache
+            
+        }
+        
+        requestData()
+        
         //        set view subtract navigation bar‘s height and status bar’s height
         self.edgesForExtendedLayout = UIRectEdge.Bottom
 
@@ -27,89 +37,84 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
         self.collageTable.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
             self.requestMoreData(self.articleID)
         })
-        self.collageTable.mj_header.beginRefreshing()
     }
     
     func requestData() {
-        let afManager = AFHTTPSessionManager()
-        afManager.GET("http://app.ecjtu.net/api/v1/schoolnews", parameters: nil,progress: nil,success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+        
+        Alamofire.request(.GET, "http://app.ecjtu.net/api/v1/schoolnews").responseJSON { (resp:Response<AnyObject, NSError>) -> Void in
             
-            let newsArray = resp!.objectForKey("articles") as! Array<AnyObject>
-            
-            self.articleID = newsArray[newsArray.count-1].objectForKey("id") as! Int
-            
-            let currentData = NSMutableArray()
-            
-            for each in newsArray{
+            if resp.result.isSuccess{
                 
-                let item = CollageItem(object: each)
+                let newsArray = resp.result.value!.objectForKey("articles") as! Array<AnyObject>
                 
-                currentData.addObject(item)
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.articleID = newsArray[newsArray.count-1].objectForKey("id") as! Int
                 
-                self.saveData(currentData, localDataName: "CollageCache")
+                let currentData = NSMutableArray()
                 
-                self.dataSource = currentData
+                for each in newsArray{
+                    
+                    let item = CollageItem(object: each)
+                    
+                    currentData.addObject(item)
+                }
                 
-                self.collageTable.reloadData()
-                
-                self.collageTable.mj_header.endRefreshing()
-            })
-            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    self.saveData(currentData, localDataName: "CollageCache")
+                    
+                    self.dataSource = currentData
+                    
+                    self.collageTable.reloadData()
+                    
+                    self.collageTable.mj_header.endRefreshing()
+                })
+            }else{
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                 
                 self.collageTable.mj_header.endRefreshing()
-                
-                    if let cache = self.getlocalData("CollageCache") as? NSMutableArray{
-                        
-                        self.dataSource = cache
-                        
-                        self.collageTable.reloadData()
-                    }
+            }
         }
     }
     
     
     func requestMoreData(id:Int) {
         
-        let afManager = AFHTTPSessionManager()
-        
-        afManager.GET("http://app.ecjtu.net/api/v1/schoolnews?until=\(id)", parameters: nil, progress:nil,success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+        Alamofire.request(.GET, "http://app.ecjtu.net/api/v1/schoolnews?until=\(id)").responseJSON { (resp:Response<AnyObject, NSError>) -> Void in
             
-            let count = resp!.objectForKey("count") as! Int
-            
-            if count==0 {
+            if resp.result.isSuccess{
                 
-                self.collageTable.mj_footer.endRefreshingWithNoMoreData()
+                let count = resp.result.value!.objectForKey("count") as! Int
                 
-            }else{
-                
-                let newsArray = resp!.objectForKey("list") as! Array<AnyObject>
-                
-                self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! Int
-                
-                for each in newsArray{
+                if count==0 {
                     
-                    let item = CollageItem(object: each)
+                    self.collageTable.mj_footer.endRefreshingWithNoMoreData()
                     
-                    self.dataSource.addObject(item)
+                }else{
+                    
+                    let newsArray = resp.result.value!.objectForKey("list") as! Array<AnyObject>
+                    
+                    self.articleID = newsArray[newsArray.count-1].objectForKey("pubdate") as! Int
+                    
+                    for each in newsArray{
+                        
+                        let item = CollageItem(object: each)
+                        
+                        self.dataSource.addObject(item)
+                    }
                 }
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-                self.collageTable.reloadData()
-                
-                self.collageTable.mj_footer.endRefreshing()
-            })
-            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    self.collageTable.reloadData()
+                    
+                    self.collageTable.mj_footer.endRefreshing()
+                })
+            }else{
                 
                 MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView:self.view)
                 
                 self.collageTable.mj_footer.endRefreshing()
+            }
         }
     }
     

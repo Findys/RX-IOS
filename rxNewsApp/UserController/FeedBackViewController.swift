@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class FeedBackViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var content: UITextView!
@@ -32,22 +33,22 @@ class FeedBackViewController: UIViewController,UITextViewDelegate {
     
     //    反馈功能实现
     func feedBack(){
+        
         if content.text != nil && nickname.text != nil {
             
             let param = ["content":content.text!,"nickname":nickname.text!]
             
-            let afmanager = AFHTTPSessionManager()
-            
-            afmanager.POST(url, parameters: param, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+            Alamofire.request(.POST, url, parameters: param, encoding: .URL, headers: nil).responseJSON(completionHandler: { (resp:Response<AnyObject, NSError>) -> Void in
                 
-                MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "感谢您的支持", parentView: self.view)
-                }, failure: { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                    
+                if resp.result.isSuccess{
+                    MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "感谢您的支持", parentView: self.view)
+                }else{
                     MozTopAlertView.showWithType(MozAlertTypeError, text: "请检查网络", parentView: self.view)
+                }
             })
-
+            
         }else{
-                MozTopAlertView.showWithType(MozAlertTypeError, text: "请填写必要信息", parentView: self.view)
+            MozTopAlertView.showWithType(MozAlertTypeError, text: "请填写必要信息", parentView: self.view)
         }
         
     }
