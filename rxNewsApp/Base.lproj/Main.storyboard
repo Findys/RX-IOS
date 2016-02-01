@@ -27,8 +27,20 @@
                                         <rect key="frame" x="0.0" y="86" width="320" height="204"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yrc-J3-5ch" id="zeg-tW-Kba">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="203.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="204"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5t-G3-emT">
+                                                    <rect key="frame" x="0.0" y="-9" width="320" height="213"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="g5t-G3-emT" secondAttribute="bottom" constant="-8.5" id="2Ko-O6-3HU"/>
+                                                <constraint firstItem="g5t-G3-emT" firstAttribute="top" secondItem="zeg-tW-Kba" secondAttribute="topMargin" constant="-17" id="Kgk-LQ-E0R"/>
+                                                <constraint firstItem="g5t-G3-emT" firstAttribute="leading" secondItem="zeg-tW-Kba" secondAttribute="leading" id="M8a-M9-rjP"/>
+                                                <constraint firstAttribute="trailing" secondItem="g5t-G3-emT" secondAttribute="trailing" id="mM4-cj-fdF"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="rxCell" rowHeight="114" id="rzv-W3-C3o">

@@ -43,7 +43,7 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate,SlideScro
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("pageCell")!
+            let cell = UITableViewCell()
             
             let slideImgArray = NSMutableArray()
             let slideTtlArray = NSMutableArray()
@@ -58,7 +58,9 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate,SlideScro
             
             let shadow = UIImage(named: "shadow")
             
-            let myslideView = SlideScrollView(frame: cell.contentView.frame,imgArr:slideImgArray,titArr:slideTtlArray,backShadowImage: shadow)
+            let cellFrame = CGRect(x: 0, y: 0, width: WINDOW_WIDTH, height: 204)
+            
+            let myslideView = SlideScrollView(frame: cellFrame,imgArr:slideImgArray,titArr:slideTtlArray,backShadowImage: shadow)
             
             myslideView.mydelegate = self
             
