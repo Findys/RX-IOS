@@ -19,9 +19,12 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
     
     override func loadView() {
         super.loadView()
-        tableview.delegate=self
+
         version.text=String(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")!)
-        headImageGet()
+        
+        let avatar = userDefault.stringForKey("headimage")
+        self.headImg.sd_setImageWithURL(NSURL(string: avatar!))
+        
         headImg.layer.cornerRadius = 15
         headImg.clipsToBounds = true
     }
@@ -53,63 +56,43 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         
         let params = ["token":userDefault.stringForKey("token")!]
         
-        let afmanager = AFHTTPSessionManager()
+//        let afmanager = AFHTTPSessionManager()
         
         let studentID = userDefault.stringForKey("account")!
         
         let url = "http://user.ecjtu.net/api/user/\(studentID)/avatar"
-        //
-        //        Alamofire.upload(.POST, url, multipartFormData: { (data:MultipartFormData) -> Void in
-        //            data.appendBodyPart(data: imgData!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
-        //            }, encodingCompletion: nil)
-        //
         
-        //        Alamofire.upload(.POST, url, headers: params, multipartFormData: { (data:MultipartFormData) -> Void in
-        //            data.appendBodyPart(data: imgData!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
-        //            }, encodingMemoryThreshold: Manager.MultipartFormDataEncodingMemoryThreshold) { (manager:Manager.MultipartFormDataEncodingResult) -> Void in
-        //                print("123")
-        //                self.headImageGet()
-        //        }
         
-        //        Alamofire.upload(.POST, url, headers: params, data: imgData!).responseJSON { (resp:Response<AnyObject, NSError>) -> Void in
-        //            print(resp.result.value)
-        //            if resp.result.isSuccess{
-        //                if( resp.result.value!.objectForKey("result")! as! Int == 1){
-        //
-        //                    MozTopAlertView.showWithType(MozAlertTypeSuccess, text: "头像上传成功",parentView: self.view)
-        //
-        //                    self.headImg.image = croppedImage
-        //                }
-        //            }else{
-        //                MozTopAlertView.showWithType(MozAlertTypeError, text: "网络超时", parentView: self.view)
-        //            }
-        //        }
-        
-        afmanager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
-            formdata.appendPartWithFileData(imgData!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
-            }, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-                print("123")
-                
-                
-            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-                print(error)
+        Alamofire.upload(.POST, url, headers: params, multipartFormData: { (data:MultipartFormData) -> Void in
+            
+            data.appendBodyPart(data: imgData!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
+            
+            }, encodingMemoryThreshold: Manager.MultipartFormDataEncodingMemoryThreshold) { (manager:Manager.MultipartFormDataEncodingResult) -> Void in
         }
-        //
-        controller.dismissViewControllerAnimated(true, completion: nil)
         
-        afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
-    }
-    
-    func headImageGet(){
-        let avatar = userDefault.stringForKey("headimage")
-        self.headImg.sd_setImageWithURL(NSURL(string: avatar!))
         
+//        afmanager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
+//            formdata.appendPartWithFileData(imgData!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
+//            }, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+//                print("123")
+//                
+//                
+//            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+//                print(error)
+//        }
+//        //
+//        controller.dismissViewControllerAnimated(true, completion: nil)
+//        
+//        afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
     }
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        
         switch indexPath.section{
+            
         case 0:
+            
             switch indexPath.row{
                 
                 //            修改头像
@@ -131,7 +114,9 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
                 
             }
             break
+            
         case 1:
+            
             switch indexPath.row{
                 //                反馈建议
             case 0:

@@ -21,6 +21,7 @@ class MainViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         //                if cahces exist load cache data
         if let cache = self.getlocalData("rxNewsCache") as? NSMutableArray{
             self.dataSource = cache

@@ -27,7 +27,6 @@ class FeedBackViewController: UIViewController,UITextViewDelegate {
         content.clipsToBounds = true
         content.text="请输入内容"
         content.layer.borderColor = UIColor.lightGrayColor().CGColor
-        
         content.delegate = self
     }
     

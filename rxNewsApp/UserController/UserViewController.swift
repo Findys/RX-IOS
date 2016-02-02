@@ -59,20 +59,21 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         Alamofire.request(.GET, url).responseJSON { (resp:Response<AnyObject, NSError>) -> Void in
             
-            let avatar = "http://"+((resp.result.value!.objectForKey("user")?.objectForKey("avatar"))! as! String)
-            
-            print(avatar)
-            
-            userDefault.setObject(avatar, forKey: "headimage")
-            
-            let name = (resp.result.value!.objectForKey("user")?.objectForKey("name")!) as! String
-            
-            self.username.text = name
-            
-            userDefault.setObject(name, forKey: "name")
-            
-            self.headimage.sd_setImageWithURL(NSURL(string: avatar))
-            
+            if resp.result.isSuccess{
+                
+                let avatar = "http://"+((resp.result.value!.objectForKey("user")?.objectForKey("avatar"))! as! String)
+                
+                userDefault.setObject(avatar, forKey: "headimage")
+                
+                let name = (resp.result.value!.objectForKey("user")?.objectForKey("name")!) as! String
+                
+                self.username.text = name
+                
+                userDefault.setObject(name, forKey: "name")
+                
+                self.headimage.sd_setImageWithURL(NSURL(string: avatar))
+            }
+
         }
     }
     

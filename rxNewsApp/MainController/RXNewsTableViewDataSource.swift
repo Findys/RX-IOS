@@ -29,7 +29,7 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate,SlideScro
         if 0 == indexPath.section {
             return 204
         } else {
-            return 114
+            return 106
         }
     }
     
@@ -44,6 +44,7 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate,SlideScro
         if indexPath.section == 0 {
             
             let cell = UITableViewCell()
+            
             
             let slideImgArray = NSMutableArray()
             let slideTtlArray = NSMutableArray()

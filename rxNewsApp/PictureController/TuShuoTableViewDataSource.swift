@@ -18,30 +18,19 @@ extension TushuoViewController:UITableViewDataSource,UITableViewDelegate{
         
         let cell = tableView.dequeueReusableCellWithIdentifier("tushuoCell")
         
-        let view = cell!.viewWithTag(1)
+        let image = cell!.viewWithTag(1) as! UIImageView
         let title = cell!.viewWithTag(2) as! UILabel
         let click = cell!.viewWithTag(3) as! UILabel
-        let info = cell!.viewWithTag(4) as! UILabel
         let time = cell!.viewWithTag(5) as! UILabel
         
         let item = dataSource[indexPath.row] as! TuShuoItem
         
         title.text = item.title as String
         click.text = item.click
-        info.text = item.info as String
         time.text = timeStampToString(item.time)
         
         let url = "http://\(item.thumb)" as NSString
-        
-        var image = UIImageView()
-        
-        if view?.viewWithTag(6) == nil {
-            
-            view?.addSubview(image)
-            image.tag = 6
-        } else {
-            image = view?.viewWithTag(6) as! UIImageView
-        }
+
         image.sd_setImageWithURL(NSURL(string:url as String), completed: { (UIimage:UIImage!, error:NSError!, SDImageCacheType cacheType, nsurl:NSURL!) -> Void in
             
             image.frame = CGRectMake(CGFloat(0),

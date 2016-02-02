@@ -46,4 +46,12 @@ class LocalWebViewController: UIViewController,WKNavigationDelegate {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.hideTabBar()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.showTabBar()
+    }
+    
 }
