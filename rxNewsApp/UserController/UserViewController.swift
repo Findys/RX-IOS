@@ -23,15 +23,15 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         self.headimage.clipsToBounds = true
         
-        if let image = userDefault.stringForKey("headimage"){
-            if let name = userDefault.stringForKey("name"){
-                self.username.text = name
-            }
-            
-            self.headimage.sd_setImageWithURL(NSURL(string: image))
+        if userDefault.stringForKey("headimage") != nil &&
+            userDefault.stringForKey("name") != nil{
+            let name = userDefault.stringForKey("name")
+            self.username.text = name
+            let image = userDefault.stringForKey("headimage")
+            self.headimage.sd_setImageWithURL(NSURL(string: image!))
             
         }else{
-            if let _  = userDefault.stringForKey("account"){
+            if userDefault.stringForKey("account") != nil{
             getUserData()
             }
         }

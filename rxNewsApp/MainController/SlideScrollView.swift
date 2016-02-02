@@ -28,8 +28,10 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
     
     var mydelegate:SlideScrollViewDelegate?
     
-    init(frame:CGRect,imgArr:NSArray,titArr:NSArray,backShadowImage:UIImage?){
-        super.init(frame: frame)
+    init(var myFrame:CGRect,imgArr:NSArray,titArr:NSArray,backShadowImage:UIImage?){
+        super.init(frame: myFrame)
+        
+        myFrame = CGRect(x: 0, y: 0, width: myFrame.width, height: myFrame.height-0.5)
         
         imageArray = imgArr
         titleArray = titArr
@@ -38,12 +40,12 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
         
         let pageCount = imageArray.count
         
-        scrollView.frame = self.frame
+        scrollView.frame = myFrame
         scrollView.pagingEnabled = true
         
         let contentWidth = WINDOW_WIDTH*CGFloat(pageCount)
         
-        scrollView.contentSize = CGSize(width: contentWidth, height: frame.height)
+        scrollView.contentSize = CGSize(width: contentWidth, height: myFrame.height)
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.scrollEnabled = true
@@ -57,7 +59,7 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
             
             let viewWidth = Int(frame.size.width)*i
             imgView.sd_setImageWithURL(NSURL(string: imgURL), completed: { (img:UIImage!, error:NSError!, SDImageCacheType cacheType, nsurl:NSURL!) -> Void in
-                imgView.frame = CGRect(origin: CGPoint(x: CGFloat(viewWidth), y:CGFloat(0)),size: CGSize(width: frame.width,height:frame.width/img.size.width*img.size.height))
+                imgView.frame = CGRect(origin: CGPoint(x: CGFloat(viewWidth), y:CGFloat(0)),size: CGSize(width: myFrame.width,height:myFrame.width/img.size.width*img.size.height))
             })
             
             imgView.contentMode = UIViewContentMode.ScaleToFill
@@ -77,14 +79,14 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
         
         if backShadowImage != nil{
             let shadowImg = UIImageView()
-            shadowImg.frame = CGRect(origin: CGPoint(x: 0,y: frame.height-80),size: CGSize(width: 320,height: 80))
+            shadowImg.frame = CGRect(origin: CGPoint(x: 0,y: myFrame.height-80),size: CGSize(width: 320,height: 80))
             shadowImg.image = backShadowImage
             self.addSubview(shadowImg)
         }
         
         pageControl = UIPageControl()
         pageControl.frame.size = CGSize(width: 100, height: 50)
-        pageControl.center = CGPoint(x: frame.width/2, y: frame.height-10)
+        pageControl.center = CGPoint(x: myFrame.width/2, y: myFrame.height-10)
         pageControl.currentPage = 0
         pageControl.numberOfPages = pageCount
         pageControl.userInteractionEnabled = false
