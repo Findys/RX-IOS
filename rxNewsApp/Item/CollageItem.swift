@@ -9,6 +9,7 @@
 import Foundation
 
 class CollageItem:NSObject {
+    
     var click = Int()
     var title = NSString()
     var info = NSString()

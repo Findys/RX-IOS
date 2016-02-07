@@ -132,6 +132,7 @@ class CollageViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("collageCell")
         
         let item = dataSource[indexPath.row] as! CollageItem

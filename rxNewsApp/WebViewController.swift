@@ -14,6 +14,7 @@ import Alamofire
 class WebViewController: UIViewController,WKNavigationDelegate{
     var progressBar = UIProgressView()
     var webView: WKWebView!
+    
     var from = String()
     let content = UITextView()
     let backView = UIView()
