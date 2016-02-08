@@ -39,7 +39,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         
         self.view.addSubview(scrollview)
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "shareFunc")
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "shareFunc")
     }
     
     override func viewDidLoad() {
