@@ -101,8 +101,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
                 
                 self.imagearray.append(UIimage)
                 
-                let longpress = UILongPressGestureRecognizer.init(target: self, action: "longPress")
-                longpress.allowableMovement = 10
+                let longpress = UILongPressGestureRecognizer(target: self, action: "longPress:")
                 longpress.minimumPressDuration = 1
                 longpress.numberOfTouchesRequired = 1
                 
@@ -166,7 +165,9 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
     }
     
     //    long press to save picture
-    func longPress(){
+    func longPress(sender:UILongPressGestureRecognizer){
+        
+        if sender.state == UIGestureRecognizerState.Began{
         
         MozTopAlertView.showWithType(MozAlertTypeInfo, text: "保存到图库", doText: "是的", doBlock: { () -> Void in
             
@@ -175,6 +176,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
             
             }, parentView: self.view)
+        }
     }
     
 }

@@ -975,21 +975,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="c86-TX-mkh">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="c86-TX-mkh">
                                 <rect key="frame" x="20" y="132" width="268" height="177"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入您的称呼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HZU-FG-20S">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入您的称呼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HZU-FG-20S">
                                 <rect key="frame" x="20" y="73" width="161" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="161" id="ENa-zj-6X2"/>
+                                    <constraint firstAttribute="width" constant="161" id="sDs-zb-xQ0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbW-Fd-Ybv">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbW-Fd-Ybv">
                                 <rect key="frame" x="20" y="335" width="268" height="30"/>
                                 <color key="backgroundColor" red="0.25647108981479877" green="0.54827639712650389" blue="0.8827465120487179" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="提交">
@@ -999,15 +999,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="HZU-FG-20S" firstAttribute="leading" secondItem="eUd-Wy-6xV" secondAttribute="leadingMargin" id="75X-EF-xIt"/>
-                            <constraint firstItem="c86-TX-mkh" firstAttribute="trailing" secondItem="rbW-Fd-Ybv" secondAttribute="trailing" id="9NL-4p-phQ"/>
-                            <constraint firstItem="rbW-Fd-Ybv" firstAttribute="top" secondItem="c86-TX-mkh" secondAttribute="bottom" constant="26" id="BYi-ZX-ddk"/>
-                            <constraint firstItem="JVH-0a-urn" firstAttribute="top" secondItem="rbW-Fd-Ybv" secondAttribute="bottom" constant="203" id="EnT-Eq-m0k"/>
-                            <constraint firstItem="rbW-Fd-Ybv" firstAttribute="centerX" secondItem="eUd-Wy-6xV" secondAttribute="centerX" constant="-6" id="cee-SR-vSK"/>
-                            <constraint firstItem="c86-TX-mkh" firstAttribute="leading" secondItem="rbW-Fd-Ybv" secondAttribute="leading" id="kbc-CS-KMH"/>
-                            <constraint firstItem="c86-TX-mkh" firstAttribute="leading" secondItem="HZU-FG-20S" secondAttribute="leading" id="qGq-QI-PMs"/>
-                            <constraint firstItem="c86-TX-mkh" firstAttribute="top" secondItem="HZU-FG-20S" secondAttribute="bottom" constant="29" id="vXK-pl-gij"/>
-                            <constraint firstItem="HZU-FG-20S" firstAttribute="top" secondItem="DuJ-p7-dXP" secondAttribute="bottom" constant="53" id="z4u-Xu-2tQ"/>
+                            <constraint firstItem="rbW-Fd-Ybv" firstAttribute="top" secondItem="c86-TX-mkh" secondAttribute="bottom" constant="26" id="GRV-Gr-K0S"/>
+                            <constraint firstItem="JVH-0a-urn" firstAttribute="top" secondItem="rbW-Fd-Ybv" secondAttribute="bottom" constant="203" id="HHn-Ek-APG"/>
+                            <constraint firstItem="rbW-Fd-Ybv" firstAttribute="trailing" secondItem="c86-TX-mkh" secondAttribute="trailing" id="JSO-bH-ONY"/>
+                            <constraint firstItem="HZU-FG-20S" firstAttribute="leading" secondItem="eUd-Wy-6xV" secondAttribute="leadingMargin" constant="4" id="LjG-Ge-WNl"/>
+                            <constraint firstItem="c86-TX-mkh" firstAttribute="top" secondItem="HZU-FG-20S" secondAttribute="bottom" constant="29" id="RKH-Ma-mba"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="c86-TX-mkh" secondAttribute="trailing" constant="16" id="RTh-5h-xLf"/>
+                            <constraint firstItem="c86-TX-mkh" firstAttribute="leading" secondItem="rbW-Fd-Ybv" secondAttribute="leading" id="U1C-8a-hEB"/>
+                            <constraint firstItem="HZU-FG-20S" firstAttribute="top" secondItem="DuJ-p7-dXP" secondAttribute="bottom" constant="53" id="WQE-Ru-xug"/>
+                            <constraint firstItem="HZU-FG-20S" firstAttribute="leading" secondItem="c86-TX-mkh" secondAttribute="leading" id="Xpr-Pk-FXg"/>
                         </constraints>
                     </view>
                     <connections>
