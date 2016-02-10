@@ -84,7 +84,7 @@
         <scene sceneID="laG-7v-23T">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="ACc-zh-aJG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="新闻" image="newstab" id="ESH-Ss-hux"/>
+                    <tabBarItem key="tabBarItem" title="新闻" image="NewsIcon" id="ESH-Ss-hux"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackTranslucent" id="6H8-Y2-fNg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -818,7 +818,7 @@
         <scene sceneID="4gv-70-0tU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jaH-JH-c7t" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="学院" image="collage" id="nqA-ER-flr"/>
+                    <tabBarItem key="tabBarItem" title="学院" image="CollageIcon" id="nqA-ER-flr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackTranslucent" id="obo-1j-E6k">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -839,7 +839,7 @@
         <scene sceneID="YeH-qB-z3z">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="qYt-Ws-lzc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="图说" image="Picture" id="uKf-wQ-1dM"/>
+                    <tabBarItem key="tabBarItem" title="图说" image="PictureIcon" id="uKf-wQ-1dM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackTranslucent" translucent="NO" id="uvY-ER-TgG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -860,7 +860,7 @@
         <scene sceneID="s29-q6-rPs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="KwD-CJ-Tkq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我" image="me" id="6FN-zf-Lbb"/>
+                    <tabBarItem key="tabBarItem" title="我" image="MeIcon" id="6FN-zf-Lbb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackTranslucent" id="G1q-bg-5TW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -883,12 +883,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CollageIcon" width="52" height="52"/>
         <image name="Findys" width="1000" height="998"/>
-        <image name="Picture" width="26" height="23"/>
-        <image name="collage" width="26" height="28"/>
+        <image name="MeIcon" width="52" height="52"/>
+        <image name="NewsIcon" width="26" height="26"/>
+        <image name="PictureIcon" width="26" height="26"/>
         <image name="loli" width="100" height="100"/>
-        <image name="me" width="26" height="30"/>
-        <image name="newstab" width="26" height="36"/>
         <image name="shadowTop" width="320" height="80"/>
         <image name="shakugan" width="100" height="99"/>
         <image name="welcome_logo" width="800" height="600"/>
