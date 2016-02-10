@@ -9,17 +9,29 @@
 import UIKit
 import Alamofire
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController,UITextInputTraits {
+    
     var url="http://user.ecjtu.net/api/login"
     
+
+    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var account: UITextField!
+    
+    var initial_Y = CGFloat()
+    let notifictionCenter = NSNotificationCenter.defaultCenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         login.addTarget(self, action: "loginClick", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        notifictionCenter.addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardWillShowNotification, object: nil)
+        notifictionCenter.addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardWillHideNotification, object: nil)
+        
+        initial_Y = backView.frame.origin.y
         
     }
     
@@ -73,8 +85,8 @@ class LoginViewController: UIViewController {
     }
     
     //    点击登录按钮
-    func loginClick()
-    {
+    func loginClick(){
+
         if (account.text?.characters.count==14)&&(password.text?.characters.count>=6){
             
             postData()
@@ -99,6 +111,20 @@ class LoginViewController: UIViewController {
             
         }
         return true
+    }
+    
+    func keyboardDidShow(notification:NSNotification){
+        
+        logoImage.alpha = 0
+        
+        backView.frame.origin.y = 100
+    }
+    
+    func keyboardDidHide(notification:NSNotification){
+        
+        logoImage.alpha = 1
+        
+        backView.frame.origin.y = initial_Y
     }
     
 }
