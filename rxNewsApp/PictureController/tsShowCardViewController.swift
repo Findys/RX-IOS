@@ -113,9 +113,9 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
                 self.scrollview.addSubview(photoview)
             })
             
-            self.view.addSubview(background)
-            
             background.addSubview(text)
+            
+            self.view.addSubview(background)
         }
         
         self.scrollview.contentSize = CGSizeMake(WINDOW_WIDTH * CGFloat(picArray.count),CGFloat(self.view.frame.height))

@@ -23,6 +23,10 @@ class LoginViewController: UIViewController,UITextInputTraits {
     var initial_Y = CGFloat()
     let notifictionCenter = NSNotificationCenter.defaultCenter()
     
+    @IBAction func passwordTint(sender: AnyObject) {
+        MozTopAlertView.showWithType(MozAlertTypeInfo, text: "默认密码身份证后六位", parentView:self.view)
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +36,11 @@ class LoginViewController: UIViewController,UITextInputTraits {
         notifictionCenter.addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardWillHideNotification, object: nil)
         
         initial_Y = backView.frame.origin.y
+        
+        backView.translatesAutoresizingMaskIntoConstraints = true
+//        let background = UIImageView(image:  UIImage(named: "loginWallPaper"))
+//        background.frame = self.view.frame
+//        self.view.insertSubview(background, atIndex: 0)
         
     }
     

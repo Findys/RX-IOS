@@ -5,3 +5,4 @@ pod 'AFNetworking'
 pod 'MJRefresh'
 pod 'VIPhotoView' 
 pod 'Alamofire'
+pod "TextFieldEffects"

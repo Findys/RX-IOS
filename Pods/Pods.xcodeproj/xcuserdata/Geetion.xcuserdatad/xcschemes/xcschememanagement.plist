@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>TextFieldEffects.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>VIPhotoView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,6 +42,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1604B11719817FA2B5F2D42B6EB1BBF3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>196561B35837930227529F04E014BA41</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1C3436CEA5C3D39764C5F54374794ECB</key>
 		<dict>
 			<key>primary</key>
@@ -47,7 +62,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>607323F0A576DAC139A79DE7338FAAB5</key>
+		<key>54B6A02176F333EFDAAD6E46FA2432EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,12 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>74DED2FC981CF9C10554549EED12CC53</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A1B06BFBC5CF2ABFFD22E43EE2F09BB0</key>
+		<key>6F805A2A2CB1445FA39723B3BA93BD89</key>
 		<dict>
 			<key>primary</key>
 			<true/>

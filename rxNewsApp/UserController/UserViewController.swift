@@ -19,6 +19,8 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
     override func loadView() {
         super.loadView()
         
+        self.edgesForExtendedLayout = UIRectEdge.All
+        
         self.headimage.layer.cornerRadius = 50
         
         self.headimage.clipsToBounds = true
@@ -35,6 +37,9 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             getUserData()
             }
         }
+        self.navigationController?.navigationBar.shadowImage = UIImage(named: "")
+        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.24, green:0.71, blue:0.7, alpha:1)
+        self.navigationController?.navigationBar.translucent = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -46,8 +51,8 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             tabBarController!.selectedIndex = 0
             
         }else{
-            
-            getUserData()
+            self.navigationController?.navigationBar.shadowImage = UIImage(named: "")
+            self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
             
         }
     }
