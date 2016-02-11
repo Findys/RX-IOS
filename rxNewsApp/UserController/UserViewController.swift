@@ -38,7 +38,7 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             }
         }
         self.navigationController?.navigationBar.shadowImage = UIImage(named: "")
-        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.24, green:0.71, blue:0.7, alpha:1)
+        self.navigationController!.navigationBar.barStyle = UIBarStyle.BlackTranslucent
         self.navigationController?.navigationBar.translucent = false
     }
     
@@ -140,5 +140,4 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
 }

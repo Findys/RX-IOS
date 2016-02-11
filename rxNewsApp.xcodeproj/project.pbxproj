@@ -62,6 +62,7 @@
 		93D6DC471C11D36500BB475C /* scoreQuery.js in Resources */ = {isa = PBXBuildFile; fileRef = 93D6DC461C11D36500BB475C /* scoreQuery.js */; };
 		C02E36FC1C5D19F70001FBFB /* RXNewsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E36FB1C5D19F70001FBFB /* RXNewsTableViewDataSource.swift */; };
 		C02E36FE1C5D9E3E0001FBFB /* TuShuoTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E36FD1C5D9E3E0001FBFB /* TuShuoTableViewDataSource.swift */; };
+		C03DAAA31C6CB9CA00DBA412 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03DAAA21C6CB9CA00DBA412 /* Util.swift */; };
 		C051964A1C586359006C2BD0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05196481C586359006C2BD0 /* MainViewController.swift */; };
 		C051964B1C586359006C2BD0 /* SlideScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05196491C586359006C2BD0 /* SlideScrollView.swift */; };
 		C05196521C5863E3006C2BD0 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C051964D1C5863E3006C2BD0 /* AboutViewController.swift */; };
@@ -170,6 +171,7 @@
 		93D6DC461C11D36500BB475C /* scoreQuery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = scoreQuery.js; sourceTree = "<group>"; };
 		C02E36FB1C5D19F70001FBFB /* RXNewsTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RXNewsTableViewDataSource.swift; sourceTree = "<group>"; };
 		C02E36FD1C5D9E3E0001FBFB /* TuShuoTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuShuoTableViewDataSource.swift; sourceTree = "<group>"; };
+		C03DAAA21C6CB9CA00DBA412 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		C05196481C586359006C2BD0 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C05196491C586359006C2BD0 /* SlideScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideScrollView.swift; sourceTree = "<group>"; };
 		C051964D1C5863E3006C2BD0 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				14BF78C31C00A36F00251561 /* Images.xcassets */,
 				143A93E41BF43E62001A36C8 /* Main.storyboard */,
 				C05196611C586469006C2BD0 /* extendFunction.swift */,
+				C03DAAA21C6CB9CA00DBA412 /* Util.swift */,
 				D23DCFDA1BC272DD00C32F94 /* Info.plist */,
 				D23DCFD71BC272DD00C32F94 /* AppDelegate.swift */,
 			);
@@ -714,6 +717,7 @@
 				145B939E1BF37AB500A430EA /* RSKImageScrollView.m in Sources */,
 				D26734811BC3C5A500E63D15 /* WebViewController.swift in Sources */,
 				145B93A01BF37AB500A430EA /* RSKTouchView.m in Sources */,
+				C03DAAA31C6CB9CA00DBA412 /* Util.swift in Sources */,
 				C0A45D7E1C4E70EA00ED8F2F /* rxNewsSlideItem.swift in Sources */,
 				145B939B1BF37AB500A430EA /* CGGeometry+RSKImageCropper.m in Sources */,
 				C02E36FE1C5D9E3E0001FBFB /* TuShuoTableViewDataSource.swift in Sources */,

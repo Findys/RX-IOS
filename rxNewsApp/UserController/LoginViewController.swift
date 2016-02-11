@@ -20,12 +20,17 @@ class LoginViewController: UIViewController,UITextInputTraits {
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var account: UITextField!
     
+    var showInfo = true
+    
     var initial_Y = CGFloat()
     let notifictionCenter = NSNotificationCenter.defaultCenter()
     
     @IBAction func passwordTint(sender: AnyObject) {
-        MozTopAlertView.showWithType(MozAlertTypeInfo, text: "默认密码身份证后六位", parentView:self.view)
-        
+        Delay.delaySelectorWithTimeInterva(target: self,ti: 2, selector: "show")
+    }
+    
+    func show(){
+               MozTopAlertView.showWithType(MozAlertTypeInfo, text: "默认密码身份证后六位", parentView:self.view)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
