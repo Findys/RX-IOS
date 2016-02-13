@@ -78,6 +78,8 @@ class LoginViewController: UIViewController,UITextInputTraits {
                     userDefault.setObject(myaccount, forKey: "account")
                     userDefault.setBool(true, forKey: "iflogin")
                     
+                    userDefault.synchronize()
+                    
                     self.dismissViewControllerAnimated(true, completion: nil)
                     
                 }else{

@@ -38,4 +38,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 8e43fea8836e97be80fc4db27a1596c9e98a26ba
   VIPhotoView: bdc0cf8ddadda754b451869bd3a919e8eb5c11ab
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 8bd50efcd694eeffa4fead503d37c0f5a4caef7f
+
+COCOAPODS: 1.0.0.beta.3

@@ -19,7 +19,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-rxNewsApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,17 +42,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1604B11719817FA2B5F2D42B6EB1BBF3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>196561B35837930227529F04E014BA41</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>1C3436CEA5C3D39764C5F54374794ECB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3EA0A7C6523EAB058F30EF94A9FAD2F3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,7 +57,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>54B6A02176F333EFDAAD6E46FA2432EE</key>
+		<key>59A0AF88A9C60736CCE5125E80FBBF96</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,7 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6F805A2A2CB1445FA39723B3BA93BD89</key>
+		<key>90C90E0EB448C8DDED5C60B64E2ED2AC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E15D8EAE92043F1051D01F1A9C764945</key>
 		<dict>
 			<key>primary</key>
 			<true/>

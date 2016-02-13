@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import AFNetworking
+import RSKImageCropper
 
 class SettingViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate{
     
@@ -22,8 +23,8 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
 
         version.text=String(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")!)
         
-        let avatar = userDefault.stringForKey("headimage")
-        self.headImg.sd_setImageWithURL(NSURL(string: avatar!))
+        let avatar = userDefault.URLForKey("headimage")
+        self.headImg.sd_setImageWithURL(avatar)
         
         headImg.layer.cornerRadius = 15
         headImg.clipsToBounds = true
@@ -34,58 +35,36 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
         
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-        let img = RSKImageCropViewController.init(image: image, cropMode: RSKImageCropMode.Circle)
-        
-        img.delegate=self
-        
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        
-        self.presentViewController(img, animated: true, completion: nil)
-    }
-    
-    //    图片取消裁剪
-    func imageCropViewControllerDidCancelCrop(controller: RSKImageCropViewController!) {
-        
-        controller.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    //    图片裁剪结束
-    func imageCropViewController(controller: RSKImageCropViewController!, didCropImage croppedImage: UIImage!, usingCropRect cropRect: CGRect) {
-        
-        let imgData = UIImageJPEGRepresentation(croppedImage, CGFloat(1))
+        let imgData = UIImageJPEGRepresentation(image, CGFloat(1))
         
         let params = ["token":userDefault.stringForKey("token")!]
         
-//        let afmanager = AFHTTPSessionManager()
+                let afmanager = AFHTTPSessionManager()
         
         let studentID = userDefault.stringForKey("account")!
         
         let url = "http://user.ecjtu.net/api/user/\(studentID)/avatar"
+
+                afmanager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
+                    formdata.appendPartWithFileData(imgData!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
+                    }, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
+                        let avatar = resp?.objectForKey("avatar") as! String
+                        
+                        let nsurl = NSURL(string: avatar)
+                        
+                        userDefault.setURL(nsurl, forKey: "headImage")
+                        
         
         
-        Alamofire.upload(.POST, url, headers: params, multipartFormData: { (data:MultipartFormData) -> Void in
-            
-            data.appendBodyPart(data: imgData!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
-            
-            }, encodingMemoryThreshold: Manager.MultipartFormDataEncodingMemoryThreshold) { (manager:Manager.MultipartFormDataEncodingResult) -> Void in
-        }
+                    }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
+                        print(error)
+                }
         
+                afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
         
-//        afmanager.POST(url, parameters: params, constructingBodyWithBlock: { (formdata:AFMultipartFormData) -> Void in
-//            formdata.appendPartWithFileData(imgData!, name: "avatar", fileName: "headimage"+studentID+".jpg", mimeType: "image/jpg")
-//            }, progress: nil, success: { (nsurl:NSURLSessionDataTask, resp:AnyObject?) -> Void in
-//                print("123")
-//                
-//                
-//            }) { (nsurl:NSURLSessionDataTask?, error:NSError) -> Void in
-//                print(error)
-//        }
-//        //
-//        controller.dismissViewControllerAnimated(true, completion: nil)
-//        
-//        afmanager.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
     }
-    
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         
@@ -100,6 +79,7 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
                 let imagepicker=UIImagePickerController()
                 imagepicker.delegate=self
                 imagepicker.sourceType=UIImagePickerControllerSourceType.PhotoLibrary
+                imagepicker.allowsEditing = true
                 self.presentViewController(imagepicker, animated: true, completion: nil)
                 break
                 

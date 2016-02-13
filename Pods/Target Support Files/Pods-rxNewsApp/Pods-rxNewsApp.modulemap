@@ -1,0 +1,6 @@
+framework module Pods_rxNewsApp {
+  umbrella header "Pods-rxNewsApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

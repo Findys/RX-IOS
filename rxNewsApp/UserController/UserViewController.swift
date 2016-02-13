@@ -24,25 +24,23 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.headimage.layer.cornerRadius = 50
         
         self.headimage.clipsToBounds = true
-        
-        if userDefault.stringForKey("headimage") != nil &&
-            userDefault.stringForKey("name") != nil{
-            let name = userDefault.stringForKey("name")
-            self.username.text = name
-            let image = userDefault.stringForKey("headimage")
-            self.headimage.sd_setImageWithURL(NSURL(string: image!))
-            
-        }else{
-            if userDefault.stringForKey("account") != nil{
-            getUserData()
-            }
-        }
-        self.navigationController?.navigationBar.shadowImage = UIImage(named: "")
-        self.navigationController!.navigationBar.barStyle = UIBarStyle.BlackTranslucent
-        self.navigationController?.navigationBar.translucent = false
+
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        if userDefault.stringForKey("headImage") != nil &&
+            userDefault.stringForKey("name") != nil{
+                let name = userDefault.stringForKey("name")
+                self.username.text = name
+                let image = userDefault.URLForKey("headImage")
+                self.headimage.sd_setImageWithURL(image)
+                
+        }else{
+            if userDefault.stringForKey("account") != nil{
+                getUserData()
+            }
+        }
         
         let iflogin = userDefault.boolForKey("iflogin")
         
@@ -50,15 +48,12 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
             tabBarController!.selectedIndex = 0
             
-        }else{
-            self.navigationController?.navigationBar.shadowImage = UIImage(named: "")
-            self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
-            
         }
     }
     
     //    获取头像
     func getUserData(){
+        
         
         let url = "http://user.ecjtu.net/api/user/" + (userDefault.stringForKey("account"))!
         
@@ -67,8 +62,9 @@ class UserViewController: UIViewController,UITableViewDataSource,UITableViewDele
             if resp.result.isSuccess{
                 
                 let avatar = "http://"+((resp.result.value!.objectForKey("user")?.objectForKey("avatar"))! as! String)
+                let nsurl = NSURL(string: avatar)
                 
-                userDefault.setObject(avatar, forKey: "headimage")
+                userDefault.setURL(nsurl, forKey: "headimage")
                 
                 let name = (resp.result.value!.objectForKey("user")?.objectForKey("name")!) as! String
                 
