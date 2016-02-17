@@ -17,6 +17,7 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate,SlideScro
         let push = WebViewController()
         
         push.id = item.id
+        
         push.from = "rx"
         
         self.navigationController?.pushViewController(push, animated: true)
@@ -44,7 +45,6 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate,SlideScro
         if indexPath.section == 0 {
             
             let cell = UITableViewCell()
-            
             
             let slideImgArray = NSMutableArray()
             let slideTtlArray = NSMutableArray()
@@ -84,9 +84,9 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate,SlideScro
             
             info.text = item.info
             
-            let url = item.thumb
+            let nsurl = NSURL(string:item.thumb)
             
-            image.sd_setImageWithURL(NSURL(string:url))
+            image.sd_setImageWithURL(nsurl)
             
             return cell!
         }
@@ -103,6 +103,7 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate,SlideScro
             
             push.id = item.id
             
+//            mark the origin
             push.from = "rx"
             
             self.navigationController?.pushViewController(push, animated: true)

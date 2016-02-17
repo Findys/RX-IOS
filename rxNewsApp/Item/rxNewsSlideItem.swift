@@ -16,9 +16,9 @@ class rxNewsSlideItem:NSObject {
     init(object:AnyObject) {
         super.init()
         
-        self.title = object.objectForKey("title") as! String
-        self.thumb = object.objectForKey("thumb") as! String
-        self.id = object.objectForKey("id") as! Int
+        self.title = object["title"] as! String
+        self.thumb = object["thumb"] as! String
+        self.id = object["id"] as! Int
     }
     
     required init?(coder aDecoder: NSCoder){

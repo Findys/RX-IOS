@@ -19,11 +19,11 @@ class TuShuoItem:NSObject,NSCoding{
     init(object:AnyObject) {
         super.init()
         
-        self.thumb = object.objectForKey("thumb") as! String
-        self.title = object.objectForKey("title") as! String
-        self.click = object.objectForKey("click") as! String
-        self.pid = object.objectForKey("pid") as! String
-        self.time = object.objectForKey("pubdate") as! String
+        self.thumb = object["thumb"] as! String
+        self.title = object["title"] as! String
+        self.click = object["click"] as! String
+        self.pid = object["pid"] as! String
+        self.time = object["pubdate"] as! String
     }
     
     required init?(coder aDecoder: NSCoder){

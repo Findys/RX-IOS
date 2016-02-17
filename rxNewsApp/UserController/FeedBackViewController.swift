@@ -57,13 +57,12 @@ class FeedBackViewController: UIViewController,UITextViewDelegate {
         
     }
     
-    //    点击页面时取消焦点
+    //    resign first responder when you touch the screen
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         content.resignFirstResponder()
         nickname.resignFirstResponder()
     }
     
-    //    textview点击事件
     func textViewDidBeginEditing(textView: UITextView){
         content.text=""
     }

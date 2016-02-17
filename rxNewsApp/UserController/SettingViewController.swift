@@ -9,9 +9,8 @@
 import UIKit
 import Alamofire
 import AFNetworking
-import RSKImageCropper
 
-class SettingViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate{
+class SettingViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
     @IBOutlet weak var headImg: UIImageView!
     @IBOutlet weak var password: UITextField!
@@ -110,9 +109,9 @@ class SettingViewController: UITableViewController,UIImagePickerControllerDelega
                 
                 //            关于我们
             case 3:
-                let push = myStoryBoard.instantiateViewControllerWithIdentifier("about")
-                push.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(push, animated: true)
+//                let push = myStoryBoard.instantiateViewControllerWithIdentifier("about")
+//                push.hidesBottomBarWhenPushed = true
+//                self.navigationController?.pushViewController(push, animated: true)
                 break
                 
             default:break

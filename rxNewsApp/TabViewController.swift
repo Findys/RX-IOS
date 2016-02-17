@@ -25,7 +25,7 @@ class TabViewController: UITabBarController,UITabBarControllerDelegate {
     }
     
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        
+//        play animations when switch view
         if tabBarController.selectedIndex != currentIndex{
             viewController.view.viewWithTag(1)?.alpha = 0
             
@@ -36,6 +36,7 @@ class TabViewController: UITabBarController,UITabBarControllerDelegate {
             }
         }
         
+//        When switch to personal settings，determine whether the user has logged in
         if tabBarController.selectedIndex == 3{
             
             let iflogin = userDefault.boolForKey("iflogin")

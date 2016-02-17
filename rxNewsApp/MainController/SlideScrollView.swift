@@ -122,12 +122,14 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
     }
     
     func changeCurrentPage (){
+        
         let offX = scrollView.frame.size.width * CGFloat(currentPage)
         scrollView.setContentOffset(CGPoint(x:offX, y:scrollView.frame.origin.y), animated:true)
         self.scrollViewDidScroll(scrollView);
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        
         currentPage = Int(scrollView.contentOffset.x/WINDOW_WIDTH)
         pageControl.currentPage = currentPage
         

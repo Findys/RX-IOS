@@ -87,31 +87,14 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             text.textColor = UIColor.whiteColor()
             text.font = UIFont.boldSystemFontOfSize(15)
             
-            background.frame = CGRect(x: 0, y: WINDOW_HEIGHT-text.frame.height-84, width: WINDOW_WIDTH, height: text.frame.height+20)
+            let background_Y =  WINDOW_HEIGHT-text.frame.height-84
+            let background_Height = text.frame.height+20
+            background.frame = CGRect(x: 0, y: background_Y, width: WINDOW_WIDTH, height:background_Height )
             background.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
             
             url = "http://pic.ecjtu.net/\(url)"
             
-            let image = UIImageView()
-            
-            image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, SDImageCacheType cacheType, nsurl:NSURL!) -> Void in
-                
-                image.frame = CGRectMake(CGFloat(index)*WINDOW_WIDTH,WINDOW_HEIGHT/2-WINDOW_WIDTH/UIimage.size.width*UIimage.size.height/2-10
-                    ,WINDOW_WIDTH,WINDOW_WIDTH/UIimage.size.width*UIimage.size.height)
-                
-                self.imagearray.append(UIimage)
-                
-                let longpress = UILongPressGestureRecognizer(target: self, action: "longPress:")
-                longpress.minimumPressDuration = 1
-                longpress.numberOfTouchesRequired = 1
-                
-                let photoview = VIPhotoView.init(frame:CGRect(x: CGFloat(index)*WINDOW_WIDTH,y:-70
-                    ,width: WINDOW_WIDTH,height: WINDOW_HEIGHT), andImage: UIimage)
-                photoview.userInteractionEnabled = true
-                photoview.addGestureRecognizer(longpress)
-
-                self.scrollview.addSubview(photoview)
-            })
+            setImage(index, url: url)
             
             background.addSubview(text)
             
@@ -119,6 +102,36 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         }
         
         self.scrollview.contentSize = CGSizeMake(WINDOW_WIDTH * CGFloat(picArray.count),CGFloat(self.view.frame.height))
+    }
+    
+    func setImage(index:Int,url:String){
+        
+        let image = UIImageView()
+        
+        image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, SDImageCacheType cacheType, nsurl:NSURL!) -> Void in
+            
+            let image_X = CGFloat(index)*WINDOW_WIDTH
+            
+            let image_Y = WINDOW_HEIGHT/2-WINDOW_WIDTH/UIimage.size.width*UIimage.size.height/2-10
+            
+            let image_Height = WINDOW_WIDTH/UIimage.size.width*UIimage.size.height
+            
+            
+            image.frame = CGRect(x: image_X, y: image_Y, width: WINDOW_WIDTH, height: image_Height)
+            
+            self.imagearray.append(UIimage)
+            
+            let longpress = UILongPressGestureRecognizer(target: self, action: "longPress:")
+            longpress.minimumPressDuration = 1
+            longpress.numberOfTouchesRequired = 1
+            
+            let photoview = VIPhotoView.init(frame:CGRect(x: CGFloat(index)*WINDOW_WIDTH,y:-70
+                ,width: WINDOW_WIDTH,height: WINDOW_HEIGHT), andImage: UIimage)
+            photoview.userInteractionEnabled = true
+            photoview.addGestureRecognizer(longpress)
+            
+            self.scrollview.addSubview(photoview)
+        })
     }
     
     

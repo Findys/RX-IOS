@@ -18,11 +18,11 @@ class rxNewsItem:NSObject {
     
     init(object:AnyObject) {
         super.init()
-        self.title = object.objectForKey("title") as! String
-        self.click = object.objectForKey("click") as! Int
-        self.info = object.objectForKey("info") as! String
-        self.thumb = object.objectForKey("thumb") as! String
-        self.id = object.objectForKey("id") as! Int
+        self.title = object["title"] as! String
+        self.click = object["click"] as! Int
+        self.info = object["info"] as! String
+        self.thumb = object["thumb"] as! String
+        self.id = object["id"] as! Int
     }
     
     required init?(coder aDecoder: NSCoder){

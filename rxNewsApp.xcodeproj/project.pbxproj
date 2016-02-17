@@ -792,8 +792,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libraries/extends/QQSDK",
@@ -811,7 +811,7 @@
 					"$(PROJECT_DIR)/rxNewsApp/libraries/extends/SinaWeiboSDK",
 					"$(PROJECT_DIR)/rxNewsApp/libraries/extends/WeChatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ecjtu.net.rxNewsApp5;
+				PRODUCT_BUNDLE_IDENTIFIER = ecjtu.net.rixinapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "rxNewsApp/rxNewsApp-Bridging-Header.h";
@@ -825,8 +825,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libraries/extends/QQSDK",
@@ -844,7 +844,7 @@
 					"$(PROJECT_DIR)/rxNewsApp/libraries/extends/SinaWeiboSDK",
 					"$(PROJECT_DIR)/rxNewsApp/libraries/extends/WeChatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ecjtu.net.rxNewsApp5;
+				PRODUCT_BUNDLE_IDENTIFIER = ecjtu.net.rixinapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "rxNewsApp/rxNewsApp-Bridging-Header.h";

@@ -13,7 +13,7 @@ class LoginViewController: UIViewController,UITextInputTraits {
     
     var url="http://user.ecjtu.net/api/login"
     
-
+    
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var password: UITextField!
@@ -30,7 +30,7 @@ class LoginViewController: UIViewController,UITextInputTraits {
     }
     
     func show(){
-               MozTopAlertView.showWithType(MozAlertTypeInfo, text: "默认密码身份证后六位", parentView:self.view)
+        MozTopAlertView.showWithType(MozAlertTypeInfo, text: "默认密码身份证后六位", parentView:self.view)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +43,9 @@ class LoginViewController: UIViewController,UITextInputTraits {
         initial_Y = backView.frame.origin.y
         
         backView.translatesAutoresizingMaskIntoConstraints = true
-//        let background = UIImageView(image:  UIImage(named: "loginWallPaper"))
-//        background.frame = self.view.frame
-//        self.view.insertSubview(background, atIndex: 0)
+        //        let background = UIImageView(image:  UIImage(named: "loginWallPaper"))
+        //        background.frame = self.view.frame
+        //        self.view.insertSubview(background, atIndex: 0)
         
     }
     
@@ -100,9 +100,9 @@ class LoginViewController: UIViewController,UITextInputTraits {
         account.resignFirstResponder()
     }
     
-    //    点击登录按钮
+    //    click login button
     func loginClick(){
-
+        
         if (account.text?.characters.count==14)&&(password.text?.characters.count>=6){
             
             postData()
@@ -129,6 +129,7 @@ class LoginViewController: UIViewController,UITextInputTraits {
         return true
     }
     
+//    play animations when keyboard state change
     func keyboardDidShow(notification:NSNotification){
         
         logoImage.alpha = 0
