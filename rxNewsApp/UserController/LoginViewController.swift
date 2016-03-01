@@ -22,7 +22,6 @@ class LoginViewController: UIViewController,UITextInputTraits {
     
     var showInfo = true
     
-    var initial_Y = CGFloat()
     let notifictionCenter = NSNotificationCenter.defaultCenter()
     
     @IBAction func passwordTint(sender: AnyObject) {
@@ -39,14 +38,6 @@ class LoginViewController: UIViewController,UITextInputTraits {
         
         notifictionCenter.addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardWillShowNotification, object: nil)
         notifictionCenter.addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardWillHideNotification, object: nil)
-        
-        initial_Y = backView.frame.origin.y
-        
-        backView.translatesAutoresizingMaskIntoConstraints = true
-        //        let background = UIImageView(image:  UIImage(named: "loginWallPaper"))
-        //        background.frame = self.view.frame
-        //        self.view.insertSubview(background, atIndex: 0)
-        
     }
     
     
@@ -96,8 +87,7 @@ class LoginViewController: UIViewController,UITextInputTraits {
     //        点击使输入框失去焦点
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
-        password.resignFirstResponder()
-        account.resignFirstResponder()
+        self.view.endEditing(true)
     }
     
     //    click login button
@@ -134,14 +124,14 @@ class LoginViewController: UIViewController,UITextInputTraits {
         
         logoImage.alpha = 0
         
-        backView.frame.origin.y = 100
+        self.backView.transform = CGAffineTransformMakeTranslation(0, -150)
     }
     
     func keyboardDidHide(notification:NSNotification){
         
         logoImage.alpha = 1
         
-        backView.frame.origin.y = initial_Y
+        self.backView.transform = CGAffineTransformIdentity
     }
     
 }
