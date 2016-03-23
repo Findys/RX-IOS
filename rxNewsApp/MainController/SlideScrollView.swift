@@ -25,13 +25,14 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
     var pageControl = UIPageControl()
     var noteTitle = UILabel()
     var currentPage = Int()
+    var myFrame:CGRect?
     
     var mydelegate:SlideScrollViewDelegate?
     
-    init(var myFrame:CGRect,imgArr:NSArray,titArr:NSArray,backShadowImage:UIImage?){
-        super.init(frame: myFrame)
+    init(frame:CGRect,imgArr:NSArray,titArr:NSArray,backShadowImage:UIImage?){
+        super.init(frame: frame)
         
-        myFrame = CGRect(x: 0, y: 0, width: myFrame.width, height: myFrame.height-0.5)
+        myFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height-0.5)
         
         imageArray = imgArr
         titleArray = titArr
@@ -40,12 +41,12 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
         
         let pageCount = imageArray.count
         
-        scrollView.frame = myFrame
+        scrollView.frame = myFrame!
         scrollView.pagingEnabled = true
         
         let contentWidth = WINDOW_WIDTH*CGFloat(pageCount)
         
-        scrollView.contentSize = CGSize(width: contentWidth, height: myFrame.height)
+        scrollView.contentSize = CGSize(width: contentWidth, height: myFrame!.height)
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.scrollEnabled = true
@@ -53,20 +54,20 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
         scrollView.scrollsToTop = false
         scrollView.delegate = self
         
-        for var i = 0; i<pageCount; i++ {
+        for i in 0 ..< pageCount {
             let imgURL = imageArray[i] as! String
             let imgView = UIImageView()
             
             let viewWidth = Int(frame.size.width)*i
-            imgView.sd_setImageWithURL(NSURL(string: imgURL), completed: { (img:UIImage!, error:NSError!, SDImageCacheType cacheType, nsurl:NSURL!) -> Void in
-                imgView.frame = CGRect(origin: CGPoint(x: CGFloat(viewWidth), y:CGFloat(0)),size: CGSize(width: myFrame.width,height:myFrame.width/img.size.width*img.size.height))
+            imgView.sd_setImageWithURL(NSURL(string: imgURL), completed: { (img:UIImage!, error:NSError!, cacheType, nsurl:NSURL!) -> Void in
+                imgView.frame = CGRect(origin: CGPoint(x: CGFloat(viewWidth), y:CGFloat(0)),size: CGSize(width: self.myFrame!.width,height:self.myFrame!.width/img.size.width*img.size.height))
             })
             
             imgView.contentMode = UIViewContentMode.ScaleToFill
             imgView.userInteractionEnabled = true
             imgView.tag = i
             
-            let tap = UITapGestureRecognizer(target: self, action: "imagePressed:")
+            let tap = UITapGestureRecognizer(target: self, action: #selector(SlideScrollView.imagePressed(_:)))
             
             imgView.addGestureRecognizer(tap)
             
@@ -79,14 +80,14 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
         
         if backShadowImage != nil{
             let shadowImg = UIImageView()
-            shadowImg.frame = CGRect(origin: CGPoint(x: 0,y: myFrame.height-80),size: CGSize(width: 320,height: 80))
+            shadowImg.frame = CGRect(origin: CGPoint(x: 0,y: myFrame!.height-80),size: CGSize(width: 320,height: 80))
             shadowImg.image = backShadowImage
             self.addSubview(shadowImg)
         }
         
         pageControl = UIPageControl()
         pageControl.frame.size = CGSize(width: 100, height: 50)
-        pageControl.center = CGPoint(x: myFrame.width/2, y: myFrame.height-10)
+        pageControl.center = CGPoint(x: myFrame!.width/2, y: myFrame!.height-10)
         pageControl.currentPage = 0
         pageControl.numberOfPages = pageCount
         pageControl.userInteractionEnabled = false
@@ -103,7 +104,7 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
         noteTitle.frame = CGRect(origin: CGPoint(x: 10,y: 140),size: CGSize(width: 300,height: 50))
         self.addSubview(noteTitle)
         
-        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "autoShowNextPage", userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(SlideScrollView.autoShowNextPage), userInfo: nil, repeats: true)
     }
     
     required init?(coder aDecoder: NSCoder) {

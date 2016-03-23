@@ -25,7 +25,7 @@ class LoginViewController: UIViewController,UITextInputTraits {
     let notifictionCenter = NSNotificationCenter.defaultCenter()
     
     @IBAction func passwordTint(sender: AnyObject) {
-        Delay.delaySelectorWithTimeInterva(target: self,ti: 2, selector: "show")
+        Delay.delaySelectorWithTimeInterva(target: self,ti: 2, selector: #selector(LoginViewController.show))
     }
     
     func show(){
@@ -34,10 +34,10 @@ class LoginViewController: UIViewController,UITextInputTraits {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        login.addTarget(self, action: "loginClick", forControlEvents: UIControlEvents.TouchUpInside)
+        login.addTarget(self, action: #selector(LoginViewController.loginClick), forControlEvents: UIControlEvents.TouchUpInside)
         
-        notifictionCenter.addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardWillShowNotification, object: nil)
-        notifictionCenter.addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardWillHideNotification, object: nil)
+        notifictionCenter.addObserver(self, selector: #selector(LoginViewController.keyboardDidShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        notifictionCenter.addObserver(self, selector: #selector(LoginViewController.keyboardDidHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     

@@ -31,7 +31,7 @@ extension TushuoViewController:UITableViewDataSource,UITableViewDelegate{
         
         let url = "http://\(item.thumb)" as NSString
 
-        image.sd_setImageWithURL(NSURL(string:url as String), completed: { (UIimage:UIImage!, error:NSError!, SDImageCacheType cacheType, nsurl:NSURL!) -> Void in
+        image.sd_setImageWithURL(NSURL(string:url as String), completed: { (UIimage:UIImage!, error:NSError!, cacheType, nsurl:NSURL!) -> Void in
             
             image.frame = CGRectMake(CGFloat(0),
                 CGFloat(0),cell!.frame.width,cell!.frame.width/UIimage.size.width*UIimage.size.height)

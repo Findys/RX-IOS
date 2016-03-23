@@ -108,7 +108,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
         
         let image = UIImageView()
         
-        image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, SDImageCacheType cacheType, nsurl:NSURL!) -> Void in
+        image.sd_setImageWithURL(NSURL(string:url), completed: { (UIimage:UIImage!, error:NSError!, cacheType, nsurl:NSURL!) -> Void in
             
             let image_X = CGFloat(index)*WINDOW_WIDTH
             
