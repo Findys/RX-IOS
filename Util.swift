@@ -28,7 +28,7 @@ class Delay:NSObject{
             //将执行状态设置为false
             showStatus = false
             //延迟一段时间后执行changShowStatus方法将执行状态设置为true
-            NSTimer.scheduledTimerWithTimeInterval(ti, target: self, selector: "changeShowStatus", userInfo: nil, repeats: false)
+            NSTimer.scheduledTimerWithTimeInterval(ti, target: self, selector: #selector(Delay.changeShowStatus), userInfo: nil, repeats: false)
         }
         
     }

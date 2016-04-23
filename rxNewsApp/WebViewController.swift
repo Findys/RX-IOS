@@ -67,10 +67,10 @@ class WebViewController: UIViewController,WKNavigationDelegate{
             comment.frame = CGRect(x: WINDOW_WIDTH - 73, y: 5, width: 65, height: 30)
             comment.clipsToBounds = true
             comment.layer.cornerRadius = 5
-            comment.addTarget(self, action: "commitComment", forControlEvents: UIControlEvents.TouchUpInside)
+            comment.addTarget(self, action: #selector(WebViewController.commitComment), forControlEvents: UIControlEvents.TouchUpInside)
             backView.addSubview(comment)
             
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "评论页", style: UIBarButtonItemStyle.Plain, target: self, action: "pushToComment")
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "评论页", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(WebViewController.pushToComment))
             
             
         }
@@ -87,8 +87,8 @@ class WebViewController: UIViewController,WKNavigationDelegate{
     
     override func viewWillAppear(animated: Bool) {
         
-        notifictionCenter.addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardWillShowNotification, object: nil)
-        notifictionCenter.addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardWillHideNotification, object: nil)
+        notifictionCenter.addObserver(self, selector: #selector(WebViewController.keyboardDidShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        notifictionCenter.addObserver(self, selector: #selector(WebViewController.keyboardDidHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         var url = String()
         

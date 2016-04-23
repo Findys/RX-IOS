@@ -58,9 +58,11 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
             let imgURL = imageArray[i] as! String
             let imgView = UIImageView()
             
-            let viewWidth = Int(frame.size.width)*i
-            imgView.sd_setImageWithURL(NSURL(string: imgURL), completed: { (img:UIImage!, error:NSError!, cacheType, nsurl:NSURL!) -> Void in
-                imgView.frame = CGRect(origin: CGPoint(x: CGFloat(viewWidth), y:CGFloat(0)),size: CGSize(width: self.myFrame!.width,height:self.myFrame!.width/img.size.width*img.size.height))
+            let viewWidth = Int(frame.size.width) * i
+            imgView.sd_setImageWithURL(NSURL(string: imgURL), completed: { (picture:UIImage?, error:NSError!, cacheType, nsurl:NSURL!) -> Void in
+                if(picture != nil){
+                    imgView.frame = CGRect(origin: CGPoint(x: CGFloat(viewWidth), y:CGFloat(0)),size: CGSize(width: self.myFrame!.width,height:self.myFrame!.width/picture!.size.width*picture!.size.height))
+                }
             })
             
             imgView.contentMode = UIViewContentMode.ScaleToFill
@@ -99,7 +101,7 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
         noteTitle.numberOfLines = 0
         noteTitle.lineBreakMode = NSLineBreakMode.ByCharWrapping
         if titleArray.count != 0{
-        noteTitle.text = titleArray[pageControl.currentPage] as? String
+            noteTitle.text = titleArray[pageControl.currentPage] as? String
         }
         noteTitle.frame = CGRect(origin: CGPoint(x: 10,y: 140),size: CGSize(width: 300,height: 50))
         self.addSubview(noteTitle)
@@ -135,7 +137,7 @@ class SlideScrollView: UIView,UIScrollViewDelegate{
         pageControl.currentPage = currentPage
         
         if titleArray.count != 0{
-        noteTitle.text = titleArray[pageControl.currentPage] as? String
+            noteTitle.text = titleArray[pageControl.currentPage] as? String
         }
     }
     

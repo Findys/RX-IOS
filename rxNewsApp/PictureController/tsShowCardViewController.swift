@@ -121,7 +121,7 @@ class tsShowCardViewController: UIViewController,UIScrollViewDelegate{
             
             self.imagearray.append(UIimage)
             
-            let longpress = UILongPressGestureRecognizer(target: self, action: "longPress:")
+            let longpress = UILongPressGestureRecognizer(target: self, action: #selector(tsShowCardViewController.longPress(_:)))
             longpress.minimumPressDuration = 1
             longpress.numberOfTouchesRequired = 1
             

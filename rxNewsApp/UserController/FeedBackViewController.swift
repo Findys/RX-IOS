@@ -20,7 +20,7 @@ class FeedBackViewController: UIViewController,UITextViewDelegate {
         
         self.edgesForExtendedLayout = UIRectEdge.Bottom
         
-        commit.addTarget(self, action: "feedBack", forControlEvents: UIControlEvents.TouchUpInside)
+        commit.addTarget(self, action: #selector(FeedBackViewController.feedBack), forControlEvents: UIControlEvents.TouchUpInside)
         
         content.layer.borderWidth = 1
         content.layer.cornerRadius = 5

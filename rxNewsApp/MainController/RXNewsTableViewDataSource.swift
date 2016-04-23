@@ -61,7 +61,7 @@ extension MainViewController:UITableViewDataSource,UITableViewDelegate,SlideScro
             
             let cellFrame = CGRect(x: 0, y: 0, width: WINDOW_WIDTH, height: 204)
             
-            let myslideView = SlideScrollView(myFrame: cellFrame,imgArr:slideImgArray,titArr:slideTtlArray,backShadowImage: shadow)
+            let myslideView = SlideScrollView(frame: cellFrame,imgArr:slideImgArray,titArr:slideTtlArray,backShadowImage: shadow)
             
             myslideView.mydelegate = self
             
